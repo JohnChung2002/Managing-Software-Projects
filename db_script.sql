@@ -4,6 +4,7 @@ CREATE TABLE IF NOT EXISTS `user_info` (
     user_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
     email_address VARCHAR(254),
     phone_number CHAR(11) NOT NULL,
+    name VARCHAR(255) NOT NULL,
     gender ENUM('Male', 'Female'),
     preference JSON,
     PRIMARY KEY (user_id)

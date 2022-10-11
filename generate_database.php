@@ -32,7 +32,6 @@ $command .= "CREATE TABLE IF NOT EXISTS user_credentials (
     PRIMARY KEY (email_address),
     FOREIGN KEY (user_id) REFERENCES user_info(user_id)
 );";
-$command .= "ALTER TABLE user_info ADD CONSTRAINT user_info_ibfk_1 FOREIGN KEY IF NOT EXISTS (email_address) REFERENCES user_credentials(email_address);";
 $command .= "CREATE TABLE IF NOT EXISTS booking_info (
     booking_id CHAR(11) NOT NULL,
     booking_timestamp TIMESTAMP NOT NULL,
@@ -83,6 +82,7 @@ $command .= "CREATE TABLE IF NOT EXISTS encyclopedia_items (
     item_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
     item_type_id INT UNSIGNED NOT NULL,
     item_name VARCHAR(255) NOT NULL,
+    item_image TEXT NOT NULL,
     availability_in_store ENUM('Not Available', 'Out of Stock', 'Available') NOT NULL,
     price_in_store DECIMAL(5,2),
     encyclopedia_resource TEXT,

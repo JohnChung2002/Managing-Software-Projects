@@ -1,5 +1,5 @@
 <?php 
-require_once 'database_credentials.php'; 
+require_once '../database_credentials.php'; 
 $conn = mysqli_connect($servername, $username, $password, $database);
 $command = "";
 $command .= "INSERT INTO encyclopedia_item_types (item_type_name, item_category_id) VALUES ('Compost & Soil', 1);";

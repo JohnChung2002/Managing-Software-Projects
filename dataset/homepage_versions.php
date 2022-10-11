@@ -1,5 +1,5 @@
 <?php 
-require_once 'database_credentials.php'; 
+require_once '../database_credentials.php'; 
 $conn = mysqli_connect($servername, $username, $password, $database);
 $command = "";
 $command .= "INSERT INTO homepage_info (page_resource, remarks) VALUES ('<h1>This is version 1</h1><p>You are now viewing version 1</p>', 'Modified to Version 1');";

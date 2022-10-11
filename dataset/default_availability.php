@@ -1,5 +1,5 @@
 <?php 
-require_once 'database_credentials.php'; 
+require_once '../database_credentials.php'; 
 $conn = mysqli_connect($servername, $username, $password, $database);
 $command = "";
 $command .= "INSERT INTO default_store_availability (day_of_week, operating_hours) VALUES ('Sunday', NULL);";

@@ -1,5 +1,5 @@
 <?php 
-require_once 'database_credentials.php'; 
+require_once '../database_credentials.php'; 
 $conn = mysqli_connect($servername, $username, $password, $database);
 $command = "";
 $command .= "INSERT INTO encyclopedia_items (item_type_id, item_name, item_image, availability_in_store, price_in_store, encyclopedia_resource) VALUES (1, 'Agrosoil', 'https://gardenmart4u.com/image/gardenmart4u/image/cache/data/all_product_images/product-2146/ZAPXaUTi1619778545-808x1080.jpeg', 'Available', 48.29, '<h1>This is Agrosoil</h1>');";

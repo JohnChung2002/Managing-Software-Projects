@@ -1,5 +1,5 @@
 <?php 
-require_once 'database_credentials.php'; 
+require_once '../database_credentials.php'; 
 $conn = mysqli_connect($servername, $username, $password, $database);
 $command = "";
 $command .= "INSERT INTO content_info (content_type, content_title, content_resource) VALUES ('Announcement', 'Closure of Store due to Fumigation and Santisation Exercise on 21st October 2022', '<p>Dear valued patrons,</p><br/><br/><p>Our store will be closed on 21st October 2022 for a fumigation and santisation exercise to ensure the safety of all visitors and employees. We will be back on 24th October 2022.</p><br/><br/><p>Thank you for your understanding.</p><br/><br/><p>Regards,</p><p>Cacti Succulent Kuching</p>');";

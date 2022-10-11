@@ -1,5 +1,5 @@
 <?php 
-require_once 'database_credentials.php'; 
+require_once '../database_credentials.php'; 
 $conn = mysqli_connect($servername, $username, $password, $database);
 $command = "";
 $command .= "INSERT INTO custom_store_availability (operating_date, operating_hours) VALUES ('2022-10-20', '[\"09:00:00-12:00:00\"]');";

@@ -1,5 +1,5 @@
 <?php
-require_once 'database_credentials.php';
+require_once '../database_credentials.php';
 $conn = mysqli_connect($servername, $username, $password);
 if ($conn) {
     $command = "CREATE DATABASE IF NOT EXISTS cacti_succulent_kuching;";

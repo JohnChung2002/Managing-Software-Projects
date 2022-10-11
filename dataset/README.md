@@ -1,5 +1,5 @@
 # How to use the dataset importer?
-First, ensure you have the correct credentials to access the database (look at the database_credentials.php file)
+First, ensure you have the correct credentials to access the database (look at the database_credentials.php file in the repo root)
 <br/><br/>
 If you want to create a new randomised dataset, run the generate_dataset.py
 <br/><br/>

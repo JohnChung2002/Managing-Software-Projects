@@ -1,5 +1,5 @@
 <?php 
-require_once 'database_credentials.php'; 
+require_once '../database_credentials.php'; 
 $conn = mysqli_connect($servername, $username, $password, $database);
 $command = "";
 $command .= "INSERT INTO user_info (email_address, phone_number, name, gender, preference) VALUES ('Helen.Fleming@testemail.cf', '0109051738', 'Helen Fleming', 'Male', '[\"Seedlings\"]');";

@@ -1,5 +1,5 @@
 <?php 
-require_once 'database_credentials.php'; 
+require_once '../database_credentials.php'; 
 $conn = mysqli_connect($servername, $username, $password, $database);
 $command = "";
 $command .= "INSERT INTO user_credentials (email_address, password, user_id, user_role, account_status, account_token, token_expiry) VALUES ('Helen.Fleming@testemail.cf', '\$2b\$12\$eq/z3SbcHgJORsNYwGgKHOJGAvZe3oRbpIWK.sguQJwX3ge/OYqsu', '1', 'Admin', 'Activated', '', '');";

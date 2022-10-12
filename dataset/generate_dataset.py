@@ -254,7 +254,10 @@ def sql_comms_user_creds():
     with open('user_credentials.php', 'w') as f:
         f.write(PHPHEADER)
         for i in info:
-            f.write("$command .= \"INSERT INTO user_credentials (email_address, password, user_id, user_role, account_status, account_token, token_expiry) VALUES ('{}', '{}', '{}', '{}', '{}', '{}', '{}');\";\n".format(i[0], escape_dollar(i[1]), i[2], i[3], i[4], i[5], i[6]))
+            if (i[4] == 'Activated' or i[4] == 'Deleted'):
+                f.write("$command .= \"INSERT INTO user_credentials (email_address, password, user_id, role, account_status) VALUES ('{}', '{}', {}, '{}', '{}');\";\n".format(i[0], i[1], i[2], i[3], i[4]))
+            else:
+                f.write("$command .= \"INSERT INTO user_credentials (email_address, password, user_id, user_role, account_status, account_token, token_expiry) VALUES ('{}', '{}', '{}', '{}', '{}', '{}', '{}');\";\n".format(i[0], escape_dollar(i[1]), i[2], i[3], i[4], i[5], i[6]))
         f.write(PHPFOOTER)
     with open('username_password.txt', 'w') as f:
         for i in range(20):

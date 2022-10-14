@@ -78,6 +78,7 @@
         if (validate_date($_GET["date"])) {
             $date = $_GET["date"];
             $conn = start_connection();
+
             $default_op = getDefaultOp($conn, date("l", strtotime($date)));
             $custom_op = getCustomOp($conn, $date);
             $taken_slots = getSlots($conn, $date);

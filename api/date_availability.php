@@ -1,7 +1,5 @@
 <?php
-    function validate_date($date) {
-        return date_create_from_format("Y-m-d", $date) !== false;
-    }
+    require_once "api_functions.php";
 
     function getDefaultOp($conn) {
         $default_op = array();
@@ -29,12 +27,11 @@
         return $custom_op;
     }
 
+    date_default_timezone_set("Asia/Kuala_Lumpur");
     if (!empty($_GET["date"])) {
         if (validate_date($_GET["date"])) {
             $date = $_GET["date"];
-            require_once '../database_credentials.php';
-            date_default_timezone_set("Asia/Kuala_Lumpur");
-            $conn = mysqli_connect($servername, $username, $password, $database);
+            $conn = start_connection();
 
             $default_op = getDefaultOp($conn);
             $custom_op = getCustomOpDates($conn, date("F", strtotime($date)));

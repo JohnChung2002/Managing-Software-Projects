@@ -1,3 +1,4 @@
+
 html {
   font-family: sans-serif;
   line-height: 1.15;
@@ -191,5 +192,4 @@ tbody td:active {
 #today:after {
     background: #03C04A; 
 }
-
 

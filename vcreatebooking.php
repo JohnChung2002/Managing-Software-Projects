@@ -14,7 +14,7 @@
 
 <body>
 <?php include 'header.php'; ?>
-  <h1 class="text-center"> Cacti Succulent Kuching’s Booking Appointment</h1>
+  <h1 class="text-center mt-5">APPOINTMENT REQUEST</h1>
 
 <div class="container p-5 my-5 border">
 <div class="col-12">
@@ -24,6 +24,7 @@
       <option>Buy plant</option>
       <option>Buy fertilizer</option>
       <option>Buy gardening tool</option>
+      <option>Other</option>
     </select>
 </div>
 
@@ -50,7 +51,7 @@
     <input type="text" class="form-control" id="inputPhone" placeholder="xxx-xxxxxxx">
   </div>
   <div class="col-12">
-    <button type="submit" class="btn btn-primary">Book</button>
+    <button type="submit" class="btn btn-primary">Book Now</button>
     <button type="reset" class="btn btn-primary">Reset</button>
   </div>
 </form>

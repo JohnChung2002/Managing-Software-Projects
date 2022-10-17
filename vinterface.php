@@ -11,17 +11,16 @@
 <body>
 <?php include 'header.php'; ?>
 
-<div class="container p-5 my-5 border bg-success p-3">
-  <h1>Cacti Succulent Kuching’s Visitor Appointment Booking System Interface</h1>
-  <p>This is Cacti Succulent Kuching’s Visitor Appointment Booking System</p>
+<div class="container p-5 my-5 bg-success p-3">
+  <h1 class="text-center text-white">SERVICES</h1>
 
 <div class="row row-cols-1 row-cols-md-2 g-4">
   <div class="col">
     <div class="card p-5 my-5 border">
       <img src="images/booking.png" class="card-img-top" alt="...">
       <div class="card-body">
-        <h5 class="card-title">Book Appointment</h5>
-        <p class="card-text">Create a booking appointment based on information given</p>
+        <h5 class="card-title">BOOK MY APPOINTMENT</h5>
+        <p class="card-text">To apply for a new appointment, please make sure you have a valid contact information otherwise your appointment will be void.</p>
         <a href="vcreatebooking.php" class="btn btn-primary">Book Appointment</a>
     </div>
     </div>
@@ -30,8 +29,8 @@
     <div class="card p-5 my-5 border">
       <img src="images/cancel.png" class="card-img-top" alt="...">
       <div class="card-body">
-        <h5 class="card-title">Cancel Appointment</h5>
-        <p class="card-text">Cancel your booking appointment</p>
+        <h5 class="card-title">CANCEL MY APPOINTMENT</h5>
+        <p class="card-text">Cancel my booking appointment</p>
         <a href="vcancelbooking.php" class="btn btn-primary">Cancel Appointment</a>
     </div>
     </div>
@@ -40,7 +39,7 @@
     <div class="card p-5 my-5 border">
       <img src="images/update.png" class="card-img-top" alt="...">
       <div class="card-body">
-        <h5 class="card-title">Update Appointment</h5>
+        <h5 class="card-title">UPDATE MY APPOINTMENT</h5>
         <p class="card-text">Update your appointment</p>
         <a href="vupdatebooking.php" class="btn btn-primary">Update Appointment</a>
     </div>
@@ -50,8 +49,8 @@
     <div class="card p-5 my-5 border">
       <img src="images/check.png" class="card-img-top" alt="...">
       <div class="card-body">
-        <h5 class="card-title">Appointment History</h5>
-        <p class="card-text">View your booking appointment history</p>
+        <h5 class="card-title">MY APPOINTMENT HISTORY</h5>
+        <p class="card-text">View my booking appointment history</p>
         <a href="vbhistory.php" class="btn btn-primary">Appointment History</a>
     </div>
     </div>

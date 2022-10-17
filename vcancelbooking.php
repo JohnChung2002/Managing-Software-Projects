@@ -8,7 +8,7 @@
 
 <body>
 <?php include 'header.php'; ?>
-  <h1 class="text-center">Cacti Succulent Kuching’s Cancel Booked Appointment</h1>
+  <h1 class="text-center mt-5">CANCEL APPOINTMENT</h1>
 
 <div class="container p-5 my-5 border">
 <form class="row g-3">
@@ -19,6 +19,7 @@
       <option>Scheduling Conflict</option>
       <option>Emergency</option>
       <option>Illness</option>
+      <option>Other</option>
     </select>
   </div>
   <div class="col-md-6">
@@ -30,7 +31,7 @@
     <input type="text" class="form-control" id="inputPhone" placeholder="xxx-xxxxxxx">
   </div>
   <div class="col-12">
-    <button type="submit" class="btn btn-primary">Confirm</button>
+    <button type="submit" class="btn btn-primary">Cancel Now</button>
     <button type="reset" class="btn btn-primary">Reset</button>
   </div>
 </form>

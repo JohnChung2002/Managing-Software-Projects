@@ -8,7 +8,7 @@
 
 <body>
 <?php include 'header.php'; ?>
-  <h1 class="text-center">Cacti Succulent Kuching’s Booking Appointment History</h1>
+  <h1 class="text-center mt-5">APPOINTMENT HISTORY</h1>
 
 <div class="container p-5 my-5 border">
 <ul class="list-group">

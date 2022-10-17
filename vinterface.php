@@ -17,17 +17,17 @@
 <div class="row row-cols-1 row-cols-md-2 g-4">
   <div class="col">
     <div class="card p-5 my-5 border">
-      <img src="images/booking.png" class="card-img-top" alt="...">
+      <img src="images/booking.png" class="card-img-top w-50" alt="...">
       <div class="card-body">
         <h5 class="card-title">BOOK MY APPOINTMENT</h5>
-        <p class="card-text">To apply for a new appointment, please make sure you have a valid contact information otherwise your appointment will be void.</p>
+        <p class="card-text">Apply for a new appointment</p>
         <a href="vcreatebooking.php" class="btn btn-primary">Book Appointment</a>
     </div>
     </div>
   </div>
   <div class="col">
     <div class="card p-5 my-5 border">
-      <img src="images/cancel.png" class="card-img-top" alt="...">
+      <img src="images/cancel.png" class="card-img-top w-50" alt="...">
       <div class="card-body">
         <h5 class="card-title">CANCEL MY APPOINTMENT</h5>
         <p class="card-text">Cancel my booking appointment</p>
@@ -37,7 +37,7 @@
   </div>
   <div class="col">
     <div class="card p-5 my-5 border">
-      <img src="images/update.png" class="card-img-top" alt="...">
+      <img src="images/update.png" class="card-img-top w-50" alt="...">
       <div class="card-body">
         <h5 class="card-title">UPDATE MY APPOINTMENT</h5>
         <p class="card-text">Update your appointment</p>
@@ -47,7 +47,7 @@
   </div>
   <div class="col">
     <div class="card p-5 my-5 border">
-      <img src="images/check.png" class="card-img-top" alt="...">
+      <img src="images/check.png" class="card-img-top w-50" alt="...">
       <div class="card-body">
         <h5 class="card-title">MY APPOINTMENT HISTORY</h5>
         <p class="card-text">View my booking appointment history</p>

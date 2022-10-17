@@ -32,6 +32,6 @@
             $hash = hashPasswordDatabase($password);
             $bool = true;
         }
-        return array("hashedPassword"=>$hash, "is_integrity"=>$bool);
+        return array('hashedPassword'=>$hash, 'is_integrity'=>$bool);
     }
 ?>

@@ -9,9 +9,14 @@
 </head>
 
 <body>
+
+<div class="container p-5 my-5 border">
+  <h1>Visitor Booking Appointment Interface</h1>
+  <p>This is Cacti Succulent Kuching’s Visitor Appointment Booking System</p>
+
 <div class="row row-cols-1 row-cols-md-2 g-4">
   <div class="col">
-    <div class="card">
+    <div class="card p-5 my-5 border">
       <img src="images/booking.png" class="card-img-top" alt="...">
       <div class="card-body">
         <h5 class="card-title">Book Appointment</h5>
@@ -21,7 +26,7 @@
     </div>
   </div>
   <div class="col">
-    <div class="card">
+    <div class="card p-5 my-5 border">
       <img src="images/cancel.png" class="card-img-top" alt="...">
       <div class="card-body">
         <h5 class="card-title">Cancel Appointment</h5>
@@ -31,7 +36,7 @@
     </div>
   </div>
   <div class="col">
-    <div class="card">
+    <div class="card p-5 my-5 border">
       <img src="images/update.png" class="card-img-top" alt="...">
       <div class="card-body">
         <h5 class="card-title">Update Appointment</h5>
@@ -41,7 +46,7 @@
     </div>
   </div>
   <div class="col">
-    <div class="card">
+    <div class="card p-5 my-5 border">
       <img src="images/check.png" class="card-img-top" alt="...">
       <div class="card-body">
         <h5 class="card-title">Appointment History</h5>
@@ -50,6 +55,8 @@
     </div>
     </div>
   </div>
+</div>
+
 </div>
 
 </body>

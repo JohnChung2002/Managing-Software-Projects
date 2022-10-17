@@ -12,15 +12,30 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 
-<body class="container p-5 my-5 border">
-<h1> Booking Appointment</h1>
-    <div id="datepicker-container"></div>
-    <div class="mb-3">
-        <label for="available-slot" class="form-label">Available Time</label>
-        <select class="form-select form-select-lg" name="available-slot" id="available-slot">
-        </select>
-    </div>
+<body>
+<?php include 'header.php'; ?>
+  <h1 class="text-center"> Cacti Succulent Kuching’s Booking Appointment</h1>
 
+<div class="container p-5 my-5 border">
+<div class="col-12">
+    <label for="inputService" class="form-label">Select a service</label>
+    <select id="inputService" class="form-select">
+      <option selected>Choose...</option>
+      <option>Buy plant</option>
+      <option>Buy fertilizer</option>
+      <option>Buy gardening tool</option>
+    </select>
+</div>
+
+<div id="datepicker-container"></div>
+
+<div class="mb-3">
+  <label for="available-slot" class="form-label">Available Time</label>
+    <select class="form-select form-select-lg" name="available-slot" id="available-slot">
+    </select>
+</div>
+
+<h2> Add Your Details</h2>
 <form class="row g-3">
   <div class="col-md-6">
     <label for="inputName" class="form-label">Name</label>
@@ -35,30 +50,24 @@
     <input type="text" class="form-control" id="inputPhone" placeholder="xxx-xxxxxxx">
   </div>
   <div class="col-12">
-    <label for="inputReason" class="form-label">Reason for visit</label>
-    <select id="inputReason" class="form-select">
-      <option selected>Choose...</option>
-      <option>Buy plant</option>
-      <option>Buy fertilizer</option>
-      <option>Buy gardening tool</option>
-    </select>
-  </div>
-  <div class="col-12">
-    <button type="submit" class="btn btn-primary">Book Now</button>
+    <button type="submit" class="btn btn-primary">Book</button>
     <button type="reset" class="btn btn-primary">Reset</button>
   </div>
 </form>
 
-    <script src="script/datepicker.js"></script>
-    <script>
-        var disabledDates;
-        $(document).ready(function() {
-            var start_date = formatNewDate(new Date())
-            updateDisabled(start_date).then(function(data) {
-                disabledDates = data;
-                loadDatePicker();
-            });
+<script src="script/datepicker.js"></script>
+  <script>
+    var disabledDates;
+      $(document).ready(function() {
+        var start_date = formatNewDate(new Date())
+        updateDisabled(start_date).then(function(data) {
+          disabledDates = data;
+          loadDatePicker();
         });
-    </script>
+        });
+  </script>
+</div>
+<?php include 'footer.php'; ?>
+
 </body>
 </html>

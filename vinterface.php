@@ -9,9 +9,10 @@
 </head>
 
 <body>
+<?php include 'header.php'; ?>
 
-<div class="container p-5 my-5 border">
-  <h1>Visitor Booking Appointment Interface</h1>
+<div class="container p-5 my-5 border bg-success p-3">
+  <h1>Cacti Succulent Kuching’s Visitor Appointment Booking System Interface</h1>
   <p>This is Cacti Succulent Kuching’s Visitor Appointment Booking System</p>
 
 <div class="row row-cols-1 row-cols-md-2 g-4">
@@ -56,8 +57,9 @@
     </div>
   </div>
 </div>
-
 </div>
+
+<?php include 'footer.php'; ?>
 
 </body>
 </html>

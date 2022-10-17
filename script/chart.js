@@ -147,7 +147,7 @@ function initialiseDayChart() {
         for (const [key, value] of Object.entries(week_obj)) {
             chartData.push({x: key, y: value});
         }
-        new Chart("demoDayChart", {
+        new Chart("DayChart", {
             type: "line",
             data: {
             datasets: [{
@@ -179,7 +179,7 @@ function initialiseMonthChart() {
         for (const [key, value] of Object.entries(month_obj)) {
             chartData.push({x: key, y: value});
         }
-        new Chart("demoMonthChart", {
+        new Chart("MonthChart", {
             type: "line",
             data: {
               datasets: [{
@@ -211,7 +211,7 @@ function initialiseTimeChart() {
         for (const [key, value] of Object.entries(day_obj)) {
             chartData.push({x: key, y: value});
         }
-        new Chart("demoTimeChart", {
+        new Chart("TimeChart", {
             type: "line",
             data: {
               datasets: [{
@@ -248,11 +248,11 @@ function initialiseYearChart() {
         for (const [key, value] of Object.entries(year_obj)) {
             chartData.push({x: key, y: value});
         }
-        new Chart("demoYearChart", {
+        new Chart("YearChart", {
             type: "line",
             data: {
             datasets: [{
-                fill: true,
+                fill: false,
                 lineTension: 0,
                 backgroundColor: "rgba(0,0,255,1.0)",
                 borderColor: "rgba(0,0,255,0.1)",

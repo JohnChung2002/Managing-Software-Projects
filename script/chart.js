@@ -23,6 +23,7 @@ function getDaysInMonthObject(month_obj, month_name, year) {
     }
 }
 
+
 function getHoursInDay(day_obj) {
     var hours = {};
     for (var i = 0; i < 24; i++) {
@@ -137,7 +138,7 @@ function getYearStatistic(year) {
     })
 }
 
-
+// displays amount of bookings per day in a week format
 function initialiseDayChart() {
     //month_name="October"
     getDayStatistic().then(function(data) {
@@ -170,6 +171,7 @@ function initialiseDayChart() {
     }).catch(err => console.log(err));
 };
 
+//displays number of bookings in dates in a specific month
 function initialiseMonthChart() {
     getMonthStatistic(month_name="October", year="2022").then(function(data) {
         var month_obj = getDaysInMonthObject(data, month_name, year);
@@ -201,6 +203,7 @@ function initialiseMonthChart() {
     }).catch(err => console.log(err));
 }
 
+// number of bookings each time
 function initialiseTimeChart() {
     getTimeStatistic(month_name="October", year="2022").then(function(data) {
         var day_obj = getHoursInDay(data);
@@ -232,6 +235,7 @@ function initialiseTimeChart() {
     }).catch(err => console.log(err));
 }
 
+// displays number of bookings per month
 function initialiseYearChart() {
     getYearStatistic(year=2022).then(function(data) {
         var regex = /\d/;   
@@ -248,7 +252,7 @@ function initialiseYearChart() {
             type: "line",
             data: {
             datasets: [{
-                fill: false,
+                fill: true,
                 lineTension: 0,
                 backgroundColor: "rgba(0,0,255,1.0)",
                 borderColor: "rgba(0,0,255,0.1)",

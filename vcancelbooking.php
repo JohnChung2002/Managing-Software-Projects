@@ -31,9 +31,27 @@
     <input type="text" class="form-control" id="inputPhone" placeholder="xxx-xxxxxxx">
   </div>
   <div class="col-12">
-    <button type="submit" class="btn btn-primary">Cancel Now</button>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">Cancel Now</button>
     <button type="reset" class="btn btn-primary">Reset</button>
   </div>
+
+<div class="modal" id="myModal">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Your booking has been successfully cancelled!</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        You will received a confirmation email shortly.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 </form>
 
 </div>

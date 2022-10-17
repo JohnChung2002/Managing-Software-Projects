@@ -1,7 +1,8 @@
 <?php
     include '../input_validation.php';
     include 'authentication-module.php';
-    require_once 'database_credentials.php'; // File of the database credentials PATH MAYBE UPDATED
+    include 'send_email.php';
+    require_once '../database_credentials.php'; // File of the database credentials PATH MAYBE UPDATED
 
     $name = $userInputPassword = $email = $gender = $phone = "";
     
@@ -13,52 +14,52 @@
     $phoneMsgBool = PhoneValidation();
 
     // Input Validation
-    if($nameMsgBool[2]){
-        $name = $nameMsgBool[0];
+    if($nameMsgBool['is_valid']){
+        $name = $nameMsgBool['name'];
     }else{
-        echo $nameMsgBool[1];
+        echo $nameMsgBool['errMsg'];
     }
     
-    if($emailMsgBool[2]){
-        $email = $emailMsgBool[0];
+    if($emailMsgBool['is_valid']){
+        $email = $emailMsgBool['email'];
     }else{
-        echo $emailMsgBool[1];
+        echo $emailMsgBool['errMsg'];
     }
 
-    if($phoneMsgBool[2]){
-        $phone = $phoneMsgBool[0];
+    if($phoneMsgBool['is_valid']){
+        $phone = $phoneMsgBool['phone'];
     }else{
-        echo $phoneMsgBool[1];
+        echo $phoneMsgBool['errMsg'];
     }
 
-    if($passwordMsgBool[2]){
-        $userInputPassword = $passwordMsgBool[0];
+    if($passwordMsgBool['is_valid']){
+        $userInputPassword = $passwordMsgBool['password'];
     }else{
-        echo $passwordMsgBool[1];
+        echo $passwordMsgBool['errMsg'];
     }
 
-    if($genderMsgBool[2]){
-        $gender = $genderMsgBool[0];
+    if($genderMsgBool['is_valid']){
+        $gender = $genderMsgBool['gender'];
     }else{
-        echo $genderMsgBool[1];
+        echo $genderMsgBool['errMsg'];
     }
 
-    if($hashBoolValidation[1]){
-        $hashBool = processHashPassword($userInputPassword, $hashBoolValidation[0]);
-        if($hashBool[1]){
+    if($hashBoolValidation['is_valid']){
+        $hashBool = processHashPassword($userInputPassword, $hashBoolValidation['hash']);
+        if($hashBool['is_integrity']){
             echo "Password integrity is successful<br/>";
-            echo "Hashed password is: " . addcslashes($hashBool[0], '$') . "<br/>";
-            $hashedPassword = $hashBool[0];
+            echo "Hashed password is: " . addcslashes($hashBool['hashedPassword'], '$') . "<br/>";
+            $hashedPassword = $hashBool['hashedPassword'];
         }else{
             echo "Password integrity is failed, please try again.";
         }
     }else{
-        $hashBool[1] = false;
+        $hashBool['is_integrity'] = false;
         echo "Password integrity is failed, please try again.";
     }
 
     // All input validation is successful.
-    if($nameMsgBool[2] && $emailMsgBool[2] && $passwordMsgBool[2] && $genderMsgBool[2] && $hashBool[1] && $phoneMsgBool[2]){
+    if($nameMsgBool['is_valid'] && $emailMsgBool['is_valid'] && $passwordMsgBool['is_valid'] && $genderMsgBool['is_valid'] && $hashBool['is_integrity'] && $phoneMsgBool['is_valid']){
         echo "<br/>All input is valid";
         sendDataToDatabase($servername, $username, $password, $database, $name, $email, $hashedPassword, $gender, $phone);
     }
@@ -68,42 +69,44 @@
         // Generate random 12 characters hex
         $randHex = bin2hex(random_bytes(11)); 
 
+        // Generate token expiry
+        $tokenExpiry = date("Y-m-d H:i:s", strtotime("+5 minutes")); // 5 minutes from now
+
         // Initialise connection to database
         $conn = mysqli_connect($servername, $username, $password, $database);
 
         // Check if email exists within the database
-        $sql = "SELECT * FROM user_info WHERE email_address = '$email'";
-        $result = mysqli_query($conn, $sql);
+        $sql = $conn -> prepare("SELECT * FROM user_info WHERE email_address = ?;");
+        $sql->bind_param('s', $email);
+        $sql->execute();
+        $result = $sql->get_result();
         if(mysqli_num_rows($result) > 0){
             echo "Email already exists. Please Login";
         }else{
             // Add data to USER_INFO table
-            $command = "INSERT INTO user_info (email_address, phone_number, name, gender, preference) VALUES ('$email', '$phone', '$name', '$gender', NULL);";
-            mysqli_query($conn, $command);
-
+            $stmt = $conn -> prepare("INSERT INTO user_info (email_address, phone_number, name, gender, preference) VALUES (?,?,?,?,NULL);");
+            $stmt->bind_param('siss', $email, $phone, $name, $gender);
+            $stmt->execute();
+            $stmt->close();
+            
             // Add data to USER_CREDENTIALS table
-            $command = "SELECT user_id FROM user_info WHERE email_address = '$email';";
-            $userID = mysqli_fetch_assoc(mysqli_query($conn, $command))['user_id'];
-            $command = "INSERT INTO user_credentials (email_address, password, user_id, user_role, account_status, account_token, token_expiry) VALUES ('$email', '$hashedPassword', '$userID', 'User', 'Unactivated', '$randHex', '2022-10-12 22:01:12');";
-            mysqli_query($conn, $command);
+            $sql = $conn -> prepare("SELECT user_id FROM user_info WHERE email_address = ?;");
+            $sql->bind_param('s', $email);
+            $sql->execute();
+            $result = $sql->get_result();
+            $userID = mysqli_fetch_assoc($result)['user_id'];
+            
+            $sql = $conn -> prepare("INSERT INTO user_credentials (email_address, password, user_id, user_role, account_status, account_token, token_expiry) VALUES (?, ?, ?, 'User', 'Unactivated', ?, ?);");
+            $sql->bind_param('ssiss', $email, $hashedPassword, $userID, $randHex, $tokenExpiry);
+            $sql->execute();
 
             // Send email to user with the token for verification
-            sendEmail($email, $randHex);
+            sendAccountVerificationEmail($email, $randHex);
         }
 
         // Close connection
         mysqli_close($conn);
     }
 
-    // Function to send email to the user
-    function sendEmail($email, $token){
-        $callurl = curl_init();
-        // CHANGE THE API_LINK WHEN DEPLOYING
-        $api_link = "https://script.google.com/macros/s/AKfycbwSkpuzRGDcTSZgLV7rbYcvnCsbEmVkIWq0HgbtBRhtcgfCgg8YRyfvyau91SHv2AE/exec";
-        $param = "?key=EB3914D9F167D9A414DF438C7D4CD&email={$email}&subject=Verify%20Your%20Account&name=Cacti%20Succulent&token={$token}";
-        $url = $api_link . $param;
-        curl_setopt_array($callurl,[CURLOPT_URL=>$url,CURLOPT_TIMEOUT_MS=>100,CURLOPT_RETURNTRANSFER=>FALSE]);
-        curl_exec($callurl);
-        curl_close($callurl);
-    }
+    
 ?>

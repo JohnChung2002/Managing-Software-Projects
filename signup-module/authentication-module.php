@@ -1,7 +1,6 @@
 <?php  
     // Hash the password received on the server side for integrity check
     function hashPasswordIntegrity($password){
-        echo "Password is : $password <br/>";
         $hash = hash('SHA256', $password);
         return $hash;
     }
@@ -9,8 +8,6 @@
     // Check the password integrity
     function checkPasswordIntegrity($password, $clientHashValue){
         $serverHashValue = hashPasswordIntegrity($password);
-        echo "Client Hash Value: $clientHashValue <br/>";
-        echo "Server Hash Value: $serverHashValue <br/>";
         if($clientHashValue == $serverHashValue){
             return true;
         }else{

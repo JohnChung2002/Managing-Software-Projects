@@ -35,20 +35,15 @@
     </select>
 </div>
 
-<h2> Add Your Details</h2>
-
 <form class="row g-3">
-  <div class="col-md-6">
-    <label for="inputName" class="form-label">Name</label>
-    <input type="text" class="form-control" id="inputName">
-  </div>
-  <div class="col-md-6">
-    <label for="inputEmail" class="form-label">Email</label>
-    <input type="email" class="form-control" id="inputEmail">
-  </div>
   <div class="col-12">
-    <label for="inputPhone" class="form-label">Phone Number</label>
-    <input type="text" class="form-control" id="inputPhone" placeholder="xxx-xxxxxxx">
+    <label for="inputPpl" class="form-label">How many people will be joining?</label>
+    <select id="inputPpl" class="form-select">
+      <option selected>Choose...</option>
+      <option>1-3</option>
+      <option>3-5</option>
+      <option>6></option>
+    </select>
   </div>
   <div class="col-12">
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">Update Now</button>

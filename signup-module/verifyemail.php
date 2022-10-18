@@ -1,6 +1,6 @@
 <?php
     require_once '../database_credentials.php'; // File of the database credentials PATH MAYBE UPDATED
-    include 'send_email.php';
+    include '../send_email.php';
 
     if(isset($_GET['token'])){
         $token = $_GET['token'];

@@ -1,5 +1,8 @@
 const monthName = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
+const currentMonth = new Date().toLocaleString('default', {month: 'long'});
+
+
 function getWeekObject(week_obj) {
     const defaultObj = {"Sunday": 0,"Monday": 0,"Tuesday": 0,"Wednesday": 0,"Thursday": 0,"Friday": 0,"Saturday": 0}
     return Object.entries(week_obj).reduce((acc, [key, value]) => 
@@ -173,8 +176,7 @@ function initialiseDayChart() {
 
 //displays number of bookings in dates in a specific month
 function initialiseMonthChart() {
-    
-    getMonthStatistic(month_name="October", year="2022").then(function(data) {
+    getMonthStatistic(month_name=currentMonth, year="2022").then(function(data) {
         var month_obj = getDaysInMonthObject(data, month_name, year);
         var chartData = [];
         for (const [key, value] of Object.entries(month_obj)) {

@@ -4,9 +4,9 @@
         $bool = false;
         if(isset($_POST["name"])){
             if(!empty($_POST["name"])){
-                if(preg_match("/^[a-zA-Z\s]+$/", $_POST["name"])){
+                $name = $_POST["name"];
+                if(preg_match("/^[a-zA-Z\s]+$/", $name)){
                     $nameMsg = "";
-                    $name = $_POST["name"];
                     $bool = true;
                 }else{
                     $nameMsg = "Only letters and white space allowed";
@@ -23,9 +23,9 @@
         $bool = false;
         if(isset($_POST["email"])){
             if(!empty($_POST["email"])){
-                if(filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)){
+                $email = $_POST["email"];
+                if(filter_var($email, FILTER_VALIDATE_EMAIL)){
                     $emailMsg = "";
-                    $email = $_POST["email"];
                     $bool = true;
                 }else{
                     $emailMsg = "Please enter a valid email";
@@ -42,12 +42,12 @@
         $bool = false;
         if(isset($_POST["password"])){
             if(!empty($_POST["password"])){
-                if(preg_match("/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/", $_POST["password"])){
+                $password = $_POST["password"];
+                if(preg_match("/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*\W)[a-zA-Z\d\W]{8,}$/", $password)){
                     $passwordMsg = "";
-                    $password = $_POST["password"];
                     $bool = true;
                 }else{
-                    $passwordMsg = "Password must contain at least 8 characters, 1 uppercase letter, 1 lowercase letter and 1 number.";
+                    $passwordMsg = "Password must contain at least 8 characters, 1 uppercase letter, 1 lowercase letter, 1 number and 1 symbol.";
                 }
             }else{
                 $passwordMsg = "Password is required.";
@@ -83,9 +83,9 @@
         $bool = false;
         if(isset($_POST["phone"])){
             if(!empty($_POST["phone"])){
+                $phone = $_POST["phone"];
                 if(preg_match("/^[0-9]{10}$/", $_POST["phone"])){
                     $phoneMsg = "";
-                    $phone = $_POST["phone"];
                     $bool = true;
                 }else{
                     $phoneMsg = "Please enter a valid phone number.";

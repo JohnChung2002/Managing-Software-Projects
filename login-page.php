@@ -7,7 +7,7 @@
 </head>
 <body>
     <script src="password-integrity.js"></script>
-    <form action="login-module/login-process.php" method="post" id="signup-form">
+    <form class="container" action="login-module/login-process.php" method="post" id="signup-form">
         <fieldset>
             <legend>Log In</legend>
             

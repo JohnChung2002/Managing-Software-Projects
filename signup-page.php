@@ -8,7 +8,7 @@
 <body>
     <script src="signup-module/password-integrity.js"></script>
     <!-- <?php include 'navbar.php'; ?> -->
-    <form action="signup-module/signup-process.php" method="post" onsubmit="passwordHash(); return false;" id="signup-form">
+    <form class="container" action="signup-module/signup-process.php" method="post" onsubmit="passwordHash(); return false;" id="signup-form">
         <fieldset>
             <legend>Sign Up</legend>
 

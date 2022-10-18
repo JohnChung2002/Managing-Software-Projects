@@ -4,6 +4,14 @@ const currentMonth = new Date().toLocaleString('default', {month: 'long'});
 
 currentyear = new Date().getFullYear();
 
+function getDate(){
+    date = new Date();
+    year = date.getFullYear();
+    month = date.getMonth() + 1;
+    day = date.getDate();
+    document.getElementById("current_date").innerHTML = month + "/" + day + "/" + year;
+}
+
 function getWeekObject(week_obj) {
     const defaultObj = {"Sunday": 0,"Monday": 0,"Tuesday": 0,"Wednesday": 0,"Thursday": 0,"Friday": 0,"Saturday": 0}
     return Object.entries(week_obj).reduce((acc, [key, value]) => 
@@ -209,7 +217,7 @@ function initialiseMonthChart() {
 
 // number of bookings each time
 function initialiseTimeChart() {
-    getTimeStatistic(month_name=currentMonth, year="2022").then(function(data) {
+    getTimeStatistic(month_name=currentMonth, year=currentyear).then(function(data) {
         var day_obj = getHoursInDay(data);
         var chartData = [];
         for (const [key, value] of Object.entries(day_obj)) {

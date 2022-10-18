@@ -9,29 +9,37 @@
     <?php include 'header.php'; ?>
     <div class="container">
         <h1 class="text-center mt-5">Visitor Pattern Report</h1>
+        <p>Report based on: <div id="current_date"></p>
+        
         <h2 class="text-center mt-5">Daily Report</h2>
         <hr />
+        
         <h3 class="text-center mt-5">Time Based Report</h3>
         <div class="text-center mt-5">
             <canvas id="TimeChart"></canvas>
         </div>
+        
         <h3 class="text-center mt-5">Day Based Report</h3>
         <div class="text-center mt-5">
             <canvas id="DayChart"></canvas>
         </div>
+        
         <h2 class="text-center mt-5">Monthly Report</h2>
         <hr />
+
         <div class="text-center mt-5">
             <canvas id="MonthChart"></canvas>
         </div>
         <h2 class="text-center mt-5">Yearly Report</h3>
         <hr />
+        
         <div class="text-center mt-5">
             <canvas id="YearChart"></canvas>
         </div>
     </div>
     <script src="script/chart.js"></script>
     <script>
+        getDate();
         initialiseDayChart();
         initialiseMonthChart();
         initialiseTimeChart();

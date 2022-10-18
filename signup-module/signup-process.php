@@ -1,10 +1,14 @@
 <?php
-    include '../input_validation.php';
+    include 'input_validation.php';
     include 'authentication-module.php';
-    include '../send_email.php';
-    require_once '../database_credentials.php'; // File of the database credentials PATH MAYBE UPDATED
+    include 'send_email.php';
+    require_once 'database_credentials.php'; // File of the database credentials PATH MAYBE UPDATED
 
     $name = $userInputPassword = $email = $gender = $phone = "";
+    $nameMsgBool = $emailMsgBool = $passwordMsgBool = $genderMsgBool = $phoneMsgBool = "";
+
+    // Set the session for message
+    session_start();
     
     $nameMsgBool = NameValidation();
     $emailMsgBool = EmailValidation();
@@ -16,51 +20,35 @@
     // Input Validation
     if($nameMsgBool['is_valid']){
         $name = $nameMsgBool['name'];
-    }else{
-        echo $nameMsgBool['errMsg'];
     }
     
     if($emailMsgBool['is_valid']){
         $email = $emailMsgBool['email'];
-    }else{
-        echo $emailMsgBool['errMsg'];
     }
 
     if($phoneMsgBool['is_valid']){
         $phone = $phoneMsgBool['phone'];
-    }else{
-        echo $phoneMsgBool['errMsg'];
     }
 
     if($passwordMsgBool['is_valid']){
         $userInputPassword = $passwordMsgBool['password'];
-    }else{
-        echo $passwordMsgBool['errMsg'];
     }
 
     if($genderMsgBool['is_valid']){
         $gender = $genderMsgBool['gender'];
-    }else{
-        echo $genderMsgBool['errMsg'];
     }
 
     if($hashBoolValidation['is_valid']){
         $hashBool = processHashPassword($userInputPassword, $hashBoolValidation['hash']);
         if($hashBool['is_integrity']){
-            echo "Password integrity is successful<br/>";
-            echo "Hashed password is: " . addcslashes($hashBool['hashedPassword'], '$') . "<br/>";
             $hashedPassword = $hashBool['hashedPassword'];
-        }else{
-            echo "Password integrity is failed, please try again.";
         }
     }else{
         $hashBool['is_integrity'] = false;
-        echo "Password integrity is failed, please try again.";
     }
 
     // All input validation is successful.
     if($nameMsgBool['is_valid'] && $emailMsgBool['is_valid'] && $passwordMsgBool['is_valid'] && $genderMsgBool['is_valid'] && $hashBool['is_integrity'] && $phoneMsgBool['is_valid']){
-        echo "<br/>All input is valid";
         sendDataToDatabase($servername, $username, $password, $database, $name, $email, $hashedPassword, $gender, $phone);
     }
 
@@ -81,7 +69,11 @@
         $sql->execute();
         $result = $sql->get_result();
         if(mysqli_num_rows($result) > 0){
-            echo "Email already exists. Please Login";
+            $_SESSION['signupMsg'] = "
+            <div class='alert alert-danger'>
+                Email already exists. Please Login.
+            </div>
+            ";
         }else{
             // Add data to USER_INFO table
             $stmt = $conn -> prepare("INSERT INTO user_info (email_address, phone_number, name, gender) VALUES (?,?,?,?);");
@@ -102,11 +94,14 @@
 
             // Send email to user with the token for verification
             sendAccountVerificationEmail($email, $randHex);
+            $_SESSION['signupMsg'] = "
+            <div class='alert alert-success'>
+                Account created successfully. Please check your email for verification.
+            </div>
+            ";
         }
-
+        
         // Close connection
         mysqli_close($conn);
     }
-
-    
 ?>

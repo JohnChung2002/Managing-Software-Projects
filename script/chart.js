@@ -173,6 +173,7 @@ function initialiseDayChart() {
 
 //displays number of bookings in dates in a specific month
 function initialiseMonthChart() {
+    
     getMonthStatistic(month_name="October", year="2022").then(function(data) {
         var month_obj = getDaysInMonthObject(data, month_name, year);
         var chartData = [];

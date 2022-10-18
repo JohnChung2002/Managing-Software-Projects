@@ -1,7 +1,7 @@
 <?php
     include '../input_validation.php';
     include 'authentication-module.php';
-    include 'send_email.php';
+    include '../send_email.php';
     require_once '../database_credentials.php'; // File of the database credentials PATH MAYBE UPDATED
 
     $name = $userInputPassword = $email = $gender = $phone = "";
@@ -84,7 +84,7 @@
             echo "Email already exists. Please Login";
         }else{
             // Add data to USER_INFO table
-            $stmt = $conn -> prepare("INSERT INTO user_info (email_address, phone_number, name, gender, preference) VALUES (?,?,?,?,NULL);");
+            $stmt = $conn -> prepare("INSERT INTO user_info (email_address, phone_number, name, gender) VALUES (?,?,?,?);");
             $stmt->bind_param('siss', $email, $phone, $name, $gender);
             $stmt->execute();
             $stmt->close();

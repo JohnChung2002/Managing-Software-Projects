@@ -9,7 +9,7 @@
     <?php include 'header.php'; ?>
     <div class="container">
         <h1 class="text-center mt-5">Visitor Pattern Report</h1>
-        <p>Report based on: <div id="current_date"></p>
+        <p>Report based on: <div id="current_date"> </div></p>
         
         <h2 class="text-center mt-5">Daily Report</h2>
         <hr />

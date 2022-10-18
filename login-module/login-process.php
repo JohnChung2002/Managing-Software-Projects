@@ -1,30 +1,14 @@
 <?php
-    include '../input_validation.php';
     require_once '../database_credentials.php'; // File of the database credentials PATH MAYBE UPDATED
 
-    $name = $userInputPassword = $email = $gender = $phone = "";
-    
-    $emailMsgBool = EmailValidation();
-    $passwordMsgBool = PasswordValidation();
+    $userInputPassword = $email = "";
 
-    // Input Validation
-    if($emailMsgBool["is_valid"]){
-        $email = $emailMsgBool["email"];
-    }else{
-        echo $emailMsgBool["errMsg"];
-    }
-
-    if($passwordMsgBool["is_valid"]){
-        $userInputPassword = $passwordMsgBool["password"];
-    }else{
-        echo $passwordMsgBool["errMsg"];
-    }
-
-    // All input validation is successful.
-    if($emailMsgBool["is_valid"] && $passwordMsgBool["is_valid"]){
-        // echo "<br/>All input is valid";
-
+    if(isset($_POST['password']) && isset($_POST['email'])){
+        $userInputPassword = $_POST['password'];
+        $email = $_POST['email'];
         checkUserPassword($servername, $username, $password, $database, $email, $userInputPassword);
+    }else{
+        echo "Please enter your email and password";
     }
 
     // Function to check if the user exists in the database, and if the password is correct.
@@ -33,13 +17,20 @@
         $conn = mysqli_connect($servername, $username, $password, $database);
 
         // Check if email exists within the database
-        $sql = "SELECT * FROM user_credentials WHERE email_address = '$email' && account_status = 'Activated'";
-        $result = mysqli_query($conn, $sql);
+        $sql = $conn -> prepare("SELECT * FROM user_credentials WHERE email_address = ? && account_status = 'Activated';");
+        $sql->bind_param('s', $email);
+        $sql->execute();
+        $result = $sql->get_result();
         if(mysqli_num_rows($result) > 0){
-            $command = "SELECT password, user_role, user_id FROM user_credentials WHERE email_address = '$email';";
-            $storedPassword = mysqli_fetch_assoc(mysqli_query($conn, $command))['password'];
-            $user_role = mysqli_fetch_assoc(mysqli_query($conn, $command))['user_role'];
-            $user_id = mysqli_fetch_assoc(mysqli_query($conn, $command))['user_id'];
+            $sql = $conn -> prepare("SELECT password, user_role, user_id FROM user_credentials WHERE email_address = ?;");
+            $sql->bind_param('s', $email);
+            $sql->execute();
+            $result = $sql->get_result();
+            $user = mysqli_fetch_assoc($result);
+            $storedPassword = $user['password'];
+            $user_role = $user['user_role'];
+            $user_id = $user['user_id'];
+
             if(password_verify($userInputPassword, $storedPassword)){
                 // CORRECT PASSWORD
                 session_start();

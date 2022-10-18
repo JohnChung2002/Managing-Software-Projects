@@ -10,7 +10,7 @@
     <form action="login-module/login-process.php" method="post" id="login-form">
         <fieldset>
             <legend class="mx-2">Log In</legend>
-            
+
             <div class="row mb-3 mx-3">
               <label for="email" class="col-sm-2 col-form-label">Email</label>
               <div class="col-sm-10">
@@ -27,7 +27,7 @@
                   </span>
                 </div>
             </div>
-          
+
             <button type="submit" class="btn btn-primary mx-auto d-block">Log In</button>
         </fieldset>
     </form>

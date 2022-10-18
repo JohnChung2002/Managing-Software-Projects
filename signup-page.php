@@ -21,7 +21,7 @@
                   <div class="invalid-feedback"><?php echo $nameMsgBool['errMsg'];?></div>
                 </div>
               </div>
-              
+
               <div class="row mb-3">
                 <label for="email" class="col-sm-2 col-form-label">Email</label>
                 <div class="col-sm-10">
@@ -55,7 +55,7 @@
               </div>
               <br/>
               <input type="text" name="hashValue" id="hashValue" hidden />
-              
+
               <div class="row mb-3">
                 <label for="gender" class="col-sm-2 col-form-label">Gender</label>
                 <div class="col-sm-10">
@@ -73,8 +73,8 @@
           </fieldset>
       </form>
     </div>
-    
-    
+
+
 </body>
 <footer>
     <?php include 'footer.php'; ?>

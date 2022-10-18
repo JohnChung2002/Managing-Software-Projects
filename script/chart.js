@@ -165,8 +165,8 @@ function initialiseDayChart() {
             datasets: [{
                 fill: false,
                 lineTension: 0,
-                backgroundColor: "rgba(0,0,255,1.0)",
-                borderColor: "rgba(0,0,255,0.1)",
+                backgroundColor: "rgb(65,83,54)",
+                borderColor: "rgb(65,83,54)",
                 label: "Number of Bookings",
                 data: chartData
             }]
@@ -197,8 +197,8 @@ function initialiseMonthChart() {
               datasets: [{
                 fill: false,
                 lineTension: 0,
-                backgroundColor: "rgba(0,0,255,1.0)",
-                borderColor: "rgba(0,0,255,0.1)",
+                backgroundColor: "rgb(65,83,54)",
+                borderColor: "rgb(65,83,54)",
                 label: "Number of Bookings",
                 data: chartData
               }]
@@ -229,8 +229,8 @@ function initialiseTimeChart() {
               datasets: [{
                 fill: false,
                 lineTension: 0,
-                backgroundColor: "rgba(0,0,255,1.0)",
-                borderColor: "rgba(0,0,255,0.1)",
+                backgroundColor: "rgb(65,83,54)",
+                borderColor: "rgb(65,83,54)",
                 label: "Number of Bookings",
                 data: chartData
               }]
@@ -266,8 +266,8 @@ function initialiseYearChart() {
             datasets: [{
                 fill: false,
                 lineTension: 0,
-                backgroundColor: "rgba(0,0,255,1.0)",
-                borderColor: "rgba(0,0,255,0.1)",
+                backgroundColor: "rgb(65,83,54)",
+                borderColor: "rgb(65,83,54)",
                 label: "Number of Bookings",
                 data: chartData
             }]

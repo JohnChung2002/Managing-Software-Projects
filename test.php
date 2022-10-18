@@ -9,7 +9,7 @@
     <?php include 'header.php'; ?>
     <div class="container">
         <h1 class="text-center mt-5">Visitor Pattern Report</h1>
-        <?php echo "Report based on: " . date("Y/m/d") . "<br>";?></p> 
+        <p class="text-center mt-5"><?php echo "Report based on: " . date("d/m/Y") . "<br>";?></p> 
         
         <h2 class="text-center mt-5">Daily Report</h2>
         <hr />
@@ -37,6 +37,7 @@
             <canvas id="YearChart"></canvas>
         </div>
     </div>
+    <br />
     <script src="script/chart.js"></script>
     <script>
         initialiseDayChart();

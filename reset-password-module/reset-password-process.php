@@ -38,7 +38,7 @@
                                 $sql->execute();
                                 $_SESSION['rstpassMsg'] = "
                                 <div class='alert alert-success'>
-                                    Password has been reset successfully. Please <a href='login-page.php'>login</a> to continue.
+                                    Password has been reset successfully. Please  <a href='login-page.php' class='link-success'><strong>login</strong></a> to continue.
                                 </div>";
                         }
                     }

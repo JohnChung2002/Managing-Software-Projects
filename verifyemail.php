@@ -29,7 +29,7 @@
                     $stmt->execute();
                     $message = "
                         <div class='alert alert-success'>
-                            Account verified successfully. Please <a href='login-page.php'>login</a> to continue.
+                            Account verified successfully. Please <a href='login-page.php' class='link-success'><strong>login</strong></a> to continue.
                         </div>
                         ";
                     $stmt->close();

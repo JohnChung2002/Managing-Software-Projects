@@ -10,7 +10,7 @@
     <?php include 'signup-module/signup-process.php'; ?>
     <div class="container p-3 vh-100">
       <span><?php if(isset($_SESSION['signupMsg'])){echo $_SESSION['signupMsg']; session_unset();} ?></span>
-      <form action="signup-page.php" method="post" onsubmit="passwordHash(); return false;" id="signup-form">
+      <form action="signup-page.php" method="post" onsubmit="passwordHash(); return false;" id="signupreset-form">
           <fieldset>
               <legend>Sign Up</legend>
               <div class="row mb-3">

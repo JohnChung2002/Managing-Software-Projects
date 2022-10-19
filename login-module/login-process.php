@@ -1,5 +1,8 @@
 <?php
-    require_once '../database_credentials.php'; // File of the database credentials PATH MAYBE UPDATED
+    require_once 'database_credentials.php'; // File of the database credentials PATH MAYBE UPDATED
+    
+    // Set the session for message
+    session_start();
 
     $userInputPassword = $email = "";
 
@@ -7,8 +10,6 @@
         $userInputPassword = $_POST['password'];
         $email = $_POST['email'];
         checkUserPassword($servername, $username, $password, $database, $email, $userInputPassword);
-    }else{
-        echo "Please enter your email and password";
     }
 
     // Function to check if the user exists in the database, and if the password is correct.
@@ -33,7 +34,7 @@
 
             if(password_verify($userInputPassword, $storedPassword)){
                 // CORRECT PASSWORD
-                session_start();
+                
                 $_SESSION['is_login'] = true;
                 $_SESSION['user_id'] = $user_id;
                 // Check user/admin
@@ -41,7 +42,7 @@
                     // User 
                     // Redirect to user dashboard
                     $_SESSION['user_role'] = "User";
-                    header("Location: ../index.php");
+                    header("Location: index.php");
                 }else{
                     // Admin
                     // Redirect to admin dashboard
@@ -50,11 +51,19 @@
                 }
             }else{
                 // INCORRECT PASSWORD
-                echo "Password is incorrect";
+                $_SESSION['loginMsg'] = "
+                    <div class='alert alert-danger'>
+                        Password is incorrect.
+                    </div>
+                    ";
             }
         }else{
             // EMAIL DOES NOT EXIST or Account not activated
-            echo "\nEmail does not exist or account is not activated";
+            $_SESSION['loginMsg'] = "
+                <div class='alert alert-danger'>
+                    Email does not exist or account is not activated.
+                </div>
+                ";
         }
 
         // Close connection

@@ -2,14 +2,12 @@
 <html lang="en">
     <head>
         <title>Email Verification</title>
-        <?php include '../header.php'; ?>
-        <?php include '../page_head.php'; ?>
+        <?php include 'header.php'; ?>
+        <?php include 'page_head.php'; ?>
     </head>
     <?php
-        require_once '../database_credentials.php'; // File of the database credentials PATH MAYBE UPDATED
-        include '../send_email.php';
-
-        $message = "";
+        require_once 'database_credentials.php'; // File of the database credentials PATH MAYBE UPDATED
+        include 'send_email.php';
 
         if(isset($_GET['token'])){
             $token = $_GET['token'];
@@ -29,10 +27,18 @@
                     $stmt = $conn -> prepare("UPDATE user_credentials SET account_token = ?, account_status = ?, token_expiry = ? WHERE email_address = ?");
                     $stmt->bind_param('ssss', $emptyVal, $status, $emptyVal, $email);
                     $stmt->execute();
-                    $message = "Your email has been verified successfully.";
+                    $message = "
+                        <div class='alert alert-success'>
+                            Account verified successfully. Please <a href='login-page.php'>login</a> to continue.
+                        </div>
+                        ";
                     $stmt->close();
                 }else{
-                    $message = "Your token has expired. Please check your email again.";
+                    $message = "
+                    <div class='alert alert-danger'>
+                        Your token has expired. Please check your email again.
+                    </div>
+                    ";
                     // Generate random 12 characters hex
                     $randHex = bin2hex(random_bytes(11));
                     // Generate token expiry
@@ -43,18 +49,26 @@
                     sendAccountVerificationEmail($email, $randHex);
                 }
             }else{
-                $message = "Invalid token.";
+                $message = "
+                    <div class='alert alert-danger'>
+                        Invalid token.
+                    </div>
+                    ";
             }
         }else{
-            $message = "Invalid request.";
+            $message = "
+                    <div class='alert alert-danger'>
+                        Invalid request.
+                    </div>
+                    ";
         }
     ?>
     <body>
-        <div class="vh-100">
-            <?php echo "<p>$message</p>"; ?>
+        <div class="container p-3 vh-100">
+            <?php echo $message; ?>
         </div>
     </body>
     <footer>
-        <?php include '../footer.php'; ?>
+        <?php include 'footer.php'; ?>
     </footer>
 </html>

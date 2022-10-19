@@ -46,6 +46,7 @@
                     // Admin
                     // Redirect to admin dashboard
                     $_SESSION['user_role'] = "Admin";
+                    // ADD ADMIN DASHBOARD LINK
                 }
             }else{
                 // INCORRECT PASSWORD

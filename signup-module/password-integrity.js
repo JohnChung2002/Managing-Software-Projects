@@ -11,5 +11,5 @@ async function hash(string) {
 async function passwordHash(){
     console.log(document.getElementById("password").value);
     document.getElementById('hashValue').value = await hash(document.getElementById("password").value);
-    document.getElementById("signup-form").submit();
+    document.getElementById("signupreset-form").submit();
 }

@@ -39,14 +39,7 @@
                         Your token has expired. Please check your email again.
                     </div>
                     ";
-                    // Generate random 12 characters hex
-                    $randHex = bin2hex(random_bytes(11));
-                    // Generate token expiry
-                    $tokenExpiry = date("Y-m-d H:i:s", strtotime("+5 minutes")); // 5 minutes from now
-                    $stmt = $conn -> prepare("UPDATE user_credentials SET account_token = ?, token_expiry = ? WHERE email_address = ?");
-                    $stmt->bind_param('sss', $randHex, $tokenExpiry, $email);
-                    $stmt->execute();
-                    sendAccountVerificationEmail($email, $randHex);
+                    sendAccountVerificationEmail($email);
                 }
             }else{
                 $message = "

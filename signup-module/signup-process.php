@@ -54,12 +54,6 @@
 
     // Function to send data over to database
     function sendDataToDatabase($servername, $username, $password, $database, $name, $email, $hashedPassword, $gender, $phone){
-        // Generate random 12 characters hex
-        $randHex = bin2hex(random_bytes(11)); 
-
-        // Generate token expiry
-        $tokenExpiry = date("Y-m-d H:i:s", strtotime("+5 minutes")); // 5 minutes from now
-
         // Initialise connection to database
         $conn = mysqli_connect($servername, $username, $password, $database);
 
@@ -71,7 +65,7 @@
         if(mysqli_num_rows($result) > 0){
             $_SESSION['signupMsg'] = "
             <div class='alert alert-danger'>
-                Email already exists. Please Login.
+                Email already exists. Please <a href='login-page.php'>login</a>.
             </div>
             ";
         }else{
@@ -93,7 +87,7 @@
             $sql->execute();
 
             // Send email to user with the token for verification
-            sendAccountVerificationEmail($email, $randHex);
+            sendAccountVerificationEmail($email);
             $_SESSION['signupMsg'] = "
             <div class='alert alert-success'>
                 Account created successfully. Please check your email for verification.

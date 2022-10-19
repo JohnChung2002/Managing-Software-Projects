@@ -4,8 +4,7 @@
 <!-- Author   : Chow Zi Xiang -->
 
 <head>
-    <?php include "page_head.php"; ?>
-    <title>Updating Appointment</title>
+    <title>Updating Booking Availability</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css" integrity="sha256-46r060N2LrChLLb5zowXQ72/iKKNiw/lAmygmHExk/o=" crossorigin="anonymous" />
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'/>
     <!-- from bootstrap -->
@@ -17,70 +16,42 @@
     <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js" integrity="sha256-xLD7nhI62fcsEZK2/v8LsBcb4lG7dgULkuXoXB/j91c=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/themes/base/jquery-ui.min.css" integrity="sha512-ELV+xyi8IhEApPS/pSj66+Jiw+sOT1Mqkzlh8ExXihe4zfqbWkxPRi8wptXIO9g73FSlhmquFlUOuMSoXz5IRw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  
+    <link rel="stylesheet" href="hr-timePicker.min.css"/>
+    <script src="//code.jquery.com/jquery.min.js"></script>
+    <script src="hr.timePicker.min.js"></script>
+
+  
   </head>
 <body>
   <?php include 'header.php'; ?>
   <form class="container my-3 bg-light w-50 align-items-center" id="regForm" action="">
-    <h1 class="mb-3 mx-5">Updating Booking Availbility</h1>
+    <h1 class="mb-3 mx-5">Updating Booking Availability</h1>
+    
     <!-- One "tab" for each step in the form: -->
     <div class="mb-3 mx-5 tab">
       <label for="booking_id" class="form-label">Booking ID:</label>
       <input type="text" class="form-in form-control" name="" id="booking_id" placeholder="Enter booking ID"/>
       <div class="invalid-feedback">Please enter a booking id!</div>
     </div>
-    <div class="tab">Choose new booking appointment: 
+                                
+        <div class="tab">Change booking availability: 
 
-        <div id="sandbox-container" oninput="this.className = ''"></div>
+            <div id="sandbox-container" oninput="this.className = ''"></div>
             <script>
-                var disabledDates = ["2022-10-15","2022-10-14","2022-10-19"]
-                $('#sandbox-container').datepicker({
-                beforeShowDay: function(date){
-                    var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
-                    return [ disabledDates.indexOf(string) == -1 ]
-                    },
-                    format: "dd/mm/yyyy",
-                    startDate: "now"
-                    }); 
-            </script>
-
-        <div class="well">
-            <div id="datetimepicker3" class="input-append">
-            <input data-format="hh:mm" type="text"></input>
-            <span class="add-on">
-                <i data-time-icon="icon-time" data-date-icon="icon-calendar">
-                </i>
-            </span>
-            </div>
+                    var disabledDates = ["2022-10-15","2022-10-14","2022-10-19"]
+                    $('#sandbox-container').datepicker({
+                    beforeShowDay: function(date){
+                        var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
+                        return [ disabledDates.indexOf(string) == -1 ]
+                        },
+                        format: "dd/mm/yyyy",
+                        startDate: "now"
+                        }); 
+                </script>
         </div>
-
-        <script type="text/javascript">
-            $(function() {
-            $('#datetimepicker3').datetimepicker({
-                pickDate: false,
-                stepMinute: 30
-            });
-            });
-
-        </script>
-        
-        <div class="well">
-            <div id="datetimepicker3" class="input-append">
-              <input data-format="hh:mm" type="text"></input>
-              <span class="add-on">
-                <i data-time-icon="icon-time" data-date-icon="icon-calendar">
-                </i>
-              </span>
-            </div>
-          </div>
-          <script type="text/javascript">
-            $(function() {
-              $('#datetimepicker3').datetimepicker({
-                pickDate: false
-              });
-            });
-          </script>
-    </div>
-    <div class="mb-3 mx-5 text-end">
+                                
+     <div class="mb-3 mx-5 text-end">
         <button class="btn btn-primary" type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
         <button class="btn btn-primary" type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
     </div>
@@ -108,9 +79,11 @@
   </form>
   <script>
     var currentTab = 0;
-    var form_fields = [document.getElementById("booking_id"), document.getElementById("cancel_reason")];
+    var form_fields = [document.getElementById("booking_id"), document.getElementById("sandbox-container")];
     showTab(currentTab);
   </script>
   <?php include 'footer.php'; ?>
 </body>
 </html>
+
+

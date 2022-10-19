@@ -33,6 +33,8 @@
             <button type="submit" class="btn btn-primary mx-auto d-block">Log In</button>
         </fieldset>
     </form>
+
+    <a href="resetpassword-sendemail-page.php" class="link-primary text-center d-block m-2">Forgot password?</a>
 </div>
 </body>
 <footer>

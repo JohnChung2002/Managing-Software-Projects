@@ -82,8 +82,8 @@
             $result = $sql->get_result();
             $userID = mysqli_fetch_assoc($result)['user_id'];
             
-            $sql = $conn -> prepare("INSERT INTO user_credentials (email_address, password, user_id, user_role, account_status, account_token, token_expiry) VALUES (?, ?, ?, 'User', 'Unactivated', ?, ?);");
-            $sql->bind_param('ssiss', $email, $hashedPassword, $userID, $randHex, $tokenExpiry);
+            $sql = $conn -> prepare("INSERT INTO user_credentials (email_address, password, user_id, user_role, account_status) VALUES (?, ?, ?, 'User', 'Unactivated');");
+            $sql->bind_param('ssi', $email, $hashedPassword, $userID);
             $sql->execute();
 
             // Send email to user with the token for verification

@@ -4,9 +4,9 @@
         exit;
     }
 
-    include 'input_validation.php';
-    include 'authentication-module.php';
-    include 'send_email.php';
+    include dirname(__FILE__).'/input_validation.php';
+    include dirname(__FILE__).'/authentication-module.php';
+    include dirname(__FILE__).'/send_email.php';
     require_once 'database_credentials.php'; // File of the database credentials PATH MAYBE UPDATED
 
     $name = $userInputPassword = $email = $gender = $phone = "";
@@ -53,8 +53,16 @@
     }
 
     // All input validation is successful.
-    if($nameMsgBool['is_valid'] && $emailMsgBool['is_valid'] && $passwordMsgBool['is_valid'] && $genderMsgBool['is_valid'] && $hashBool['is_integrity'] && $phoneMsgBool['is_valid']){
-        sendDataToDatabase($servername, $username, $password, $database, $name, $email, $hashedPassword, $gender, $phone);
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        if($nameMsgBool['is_valid'] && $emailMsgBool['is_valid'] && $passwordMsgBool['is_valid'] && $genderMsgBool['is_valid'] && $hashBool['is_integrity'] && $phoneMsgBool['is_valid']){
+            sendDataToDatabase($servername, $username, $password, $database, $name, $email, $hashedPassword, $gender, $phone);
+        } else {
+            $_SESSION['signupMsg'] = "
+                <div class='alert alert-danger'>
+                    Invalid request. Please try again.
+                </div>
+            ";
+        }
     }
 
     // Function to send data over to database
@@ -73,7 +81,7 @@
                 Email already exists. Please <a href='login-page.php'>login</a>.
             </div>
             ";
-        }else{
+        } else{
             // Add data to USER_INFO table
             $stmt = $conn -> prepare("INSERT INTO user_info (email_address, phone_number, name, gender) VALUES (?,?,?,?);");
             $stmt->bind_param('ssss', $email, $phone, $name, $gender);

@@ -7,7 +7,7 @@
     </head>
     <?php
         require_once 'database_credentials.php'; // File of the database credentials PATH MAYBE UPDATED
-        include 'send_email.php';
+        include 'auth/send_email.php';
 
         if(isset($_GET['token'])){
             $token = $_GET['token'];
@@ -29,7 +29,7 @@
                     $stmt->execute();
                     $message = "
                         <div class='alert alert-success'>
-                            Account verified successfully. Please <a href='login-page.php' class='link-success'><strong>login</strong></a> to continue.
+                            Account verified successfully. Please <a href='login.php' class='link-success'><strong>login</strong></a> to continue.
                         </div>
                         ";
                     $stmt->close();
@@ -60,8 +60,6 @@
         <div class="container p-3 vh-100">
             <?php echo $message; ?>
         </div>
-    </body>
-    <footer>
         <?php include 'footer.php'; ?>
-    </footer>
+    </body>
 </html>

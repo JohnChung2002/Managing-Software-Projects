@@ -5,7 +5,7 @@
     }
     
     require_once 'database_credentials.php'; // File of the database credentials PATH MAYBE UPDATED
-    include 'send_email.php';
+    include dirname(__FILE__).'/send_email.php';
     
     // Set the session for message
     session_start();

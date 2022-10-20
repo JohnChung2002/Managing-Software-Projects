@@ -33,7 +33,7 @@
                     $emailMsg = "";
                     $bool = true;
                 }else{
-                    $emailMsg = "Please enter a valid email";
+                    $emailMsg = "Please enter a valid email.";
                 }
             }else{
                 $emailMsg = "Email is required.";
@@ -48,7 +48,7 @@
         if(isset($_POST["password"])){
             if(!empty($_POST["password"])){
                 $password = $_POST["password"];
-                if(preg_match("/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*\W)[a-zA-Z\d\W]{8,}$/", $password)){
+                if(preg_match("/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*\W)[a-zA-Z\d\W]{8,20}$/", $password)){
                     $passwordMsg = "";
                     $bool = true;
                 }else{

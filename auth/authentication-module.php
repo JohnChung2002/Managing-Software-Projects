@@ -1,4 +1,9 @@
-<?php  
+<?php 
+    if ( basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"]) ) {
+        http_response_code(403);
+        exit;
+    }
+    
     // Hash the password received on the server side for integrity check
     function hashPasswordIntegrity($password){
         $hash = hash('SHA256', $password);
@@ -8,11 +13,8 @@
     // Check the password integrity
     function checkPasswordIntegrity($password, $clientHashValue){
         $serverHashValue = hashPasswordIntegrity($password);
-        if($clientHashValue == $serverHashValue){
-            return true;
-        }else{
-            return false;
-        }
+        return $clientHashValue == $serverHashValue;
+
     }
 
     // Hash the password to be stored in the database

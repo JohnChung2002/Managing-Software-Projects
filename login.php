@@ -4,12 +4,12 @@
     <title>Login Cacti Succulent</title>
     <?php include 'header.php'; ?>
     <?php include 'page_head.php'; ?>
-    <?php include 'login-module/login-process.php'; ?>
+    <?php include 'auth/login-process.php'; ?>
 </head>
 <body>
   <div class="container p-3 vh-100">
     <span><?php if(isset($_SESSION['loginMsg'])){echo $_SESSION['loginMsg']; session_unset();} ?></span>
-    <form action="login-page.php" method="post" id="login-form">
+    <form action="login.php" method="post" id="login-form">
         <fieldset>
             <legend class="mx-2">Log In</legend>
 
@@ -30,11 +30,11 @@
                 </div>
             </div>
 
-            <button type="submit" class="btn btn-primary mx-auto d-block">Log In</button>
+            <button type="submit" class="btn btn-primary">Log In</button>
         </fieldset>
     </form>
 
-    <a href="resetpassword-sendemail-page.php" class="link-primary text-center d-block m-2">Forgot password?</a>
+    <a href="resetpassword.php" class="link-primary d-block mt-2">Forgot password?</a>
 </div>
 </body>
 <footer>

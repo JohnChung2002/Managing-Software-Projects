@@ -1,4 +1,9 @@
 <?php
+    if ( basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"]) ) {
+        http_response_code(403);
+        exit;
+    }
+
     include 'input_validation.php';
     include 'authentication-module.php';
     include 'send_email.php';
@@ -71,7 +76,7 @@
         }else{
             // Add data to USER_INFO table
             $stmt = $conn -> prepare("INSERT INTO user_info (email_address, phone_number, name, gender) VALUES (?,?,?,?);");
-            $stmt->bind_param('siss', $email, $phone, $name, $gender);
+            $stmt->bind_param('ssss', $email, $phone, $name, $gender);
             $stmt->execute();
             $stmt->close();
             

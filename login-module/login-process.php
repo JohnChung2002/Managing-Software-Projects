@@ -42,13 +42,12 @@
                     // User 
                     // Redirect to user dashboard
                     $_SESSION['user_role'] = "User";
-                    header("Location: index.php");
                 }else{
                     // Admin
                     // Redirect to admin dashboard
                     $_SESSION['user_role'] = "Admin";
-                    // ADD ADMIN DASHBOARD LINK
                 }
+                header("Location: dashboard.php");
             }else{
                 // INCORRECT PASSWORD
                 $_SESSION['loginMsg'] = "

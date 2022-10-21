@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <head>
     <!--for ajax requests-->
@@ -13,76 +17,50 @@
 </head>
 
 <body>
-<?php include 'header.php'; ?>
-  <h1 class="text-center mt-5">APPOINTMENT REQUEST</h1>
-
-<div class="container p-5 my-5 border">
-<div class="col-12">
-    <label for="inputService" class="form-label">Select a service</label>
-    <select id="inputService" class="form-select">
-      <option selected>Choose...</option>
-      <option>Buy plant</option>
-      <option>Buy fertilizer</option>
-      <option>Buy gardening tool</option>
-      <option>Other</option>
-    </select>
-</div>
-
-<div id="datepicker-container"></div>
-
-<div class="mb-3">
-  <label for="available-slot" class="form-label">Available Time</label>
-    <select class="form-select form-select-lg" name="available-slot" id="available-slot">
-    </select>
-</div>
-
-
-<form class="row g-3">
-  <div class="col-12">
-    <label for="inputPpl" class="form-label">How many people will be joining?</label>
-    <select id="inputPpl" class="form-select">
-      <option selected>Choose...</option>
-      <option>1-3</option>
-      <option>3-5</option>
-      <option>6></option>
-    </select>
-  </div>
-  <div class="col-12">
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">Book Now</button>
-    <button type="reset" class="btn btn-primary">Reset</button>
-  </div>
-
-<div class="modal" id="myModal">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title">Your booking has been placed!</h4>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
-      <div class="modal-body">
-        Thanks for booking!
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-</form>
-
-<script src="script/datepicker.js"></script>
-  <script>
-    var disabledDates;
+  <?php include 'header.php'; 
+  if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    include "booking/createbooking.php";
+    createBooking();
+  } else {
+    echo '
+    <h1 class="text-center mt-5">APPOINTMENT REQUEST</h1>
+    <div class="container p-5 my-5 border">
+      <form method="post" class="row g-3 needs-validation" novalidate>
+        <div id="datepicker-container"></div>
+        <input type="text" class="form-control" name="date" id="date" hidden>
+        <div class="mb-3">
+          <label for="time" class="form-label">Available Time</label>
+          <select class="form-select form-select-lg" name="time" id="time" required></select>
+          <div class="valid-feedback">Looks good!</div>
+          <div class="invalid-feedback">Please select a time slot.</div>
+        </div>
+        <div class="col-12">
+          <label for="inputPpl" class="form-label">How many people will be joining?</label>
+          <input type="text" pattern="^[1-9]\d*(?:\.\d+)?$" class="form-control" id="inputPpl" name="inputPpl" required>
+          <div class="valid-feedback">Looks good!</div>
+          <div class="invalid-feedback">Please enter the number of people joining.</div>
+        </div>  
+        <div class="col-12">
+          <button type="submit" class="btn btn-primary">Book Now</button>
+          <button type="reset" class="btn btn-primary">Reset</button>
+        </div>
+      </form>
+    <script src="script/datepicker.js"></script>
+    <script>
+      var disabledDates;
       $(document).ready(function() {
         var start_date = formatNewDate(new Date())
         updateDisabled(start_date).then(function(data) {
           disabledDates = data;
           loadDatePicker();
         });
-        });
-  </script>
-</div>
+      });
+    </script>
+    <script src="script/booking_validation.js"></script>
+    </div>';
+  }
+  ?>
+  
 <?php include 'footer.php'; ?>
 
 </body>

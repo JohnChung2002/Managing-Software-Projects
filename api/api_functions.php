@@ -3,7 +3,9 @@
         http_response_code(403);
         exit;
     }
-    
+
+    require_once $_SERVER['DOCUMENT_ROOT']."/database_credentials.php";
+
     function validate_date($date) {
         return date_create_from_format("Y-m-d", $date) !== false;
     }
@@ -31,8 +33,7 @@
     }
 
     function start_connection() {
-        require_once $_SERVER['DOCUMENT_ROOT']."/database_credentials.php";
-        $conn = mysqli_connect($servername, $username, $password, $database);
+        $conn = mysqli_connect($GLOBALS["servername"], $GLOBALS["username"], $GLOBALS["password"], $GLOBALS["database"]);
         if ($conn) return $conn;
         http_response_code(500);
         exit;

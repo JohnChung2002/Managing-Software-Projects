@@ -6,6 +6,7 @@ if ( basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"]) ) {
 }
 
 require_once $_SERVER['DOCUMENT_ROOT'].'/api/api_functions.php';
+
 date_default_timezone_set("Asia/Kuala_Lumpur");
 
 function getDefaultOp($conn, $day) {
@@ -95,6 +96,23 @@ function checkClash($conn, $date, $slot) {
     return in_array($slot, $available_slots);
 }
 
+function checkUserRedirect() {
+    if (!empty($_GET["id"])) {
+        $conn = start_connection();
+        $user_id = $_SESSION["user_id"];
+        $booking_id = $_GET["id"];
+        $command = "SELECT * FROM booking_info WHERE booking_id=? AND user_id=?;";
+        $stmt = mysqli_prepare($conn, $command);
+        mysqli_stmt_bind_param($stmt, "ss", $booking_id, $user_id);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        if (mysqli_num_rows($result) == 1) {
+            return true;
+        }
+    }
+    return false;
+}
+
 function createUserBooking() {
     if (!empty($_POST["date"]) && !empty($_POST["time"]) && !empty($_POST["inputPpl"]) && isset($_SESSION["user_id"])) {
         if (validate_date($_POST["date"]) && validate_time($_POST["time"])) {
@@ -141,14 +159,34 @@ function createUserBooking() {
     return false;
 }
 
+function getBookingInformation($booking_id) {
+    $conn = start_connection();
+    $user_id = $_SESSION["user_id"];
+    $command = "SELECT appointment_date, appointment_timeslot, number_of_attendees FROM booking_info WHERE user_id=? AND booking_id=?;";
+    $stmt = mysqli_prepare($conn, $command);
+    mysqli_stmt_bind_param($stmt, "ss", $user_id, $booking_id);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    $row = mysqli_fetch_assoc($result);
+    mysqli_free_result($result);
+    echo "
+    <p>Booking ID: " . $booking_id . 
+        "<br/>
+        Booking Date: " . $row["appointment_date"] .
+        "<br/>
+        Booking Time: " . $row["appointment_timeslot"] .
+        "<br/>
+        Number of Attendees: " . $row["number_of_attendees"] .
+    "</p>";
+}
+
 function updateUserBooking() {
-    if (!empty($_POST["date"]) && !empty($_POST["time"]) && !empty($_POST["inputPpl"]) && isset($_SESSION["user_id"]) && isset($_SESSION["booking_id"])) {
+    if (!empty($_POST["date"]) && !empty($_POST["time"]) && !empty($_POST["inputPpl"]) && !empty($_GET["id"]) && isset($_SESSION["user_id"])) {
         if (validate_date($_POST["date"]) && validate_time($_POST["time"])) {
             $date = $_POST["date"];
             $time = $_POST["time"];
             $user_id = $_SESSION["user_id"];
-            $booking_id = $_SESSION["booking_id"];
-            unset($booking_id);
+            $booking_id = $_GET["id"];
             $number_of_attendees = (int)$_POST["inputPpl"];
             $conn = start_connection();
             if (checkClash($conn, $date, $time)) {
@@ -177,20 +215,31 @@ function updateUserBooking() {
     return false;
 }
 
-function checkUserRedirect() {
-    if (!empty($_GET["id"])) {
-        $conn = start_connection();
+function cancelUserBooking() {
+    if (isset($_SESSION["user_id"]) && !empty($_GET["id"])) {
         $user_id = $_SESSION["user_id"];
         $booking_id = $_GET["id"];
-        $command = "SELECT * FROM booking_info WHERE booking_id=? AND user_id=?;";
+        $conn = start_connection();
+        $command = "UPDATE booking_info SET booking_status='Cancelled' WHERE booking_id=? AND user_id=?;";
         $stmt = mysqli_prepare($conn, $command);
         mysqli_stmt_bind_param($stmt, "ss", $booking_id, $user_id);
-        mysqli_stmt_execute($stmt);
-        $result = mysqli_stmt_get_result($stmt);
-        if (mysqli_num_rows($result) == 1) {
+        if (mysqli_stmt_execute($stmt)) {
+            echo "
+            <div class='container min-vh-100'>
+                <div class='alert alert-success mt-4'>
+                Booking cancelled successfully! Please check your email or booking page for more details.
+                </div>
+            </div>";
             return true;
         }
+        mysqli_close($conn);
     }
+    echo "
+    <div class='container min-vh-100'>
+        <div class='alert alert-danger'>
+        Invalid request. Please try again.
+        </div>
+    </div>";
     return false;
 }
 

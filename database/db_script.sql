@@ -30,6 +30,7 @@ CREATE TABLE IF NOT EXISTS `booking_info` (
     user_id INT UNSIGNED NOT NULL,
     number_of_attendees TINYINT UNSIGNED NOT NULL,
     booking_status ENUM('Confirmed', 'Cancelled') NOT NULL,
+    cancellation_remarks VARCHAR(255),
     PRIMARY KEY (booking_id),
     FOREIGN KEY (user_id) REFERENCES user_info(user_id)
 );

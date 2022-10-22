@@ -1,5 +1,17 @@
 const monthName = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
+const currentMonth = new Date().toLocaleString('default', {month: 'long'});
+
+currentyear = new Date().getFullYear();
+
+function getDate(){
+    date = new Date();
+    year = date.getFullYear();
+    month = date.getMonth() + 1;
+    day = date.getDate();
+    document.getElementById("current_date").innerHTML = month + "/" + day + "/" + year;
+}
+
 function getWeekObject(week_obj) {
     const defaultObj = {"Sunday": 0,"Monday": 0,"Tuesday": 0,"Wednesday": 0,"Thursday": 0,"Friday": 0,"Saturday": 0}
     return Object.entries(week_obj).reduce((acc, [key, value]) => 
@@ -137,7 +149,7 @@ function getYearStatistic(year) {
     })
 }
 
-
+// displays amount of bookings per day in a week format
 function initialiseDayChart() {
     //month_name="October"
     getDayStatistic().then(function(data) {
@@ -146,14 +158,14 @@ function initialiseDayChart() {
         for (const [key, value] of Object.entries(week_obj)) {
             chartData.push({x: key, y: value});
         }
-        new Chart("demoDayChart", {
+        new Chart("DayChart", {
             type: "line",
             data: {
             datasets: [{
                 fill: false,
                 lineTension: 0,
-                backgroundColor: "rgba(0,0,255,1.0)",
-                borderColor: "rgba(0,0,255,0.1)",
+                backgroundColor: "rgb(65,83,54)",
+                borderColor: "rgb(65,83,54)",
                 label: "Number of Bookings",
                 data: chartData
             }]
@@ -170,21 +182,22 @@ function initialiseDayChart() {
     }).catch(err => console.log(err));
 };
 
+//displays number of bookings in dates in a specific month
 function initialiseMonthChart() {
-    getMonthStatistic(month_name="October", year="2022").then(function(data) {
+    getMonthStatistic(month_name=currentMonth, year=currentyear).then(function(data) {
         var month_obj = getDaysInMonthObject(data, month_name, year);
         var chartData = [];
         for (const [key, value] of Object.entries(month_obj)) {
             chartData.push({x: key, y: value});
         }
-        new Chart("demoMonthChart", {
+        new Chart("MonthChart", {
             type: "line",
             data: {
               datasets: [{
                 fill: false,
                 lineTension: 0,
-                backgroundColor: "rgba(0,0,255,1.0)",
-                borderColor: "rgba(0,0,255,0.1)",
+                backgroundColor: "rgb(65,83,54)",
+                borderColor: "rgb(65,83,54)",
                 label: "Number of Bookings",
                 data: chartData
               }]
@@ -201,21 +214,22 @@ function initialiseMonthChart() {
     }).catch(err => console.log(err));
 }
 
+// number of bookings each time
 function initialiseTimeChart() {
-    getTimeStatistic(month_name="October", year="2022").then(function(data) {
+    getTimeStatistic(month_name=currentMonth, year=currentyear).then(function(data) {
         var day_obj = getHoursInDay(data);
         var chartData = [];
         for (const [key, value] of Object.entries(day_obj)) {
             chartData.push({x: key, y: value});
         }
-        new Chart("demoTimeChart", {
+        new Chart("TimeChart", {
             type: "line",
             data: {
               datasets: [{
                 fill: false,
                 lineTension: 0,
-                backgroundColor: "rgba(0,0,255,1.0)",
-                borderColor: "rgba(0,0,255,0.1)",
+                backgroundColor: "rgb(65,83,54)",
+                borderColor: "rgb(65,83,54)",
                 label: "Number of Bookings",
                 data: chartData
               }]
@@ -232,6 +246,7 @@ function initialiseTimeChart() {
     }).catch(err => console.log(err));
 }
 
+// displays number of bookings per month
 function initialiseYearChart() {
     getYearStatistic(year=2022).then(function(data) {
         var regex = /\d/;   
@@ -244,14 +259,14 @@ function initialiseYearChart() {
         for (const [key, value] of Object.entries(year_obj)) {
             chartData.push({x: key, y: value});
         }
-        new Chart("demoYearChart", {
+        new Chart("YearChart", {
             type: "line",
             data: {
             datasets: [{
                 fill: false,
                 lineTension: 0,
-                backgroundColor: "rgba(0,0,255,1.0)",
-                borderColor: "rgba(0,0,255,0.1)",
+                backgroundColor: "rgb(65,83,54)",
+                borderColor: "rgb(65,83,54)",
                 label: "Number of Bookings",
                 data: chartData
             }]

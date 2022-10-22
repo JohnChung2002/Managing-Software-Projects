@@ -8,7 +8,9 @@
     include dirname(__FILE__).'/send_email.php';
     
     // Set the session for message
-    session_start();
+    if(!isset($_SESSION)) { 
+        session_start(); 
+    } 
 
     $email = "";
 

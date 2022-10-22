@@ -1,5 +1,5 @@
 <?php
-    require_once "api_functions.php";
+    require_once dirname(__FILE__)."/api_functions.php";
 
     function getDefaultOp($conn, $day) {
         $default_op = NULL;
@@ -78,7 +78,6 @@
         if (validate_date($_GET["date"])) {
             $date = $_GET["date"];
             $conn = start_connection();
-
             $default_op = getDefaultOp($conn, date("l", strtotime($date)));
             $custom_op = getCustomOp($conn, $date);
             $taken_slots = getSlots($conn, $date);

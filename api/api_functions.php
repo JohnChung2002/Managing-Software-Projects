@@ -20,8 +20,18 @@
         return date_create_from_format("Y", $year) !== false;
     }
 
+    function validate_time($time) {
+        return date_create_from_format("H:i:s", $time) !== false;
+    }
+
+    function generateBookingID() {
+        $bytes = random_bytes(8);
+        $base64 = base64_encode($bytes);
+        return rtrim(strtr($base64, '+/', '-_'), '=');
+    }
+
     function start_connection() {
-        require_once "../database_credentials.php";
+        require_once $_SERVER['DOCUMENT_ROOT']."/database_credentials.php";
         $conn = mysqli_connect($servername, $username, $password, $database);
         if ($conn) return $conn;
         http_response_code(500);

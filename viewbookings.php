@@ -23,6 +23,7 @@
 <body>
     <?php include "header.php"; ?>
     <div class="container my-2">
+        <h1 class="text-center">Calendar Bookings View</h1>
         <div id='calendar'></div>
     </div>
     <?php include "footer.php"; ?>

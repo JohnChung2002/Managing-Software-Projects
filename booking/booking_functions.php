@@ -323,6 +323,35 @@ function cancelUserBooking() {
     return false;
 }
 
+function adminCancelBooking() {
+    if (!empty($_GET["booking-id"]) && !empty($_POST["inputReason"])) {
+        $booking_id = $_GET["booking-id"];
+        $reason = $_POST["inputReason"];
+        $conn = start_connection();
+        $command = "UPDATE booking_info SET booking_status='Cancelled', cancellation_remarks=? WHERE booking_id=?;";
+        $stmt = mysqli_prepare($conn, $command);
+        mysqli_stmt_bind_param($stmt, "ss", $reason, $booking_id);
+        if (mysqli_stmt_execute($stmt)) {
+            echo "
+            <div class='container min-vh-100'>
+                <div class='alert alert-success mt-4'>
+                Booking cancelled successfully! Please check your email or booking page for more details.
+                </div>
+            </div>";
+            mysqli_close($conn);
+            return true;
+        }
+        mysqli_close($conn);
+    }
+    echo "
+    <div class='container min-vh-100'>
+        <div class='alert alert-danger'>
+        Invalid request. Please try again.
+        </div>
+    </div>";
+    return false;
+}
+
 function getUserBooking() {
     $conn = start_connection();
     $user_id = $_SESSION["user_id"];

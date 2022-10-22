@@ -4,6 +4,7 @@ session_start();
 
 <!DOCTYPE html>
 <head>
+    <?php include "page_head.php";?>
     <!--for ajax requests-->
     <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
     <!-- javascript for the calendar (date picker)-->
@@ -18,10 +19,12 @@ session_start();
 
 <body>
   <?php include 'header.php'; 
+  $valid = false;
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    include "booking/createbooking.php";
-    createBooking();
-  } else {
+    include "booking/booking_functions.php";
+    $valid = createUserBooking();
+  } 
+  if (!$valid){
     echo '
     <h1 class="text-center mt-5">APPOINTMENT REQUEST</h1>
     <div class="container p-5 my-5 border">

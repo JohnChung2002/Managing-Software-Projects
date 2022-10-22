@@ -89,6 +89,11 @@ function updateSlots(date) {
     }).catch(err => console.log(err));
 }
 
+function hideNextPrevMonthDates() {
+    $(".day.new").css("cssText", "display: none !important");
+    $(".day.old").css("cssText", "visibility: hidden !important"); 
+}
+
 function loadDatePicker() {
     $('#datepicker-container').datepicker({
         datesDisabled: disabledDates,

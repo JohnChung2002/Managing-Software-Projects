@@ -1,3 +1,5 @@
+const monthName = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
 function getToday() {
     var date = new Date();
     return formatNewDate(date)

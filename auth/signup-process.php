@@ -13,7 +13,9 @@
     $nameMsgBool = $emailMsgBool = $passwordMsgBool = $genderMsgBool = $phoneMsgBool = "";
 
     // Set the session for message
-    session_start();
+    if(!isset($_SESSION)) { 
+        session_start(); 
+    } 
     
     $nameMsgBool = NameValidation();
     $emailMsgBool = EmailValidation();

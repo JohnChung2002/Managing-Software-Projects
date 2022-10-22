@@ -8,7 +8,7 @@
     session_start();
     if(isset($_SESSION['is_login']) && $_SESSION['is_login'] == true){
         if ($_SESSION['user_role'] == "User" || $_SESSION['user_role'] == "Admin") {
-            return;
+            return true;
         } 
     }
     // Redirect to login page if not logged in.

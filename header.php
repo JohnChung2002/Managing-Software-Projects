@@ -36,10 +36,10 @@ echo '
 if (!$logged_in) {
   echo '
   <li class="nav-item">
-    <a class="nav-link" href="#" ><p class ="fs-5 mx-3 mt-3" style="color: white;">Sign Up</p></a>
+    <a class="nav-link" href="signup.php" ><p class ="fs-5 mx-3 mt-3" style="color: white;">Sign Up</p></a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="#" ><p class ="fs-5 mx-3 mt-3" style="color: white;">Sign In</p></a>
+    <a class="nav-link" href="login.php" ><p class ="fs-5 mx-3 mt-3" style="color: white;">Log In</p></a>
   </li>';
 } else {
   echo '
@@ -57,7 +57,7 @@ if (!$logged_in) {
       <li><a class="dropdown-item" href="#">My Profile</a></li>
       <li><a class="dropdown-item" href="#">Another action</a></li>
       <li><hr class="dropdown-divider"></li>
-      <li><a class="dropdown-item" href="#">Sign Out</a></li>
+      <li><a class="dropdown-item" href="logout.php">Log Out</a></li>
     </ul>
   </li>';
 }

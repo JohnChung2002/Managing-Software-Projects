@@ -10,7 +10,10 @@
     include dirname(__FILE__).'/authentication-module.php';
     
     // Set the session for message
-    session_start();
+    if(!isset($_SESSION)) { 
+        session_start(); 
+    } 
+
 
     $_SESSION['valid'] = false;
     $token = $_GET['token'];

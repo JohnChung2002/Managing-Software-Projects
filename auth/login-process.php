@@ -7,7 +7,9 @@
     require_once 'database_credentials.php'; // File of the database credentials PATH MAYBE UPDATED
     
     // Set the session for message
-    session_start();
+    if(!isset($_SESSION)) { 
+        session_start(); 
+    } 
 
     $userInputPassword = $email = "";
 

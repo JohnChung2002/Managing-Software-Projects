@@ -50,13 +50,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <script src='script/datepicker.js'></script>
         <script>
         var disabledDates;
-            $(document).ready(function() {
-            var start_date = formatNewDate(new Date())
-            updateDisabled(start_date).then(function(data) {
-                disabledDates = data;
-                loadDatePicker();
-            });
-            });
+        $(document).ready(function() {
+          var start_date = getToday();
+          updateDisabled(start_date).then(function(data) {
+            disabledDates = disablePrevNextMonthDates(data, start_date);
+            loadDatePicker();
+            $('#datepicker-container').datepicker('hide');
+            hideNextPrevMonthDates();
+          }).catch(err => console.log(err));
+        });
         </script>
         <script src='script/booking_validation.js'></script>
     </div>";

@@ -12,7 +12,6 @@
         return $default_op;
     }
 
-
     function getCustomOpDates($conn, $month_name) {
         $custom_op = array();
         $command = "SELECT operating_date, operating_hours FROM custom_store_availability WHERE MONTHNAME(operating_date)=?;";

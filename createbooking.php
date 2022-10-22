@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <head>
+    <?php include "page_head.php"; ?>
     <!--for ajax requests-->
     <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
     <!-- javascript for the calendar (date picker)-->
@@ -13,107 +14,88 @@
 </head>
 
 <body>
-<?php include 'header.php'; ?>
-  <h1 class="text-center mt-5">APPOINTMENT REQUEST</h1>
-
-  <form class="row g-3">
-  <div class="container p-5 my-5 border">
-
-  <div class="mb-3">
-  <label for="entername" class="form-label">Name</label>
-  <input class="form-control" id="entername" type='text' placeholder="John" rows="1" required>
-  <div class="invalid-feedback">Please enter name!</div>
-  </div>
-
-  <div class="mb-3">
-    <label for="enteremail" class="form-label">Email address</label>
-    <input type="email" class="form-control" id="enteremail" placeholder="name@example.com">
-    <div class="invalid-feedback">Please enter email address!</div>
-  </div>
-
-  <div class="mb-3 ">
-      <label for="phoneno" class="form-label">Phone number</label>
-      <input type="text" class="form-in form-control" name="" id="phoneno" placeholder="0123456789"/>
-      <div class="invalid-feedback">Please enter phone number!</div>
-    </div>
-
-
-<div class="col-12">
-    <label for="inputService" class="form-label">Select a service</label>
-    <select id="inputService" class="form-select">
-      <option selected>Choose...</option>
-      <option>Buy plant</option>
-      <option>Buy fertilizer</option>
-      <option>Buy gardening tool</option>
-      <option>Other</option>
-    </select>
-    <div class="invalid-feedback">Please select a service!</div>
-</div>
-
-<div id="datepicker-container"></div>
-
-<div class="mb-3">
-  <label for="available-slot" class="form-label">Available Time</label>
-    <select class="form-select form-select-lg" name="available-slot" id="available-slot">
-    </select>
-    <div class="invalid-feedback">Please choose a time!</div>
-</div>
-
-  <div class="pb-3 col-12">
-    <label for="inputPpl" class="form-label">How many people will be joining?</label>
-    <select id="inputPpl" class="form-select">
-      <option selected>Choose...</option>
-      <option>1-3</option>
-      <option>3-5</option>
-      <option>6></option>
-    </select>
-    <div class="invalid-feedback">Please choose!</div>
-  </div>
-
-
-
-  <div class="col-12">
-    <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">Book Now</button>
-    <button type="reset" class="btn btn-primary">Reset</button>
-  </div>
-
-<div class="modal" id="myModal">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title">Your booking has been placed!</h4>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
-      <div class="modal-body">
-        Thanks for booking!
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-</form>
-
-<script src="script/datepicker.js"></script>
-  <script>
-    var disabledDates;
+<?php include 'header.php'; 
+  $valid = false;
+  if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    include "booking/booking_functions.php";
+    $valid = adminCreateBooking();
+  } 
+  if (!$valid){
+    echo '
+    <h1 class="text-center mt-5">APPOINTMENT REQUEST</h1>
+    <div class="container p-5 my-5 border">
+      <form method="post" class="row g-3 needs-validation" novalidate>
+        <div class="col-10">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" name="email" id="email" pattern="^(?!(?:(?:\x22?\x5C[\x00-\x7E]\x22?)|(?:\x22?[^\x5C\x22]\x22?)){255,})(?!(?:(?:\x22?\x5C[\x00-\x7E]\x22?)|(?:\x22?[^\x5C\x22]\x22?)){65,}@)(?:(?:[\x21\x23-\x27\x2A\x2B\x2D\x2F-\x39\x3D\x3F\x5E-\x7E]+)|(?:\x22(?:[\x01-\x08\x0B\x0C\x0E-\x1F\x21\x23-\x5B\x5D-\x7F]|(?:\x5C[\x00-\x7F]))*\x22))(?:\.(?:(?:[\x21\x23-\x27\x2A\x2B\x2D\x2F-\x39\x3D\x3F\x5E-\x7E]+)|(?:\x22(?:[\x01-\x08\x0B\x0C\x0E-\x1F\x21\x23-\x5B\x5D-\x7F]|(?:\x5C[\x00-\x7F]))*\x22)))*@(?:(?:(?!.*[^.]{64,})(?:(?:(?:xn--)?[a-zA-Z0-9]+(?:-+[a-zA-Z0-9]+)*\.){1,126}){1,}(?:(?:[a-zA-Z][a-zA-Z0-9]*)|(?:(?:xn--)[a-zA-Z0-9]+))(?:-+[a-zA-Z0-9]+)*)|(?:\[(?:(?:IPv6:(?:(?:[a-fA-F0-9]{1,4}(?::[a-fA-F0-9]{1,4}){7})|(?:(?!(?:.*[a-fA-F0-9][:\]]){7,})(?:[a-fA-F0-9]{1,4}(?::[a-fA-F0-9]{1,4}){0,5})?::(?:[a-fA-F0-9]{1,4}(?::[a-fA-F0-9]{1,4}){0,5})?)))|(?:(?:IPv6:(?:(?:[a-fA-F0-9]{1,4}(?::[a-fA-F0-9]{1,4}){5}:)|(?:(?!(?:.*[a-fA-F0-9]:){5,})(?:[a-fA-F0-9]{1,4}(?::[a-fA-F0-9]{1,4}){0,3})?::(?:[a-fA-F0-9]{1,4}(?::[a-fA-F0-9]{1,4}){0,3}:)?)))?(?:(?:25[0-5])|(?:2[0-4][0-9])|(?:1[0-9]{2})|(?:[1-9]?[0-9]))(?:\.(?:(?:25[0-5])|(?:2[0-4][0-9])|(?:1[0-9]{2})|(?:[1-9]?[0-9]))){3}))\]))$" class="form-control input-sm" placeholder="JohnPie@email.com" required>
+          <div class="valid-feedback">Looks good!</div>
+          <div class="invalid-feedback">Please enter a valid email.</div>
+        </div>
+        <div class="col-2 d-flex flex-column">
+          <label class="form-label" style="visibility:hidden;">Check User</label>
+          <button type="button" class="btn btn-primary" onclick="loadUser()">Check if user exists</button>
+        </div>
+        <div class="col-12">
+          <div id="check-user"></div>
+        </div>
+        <div class="col-4">
+          <label for="name" class="form-label">Name</label>
+          <input type="text" name="name" id="name" pattern="^[a-zA-Z][a-zA-Z ]+$" class="form-control" placeholder="John Pie" required>
+          <div class="valid-feedback">Looks good!</div>
+          <div class="invalid-feedback">Only letters and white space allowed.</div>
+        </div>
+        <div class="col-4">
+          <label for="gender" class="form-label">Gender</label>
+          <select class="form-select" aria-label="Default selected example" name="gender" id="gender" required>
+            <option disabled selected value=""> -- select an option -- </option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+          </select>
+          <div class="valid-feedback">Looks good!</div>
+          <div class="invalid-feedback">Please select your gender.</div>
+        </div>
+        <div class="col-4">
+          <label for="phone" class="form-label">Phone Number</label>
+          <input type="text" pattern="^[0-9]{10}$" class="form-control" name="phone" id="phone" aria-describedby="helpId" placeholder="0123456789" required>
+          <div class="valid-feedback">Looks good!</div>
+          <div class="invalid-feedback">Please enter a valid phone number.</div>
+        </div>
+        <div id="datepicker-container"></div>
+        <input type="text" class="form-control" name="date" id="date" hidden required>
+        <div class="mb-3">
+          <label for="time" class="form-label">Available Time</label>
+          <select class="form-select form-select-lg" name="time" id="time" required></select>
+          <div class="valid-feedback">Looks good!</div>
+          <div class="invalid-feedback">Please select a time slot.</div>
+        </div>
+        <div class="col-12">
+          <label for="inputPpl" class="form-label">How many people will be joining?</label>
+          <input type="text" pattern="^[1-9]\d*(?:\.\d+)?$" class="form-control" id="inputPpl" name="inputPpl" required>
+          <div class="valid-feedback">Looks good!</div>
+          <div class="invalid-feedback">Please enter the number of people joining.</div>
+        </div>  
+        <div class="col-12">
+          <button type="submit" class="btn btn-primary">Book Now</button>
+          <button type="reset" class="btn btn-primary">Reset</button>
+        </div>
+      </form>
+    <script src="script/datepicker.js"></script>
+    <script>
+      var disabledDates;
       $(document).ready(function() {
-        var start_date = formatNewDate(new Date())
+        var start_date = getToday();
         updateDisabled(start_date).then(function(data) {
-          disabledDates = data;
-          loadDatePicker();
-        });
-        });
-       
-  // var currentTab = 0;
-  // var form_fields = [document.getElementById("entername"), document.getElementById("enteremail"), document.getElementById("phoneno"), document.getElementById("inputService"), document.getElementById("available-slot"), document.getElementById("inputPpl")];
-  // showTab(currentTab);
-
-  </script>
-</div>
-<?php include 'footer.php'; ?>
-
+            disabledDates = disablePrevNextMonthDates(data, start_date);
+            loadDatePicker();
+            $("#datepicker-container").datepicker("hide");
+            hideNextPrevMonthDates();
+        }).catch(err => console.log(err));
+      });
+    </script>
+    <script src="script/booking_validation.js"></script>
+    <script src="script/admin_booking.js"></script>
+    </div>';
+  }
+ include 'footer.php'; ?>
 </body>
 </html>

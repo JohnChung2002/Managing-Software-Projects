@@ -1,5 +1,5 @@
 <?php
-    require_once "api_functions.php";
+    require_once dirname(__FILE__)."/api_functions.php";
 
     function getAllBooking($conn, $start, $end) {
         $booking_arr = array();

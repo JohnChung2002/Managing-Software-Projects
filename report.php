@@ -2,7 +2,9 @@
 <html lang="en">
 
 <head>
-    <?php include 'page_head.php'; ?>
+    <?php include 'page_head.php'; ?>   
+    <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <title>Cacti Succulent Kuching</title>
 </head>
 <body>

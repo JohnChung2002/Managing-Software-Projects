@@ -101,14 +101,16 @@ function checkUserRedirect() {
         $conn = start_connection();
         $user_id = $_SESSION["user_id"];
         $booking_id = $_GET["id"];
-        $command = "SELECT * FROM booking_info WHERE booking_id=? AND user_id=?;";
+        $command = "SELECT * FROM booking_info WHERE booking_id=? AND user_id=? AND booking_status='Confirmed';";
         $stmt = mysqli_prepare($conn, $command);
         mysqli_stmt_bind_param($stmt, "ss", $booking_id, $user_id);
         mysqli_stmt_execute($stmt);
         $result = mysqli_stmt_get_result($stmt);
         if (mysqli_num_rows($result) == 1) {
+            mysqli_close($conn);
             return true;
         }
+        mysqli_close($conn);        
     }
     return false;
 }
@@ -141,6 +143,7 @@ function createUserBooking() {
                                 Booking created successfully! Please check your email or booking page for more details.
                                 </div>
                             </div>";
+                            mysqli_close($conn);
                             return true;
                         }
                     }
@@ -200,6 +203,7 @@ function updateUserBooking() {
                         Booking updated successfully! Please check your email or booking page for more details.
                         </div>
                     </div>";
+                    mysqli_close($conn);
                     return true;
                 }
             }
@@ -216,13 +220,14 @@ function updateUserBooking() {
 }
 
 function cancelUserBooking() {
-    if (isset($_SESSION["user_id"]) && !empty($_GET["id"])) {
+    if (isset($_SESSION["user_id"]) && !empty($_GET["id"]) && !empty($_POST["inputReason"])) {
         $user_id = $_SESSION["user_id"];
         $booking_id = $_GET["id"];
+        $reason = $_POST["inputReason"];
         $conn = start_connection();
-        $command = "UPDATE booking_info SET booking_status='Cancelled' WHERE booking_id=? AND user_id=?;";
+        $command = "UPDATE booking_info SET booking_status='Cancelled', cancellation_remarks=? WHERE booking_id=? AND user_id=?;";
         $stmt = mysqli_prepare($conn, $command);
-        mysqli_stmt_bind_param($stmt, "ss", $booking_id, $user_id);
+        mysqli_stmt_bind_param($stmt, "sss", $reason, $booking_id, $user_id);
         if (mysqli_stmt_execute($stmt)) {
             echo "
             <div class='container min-vh-100'>
@@ -230,6 +235,7 @@ function cancelUserBooking() {
                 Booking cancelled successfully! Please check your email or booking page for more details.
                 </div>
             </div>";
+            mysqli_close($conn);
             return true;
         }
         mysqli_close($conn);

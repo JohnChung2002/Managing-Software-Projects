@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <?php include "page_head.php";?>
     <!--javascript for bootstrap-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <!--css for bootstrap-->
@@ -26,13 +27,7 @@
         <form method='post' class='row g-3 needs-validation' novalidate>
           <div class='col-md-6'>
           <label for='inputReason' class='form-label'>Reason For Cancellation</label>
-          <select id='inputReason' class='form-select' name='inputReason' required>
-            <option selected disabled value=''>Choose...</option>
-            <option value='Scheduling Conflict'>Scheduling Conflict</option>
-            <option value='Emergency'>Emergency</option>
-            <option value='Illness'>Illness</option>
-            <option value='Other'>Other</option>
-          </select>
+          <input type='text' class='form-control' id='inputReason' name='inputReason' required>
           <div class='valid-feedback'>Looks good!</div>
           <div class='invalid-feedback'>Please select a reason for cancellation.  </div>
           </div>
@@ -43,11 +38,13 @@
         </form>
         <script src='script/booking_validation.js'></script>
       </div>";
+    } else {
+      echo '<script type="text/javascript">
+      window.location.href = \'vbhistory.php\';
+      </script>';
     }
   }
   ?>
-  
 <?php include 'footer.php'; ?>
-
 </body>
 </html>

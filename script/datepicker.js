@@ -81,9 +81,10 @@ function retrieveSlots(input_date) {
 function updateSlots(date) {
     retrieveSlots(date).then(function(data) {
         var availableSlots = data;
-        $('#available-slot').empty()
+        $('#time').empty()
+        $('#time').append(new Option("", ""));
         for (var i = 0; i < availableSlots.length; i++) {
-            $('#available-slot').append(new Option(availableSlots[i], availableSlots[i]))
+            $('#time').append(new Option(availableSlots[i], availableSlots[i]))
         }
         hideNextPrevMonthDates();
     }).catch(err => console.log(err));

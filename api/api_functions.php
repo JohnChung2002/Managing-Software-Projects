@@ -3,7 +3,9 @@
         http_response_code(403);
         exit;
     }
-    
+
+    require_once $_SERVER['DOCUMENT_ROOT']."/database_credentials.php";
+
     function validate_date($date) {
         return date_create_from_format("Y-m-d", $date) !== false;
     }
@@ -20,9 +22,18 @@
         return date_create_from_format("Y", $year) !== false;
     }
 
+    function validate_time($time) {
+        return date_create_from_format("H:i:s", $time) !== false;
+    }
+
+    function generateBookingID() {
+        $bytes = random_bytes(8);
+        $base64 = base64_encode($bytes);
+        return rtrim(strtr($base64, '+/', '-_'), '=');
+    }
+
     function start_connection() {
-        require_once "../database_credentials.php";
-        $conn = mysqli_connect($servername, $username, $password, $database);
+        $conn = mysqli_connect($GLOBALS["servername"], $GLOBALS["username"], $GLOBALS["password"], $GLOBALS["database"]);
         if ($conn) return $conn;
         http_response_code(500);
         exit;

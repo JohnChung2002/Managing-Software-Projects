@@ -1,8 +1,5 @@
-from sre_parse import CATEGORIES
 import string
 import random
-from telnetlib import STATUS
-from unicodedata import category
 import names
 import secrets
 import base64
@@ -13,7 +10,7 @@ ALLCHAR = string.ascii_lowercase + string.ascii_uppercase + string.digits + stri
 
 GENDER = ["Male", "Female"]
 ROLES = ["Admin", "Admin", "Admin", "User", "User", "User", "User", "User", "User", "User", "User", "User", "User", "User", "User", "User", "User", "User", "User", "User"]
-CUSTOM_OP_TIME = [["09:00:00-11:00:00", "14:00:00-17:00:00"], ["09:00:00-12:00:00"], ["09:00:00-14:00:00"]]
+CUSTOM_OP_TIME = [["09:00:00-11:00:00", "14:00:00-17:00:00"], ["09:00:00-12:00:00"], ["09:00:00-14:00:00"], None]
 ACCOUNT_STATUS = ['Unactivated', 'Activated', 'Pending Reset', 'Deleted']
 BOOKING_STATUS = ["Confirmed", "Cancelled"]
 ITEM_AVAILABILITY = ["Not Available", "Out of Stock", "Available"]
@@ -34,6 +31,8 @@ PHPFOOTER = '''mysqli_multi_query($conn, $command);
 mysqli_close($conn);
 ?>
 '''
+defaultAvailability = {}
+customAvailability = {}
 categoriesTypeID = {}
 roleList =[]
 statusList = []
@@ -55,21 +54,49 @@ def generate_booking_id():
             bookingIdList.append(id)
             return id
 
+def checkSlotValid(date, time):
+    time = datetime.datetime.strptime(time, "%H:%M:%S").time()
+    if (date in customAvailability):
+        if (customAvailability[date] != None):
+            for slot in customAvailability[date]:
+                start, end = slot.split("-")
+                start = datetime.datetime.strptime(start, "%H:%M:%S").time()
+                end = datetime.datetime.strptime(end, "%H:%M:%S").time()
+                if (start <= time and end > time):
+                    return True
+    else:
+        vdate = datetime.datetime.strptime(date, "%Y-%m-%d").strftime("%A")
+        if (defaultAvailability[vdate] != None):
+            for slot in defaultAvailability[vdate]:
+                start, end = slot.split("-")
+                start = datetime.datetime.strptime(start, "%H:%M:%S").time()
+                end = datetime.datetime.strptime(end, "%H:%M:%S").time()
+                if (start <= time and end > time):
+                    return True
+    return False
+
 def generate_booking_date_time():
-    date = generate_weekday()
-    if (date not in bookingDict):
-        bookingDict[date] = []
     while True:
+        date = generate_bookingday()
+        if (date not in bookingDict):
+            bookingDict[date] = []
         time = "{:02d}:00:00".format(random.randint(9, 17))
         if (bookingDict[date].count(time) < 3):
-            bookingDict[date].append(time)
-            return [date, time]
+            if (checkSlotValid(date, time)):
+                status = BOOKING_STATUS[random.randint(0, 1)]
+                if (status != "Cancelled"):
+                    bookingDict[date].append(time)
+                return [date, time, status]
 
-def generate_weekday():
+def generate_bookingday():
     while True:
-        date = (datetime.datetime.now() + datetime.timedelta(days=random.randint(1, 30)))
-        if (date.weekday() != 5 and date.weekday() != 6):
-            return date.strftime("%Y-%m-%d")
+        date = (datetime.datetime.now() + datetime.timedelta(days=random.randint(1, 60)))
+        dateStr = date.strftime("%Y-%m-%d")
+        if (dateStr not in customAvailability):
+            if (date.weekday() != 5 and date.weekday() != 6):
+                return dateStr
+        else:
+            return dateStr
 
 def generate_phone_number():
     while True:
@@ -142,19 +169,17 @@ def generate_booking():
     for i in range(20):
         if (statusList[i] == 'Activated' and ROLES[i] == 'User'):
             booking_id = generate_booking_id()
-            appointment_date, appointment_time = generate_booking_date_time()
+            appointment_date, appointment_time, booking_status = generate_booking_date_time()
             user_id = i + 1
             num_of_attendees = random.randint(1, 8)
-            booking_status = BOOKING_STATUS[random.randint(0, 1)]
             arr.append([booking_id, appointment_date, appointment_time, user_id, num_of_attendees, booking_status])
     for i in range(10):
         rand = random.randint(0, 4)
         if (rand == 0):
             booking_id = generate_booking_id()
-            appointment_date, appointment_time = generate_booking_date_time()
+            appointment_date, appointment_time, booking_status = generate_booking_date_time()
             user_id = 20 + i + 1
             num_of_attendees = random.randint(1, 8)
-            booking_status = BOOKING_STATUS[random.randint(0, 1)]
             arr.append([booking_id, appointment_date, appointment_time, user_id, num_of_attendees, booking_status])
     return arr
 
@@ -163,16 +188,19 @@ def generate_default_availability():
     for i in DAY_OF_WEEK:
         if (i == 'Saturday' or i == 'Sunday'):
             arr.append([i, None])
+            defaultAvailability[i] = None
         else:
             arr.append([i, ["09:00:00-12:00:00", "13:00:00-17:00:00"]])
+            defaultAvailability[i] = ["09:00:00-12:00:00", "13:00:00-17:00:00"]
     return arr
 
 def generate_custom_availability():
     arr = []
     for i in range(20):
-        date = generate_weekday()
-        op_hour = CUSTOM_OP_TIME[random.randint(0, 2)]
+        date = generate_bookingday()
+        op_hour = CUSTOM_OP_TIME[random.randint(0, 3)]
         arr.append([date, op_hour])
+        customAvailability[date] = op_hour
     return arr
 
 def generate_content():
@@ -287,7 +315,10 @@ def sql_comms_custom_availability():
     with open('custom_availability.php', 'w') as f:
         f.write(PHPHEADER)
         for i in info:
-            f.write("$command .= \"INSERT INTO custom_store_availability (operating_date, operating_hours) VALUES ('{}', '{}');\";\n".format(i[0], escape_string(str(i[1]))))
+            if (i[1]!=None):
+                f.write("$command .= \"INSERT INTO custom_store_availability (day_of_week, operating_hours) VALUES ('{}', '{}');\";\n".format(i[0], escape_string(str(i[1]))))
+            else:
+                f.write("$command .= \"INSERT INTO custom_store_availability (day_of_week, operating_hours) VALUES ('{}', NULL);\";\n".format(i[0]))
         f.write(PHPFOOTER)
 
 def sql_comms_content():
@@ -338,9 +369,9 @@ def php_all_caller():
         f.write("<?php\n")
         f.write("include 'user_info.php';\n")
         f.write("include 'user_credentials.php';\n")
-        f.write("include 'booking.php';\n")
         f.write("include 'default_availability.php';\n")
         f.write("include 'custom_availability.php';\n")
+        f.write("include 'booking.php';\n")
         f.write("include 'content.php';\n")
         f.write("include 'encyclopedia_category.php';\n")
         f.write("include 'encyclopedia_types.php';\n")
@@ -352,9 +383,9 @@ def php_all_caller():
 generate_user_info()
 generate_user_credentials()
 generate_no_cred_users()
-generate_booking()
 generate_default_availability()
 generate_custom_availability()
+generate_booking()
 generate_encyclopedia_category()
 generate_encyclopedia_types()
 generate_items()
@@ -363,97 +394,12 @@ generate_homepage_versions()
 
 sql_comms_user_info()
 sql_comms_user_creds()
-sql_comms_booking()
 sql_comms_default_availability()
 sql_comms_custom_availability()
+sql_comms_booking()
 sql_comms_content()
 sql_comms_encyclopedia_category()
 sql_comms_encyclopedia_types()
 sql_comms_encyclopedia_items()
 sql_comms_homepage_versions()
 php_all_caller()
-
-
-
-'''
-CREATE TABLE IF NOT EXISTS `user_info` (
-    user_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    email_address VARCHAR(254),
-    phone_number CHAR(11) NOT NULL,
-    name VARCHAR(255) NOT NULL,
-    gender ENUM('Male', 'Female'),
-    preference JSON,
-    PRIMARY KEY (user_id)
-);
-CREATE TABLE IF NOT EXISTS `user_credentials` (
-    email_address VARCHAR(254) NOT NULL,
-    password CHAR(60) NOT NULL,
-    user_id INT UNSIGNED NOT NULL,
-    user_role ENUM('Admin', 'User') NOT NULL,
-    account_created_timestamp TIMESTAMP,
-    account_status ENUM('Unactivated', 'Activated', 'Pending Reset', 'Deleted') NOT NULL,
-    account_token CHAR(22),
-    token_expiry DATETIME,
-    notification_token JSON,
-    PRIMARY KEY (email_address),
-    FOREIGN KEY (user_id) REFERENCES user_info(user_id)
-);
-ALTER TABLE `user_info` ADD CONSTRAINT `user_info_ibfk_1` FOREIGN KEY IF NOT EXISTS (`email_address`) REFERENCES `user_credentials`(`email_address`);
-CREATE TABLE IF NOT EXISTS `booking_info` (
-    booking_id CHAR(11) NOT NULL,
-    booking_timestamp TIMESTAMP NOT NULL,
-    appointment_date DATE NOT NULL,
-    appointment_timeslot TIME NOT NULL,
-    user_id INT UNSIGNED NOT NULL,
-    number_of_attendees TINYINT UNSIGNED NOT NULL,
-    booking_status ENUM('Confirmed', 'Cancelled') NOT NULL,
-    PRIMARY KEY (booking_id),
-    FOREIGN KEY (user_id) REFERENCES user_info(user_id)
-);
-CREATE TABLE IF NOT EXISTS `default_store_availability` (
-    day_of_week ENUM('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday') NOT NULL,
-    operating_hours JSON 
-);
-CREATE TABLE IF NOT EXISTS `custom_store_availability` (
-    operating_date DATE NOT NULL,
-    operating_hours JSON
-);
-CREATE TABLE IF NOT EXISTS `homepage_info` (
-    version_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    version_timestamp TIMESTAMP NOT NULL,
-    page_resource TEXT,
-    remarks VARCHAR(255),
-    PRIMARY KEY (version_id)
-);
-CREATE TABLE IF NOT EXISTS `content_info` (
-    content_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    content_type ENUM('Announcement', 'Promotion') NOT NULL,
-    content_creation_timestamp TIMESTAMP NOT NULL,
-    content_title VARCHAR(255) NOT NULL,
-    content_resource TEXT,
-    PRIMARY KEY (content_id)
-);
-CREATE TABLE IF NOT EXISTS `encyclopedia_item_categories` (
-    item_category_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    item_category_name VARCHAR(255) NOT NULL,
-    PRIMARY KEY (item_category_id)
-);
-CREATE TABLE IF NOT EXISTS `encyclopedia_item_types` (
-    item_type_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    item_type_name VARCHAR(255) NOT NULL,
-    item_category_id INT UNSIGNED NOT NULL,
-    PRIMARY KEY (item_type_id),
-    FOREIGN KEY (item_category_id) REFERENCES encyclopedia_item_categories(item_category_id)
-);
-CREATE TABLE IF NOT EXISTS `encyclopedia_items` (
-    item_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    item_type_id INT UNSIGNED NOT NULL,
-    item_name VARCHAR(255) NOT NULL,
-    item_image TEXT NOT NULL,
-    availability_in_store ENUM('Not Available', 'Out of Stock', 'Available') NOT NULL,
-    price_in_store DECIMAL(5,2),
-    encyclopedia_resource TEXT,
-    PRIMARY KEY (item_id),
-    FOREIGN KEY (item_type_id) REFERENCES encyclopedia_item_types(item_type_id)
-);
-'''

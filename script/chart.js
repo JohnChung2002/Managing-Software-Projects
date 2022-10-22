@@ -24,8 +24,8 @@ function getDaysInMonthObject(month_obj, month_name, year) {
         var date = new Date(`${month_name} 01 ${year}`);
         var days = {};
         while (date.toLocaleString('default', { month: 'long' }) === month_name) {
-        days[new Date(date).toLocaleDateString("en-CA")] = 0;
-        date.setDate(date.getDate() + 1);
+            days[new Date(date).toLocaleDateString("en-CA")] = 0;
+            date.setDate(date.getDate() + 1);
         }
         return Object.entries(month_obj).reduce((acc, [key, value]) => 
             ({ ...acc, [key]: (acc[key] || 0) + value })
@@ -34,7 +34,6 @@ function getDaysInMonthObject(month_obj, month_name, year) {
         return month_obj;
     }
 }
-
 
 function getHoursInDay(day_obj) {
     var hours = {};

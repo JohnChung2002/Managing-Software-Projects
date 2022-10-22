@@ -82,6 +82,7 @@ function updateSlots(date) {
     retrieveSlots(date).then(function(data) {
         var availableSlots = data;
         $('#time').empty()
+        $('#time').append(new Option("", ""));
         for (var i = 0; i < availableSlots.length; i++) {
             $('#time').append(new Option(availableSlots[i], availableSlots[i]))
         }

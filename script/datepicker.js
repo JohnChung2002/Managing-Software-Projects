@@ -105,7 +105,8 @@ function loadDatePicker() {
     .on("changeMonth", function(e) {
         updateMonth(getNewMonth(e.date), this);
     })
-    .on("changeDate", function(e) {
+    .on('changeDate', function(e) {
+        $("#date").val(formatStringDate(e.date));
         updateSlots(formatStringDate(e.date));
     })
 }

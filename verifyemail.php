@@ -12,7 +12,7 @@
     if(isset($_GET['token'])){
         $token = $_GET['token'];
         $conn = mysqli_connect($servername, $username, $password, $database);
-        $sql = $conn -> prepare("SELECT * FROM user_credentials WHERE account_token = ? LIMIT 1;");
+        $sql = $conn -> prepare("SELECT email_address, token_expiry FROM user_credentials WHERE account_token = ? LIMIT 1;");
         $sql->bind_param('s', $token);
         $sql->execute();
         $result = $sql->get_result();
@@ -20,12 +20,10 @@
             $user = mysqli_fetch_assoc($result);
             $email = $user['email_address'];
             $tokenExpiry = $user['token_expiry'];
-            $status = 'Activated';
-            $emptyVal = " ";
 
             if(date("Y-m-d H:i:s") < date($tokenExpiry)){
-                $stmt = $conn -> prepare("UPDATE user_credentials SET account_token = ?, account_status = ?, token_expiry = ? WHERE email_address = ?");
-                $stmt->bind_param('ssss', $emptyVal, $status, $emptyVal, $email);
+                $stmt = $conn -> prepare("UPDATE user_credentials SET account_token = NULL, account_status = 'Activated', token_expiry = NULL WHERE email_address = ?");
+                $stmt->bind_param('s', $email);
                 $stmt->execute();
                 $message = "
                     <div class='alert alert-success'>

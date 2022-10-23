@@ -47,7 +47,7 @@
             </div>
             <div class="col-12">
               <label for="inputPpl" class="form-label">How many people will be joining?</label>
-              <input type="text" pattern="^[1-9]\d*(?:\.\d+)?$" class="form-control" id="inputPpl" name="inputPpl" required>
+              <input type="text" pattern="^[1-9]\d*(?:\.\d+)?$" maxlength="2" class="form-control" id="inputPpl" name="inputPpl" required>
               <div class="valid-feedback">Looks good!</div>
               <div class="invalid-feedback">Please enter the number of people joining.</div>
             </div>  
@@ -93,7 +93,7 @@
                 </div>
                 <div class='col-12'>
                     <label for='inputPpl' class='form-label'>How many people will be joining?</label>
-                    <input type='text' pattern='^[1-9]\d*(?:\.\d+)?$' class='form-control' id='inputPpl' name='inputPpl' required>
+                    <input type='text' pattern='^[1-9]\d*(?:\.\d+)?$' maxlength='2' class='form-control' id='inputPpl' name='inputPpl' required>
                     <div class='valid-feedback'>Looks good!</div>
                     <div class='invalid-feedback'>Please enter the number of people joining.</div>
                 </div>

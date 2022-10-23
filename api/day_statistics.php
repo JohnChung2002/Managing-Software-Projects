@@ -1,10 +1,10 @@
 <?php
-    require_once "api_functions.php";
+    require_once dirname(__FILE__)."/api_functions.php";
 
     function loadYearMonth($month_name, $year) {
         $statistics = array();
         $conn = start_connection();
-        $command = "SELECT DAYNAME(appointment_date) as day_of_week, COUNT(booking_id) AS number_of_bookings FROM booking_info WHERE MONTHNAME(appointment_date)=? AND YEAR(appointment_date)=? AND booking_status='Confirmed' GROUP BY DAYNAME(appointment_date);";
+        $command = "SELECT DAYNAME(appointment_date) as day_of_week, COUNT(booking_id) AS number_of_bookings FROM booking_info WHERE MONTHNAME(appointment_date)=? AND YEAR(appointment_date)=? AND booking_status='Confirmed' GROUP BY DAYNAME(appointment_date) ORDER BY DAYOFWEEK(appointment_date) ASC;";
         $stmt = mysqli_prepare($conn, $command);
         mysqli_stmt_bind_param($stmt, "si", $month_name, $year);
         mysqli_stmt_execute($stmt);
@@ -20,7 +20,7 @@
     function loadYear($year) {
         $statistics = array();
         $conn = start_connection();
-        $command = "SELECT DAYNAME(appointment_date) as day_of_week, COUNT(booking_id) AS number_of_bookings FROM booking_info WHERE YEAR(appointment_date)=? AND booking_status='Confirmed' GROUP BY DAYNAME(appointment_date);";
+        $command = "SELECT DAYNAME(appointment_date) as day_of_week, COUNT(booking_id) AS number_of_bookings FROM booking_info WHERE YEAR(appointment_date)=? AND booking_status='Confirmed' GROUP BY DAYNAME(appointment_date) ORDER BY DAYOFWEEK(appointment_date) ASC;";
         $stmt = mysqli_prepare($conn, $command);
         mysqli_stmt_bind_param($stmt, "i", $year);
         mysqli_stmt_execute($stmt);
@@ -36,7 +36,7 @@
     function loadMonth($month_name) {
         $statistics = array();
         $conn = start_connection();
-        $command = "SELECT DAYNAME(appointment_date) as day_of_week, COUNT(booking_id) AS number_of_bookings FROM booking_info WHERE MONTHNAME(appointment_date)=? AND booking_status='Confirmed' GROUP BY DAYNAME(appointment_date);";
+        $command = "SELECT DAYNAME(appointment_date) as day_of_week, COUNT(booking_id) AS number_of_bookings FROM booking_info WHERE MONTHNAME(appointment_date)=? AND booking_status='Confirmed' GROUP BY DAYNAME(appointment_date) ORDER BY DAYOFWEEK(appointment_date) ASC;";
         $stmt = mysqli_prepare($conn, $command);
         mysqli_stmt_bind_param($stmt, "s", $month_name);
         mysqli_stmt_execute($stmt);
@@ -52,7 +52,7 @@
     function loadAll() {
         $statistics = array();
         $conn = start_connection();
-        $command = "SELECT DAYNAME(appointment_date) as day_of_week, COUNT(booking_id) AS number_of_bookings FROM booking_info WHERE booking_status='Confirmed' GROUP BY DAYNAME(appointment_date);";
+        $command = "SELECT DAYNAME(appointment_date) as day_of_week, COUNT(booking_id) AS number_of_bookings FROM booking_info WHERE booking_status='Confirmed' GROUP BY DAYNAME(appointment_date) ORDER BY DAYOFWEEK(appointment_date) ASC;";
         $result = mysqli_query($conn, $command);
         while ($row = mysqli_fetch_assoc($result)) {
             $statistics[$row["day_of_week"]] = (int)$row["number_of_bookings"];

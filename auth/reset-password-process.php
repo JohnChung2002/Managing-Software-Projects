@@ -26,7 +26,7 @@
         ";
         $token = $_GET['token'];
         $conn = mysqli_connect($servername, $username, $password, $database);
-        $sql = $conn -> prepare("SELECT * FROM user_credentials WHERE account_token = ? LIMIT 1;");
+        $sql = $conn -> prepare("SELECT email_address, token_expiry FROM user_credentials WHERE account_token = ? LIMIT 1;");
         $sql->bind_param('s', $token);
         $sql->execute();
         $result = $sql->get_result();
@@ -34,15 +34,14 @@
             $user = mysqli_fetch_assoc($result);
             $email = $user['email_address'];
             $tokenExpiry = $user['token_expiry'];
-            $emptyVal = " ";
             if(date("Y-m-d H:i:s") < date($tokenExpiry)){
                 if($passwordMsgBool['is_valid']){
                     if($hashBoolValidation['is_valid']){
                         $hashBool = processHashPassword($passwordMsgBool['password'], $hashBoolValidation['hash']);
                         if($hashBool['is_integrity']){
                             $hashedPassword = $hashBool['hashedPassword'];
-                            $sql = $conn -> prepare("UPDATE user_credentials SET password = ?, token_expiry = ?, account_token = ?, account_status = 'Activated' WHERE email_address = ?;");
-                            $sql->bind_param('ssss', $hashedPassword, $emptyVal, $emptyVal, $email);
+                            $sql = $conn -> prepare("UPDATE user_credentials SET password = ?, token_expiry = NULL, account_token = NULL, account_status = 'Activated' WHERE email_address = ?;");
+                            $sql->bind_param('ss', $hashedPassword, $email);
                             $sql->execute();
                             $_SESSION['rstpassMsg'] = "
                             <div class='alert alert-success'>

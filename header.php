@@ -17,7 +17,7 @@ echo '
 if ($logged_in) {
   echo '
   <li class="nav-item">
-    <a class="nav-link " href="#"><p class ="fs-5 mx-3 mt-3" style="color: white;">Booking</p></a>
+    <a class="nav-link " href="dashboard.php"><p class ="fs-5 mx-3 mt-3" style="color: white;">Booking</p></a>
   </li>';
   if ($user_role == 'Admin') {
     echo '

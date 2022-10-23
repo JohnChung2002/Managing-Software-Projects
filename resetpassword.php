@@ -16,7 +16,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html lang="en">
 <head>
     <title>Reset Password</title>
-    <?php include 'header.php'; ?>
     <?php include 'page_head.php'; ?>
     <?php if ($type == 1) {
         include 'auth/resetpassword-sendemail-process.php';
@@ -31,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     ?>
 </head>
 <body>
-    <?php
+    <?php include 'header.php';
     echo "<div class='container p-3 vh-100'>";
     if(isset($_SESSION['rstpassMsg'])){
         $msg = $_SESSION['rstpassMsg']; 

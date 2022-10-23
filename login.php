@@ -1,18 +1,15 @@
 <?php
-session_start();
-if ((isset($_SESSION['is_login']) && $_SESSION['is_login'] == true)) {
-  header("Location: dashboard.php");
-}
+  include 'auth/redirect_logged_in.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <title>Login Cacti Succulent</title>
-    <?php include 'header.php'; ?>
     <?php include 'page_head.php'; ?>
     <?php include 'auth/login-process.php'; ?>
 </head>
 <body>
+  <?php include 'header.php'; ?>
   <div class="container p-3 vh-100">
     <span><?php if(isset($_SESSION['loginMsg'])){echo $_SESSION['loginMsg']; session_unset();} ?></span>
     <form action="login.php" method="post" id="login-form">

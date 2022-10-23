@@ -138,7 +138,7 @@ function createUserBooking() {
                         mysqli_stmt_bind_param($stmt, "ssssi", $booking_id, $date, $time, $user_id, $number_of_attendees);
                         if (mysqli_stmt_execute($stmt)) {
                             echo "
-                            <div class='container min-vh-100'>
+                            <div class='container'>
                                 <div class='alert alert-success mt-4'>
                                 Booking created successfully! Please check your email or booking page for more details.
                                 </div>
@@ -154,7 +154,7 @@ function createUserBooking() {
         }
     }
     echo "
-    <div class='container min-vh-100'>
+    <div class='container'>
         <div class='alert alert-danger'>
         Invalid request. Please try again.
         </div>
@@ -380,8 +380,8 @@ function cancelUserBooking() {
 }
 
 function adminCancelBooking() {
-    if (!empty($_GET["booking-id"]) && !empty($_POST["inputReason"])) {
-        $booking_id = $_GET["booking-id"];
+    if (!empty($_POST["booking-id"]) && !empty($_POST["inputReason"])) {
+        $booking_id = $_POST["booking-id"];
         $reason = $_POST["inputReason"];
         $conn = start_connection();
         $command = "SELECT appointment_date, appointment_timeslot FROM booking_info WHERE booking_id=?;";
@@ -397,7 +397,7 @@ function adminCancelBooking() {
             mysqli_stmt_bind_param($stmt, "ss", $reason, $booking_id);
             if (mysqli_stmt_execute($stmt)) {
                 echo "
-                <div class='container min-vh-100'>
+                <div class='container'>
                     <div class='alert alert-success mt-4'>
                     Booking cancelled successfully! Please check your email or booking page for more details.
                     </div>
@@ -409,7 +409,7 @@ function adminCancelBooking() {
         mysqli_close($conn);
     }
     echo "
-    <div class='container min-vh-100'>
+    <div class='container'>
         <div class='alert alert-danger'>
         Invalid request. Please try again.
         </div>
@@ -446,8 +446,8 @@ function getUserBooking() {
                 echo "
                 <div class='d-flex justify-content-between align-items-center'>
                     <div class='btn-group'>
-                        <button type='button' class='btn btn-primary' onclick='window.location.href=\"vupdatebooking.php?id=". $row["booking_id"] ."\"'>Update Booking</button>
-                        <button type='button' class='btn btn-danger' onclick='window.location.href=\"vcancelbooking.php?id=". $row["booking_id"] ."\"'>Cancel Booking</button>
+                        <button type='button' class='btn btn-primary' onclick='window.location.href=\"updatebooking.php?id=". $row["booking_id"] ."\"'>Update Booking</button>
+                        <button type='button' class='btn btn-danger' onclick='window.location.href=\"cancelbooking.php?id=". $row["booking_id"] ."\"'>Cancel Booking</button>
                     </div>
                 </div>";
             }   

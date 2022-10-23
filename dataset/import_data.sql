@@ -107,13 +107,8 @@ INSERT INTO default_store_availability (day_of_week, operating_hours) VALUES ('F
 INSERT INTO default_store_availability (day_of_week, operating_hours) VALUES ('Saturday', NULL);
 INSERT INTO custom_store_availability (operating_date, operating_hours) VALUES ('2022-10-20', '[\"09:00:00-12:00:00\"]');
 INSERT INTO custom_store_availability (operating_date, operating_hours) VALUES ('2022-10-26', '[\"09:00:00-12:00:00\"]');
-INSERT INTO custom_store_availability (operating_date, operating_hours) VALUES ('2022-10-25', '[\"09:00:00-14:00:00\"]');
 INSERT INTO custom_store_availability (operating_date, operating_hours) VALUES ('2022-10-18', '[\"09:00:00-11:00:00\", \"14:00:00-17:00:00\"]');
 INSERT INTO custom_store_availability (operating_date, operating_hours) VALUES ('2022-11-07', '[\"09:00:00-14:00:00\"]');
-INSERT INTO custom_store_availability (operating_date, operating_hours) VALUES ('2022-11-03', '[\"09:00:00-14:00:00\"]');
-INSERT INTO custom_store_availability (operating_date, operating_hours) VALUES ('2022-10-28', '[\"09:00:00-14:00:00\"]');
-INSERT INTO custom_store_availability (operating_date, operating_hours) VALUES ('2022-10-18', '[\"09:00:00-14:00:00\"]');
-INSERT INTO custom_store_availability (operating_date, operating_hours) VALUES ('2022-10-25', '[\"09:00:00-14:00:00\"]');
 INSERT INTO custom_store_availability (operating_date, operating_hours) VALUES ('2022-11-09', '[\"09:00:00-14:00:00\"]');
 INSERT INTO custom_store_availability (operating_date, operating_hours) VALUES ('2022-10-25', '[\"09:00:00-12:00:00\"]');
 INSERT INTO custom_store_availability (operating_date, operating_hours) VALUES ('2022-10-21', '[\"09:00:00-14:00:00\"]');
@@ -124,7 +119,6 @@ INSERT INTO custom_store_availability (operating_date, operating_hours) VALUES (
 INSERT INTO custom_store_availability (operating_date, operating_hours) VALUES ('2022-11-03', '[\"09:00:00-11:00:00\", \"14:00:00-17:00:00\"]');
 INSERT INTO custom_store_availability (operating_date, operating_hours) VALUES ('2022-10-12', '[\"09:00:00-14:00:00\"]');
 INSERT INTO custom_store_availability (operating_date, operating_hours) VALUES ('2022-10-19', '[\"09:00:00-14:00:00\"]');
-INSERT INTO custom_store_availability (operating_date, operating_hours) VALUES ('2022-10-26', '[\"09:00:00-12:00:00\"]');
 INSERT INTO homepage_info (page_resource, remarks) VALUES ('<h1>This is version 1</h1><p>You are now viewing version 1</p>', 'Modified to Version 1');
 INSERT INTO homepage_info (page_resource, remarks) VALUES ('<h1>This is version 2</h1><p>You are now viewing version 2</p>', 'Modified to Version 2');
 INSERT INTO homepage_info (page_resource, remarks) VALUES ('<h1>This is version 3</h1><p>You are now viewing version 3</p>', 'Modified to Version 3');

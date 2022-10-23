@@ -36,11 +36,13 @@ CREATE TABLE IF NOT EXISTS `booking_info` (
 );
 CREATE TABLE IF NOT EXISTS `default_store_availability` (
     day_of_week ENUM('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday') NOT NULL,
-    operating_hours JSON 
+    operating_hours JSON,
+    PRIMARY KEY (day_of_week)
 );
 CREATE TABLE IF NOT EXISTS `custom_store_availability` (
     operating_date DATE NOT NULL,
-    operating_hours JSON
+    operating_hours JSON,
+    PRIMARY KEY (operating_date)
 );
 CREATE TABLE IF NOT EXISTS `homepage_info` (
     version_id INT UNSIGNED NOT NULL AUTO_INCREMENT,

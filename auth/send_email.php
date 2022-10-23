@@ -21,7 +21,7 @@
 
         $callurl = curl_init();
         // CHANGE THE API_LINK WHEN DEPLOYING
-        $api_link = "https://script.google.com/macros/s/AKfycbzoGwFIqR5ZIOi56Pk0_SxSgpcuDSJRcwORVqkkq4jDxLXzpc1pXC-094ncKYUkRiY/exec";
+        $api_link = "https://script.google.com/macros/s/AKfycbzgo1QlFZlbK2RJ5HH1ebjynLhMZ8oP1yijO6T2lF47KN4DAwZIsps9m4dqa9cF19c/exec";
         $param = "?key=EB3914D9F167D9A414DF438C7D4CD&email={$email}&action=verification&name=Cacti%20Succulent&token={$token}";
         $url = $api_link . $param;
         curl_setopt_array($callurl,[CURLOPT_URL=>$url,CURLOPT_TIMEOUT_MS=>1000,CURLOPT_RETURNTRANSFER=>FALSE]);
@@ -44,7 +44,7 @@
 
         $callurl = curl_init();
         // CHANGE THE API_LINK WHEN DEPLOYING
-        $api_link = "https://script.google.com/macros/s/AKfycbzoGwFIqR5ZIOi56Pk0_SxSgpcuDSJRcwORVqkkq4jDxLXzpc1pXC-094ncKYUkRiY/exec";
+        $api_link = "https://script.google.com/macros/s/AKfycbzgo1QlFZlbK2RJ5HH1ebjynLhMZ8oP1yijO6T2lF47KN4DAwZIsps9m4dqa9cF19c/exec";
         $param = "?key=EB3914D9F167D9A414DF438C7D4CD&email={$email}&action=reset&name=Cacti%20Succulent&token={$token}";
         $url = $api_link . $param;
         curl_setopt_array($callurl,[CURLOPT_URL=>$url,CURLOPT_TIMEOUT_MS=>1000,CURLOPT_RETURNTRANSFER=>FALSE]);

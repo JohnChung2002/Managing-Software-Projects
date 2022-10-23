@@ -8,18 +8,14 @@
     <title>Cancelling Appointment</title>
     <!--for ajax requests-->
     <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
-    <!--javascript for bootstrap-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <!--css for bootstrap-->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body>
   <?php include 'header.php'; 
   include "booking/booking_functions.php";
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
     adminCancelBooking();
-  } else {
-    echo "<h1 class='text-center mt-5'>CANCEL APPOINTMENT</h1>
+  } 
+  echo "<h1 class='text-center mt-5'>CANCEL APPOINTMENT</h1>
     <div class='container p-5 my-5 border'>
       <form method='post' class='row g-3 needs-validation' novalidate>
         <div class='col-10'>
@@ -30,7 +26,7 @@
         </div>
         <div class='col-2 d-flex flex-column'>
           <label class='form-label' style='visibility:hidden;'>Check Booking</label>
-          <button type='button' class='btn btn-primary' onclick='loadBooking()'>Check if booking exists</button>
+          <button type='button' class='btn btn-primary' onclick='loadActiveBookingCancel()'>Check if booking exists</button>
         </div>
         <div class='col-12'>
           <div id='check-booking'></div>
@@ -38,7 +34,7 @@
         <div id='booking-info' class='col-12'></div>
         <div class='col-12'>
           <label for='inputReason' class='form-label'>Reason For Cancellation</label>
-          <input type='text' class='form-control' id='inputReason' name='inputReason' required>
+          <input type='text' class='form-control' id='inputReason' name='inputReason' disabled required>
           <div class='valid-feedback'>Looks good!</div>
           <div class='invalid-feedback'>Please select a reason for cancellation.</div>
         </div>
@@ -51,6 +47,6 @@
       <script src='script/admin_booking.js'></script>
     </div>";
   include 'footer.php';
-  }?>
+  ?>
 </body>
 </html>

@@ -17,63 +17,71 @@
 <body>
   <?php include 'header.php'; ?>
   
-  <div class =" d-flex justify-content-center" >
-    <p><strong><h1 class="display-4">ADMINS MODULE</h1></strong></p>
-  </div>  
-
-
-  <div class="p-3 d-flex justify-content-evenly">
-  <div class="card " style="width: 30rem;">
-    <img src="..." class="card-img-top" alt="...">
-    <div class="card-body" >
-      <h5 class="card-title">Create Booking Appointment</h5>
-      <p class="card-text">Create a booking appointment for the customers based on their information given.</p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
-    </div>
-  </div>
-
-  <div class="card" style="width: 30rem;">
-    <img src="..." class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">Update booking appointment availibilty</h5>
-      <p class="card-text">Update the hours available for the users to make their bookings</p>
-      <a href="updateavailability.html" class="btn btn-primary">Go somewhere</a>
-    </div>
-  </div>
-  </div>
-
-  <div class="p-3 d-flex justify-content-evenly">
-    <div class="card " style="width: 30rem;">
-      <img src="..." class="card-img-top" alt="...">
-      <div class="card-body" >
-        <h5 class="card-title">Update users Booking Appointment</h5>
-        <p class="card-text">Update the specific datas from the database for the users based on the information given by the users and appendthe new changes.</p>
-        <a href="Updateappointment.php" class="btn btn-primary">Go somewhere</a>
+  <div class="container p-5 my-5 bg-success p-3">
+  <h1 class="text-center text-white">SERVICES</h1>
+  <div class="row row-cols-1 row-cols-md-2 g-4">
+    <div class="col">
+      <div class="card p-5 my-5 border">
+        <img src="images/update.png" class="card-img-top w-50" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">UPDATE BOOKING AVAILABILITY</h5>
+          <p class="card-text">Update the store's availability</p>
+          <a href="updateavailability.php" class="btn btn-primary">Update Booking Availability</a>
+      </div>
       </div>
     </div>
-  
-    <div class="card" style="width: 30rem;">
-      <img src="..." class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">Checking Booking Appointment</h5>
-        <p class="card-text">Retrieving and displaying the users booking appointment made by the users in a list format.</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
+    <div class="col">
+      <div class="card p-5 my-5 border">
+        <img src="images/booking.png" class="card-img-top w-50" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">BOOK AN APPOINTMENT</h5>
+          <p class="card-text">Apply for a new appointment</p>
+          <a href="createbooking.php" class="btn btn-primary">Book Appointment</a>
+      </div>
       </div>
     </div>
-    </div>
-
-    <div class="p-3 d-flex justify-content-center">
-    <div class="card" style="width: 30rem;">
-      <img src="..." class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">Cancelling Booking Appointment</h5>
-        <p class="card-text">Cancel the user's booking appointment made and delete it from the database.</p>
-        <a href="cancel_appointment.php" class="btn btn-primary">Go somewhere</a>
+    <div class="col">
+      <div class="card p-5 my-5 border">
+        <img src="images/cancel.png" class="card-img-top w-50" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">CANCEL AN APPOINTMENT</h5>
+          <p class="card-text">Cancel a booking appointment</p>
+          <a href="cancelbooking.php" class="btn btn-primary">Cancel Appointment</a>
+      </div>
       </div>
     </div>
+    <div class="col">
+      <div class="card p-5 my-5 border">
+        <img src="images/update.png" class="card-img-top w-50" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">UPDATE AN APPOINTMENT</h5>
+          <p class="card-text">Update a booking appointment</p>
+          <a href="updatebooking.php" class="btn btn-primary">Update Appointment</a>
+      </div>
+      </div>
     </div>
-
-
+    <div class="col">
+      <div class="card p-5 my-5 border">
+        <img src="images/check.png" class="card-img-top w-50" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">SEARCH BOOKING</h5>
+          <p class="card-text">Search booking by booking ID</p>
+          <a href="searchbooking.php" class="btn btn-primary">Search Booking</a>
+      </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card p-5 my-5 border">
+        <img src="images/check.png" class="card-img-top w-50" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">CALENDAR APPOINTMENT VIEW</h5>
+          <p class="card-text">View all booking appointment in calendar view</p>
+          <a href="viewbookings.php" class="btn btn-primary">Calendar Appointment View</a>
+      </div>
+      </div>
+    </div>
+  </div>
+  </div>
   <?php include 'footer.php'; ?>
 </body>
 </html>

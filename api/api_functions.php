@@ -32,6 +32,13 @@
         return rtrim(strtr($base64, '+/', '-_'), '=');
     }
 
+    function checkAppointmentAdvanceHour($date, $time) {
+        $now = date("Y-m-d H:i:s");
+        $input_date = date("Y-m-d H:i:s", strtotime($date . " " . $time));
+        $hourdiff = round((strtotime($input_date) - strtotime($now))/3600, 1);
+        return ($hourdiff > 2);
+    }
+
     function start_connection() {
         $conn = mysqli_connect($GLOBALS["servername"], $GLOBALS["username"], $GLOBALS["password"], $GLOBALS["database"]);
         if ($conn) return $conn;

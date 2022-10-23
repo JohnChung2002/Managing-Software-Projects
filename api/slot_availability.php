@@ -1,6 +1,11 @@
 <?php
     require_once dirname(__FILE__)."/api_functions.php";
 
+    if (!is_loggedin()) {
+        http_response_code(400);
+        exit;
+    }
+
     function getDefaultOp($conn, $day) {
         $default_op = NULL;
         $command = "SELECT operating_hours FROM default_store_availability WHERE day_of_week=?;";

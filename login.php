@@ -27,9 +27,6 @@
                 <label for="password" class="col-sm-2 col-form-label">Password</label>
                 <div class="col-sm-10">
                   <input type="password" name="password" id="password" class="form-control" aria-describedby="passwordHelpInline" required>
-                  <span id="passwordHelpInline" class="form-text">
-                    Must be 8-20 characters long.
-                  </span>
                 </div>
             </div>
 

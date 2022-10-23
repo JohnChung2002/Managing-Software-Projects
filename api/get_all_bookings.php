@@ -1,6 +1,11 @@
 <?php
     require_once dirname(__FILE__)."/api_functions.php";
 
+    if (!is_admin()) {
+        http_response_code(400);
+        exit;
+    }
+
     function getAllBooking($conn, $start, $end) {
         $booking_arr = array();
         $command = "SELECT bi.booking_id, bi.appointment_date, bi.appointment_timeslot, ui.name, bi.number_of_attendees FROM booking_info bi JOIN user_info ui ON bi.user_id=ui.user_id WHERE bi.appointment_date >= ? AND bi.appointment_date <= ? AND bi.booking_status='Confirmed' ORDER BY bi.appointment_date ASC;";

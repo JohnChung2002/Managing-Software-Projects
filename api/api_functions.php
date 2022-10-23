@@ -45,4 +45,18 @@
         http_response_code(500);
         exit;
     }
+
+    function is_loggedin() {
+        session_start();
+        return (isset($_SESSION["is_login"]) && $_SESSION["is_login"]);
+    }
+
+    function is_admin() {
+        if (is_loggedin()) {
+            return (isset($_SESSION["user_role"]) && $_SESSION["user_role"] == "Admin");
+        }
+        else {
+            return false;
+        }
+    }
 ?>

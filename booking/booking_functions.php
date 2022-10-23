@@ -248,12 +248,12 @@ function getBookingInformation($booking_id) {
     mysqli_free_result($result);
     echo "
     <p>Booking ID: " . $booking_id . 
-        "<br/>
-        Booking Date: " . $row["appointment_date"] .
-        "<br/>
-        Booking Time: " . $row["appointment_timeslot"] .
-        "<br/>
-        Number of Attendees: " . $row["number_of_attendees"] .
+    "<br/>
+    Booking Date: " . $row["appointment_date"] .
+    "<br/>
+    Booking Time: " . $row["appointment_timeslot"] .
+    "<br/>
+    Number of Attendees: " . $row["number_of_attendees"] .
     "</p>";
 }
 
@@ -350,10 +350,15 @@ function cancelUserBooking() {
         $user_id = $_SESSION["user_id"];
         $booking_id = $_GET["id"];
         $reason = $_POST["inputReason"];
-        $date = date("Y-m-d");
-        $time = date("H:i:s");
         $conn = start_connection();
-        if (checkClash($conn, $date, $time)) {
+        $command = "SELECT appointment_date, appointment_timeslot FROM booking_info WHERE booking_id=? AND user_id=? AND booking_status='Confirmed';";
+        $stmt = mysqli_prepare($conn, $command);
+        mysqli_stmt_bind_param($stmt, "ss", $booking_id, $user_id);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        $row = mysqli_fetch_assoc($result);
+        mysqli_free_result($result);
+        if (checkAdvanceHour($row["appointment_date"], $row["appointment_timeslot"])) {
             $command = "UPDATE booking_info SET booking_status='Cancelled', cancellation_remarks=? WHERE booking_id=? AND user_id=?;";
             $stmt = mysqli_prepare($conn, $command);
             mysqli_stmt_bind_param($stmt, "sss", $reason, $booking_id, $user_id);

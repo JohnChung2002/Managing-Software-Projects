@@ -1,6 +1,11 @@
 <?php
     require_once dirname(__FILE__)."/api_functions.php";
 
+    if (!is_admin()) {
+        http_response_code(400);
+        exit;
+    }
+
     function getBookingInfo($conn, $booking_id) {
         $command = "SELECT appointment_date, appointment_timeslot, number_of_attendees FROM booking_info WHERE booking_id=? AND booking_status='Confirmed';";
         $stmt = mysqli_prepare($conn, $command);

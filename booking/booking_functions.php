@@ -66,7 +66,7 @@ function populateSlots($date, $op_array, $taken_slots) {
         $begin = (int)explode(":", $start, 2)[0];
         $finish = (int)explode(":", $end, 2)[0];
         for ($i = $begin; $i < $finish; $i++) {
-            $time = $i . ":00:00";
+            $time = str_pad($i, 2, "0", STR_PAD_LEFT) . ":00:00";
             if (checkAdvanceHour($date, $time)) {
                 if (in_array($time, $taken_slots)) {
                     if (array_count_values($taken_slots)[$time] < 2) {
@@ -288,8 +288,9 @@ function updateUserBooking() {
                         return true;
                     }
                 }
+            } else {
+                mysqli_free_result($result);
             }
-            mysqli_free_result($result);
             mysqli_close($conn);
         }
     }

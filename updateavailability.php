@@ -1,12 +1,11 @@
+<?php
+  include "auth/is_admin.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
-<!-- Description :  Home Page -->
-<!-- Author   : Chow Zi Xiang -->
-
 <head>
     <title>Updating Booking Availability</title>
     <?php include "page_head.php"; ?>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!--for ajax requests-->
     <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
   </head>
@@ -58,5 +57,3 @@
   <?php include 'footer.php'; ?>
 </body>
 </html>
-
-

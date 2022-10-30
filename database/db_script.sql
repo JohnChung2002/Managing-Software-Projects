@@ -13,9 +13,9 @@ CREATE TABLE IF NOT EXISTS `user_credentials` (
     email_address VARCHAR(254) NOT NULL,
     password CHAR(60) NOT NULL,
     user_id INT UNSIGNED NOT NULL,
-    user_role ENUM('Admin', 'User') NOT NULL,
+    user_role ENUM('Super Admin', 'Admin', 'User') NOT NULL,
     account_created_timestamp TIMESTAMP,
-    account_status ENUM('Unactivated', 'Activated', 'Pending Reset', 'Deleted') NOT NULL,
+    account_status ENUM('Unactivated', 'Activated', 'Pending Reset', 'Pending Delete', 'Deleted') NOT NULL,
     account_token CHAR(22),
     token_expiry DATETIME,
     notification_token JSON,
@@ -59,26 +59,24 @@ CREATE TABLE IF NOT EXISTS `content_info` (
     content_resource TEXT,
     PRIMARY KEY (content_id)
 );
-CREATE TABLE IF NOT EXISTS `encyclopedia_item_categories` (
-    item_category_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    item_category_name VARCHAR(255) NOT NULL,
-    PRIMARY KEY (item_category_id)
-);
-CREATE TABLE IF NOT EXISTS `encyclopedia_item_types` (
-    item_type_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    item_type_name VARCHAR(255) NOT NULL,
-    item_category_id INT UNSIGNED NOT NULL,
-    PRIMARY KEY (item_type_id),
-    FOREIGN KEY (item_category_id) REFERENCES encyclopedia_item_categories(item_category_id)
-);
 CREATE TABLE IF NOT EXISTS `encyclopedia_items` (
     item_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    item_type_id INT UNSIGNED NOT NULL,
+    item_category VARCHAR(255) NOT NULL,
+    item_subcategory VARCHAR(255),
     item_name VARCHAR(255) NOT NULL,
     item_image TEXT NOT NULL,
     availability_in_store ENUM('Not Available', 'Out of Stock', 'Available') NOT NULL,
     price_in_store DECIMAL(5,2),
-    encyclopedia_resource TEXT,
-    PRIMARY KEY (item_id),
-    FOREIGN KEY (item_type_id) REFERENCES encyclopedia_item_types(item_type_id)
+    description TEXT,
+    PRIMARY KEY (item_id)
+);
+CREATE TABLE IF NOT EXISTS `notification_history` (
+    notification_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    notification_timestamp TIMESTAMP NOT NULL,
+    notification_type ENUM('Booking Confirmation', 'Booking Update', 'Booking Cancellation', 'Booking Reminder', 'Account Activation', 'Account Deactivation', 'Account Reset', 'Account Delete') NOT NULL,
+    notification_content TEXT NOT NULL,
+    notification_sent_email VARCHAR(254),
+    notification_sent_phone JSON,
+    notification_status ENUM('Unread', 'Read') NOT NULL,
+    PRIMARY KEY (notification_id)
 );

@@ -4,7 +4,7 @@
         exit;
     }
 
-    require_once "database_credentials.php";
+    require_once $_SERVER['DOCUMENT_ROOT'].'/database_credentials.php';
 
     // Function to send email to the user for verification
     function sendAccountVerificationEmail($email){

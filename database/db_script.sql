@@ -80,3 +80,11 @@ CREATE TABLE IF NOT EXISTS `notification_history` (
     notification_status ENUM('Unread', 'Read') NOT NULL,
     PRIMARY KEY (notification_id)
 );
+CREATE TABLE IF NOT EXISTS `enquiries` (
+    enquiry_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    enquiry_timestamp TIMESTAMP NOT NULL,
+    enquiry_subject VARCHAR(255) NOT NULL,
+    enquiry_content TEXT NOT NULL,
+    enquiry_status ENUM('Answered', 'Unanswered') NOT NULL,
+    PRIMARY KEY (enquiry_id)
+);

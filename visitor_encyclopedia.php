@@ -16,7 +16,7 @@ include "auth/is_loggedin.php";
       <div class="card p-3 my-5 border">
 		<img src="images/Cactus3.png">
 		<br>
-		<h2 class="text-center"> Explore plants, gardening tools and fertilizer</h2>
+		<h4 class="text-center"> Explore plants, gardening tools and fertilizer</h4>
 		<br>
 		<p>
 		Garden tools are an important part of garden supplies. 
@@ -33,6 +33,52 @@ include "auth/is_loggedin.php";
 		You'll need separate containers for different types of chemical products, such as fungicides, fertilizers, specific insect sprays. If you're an organic gardener, you won't require the kind of pest control tools and supplies.
 		</p>
 		
+<br>
+<div class="card-group">
+  <div class="card">
+    <img src="images/Cactus1.png" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Plants</h5>
+      <p class="card-text">
+		Plants are multicellular organisms in the kingdom Plantae that use photosynthesis to make their own food. 
+		There are over 300,000 species of plants; common examples of plants include grasses, trees, and shrubs. 
+		Plants have an important role in the world’s ecosystems. 
+		They produce most of the world’s oxygen, and are important in the food chain, as many organisms eat plants or eat organisms which eat plants. 
+		The study of plants is called botany.
+	  </p>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">© 2022 Copyright: cactisucculentkuching.cf/</small>
+    </div>
+  </div>
+  <div class="card">
+    <img src="images/Cactus2.png" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Gardening Tools</h5>
+      <p class="card-text">
+	  A gardening tool or garden tool is any one of many tools made for gardens and gardening and overlaps with the range of tools made for agriculture and horticulture. 
+	  Garden tools can also be hand tools and power tools.
+	  </p>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">© 2022 Copyright: cactisucculentkuching.cf/</small>
+    </div>
+  </div>
+  <div class="card">
+    <img src="images/Cactus3.png" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Fertilizer</h5>
+      <p class="card-text">
+	  A natural or artificial material called fertiliser is added to the soil or plants to promote growth and productivity. 
+	  They give the plants nutrients.
+	  </p>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">© 2022 Copyright: cactisucculentkuching.cf/</small>
+    </div>
+  </div>
+</div>
+
 	  </div>
    </div>
 

@@ -5,7 +5,7 @@ if ( basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"]) ) {
     exit;
 }
 
-require_once $_SERVER['DOCUMENT_ROOT'].'/api/api_functions.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/Managing-Software-Projects/api/api_functions.php';
 
 date_default_timezone_set("Asia/Kuala_Lumpur");
 

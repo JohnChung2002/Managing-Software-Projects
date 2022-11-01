@@ -4,7 +4,7 @@
         exit;
     }
 
-    require_once $_SERVER['DOCUMENT_ROOT']."/database_credentials.php";
+    require_once $_SERVER['DOCUMENT_ROOT']."/Managing-Software-Projects/database_credentials.php";
 
     function validate_date($date) {
         return date_create_from_format("Y-m-d", $date) !== false;

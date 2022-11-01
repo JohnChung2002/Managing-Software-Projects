@@ -13,6 +13,7 @@ CREATE TABLE IF NOT EXISTS `user_credentials` (
     email_address VARCHAR(254) NOT NULL,
     password CHAR(60) NOT NULL,
     user_id INT UNSIGNED NOT NULL,
+    profile_image TEXT,
     user_role ENUM('Super Admin', 'Admin', 'User') NOT NULL,
     account_created_timestamp TIMESTAMP,
     account_status ENUM('Unactivated', 'Activated', 'Pending Reset', 'Pending Delete', 'Deleted') NOT NULL,
@@ -30,6 +31,7 @@ CREATE TABLE IF NOT EXISTS `booking_info` (
     user_id INT UNSIGNED NOT NULL,
     number_of_attendees TINYINT UNSIGNED NOT NULL,
     booking_status ENUM('Confirmed', 'Cancelled') NOT NULL,
+    edit_count INT UNSIGNED NOT NULL,
     cancellation_remarks VARCHAR(255),
     PRIMARY KEY (booking_id),
     FOREIGN KEY (user_id) REFERENCES user_info(user_id)
@@ -83,8 +85,10 @@ CREATE TABLE IF NOT EXISTS `notification_history` (
 CREATE TABLE IF NOT EXISTS `enquiries` (
     enquiry_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
     enquiry_timestamp TIMESTAMP NOT NULL,
+    contact_info VARCHAR(254) NOT NULL,
     enquiry_subject VARCHAR(255) NOT NULL,
     enquiry_content TEXT NOT NULL,
     enquiry_status ENUM('Answered', 'Unanswered') NOT NULL,
+    enquiry_reply TEXT,
     PRIMARY KEY (enquiry_id)
 );

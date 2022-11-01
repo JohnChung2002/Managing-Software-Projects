@@ -51,13 +51,6 @@ function getSlots($conn, $date) {
     return $taken_slots;
 }
 
-function checkAdvanceHour($date, $time) {
-    $now = date("Y-m-d H:i:s");
-    $input_date = date("Y-m-d H:i:s", strtotime($date . " " . $time));
-    $hourdiff = round((strtotime($input_date) - strtotime($now))/3600, 1);
-    return ($hourdiff > 2);
-}
-
 function populateSlots($date, $op_array, $taken_slots) {
     $available_slots = array();
     $op_array = json_decode($op_array);
@@ -67,7 +60,7 @@ function populateSlots($date, $op_array, $taken_slots) {
         $finish = (int)explode(":", $end, 2)[0];
         for ($i = $begin; $i < $finish; $i++) {
             $time = str_pad($i, 2, "0", STR_PAD_LEFT) . ":00:00";
-            if (checkAdvanceHour($date, $time)) {
+            if (checkAppointmentAdvanceHour($date, $time)) {
                 if (in_array($time, $taken_slots)) {
                     if (array_count_values($taken_slots)[$time] < 2) {
                         array_push($available_slots, $time);
@@ -359,7 +352,7 @@ function cancelUserBooking() {
         $result = mysqli_stmt_get_result($stmt);
         $row = mysqli_fetch_assoc($result);
         mysqli_free_result($result);
-        if (checkAdvanceHour($row["appointment_date"], $row["appointment_timeslot"])) {
+        if (checkAppointmentAdvanceHour($row["appointment_date"], $row["appointment_timeslot"])) {
             $command = "UPDATE booking_info SET booking_status='Cancelled', cancellation_remarks=? WHERE booking_id=? AND user_id=?;";
             $stmt = mysqli_prepare($conn, $command);
             mysqli_stmt_bind_param($stmt, "sss", $reason, $booking_id, $user_id);
@@ -397,7 +390,7 @@ function adminCancelBooking() {
         $result = mysqli_stmt_get_result($stmt);
         $row = mysqli_fetch_assoc($result);
         mysqli_free_result($result);
-        if (checkAdvanceHour($row["appointment_date"], $row["appointment_timeslot"])) {
+        if (checkAppointmentAdvanceHour($row["appointment_date"], $row["appointment_timeslot"])) {
             $command = "UPDATE booking_info SET booking_status='Cancelled', cancellation_remarks=? WHERE booking_id=?;";
             $stmt = mysqli_prepare($conn, $command);
             mysqli_stmt_bind_param($stmt, "ss", $reason, $booking_id);

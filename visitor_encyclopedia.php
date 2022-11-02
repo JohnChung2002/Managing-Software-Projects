@@ -7,7 +7,7 @@
 <body>
   <?php include 'header.php'; ?>
   <div class="d-block w-100 h-100">
-  <img src="images/Cactus3.png" class="img-fluid">
+  <img src="images/Cactus8.jpg" class="img-fluid">
   </div>
   <div class="container p-5 my-5 bg-success">
   <h1 class="text-center text-white">Gardening Encyclopedia</h1>
@@ -47,9 +47,6 @@
 		The study of plants is called botany.
 	  </p>
     </div>
-    <div class="card-footer">
-      <small class="text-muted">© 2022 Copyright: cactisucculentkuching.cf/</small>
-    </div>
   </div>
   <div class="card">
     <img src="images/Cactus2.png" class="card-img-top" alt="...">
@@ -60,9 +57,6 @@
 	  Garden tools can also be hand tools and power tools.
 	  </p>
     </div>
-    <div class="card-footer">
-      <small class="text-muted">© 2022 Copyright: cactisucculentkuching.cf/</small>
-    </div>
   </div>
   <div class="card">
     <img src="images/Cactus3.png" class="card-img-top" alt="...">
@@ -72,9 +66,6 @@
 	  A natural or artificial material called fertiliser is added to the soil or plants to promote growth and productivity. 
 	  They give the plants nutrients.
 	  </p>
-    </div>
-    <div class="card-footer">
-      <small class="text-muted">© 2022 Copyright: cactisucculentkuching.cf/</small>
     </div>
   </div>
 </div>

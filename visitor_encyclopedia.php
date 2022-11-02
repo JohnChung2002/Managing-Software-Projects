@@ -9,7 +9,7 @@
   <div class="d-block w-100 h-100">
   <img src="images/Cactus8.jpg" class="img-fluid">
   </div>
-  <div class="container p-5 my-5 bg-success">
+  <div class="container p-5 my-5" style="background-color: #1AA36D;">
   <h1 class="text-center text-white">Gardening Encyclopedia</h1>
  
    <div class="col">

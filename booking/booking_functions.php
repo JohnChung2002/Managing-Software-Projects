@@ -236,6 +236,11 @@ function adminCreateBooking() {
     return false;
 }
 
+function newenquiry(){
+    if (!empty($_POST["name"]) && !empty($_POST["gender"]) && !empty($_POST["email"]) && !empty($_POST["phone"]) && !empty($_POST["date"]) && !empty($_POST["time"]) && !empty($_POST["inputPpl"])) {
+
+}
+
 function getBookingInformation($booking_id) {
     $conn = start_connection();
     $user_id = $_SESSION["user_id"];

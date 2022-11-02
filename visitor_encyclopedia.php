@@ -1,6 +1,3 @@
-<?php 
-include "auth/is_loggedin.php";
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,12 +6,15 @@ include "auth/is_loggedin.php";
 </head>
 <body>
   <?php include 'header.php'; ?>
+  <div class="d-block w-100 h-100">
+  <img src="images/Cactus3.png" class="img-fluid">
+  </div>
   <div class="container p-5 my-5 bg-success">
   <h1 class="text-center text-white">Gardening Encyclopedia</h1>
  
    <div class="col">
       <div class="card p-3 my-5 border">
-		<img src="images/Cactus3.png">
+		<img src="images/Cactus4.png">
 		<br>
 		<h4 class="text-center"> Explore plants, gardening tools and fertilizer</h4>
 		<br>
@@ -78,15 +78,9 @@ include "auth/is_loggedin.php";
     </div>
   </div>
 </div>
-
 	  </div>
    </div>
 
-
-    
-
-
- 
   </div>
   <?php include 'footer.php'; ?>
 </body>

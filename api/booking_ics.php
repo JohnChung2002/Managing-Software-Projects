@@ -1,5 +1,5 @@
 <?php
-require_once "./lib/zapcallib.php";
+require_once dirname(__FILE__)."/lib/zapcallib.php";
 require_once $_SERVER['DOCUMENT_ROOT'].'/api/api_functions.php';
 
 function create_booking_ics($booking_id) {
@@ -25,7 +25,9 @@ function create_booking_ics($booking_id) {
 		$eventobj->addNode(new ZCiCalDataNode("ORGANIZER:" . ZCiCal::formatContent("cactisucculentkuching@gmail.com")));
 		$eventobj->addNode(new ZCiCalDataNode("LOCATION:" . ZCiCal::formatContent("Cacti Succulent Kuching")));
 		$eventobj->addNode(new ZCiCalDataNode("DTSTAMP:" . ZCiCal::fromSqlDateTime()));
-		$eventobj->addNode(new ZCiCalDataNode("Description:" . ZCiCal::formatContent("Terms and Conditions:\n1. You are only allowed to update/cancel your booking 30 minutes before the appointment. Cancellation/Updates within 30 minutes of booking is not allowed.\n2. Kindly present your booking email / booking number upon arrival.\n\nVisit https://cactisucculentkuching.cf for more information.")));
+		if ($row['booking_status'] == "Confirmed") {
+			$eventobj->addNode(new ZCiCalDataNode("Description:" . ZCiCal::formatContent("Terms and Conditions:\n1. You are only allowed to update/cancel your booking 30 minutes before the appointment. Cancellation/Updates within 30 minutes of booking is not allowed.\n2. Kindly present your booking email / booking number upon arrival.\n\nVisit https://cactisucculentkuching.cf for more information.")));
+		}
 		$eventobj->addNode(new ZCiCalDataNode("STATUS:". ZCiCal::formatContent(strtoupper($row['booking_status']))));
 		//file_put_contents($booking_id . ".ics", $icalobj->export());
 		echo $icalobj->export();

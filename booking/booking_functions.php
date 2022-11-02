@@ -267,7 +267,7 @@ function updateUserBooking() {
             if (mysqli_num_rows($result) == 1) {
                 mysqli_free_result($result);
                 if (checkClash($conn, $date, $time)) {
-                    $command = "UPDATE booking_info SET appointment_date=?, appointment_timeslot=?, number_of_attendees=? WHERE booking_id=? AND user_id=?;";
+                    $command = "UPDATE booking_info SET appointment_date=?, appointment_timeslot=?, number_of_attendees=?, edit_count=edit_count+1 WHERE booking_id=? AND user_id=?;";
                     $stmt = mysqli_prepare($conn, $command);
                     mysqli_stmt_bind_param($stmt, "ssiss", $date, $time, $number_of_attendees, $booking_id, $user_id);
                     if (mysqli_stmt_execute($stmt)) {
@@ -312,7 +312,7 @@ function adminUpdateBooking() {
             if (mysqli_num_rows($result) == 1) {
                 mysqli_free_result($result);
                 if (checkClash($conn, $date, $time)) {
-                    $command = "UPDATE booking_info SET appointment_date=?, appointment_timeslot=?, number_of_attendees=? WHERE booking_id=?;";
+                    $command = "UPDATE booking_info SET appointment_date=?, appointment_timeslot=?, number_of_attendees=?, edit_count=edit_count+1 WHERE booking_id=?;";
                     $stmt = mysqli_prepare($conn, $command);
                     mysqli_stmt_bind_param($stmt, "ssis", $date, $time, $number_of_attendees, $booking_id);
                     if (mysqli_stmt_execute($stmt)) {
@@ -353,7 +353,7 @@ function cancelUserBooking() {
         $row = mysqli_fetch_assoc($result);
         mysqli_free_result($result);
         if (checkAppointmentAdvanceHour($row["appointment_date"], $row["appointment_timeslot"])) {
-            $command = "UPDATE booking_info SET booking_status='Cancelled', cancellation_remarks=? WHERE booking_id=? AND user_id=?;";
+            $command = "UPDATE booking_info SET booking_status='Cancelled', cancellation_remarks=?, edit_count=edit_count+1 WHERE booking_id=? AND user_id=?;";
             $stmt = mysqli_prepare($conn, $command);
             mysqli_stmt_bind_param($stmt, "sss", $reason, $booking_id, $user_id);
             if (mysqli_stmt_execute($stmt)) {
@@ -391,7 +391,7 @@ function adminCancelBooking() {
         $row = mysqli_fetch_assoc($result);
         mysqli_free_result($result);
         if (checkAppointmentAdvanceHour($row["appointment_date"], $row["appointment_timeslot"])) {
-            $command = "UPDATE booking_info SET booking_status='Cancelled', cancellation_remarks=? WHERE booking_id=?;";
+            $command = "UPDATE booking_info SET booking_status='Cancelled', cancellation_remarks=?, edit_count=edit_count+1 WHERE booking_id=?;";
             $stmt = mysqli_prepare($conn, $command);
             mysqli_stmt_bind_param($stmt, "ss", $reason, $booking_id);
             if (mysqli_stmt_execute($stmt)) {

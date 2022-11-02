@@ -25,9 +25,9 @@
     </h2>
     <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
       <div class="accordion-body">
-    <ul>
-        <li>Cacti-Succulent Kuching is a local homegrown business specialized in selling various types and size of succulent plants and its utilities.</li>
-    </ul>
+      <ul>
+       <li> Cacti-Succulent Kuching is a local homegrown business specialized in selling various types and size of succulent plants and its utilities.</li>
+      <ul>
         </div>
     </div>
   </div>
@@ -42,7 +42,10 @@
     </h2>
     <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
       <div class="accordion-body">
-        Please make sure that your account is first verified. Do check your junks inyour email as the email might end up there.
+     
+        <li>Please make sure that your account is first verified. Do check your junks inyour email as the email might end up there.<li>
+        <li> You may reset your password <a href="https://cactisucculentkuching.cf/resetpassword.php" class="link-primary">here</a> if you have forgotten your password.</li>
+    
       </div>
     </div>
   </div>
@@ -52,12 +55,12 @@
 <div class="accordion-item">
     <h2 class="accordion-header" id="headingThree">
       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-        Accordion Item #2
+        <h5>How do I change my booking time?</h5>
       </button>
     </h2>
     <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
       <div class="accordion-body">
-        <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+        <li>After logged into your account, click booking at the top on the navigation bar, and choose the <strong>Update Booking</strong> option.</li>
       </div>
     </div>
   </div>
@@ -67,12 +70,12 @@
 <div class="accordion-item">
     <h2 class="accordion-header" id="headingFour">
       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-        Accordion Item #2
+        <h5>Will the admin be able to look at my acoount details like password?</h5>
       </button>
     </h2>
     <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
       <div class="accordion-body">
-        <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+        <li> Every account's password will be encrypted and the admins will not be able to look at the user's personal information.</li>
       </div>
     </div>
   </div>
@@ -82,12 +85,12 @@
 <div class="accordion-item">
     <h2 class="accordion-header" id="headingFive">
       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-        Accordion Item #2
+        <h5>How do I make a booking appointment if I do not have an account?</h5>
       </button>
     </h2>
     <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
       <div class="accordion-body">
-        <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+        <li> You may contact the admin to help you create an appointment if you do not have an account.</li>
       </div>
     </div>
   </div>
@@ -97,12 +100,12 @@
 <div class="accordion-item">
     <h2 class="accordion-header" id="headingSix">
       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
-        Accordion Item #2
+        <h5>How do I reset my password?</h5>
       </button>
     </h2>
     <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#accordionExample">
       <div class="accordion-body">
-        <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+        <li>You may reset your password <a href="https://cactisucculentkuching.cf/resetpassword.php" class="link-primary">here</a> if you have forgotten your password.</li>
       </div>
     </div>
   </div>

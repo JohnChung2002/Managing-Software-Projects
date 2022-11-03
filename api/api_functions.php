@@ -59,4 +59,8 @@
             return false;
         }
     }
+
+    function get_protocol() {
+        return isset($_SERVER['HTTP_X_FORWARDED_PROTO']) ? $_SERVER['HTTP_X_FORWARDED_PROTO']."://" : ((isset( $_SERVER["HTTPS"] ) && strtolower( $_SERVER["HTTPS"] ) == "on" ) ? 'https://' : 'http://');
+    }
 ?>

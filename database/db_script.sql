@@ -91,4 +91,11 @@ CREATE TABLE IF NOT EXISTS `enquiries` (
     enquiry_status ENUM('Answered', 'Unanswered') NOT NULL,
     enquiry_reply TEXT,
     PRIMARY KEY (enquiry_id)
+)
+CREATE TABLE IF NOT EXISTS `banner` (
+    banner_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    banner_image TEXT NOT NULL,
+    banner_description VARCHAR(255) NOT NULL,
+    banner_status ENUM('Active', 'Inactive') NOT NULL,
+    PRIMARY KEY (banner_id)
 );

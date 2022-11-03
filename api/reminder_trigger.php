@@ -1,6 +1,11 @@
 <?php
     require_once $_SERVER['DOCUMENT_ROOT'].'/api_credentials.php';
     require_once dirname(__FILE__)."/api_functions.php";
+    require_once $_SERVER['DOCUMENT_ROOT'].'/vendor/autoload.php';
+
+    use Kreait\Firebase\Factory;
+    use Kreait\Firebase\Messaging\CloudMessage;
+    use Kreait\Firebase\Messaging\WebPushConfig;
 
     function booking_email_reminder_trigger() {
         $conn = start_connection();
@@ -22,7 +27,30 @@
     }
 
     function booking_push_reminder_trigger() {
-        
+        $path = $_SERVER['DOCUMENT_ROOT'].'/firebase.json';
+        $current_url = get_protocol() . $_SERVER['HTTP_HOST'];
+        echo $current_url;
+        $factory = (new Factory)->withServiceAccount($path);
+        $messaging = $factory->createMessaging();
+        $conn = start_connection();
+        $command = 'SELECT t.booking_id, t.appointment_date, t.appointment_timeslot, t.pax, u.notification_token FROM (SELECT booking_id, user_id, appointment_date, appointment_timeslot, TIMESTAMPDIFF(MINUTE,TIMESTAMP("2022-11-03 13:35:00"),TIMESTAMP(CONCAT(appointment_date, " ", appointment_timeslot))) AS time_diff, number_of_attendees AS pax FROM booking_info WHERE booking_status="Confirmed") as t JOIN user_credentials u ON t.user_id=u.user_id WHERE t.time_diff >= 25 AND t.time_diff <= 35;';
+        if ($result = mysqli_query($conn, $command)) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                $notification_token = json_decode($row['notification_token']);
+                $config = WebPushConfig::fromArray([
+                    'notification' => [
+                        'title' => "[{$row['booking_id']}] Booking Reminder",
+                        'body' => 'Your booking is in 30 minutes.'
+                    ],
+                    'fcm_options' => [
+                        'link' => "{$current_url}/login.php",
+                    ],
+                ]);
+                $message = CloudMessage::new()
+                    ->withWebPushConfig($config);
+                $messaging->sendMulticast($message, $notification_token);
+            }
+        }
     }
 
     if (!empty($_GET["key"])) {

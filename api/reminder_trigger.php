@@ -9,7 +9,7 @@
 
     function booking_email_reminder_trigger() {
         $conn = start_connection();
-        $command = 'SELECT t.booking_id, t.appointment_date, t.appointment_timeslot, t.pax, u.email_address FROM (SELECT booking_id, user_id, appointment_date, appointment_timeslot, TIMESTAMPDIFF(MINUTE,TIMESTAMP("2022-11-03 13:35:00"),TIMESTAMP(CONCAT(appointment_date, " ", appointment_timeslot))) AS time_diff, number_of_attendees AS pax FROM booking_info WHERE booking_status="Confirmed") as t JOIN user_info u ON t.user_id=u.user_id WHERE t.time_diff >= 25 AND t.time_diff <= 35;';
+        $command = 'SELECT t.booking_id, t.appointment_date, t.appointment_timeslot, t.pax, u.email_address FROM (SELECT booking_id, user_id, appointment_date, appointment_timeslot, TIMESTAMPDIFF(MINUTE,NOW(),TIMESTAMP(CONCAT(appointment_date, " ", appointment_timeslot))) AS time_diff, number_of_attendees AS pax FROM booking_info WHERE booking_status="Confirmed") as t JOIN user_info u ON t.user_id=u.user_id WHERE t.time_diff >= 25 AND t.time_diff <= 35;';
         if ($result = mysqli_query($conn, $command)) {
             while ($row = mysqli_fetch_assoc($result)) {
                 trigger_email_api($row['email_address'], $row['booking_id'], $row['appointment_date'], $row['appointment_timeslot'], $row['pax']);
@@ -33,7 +33,7 @@
         $factory = (new Factory)->withServiceAccount($path);
         $messaging = $factory->createMessaging();
         $conn = start_connection();
-        $command = 'SELECT t.booking_id, t.appointment_date, t.appointment_timeslot, t.pax, u.notification_token FROM (SELECT booking_id, user_id, appointment_date, appointment_timeslot, TIMESTAMPDIFF(MINUTE,TIMESTAMP("2022-11-03 13:35:00"),TIMESTAMP(CONCAT(appointment_date, " ", appointment_timeslot))) AS time_diff, number_of_attendees AS pax FROM booking_info WHERE booking_status="Confirmed") as t JOIN user_credentials u ON t.user_id=u.user_id WHERE t.time_diff >= 25 AND t.time_diff <= 35;';
+        $command = 'SELECT t.booking_id, t.appointment_date, t.appointment_timeslot, t.pax, u.notification_token FROM (SELECT booking_id, user_id, appointment_date, appointment_timeslot, TIMESTAMPDIFF(MINUTE,NOW(),TIMESTAMP(CONCAT(appointment_date, " ", appointment_timeslot))) AS time_diff, number_of_attendees AS pax FROM booking_info WHERE booking_status="Confirmed") as t JOIN user_credentials u ON t.user_id=u.user_id WHERE t.time_diff >= 25 AND t.time_diff <= 35;';
         if ($result = mysqli_query($conn, $command)) {
             while ($row = mysqli_fetch_assoc($result)) {
                 $notification_token = json_decode($row['notification_token']);

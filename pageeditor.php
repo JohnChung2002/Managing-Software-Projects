@@ -11,7 +11,7 @@
 
     <body>
         <?php include 'header.php'; ?>
-
+        <?php include 'database_credentials.php'; ?>
         <?php
         if (isset($_POST["mytextarea"])) {	 
             echo "You entered: " . $_POST["mytextarea"];

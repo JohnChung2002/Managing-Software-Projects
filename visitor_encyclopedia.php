@@ -46,7 +46,8 @@
 		They produce most of the world’s oxygen, and are important in the food chain, as many organisms eat plants or eat organisms which eat plants. 
 		The study of plants is called botany.
 	  </p>
-    </div>
+	</div>
+	  <a href="#" class="btn btn-primary stretched-link">Search for plants</a>
   </div>
   <div class="card">
     <img src="images/Cactus2.png" class="card-img-top" alt="...">
@@ -56,7 +57,8 @@
 	  A gardening tool or garden tool is any one of many tools made for gardens and gardening and overlaps with the range of tools made for agriculture and horticulture. 
 	  Garden tools can also be hand tools and power tools.
 	  </p>
-    </div>
+	</div>
+	  <a href="#" class="btn btn-primary stretched-link">Search for gardening tools</a>
   </div>
   <div class="card">
     <img src="images/Cactus3.png" class="card-img-top" alt="...">
@@ -67,11 +69,12 @@
 	  They give the plants nutrients.
 	  </p>
     </div>
+	<a href="#" class="btn btn-primary stretched-link">Search for fertilizer</a>
   </div>
 </div>
+	
 	  </div>
    </div>
-
   </div>
   <?php include 'footer.php'; ?>
 </body>

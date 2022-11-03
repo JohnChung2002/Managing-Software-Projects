@@ -9,7 +9,10 @@ include "auth/is_loggedin.php";
 </head>
 <body>
   <?php include 'header.php'; ?>
-  <div class="container p-5 my-5 bg-success p-3">
+  <div class="d-block w-100 h-100">
+  <img src="images/Cactus7.jpg" class="mx-auto d-block w-100">
+  </div>
+  <div class="container p-5 my-5" style="background-color: #1AA36D;">
   <h1 class="text-center text-white">Booking Dashboard</h1>
   <div class="row row-cols-1 row-cols-md-2 g-4">
     <?php 
@@ -17,7 +20,7 @@ include "auth/is_loggedin.php";
       echo '
       <div class="col">
         <div class="card p-5 my-5 border">
-          <img src="images/update.png" class="card-img-top w-50" alt="...">
+          <img src="images/Cactus6.jpeg" class="card-img-top w-60" alt="...">
           <div class="card-body">
             <h5 class="card-title">UPDATE BOOKING AVAILABILITY</h5>
             <p class="card-text">Update the store\'s availability</p>
@@ -28,9 +31,9 @@ include "auth/is_loggedin.php";
     }?>
     <div class="col">
       <div class="card p-5 my-5 border">
-        <img src="images/booking.png" class="card-img-top w-50" alt="...">
+        <img src="images/Cactus5.jpeg" class="card-img-top w-60" alt="...">
         <div class="card-body">
-          <h5 class="card-title">CREATE NEW BOOKING</h5>
+          <h5 class="card-title">APPOINTMENT REQUEST</h5>
           <p class="card-text">Book a new appointment</p>
           <a href="createbooking.php" class="btn btn-primary">Create Booking</a>
       </div>
@@ -38,30 +41,21 @@ include "auth/is_loggedin.php";
     </div>
     <div class="col">
       <div class="card p-5 my-5 border">
-        <img src="images/cancel.png" class="card-img-top w-50" alt="...">
+        <img src="images/Cactus6.jpeg" class="card-img-top w-60" alt="...">
         <div class="card-body">
-          <h5 class="card-title">CANCEL A BOOKING</h5>
-          <p class="card-text">Cancel a booking appointment</p>
-          <a href="cancelbooking.php" class="btn btn-primary">Cancel Booking</a>
+          <h5 class="card-title">MANAGE YOUR BOOKING</h5>
+          <p class="card-text">Cancel, update and view booking appointment</p>
+          <a href="bookinghistory.php" class="btn btn-primary">Manage Booking</a>
       </div>
       </div>
     </div>
-    <div class="col">
-      <div class="card p-5 my-5 border">
-        <img src="images/update.png" class="card-img-top w-50" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">UPDATE A BOOKING</h5>
-          <p class="card-text">Update a booking appointment</p>
-          <a href="updatebooking.php" class="btn btn-primary">Update Booking</a>
-      </div>
-      </div>
-    </div>
+
     <?php 
     if($_SESSION["user_role"] == "Admin") {
       echo '
       <div class="col">
       <div class="card p-5 my-5 border">
-        <img src="images/check.png" class="card-img-top w-50" alt="...">
+        <img src="images/Cactus6.jpeg" class="card-img-top w-60" alt="...">
         <div class="card-body">
           <h5 class="card-title">SEARCH BOOKING</h5>
           <p class="card-text">Search booking by booking ID</p>
@@ -71,7 +65,7 @@ include "auth/is_loggedin.php";
     </div>
     <div class="col">
       <div class="card p-5 my-5 border">
-        <img src="images/check.png" class="card-img-top w-50" alt="...">
+        <img src="images/Cactus6.jpeg" class="card-img-top w-60" alt="...">
         <div class="card-body">
           <h5 class="card-title">CALENDAR BOOKING VIEW</h5>
           <p class="card-text">View all booking appointment in calendar view</p>
@@ -79,18 +73,6 @@ include "auth/is_loggedin.php";
       </div>
       </div>
     </div>';
-    } else {
-        echo '
-        <div class="col">
-            <div class="card p-5 my-5 border">
-            <img src="images/check.png" class="card-img-top w-50" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">BOOKING HISTORY</h5>
-                <p class="card-text">View my booking appointment history</p>
-                <a href="bookinghistory.php" class="btn btn-primary">Booking History</a>
-            </div>
-            </div>
-        </div>';
     }
     ?>
   </div>

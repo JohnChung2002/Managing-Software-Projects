@@ -6,6 +6,7 @@ if ( basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"]) ) {
 }
 
 require_once $_SERVER['DOCUMENT_ROOT'].'/api/api_functions.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/notification/notification_functions.php';
 
 date_default_timezone_set("Asia/Kuala_Lumpur");
 
@@ -137,6 +138,7 @@ function createUserBooking() {
                                 </div>
                             </div>";
                             mysqli_close($conn);
+                            retrive_booking_info_for_notification("createbooking", $booking_id);
                             return true;
                         }
                     }
@@ -211,6 +213,7 @@ function adminCreateBooking() {
                                 </div>
                             </div>";
                             mysqli_close($conn);
+                            retrive_booking_info_for_notification("createbooking", $booking_id);
                             return true;
                         }
                     }
@@ -237,17 +240,21 @@ function getBookingInformation($booking_id) {
     mysqli_stmt_bind_param($stmt, "ss", $user_id, $booking_id);
     mysqli_stmt_execute($stmt);
     $result = mysqli_stmt_get_result($stmt);
-    $row = mysqli_fetch_assoc($result);
-    mysqli_free_result($result);
-    echo "
-    <p>Booking ID: " . $booking_id . 
-    "<br/>
-    Booking Date: " . $row["appointment_date"] .
-    "<br/>
-    Booking Time: " . $row["appointment_timeslot"] .
-    "<br/>
-    Number of Attendees: " . $row["number_of_attendees"] .
-    "</p>";
+    if (mysqli_num_rows($result) == 0) { 
+        $row = mysqli_fetch_assoc($result);
+        mysqli_free_result($result);
+        echo "
+        <p>Booking ID: " . $booking_id . 
+        "<br/>
+        Booking Date: " . $row["appointment_date"] .
+        "<br/>
+        Booking Time: " . $row["appointment_timeslot"] .
+        "<br/>
+        Number of Attendees: " . $row["number_of_attendees"] .
+        "</p>";
+    } else {
+        echo "Booking not found.";
+    }
 }
 
 function updateUserBooking() {
@@ -278,6 +285,7 @@ function updateUserBooking() {
                             </div>
                         </div>";
                         mysqli_close($conn);
+                        retrive_booking_info_for_notification("updatebooking", $booking_id);
                         return true;
                     }
                 }
@@ -323,6 +331,7 @@ function adminUpdateBooking() {
                             </div>
                         </div>";
                         mysqli_close($conn);
+                        retrive_booking_info_for_notification("updatebooking", $booking_id);
                         return true;
                     }
                 }
@@ -364,6 +373,7 @@ function cancelUserBooking() {
                     </div>
                 </div>";
                 mysqli_close($conn);
+                retrive_booking_info_for_notification("cancelbooking", $booking_id);
                 return true;
             }
         }
@@ -402,6 +412,7 @@ function adminCancelBooking() {
                     </div>
                 </div>";
                 mysqli_close($conn);
+                retrive_booking_info_for_notification("cancelbooking", $booking_id);
                 return true;
             }
         }

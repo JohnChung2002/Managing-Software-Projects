@@ -12,7 +12,7 @@
 <body>
 <?php include 'header.php';  
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    include "booking/booking_functions.php";
+    include "booking/enquiry_functions.php";
     newenquiry();} ?>
 
 <h1 class="text-center mt-5">ENQUIRY</h1>
@@ -39,15 +39,15 @@
         </div>
 
         <div class='col-12'>
-            <label for='inputReason' class='form-label'>Subject of Enquiry</label>
-            <input type='text' class='form-control' id='inputReason' name='inputSubject' required>
+            <label for='inputSubject' class='form-label'>Subject of Enquiry</label>
+            <input type='text' class='form-control' id='inputSubject' name='inputSubject' required>
             <div class='valid-feedback'>Looks good!</div>
             <div class='invalid-feedback'>Please provide a subject. </div>
         </div>
 
         <div class='col-12'>
-            <label for='inputReason' class='form-label'>Comment</label>
-            <input type='text' class='form-control' id='inputReason' name='inputComment' placeholder="Subject have to be filled first" disabled required>
+            <label for='inputComment' class='form-label'>Comment</label>
+            <input type='text' class='form-control' id='inputComment' name='inputComment' placeholder="Subject have to be filled first" disabled required>
             <div class='valid-feedback'>Looks good!</div>
             <div class='invalid-feedback'>Please provide comments.</div>
         </div>
@@ -60,6 +60,7 @@
     </form>
 
     <script src="script/booking_validation.js"></script>
+    
     <script>
         $('input[name="inputSubject"]').change(function(){
         if($(this) !=="") {

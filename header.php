@@ -57,7 +57,7 @@ if (!$logged_in) {
         />
     </a>
     <ul class="dropdown-menu">
-      <li><a class="dropdown-item" href="#">My Profile</a></li>
+      <li><a class="dropdown-item" href="profilepage.php">My Profile</a></li>
       <li><a class="dropdown-item" href="#">Another action</a></li>
       <li><hr class="dropdown-divider"></li>
       <li><a class="dropdown-item" href="logout.php">Log Out</a></li>

@@ -23,33 +23,44 @@
 	$result = $conn->query($sql);
 	if ($result->num_rows > 0) {
 		while($row = $result->fetch_assoc()) {
-	echo 
-	"<p>Item ID: 
-	".$row["item_id"]."
-	<br>
-	Item Category: 
-	".$row["item_category"]."
-	<br>
-	Item Subcategory: 
-	".$row["item_subcategory"]."
-	<br>
-	Item Name: 
-	".$row["item_name"]."
-	<br>
-	Item Image: 
-	".$row["item_image"]."
-	<br>
-	Availability in store: 
-	".$row["availability_in_store"]."
-	<br>
-	Price in store: 
-	".$row["price_in_store"]."
-	<br>
-	Description: 
-	".$row["description"]."
-	</p> ";
-	}
-	
+            echo "<div class='col-md-4'>
+                <div class='card mb-4 shadow-sm'>
+                    <div class='card-body'>
+                        <p class='card-text'>
+                            <img class='img-fluid' src=".$row["item_image"]."/>
+                            <br>
+                            Item Name: 
+                            ".$row["item_name"]."
+                            <br>
+                            Item ID: 
+                            ".$row["item_id"]."
+                            <br>
+                            Item Category: 
+                            ".$row["item_category"]."
+                            <br>
+                            Item Subcategory: 
+                            ".$row["item_subcategory"]."
+                            <br>
+                            Availability in store: 
+                            ".$row["availability_in_store"]."
+                            <br>
+                            Price in store: 
+                            ".$row["price_in_store"]."
+                            <br>
+                            Description: 
+                            ".$row["description"]."
+                        </p>
+
+                        <div class='d-flex justify-content-between align-items-center'>
+                            <div class='btn-group'>
+                                <button type='button' class='btn btn-primary' onclick='window.location.href=\"updatebooking.php?id=". $row["item_id"] ."\"'>Edit Item</button>
+                                <button type='button' class='btn btn-danger' onclick='window.location.href=\"cancelbooking.php?id=". $row["item_id"] ."\"'>Delete Item</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>";
+        }
 	} else {
 		echo "0 results";
 	}

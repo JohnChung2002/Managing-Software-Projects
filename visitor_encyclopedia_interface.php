@@ -66,7 +66,7 @@
 
 <div class="card-group">
   <div class="card" style="cursor: pointer;" onclick="window.location.href='plant_encyclopedia.php'">
-    <img class="card-img-top" src="images/Cactiplant1.jpg" alt="...">
+    <img class="card-img-top" src="images/Cactus7.jpg" alt="...">
     <div class="card-body">
       <h5 class="card-title">Plants</h5>
       <p class="card-text">
@@ -79,7 +79,7 @@
     </div>
   </div>
    <div class="card" style="cursor: pointer;" onclick="window.location.href='gardeningtools_encyclopedia.php'">
-    <img class="card-img-top" src="images/Cactiplant1.jpg" alt="...">
+    <img class="card-img-top" src="images/Cactus7.jpg" alt="...">
     <div class="card-body">
       <h5 class="card-title">Gardening Tools</h5>
       <p class="card-text">
@@ -89,7 +89,7 @@
     </div>
   </div>
    <div class="card" style="cursor: pointer;" onclick="window.location.href='fertilizer_encyclopedia.php'">
-    <img class="card-img-top" src="images/Cactiplant1.jpg" alt="...">
+    <img class="card-img-top" src="images/Cactus7.jpg" alt="...">
     <div class="card-body">
       <h5 class="card-title">Fertilizer</h5>
       <p class="card-text">

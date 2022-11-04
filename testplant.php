@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Gardening Encyclopedia</title>
+    <title>Plant Encyclopedia</title>
     <?php include "page_head.php";?>
 </head>
 <body>
 	<?php include 'header.php'; ?>
 	
 
-  <h1 class="text-center mt-5">Gardening Encyclopedia</h1>
+  <h1 class="text-center mt-5">Plant Encyclopedia</h1>
   <div class="container p-5 my-5 border">
     <div class='row'>
 
@@ -19,12 +19,12 @@
 	if ($conn->connect_error) {
 		die("Connection failed(because there is no data in the database yet): " . $conn->connect_error);
 	}
-	$sql = "SELECT item_id, item_category, item_subcategory, item_name, item_image, availability_in_store, price_in_store, description FROM encyclopedia_items";
+	$sql = "SELECT item_id, item_category, item_subcategory, item_name, item_image, availability_in_store, price_in_store, description FROM encyclopedia_items WHERE item_category='Plants'";
 	$result = $conn->query($sql);
 	if ($result->num_rows > 0) {
 		while($row = $result->fetch_assoc()) {
 	echo 
-	"<img src=".$row['item_image']."/>
+	"<img src= '".$row["item_image"]."' class='w-50'/>
 	<p>Item ID: 
 	".$row["item_id"]."
 	<br>
@@ -48,7 +48,8 @@
 	<br>
 	Description: 
 	".$row["description"]."
-	</p> ";
+	</p>
+	";
 	}
 	
 	} else {

@@ -48,7 +48,7 @@ include "auth/is_loggedin.php";
 		<br>
         </div>
    </div>      
-  <div class="row row-cols-md-2">
+  <div class="row row-cols-md-2 mx-5 mt-2 mb-4">
     <?php 
     if($_SESSION["user_role"] == "Admin") {
       echo '

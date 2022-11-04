@@ -25,7 +25,7 @@
 
         <form method="POST">
 
-            <textarea name="mytextarea">
+            <textarea name="page_resource">
             Welcome to TinyMCE!
             </textarea>
             <script>
@@ -34,11 +34,17 @@
                 plugins: 'save anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
                 toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | addcomment showcomments | spellcheckdialog | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat ',
                 tinycomments_mode: 'embedded',
+                height: '700px', 
                 tinycomments_author: 'Cacti Succulent Kuching',
+                autosave_restore_when_empty: true,
              });
+             tinyMCE.get('page_resource').getContent();
             </script>
-            <input type="submit" value="Submit">
+            <input type="Submit" id = "page_resource" value="Submit">
+
         </form>
+
+        
 
 
 

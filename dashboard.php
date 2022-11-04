@@ -42,13 +42,12 @@ include "auth/is_loggedin.php";
 	
 <div class="container border border-success rounded my-5">
    <div class="row text-center">  
-        <div class=" w-100 my-3">
-          <h1 class="text-uppercase my-3">Booking Dashboard</h1>
-		  <img src="images/Cactiplant1.jpg">
+        <div class=" w-100">
+          <h1 class="text-uppercase mt-5">Booking Dashboard</h1>
 		<br>
         </div>
    </div>      
-  <div class="row row-cols-md-2 mx-5 mt-2 mb-4">
+  <div class="row mx-5 mb-4">
     <?php 
     if($_SESSION["user_role"] == "Admin") {
       echo '

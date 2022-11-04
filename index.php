@@ -9,6 +9,17 @@
 </head>
 <body>
     <?php include 'header.php'; ?>
+    <?php include 'database_credentials.php'; ?>
+    <?php
+        if (isset($_POST["mytextarea"])) {	 
+            echo "You entered: " . $_POST["mytextarea"];
+        }
+        $conn = new mysqli($servername, $username, $password, $database);
+
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+          }
+    ?>
     <div id="CactusBanner" class="carousel slide" data-bs-ride="false">
         <div class="carousel-indicators">
           <button type="button" data-bs-target="#CactusBanner" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -17,24 +28,24 @@
         </div>
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <img src="images/Cactiplant1.jpg" class="d-block w-100" alt="...">
+            <img src="images/Cactiplant1.png" class="d-block w-100" alt="...">
             <div class="carousel-caption d-none d-md-block">
-              <h5>First slide label</h5>
-              <p>Some representative placeholder content for the first slide.</p>
+              <h5></h5>
+              <p></p>
             </div>
           </div>
           <div class="carousel-item">
             <img src="images/Cactus4.png" class="d-block w-100 h-100" alt="...">
             <div class="carousel-caption d-none d-md-block">
-              <h5>Second slide label</h5>
-              <p>Some representative placeholder content for the second slide.</p>
+              <h5></h5>
+              <p></p>
             </div>
           </div>
           <div class="carousel-item">
-          <img src="images/Cactus3.png" class="d-block w-100 h-100" alt="...">
+          <img src="images/Cactus1.png" class="d-block w-100 h-100" alt="...">
           <div class="carousel-caption d-none d-md-block">
-            <h5>Third slide label</h5>
-            <p>Some representative placeholder content for the third slide.</p>
+            <h5></h5>
+            <p></p>
           </div>
         </div>
       </div>

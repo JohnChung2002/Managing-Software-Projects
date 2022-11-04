@@ -129,15 +129,14 @@ function getEnquiryInformation($enquiry_id) {
     Comments: " . $row["enquiry_content"] . "
     ";
 }
-
 function answerenquiry() {
     if ( !empty($_POST["inputReason"])) {
-        $booking_id = $_POST["booking-id"];
+        $enquiry_id = ["SELECT enquiry_id FROM enquiries"]
         $reason = $_POST["inputReason"];
         $conn = start_connection();
         $command = "UPDATE enquiries SET enquiry_status='Answered', enquiry_reply=? WHERE booking_id=?;";
         $stmt = mysqli_prepare($conn, $command);
-        mysqli_stmt_bind_param($stmt, "s", $enquiry_id);
+        mysqli_stmt_bind_param($stmt, "ss", $reason, $enquiry_id);
         if (mysqli_stmt_execute($stmt)) {
             echo "
             <div class='container'>
@@ -158,5 +157,4 @@ function answerenquiry() {
     </div>";
     return false;
 }
-
 ?>

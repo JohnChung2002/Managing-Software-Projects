@@ -6,19 +6,49 @@
 </head>
 <body>
   <?php include 'header.php'; ?>
-  <div class="d-block w-100 h-100">
-  <img src="images/Cactus8.jpg" class="img-fluid">
-  </div>
-  <div class="container p-5 my-5" style="background-color: #1AA36D;">
-  <h1 class="text-center text-white">Gardening Encyclopedia</h1>
- 
-   <div class="col">
-      <div class="card p-3 my-5 border">
-		<img src="images/Cactus4.png">
+     <div id="CactusBanner" class="carousel slide" data-bs-ride="false">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#CactusBanner" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#CactusBanner" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="images/Cactiplant1.jpg" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+              <h5>First slide label</h5>
+              <p>Some representative placeholder content for the first slide.</p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img src="images/Cactus4.png" class="d-block w-100 h-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+              <h5>Second slide label</h5>
+              <p>Some representative placeholder content for the second slide.</p>
+            </div>
+          </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#CactusBanner" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#CactusBanner" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+
+    <div class="container border border-success rounded my-5">
+      <div class="row text-center">  
+        <div class="col-4 w-100">
+          <h1 class="text-uppercase my-3">Gardening Encyclopedia</h1>
+		  	  <img src="images/Cactiplant1.jpg">
 		<br>
-		<h4 class="text-center"> Explore plants, gardening tools and fertilizer</h4>
-		<br>
-		<p>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="w-75 my-4">
+          <p class="fs-5 fw-bold">Explore plants, gardening tools and fertilizer</p>
+		  <p>
 		Garden tools are an important part of garden supplies. 
 		The right garden tools can make taking care of your garden easy and productive.
 		Not all garden tools are equal. You want tools that you can use on a daily basis that are economically fashioned. 
@@ -32,11 +62,11 @@
 		If you're using chemical sprays, you'll want protective clothing, goggles, and a hat to prevent blowback from changing winds. 
 		You'll need separate containers for different types of chemical products, such as fungicides, fertilizers, specific insect sprays. If you're an organic gardener, you won't require the kind of pest control tools and supplies.
 		</p>
-		
-<br>
+        </div>
+
 <div class="card-group">
-  <div class="card">
-    <img src="images/Cactus1.png" class="card-img-top" alt="...">
+  <div class="card" style="cursor: pointer;" onclick="window.location.href='testplant.php'">
+    <img class="card-img-top" src="images/Cactiplant1.jpg" alt="...">
     <div class="card-body">
       <h5 class="card-title">Plants</h5>
       <p class="card-text">
@@ -46,36 +76,32 @@
 		They produce most of the world’s oxygen, and are important in the food chain, as many organisms eat plants or eat organisms which eat plants. 
 		The study of plants is called botany.
 	  </p>
-	</div>
-	  <a href="#" class="btn btn-primary stretched-link">Search for plants</a>
+    </div>
   </div>
-  <div class="card">
-    <img src="images/Cactus2.png" class="card-img-top" alt="...">
+   <div class="card" style="cursor: pointer;" onclick="window.location.href='testplant.php'">
+    <img class="card-img-top" src="images/Cactiplant1.jpg" alt="...">
     <div class="card-body">
       <h5 class="card-title">Gardening Tools</h5>
       <p class="card-text">
-	  A gardening tool or garden tool is any one of many tools made for gardens and gardening and overlaps with the range of tools made for agriculture and horticulture. 
-	  Garden tools can also be hand tools and power tools.
+		A gardening tool or garden tool is any one of many tools made for gardens and gardening and overlaps with the range of tools made for agriculture and horticulture. 
+	    Garden tools can also be hand tools and power tools.
 	  </p>
-	</div>
-	  <a href="#" class="btn btn-primary stretched-link">Search for gardening tools</a>
+    </div>
   </div>
-  <div class="card">
-    <img src="images/Cactus3.png" class="card-img-top" alt="...">
+   <div class="card" style="cursor: pointer;" onclick="window.location.href='testplant.php'">
+    <img class="card-img-top" src="images/Cactiplant1.jpg" alt="...">
     <div class="card-body">
       <h5 class="card-title">Fertilizer</h5>
       <p class="card-text">
-	  A natural or artificial material called fertiliser is added to the soil or plants to promote growth and productivity. 
+		A natural or artificial material called fertiliser is added to the soil or plants to promote growth and productivity. 
 	  They give the plants nutrients.
 	  </p>
     </div>
-	<a href="#" class="btn btn-primary stretched-link">Search for fertilizer</a>
   </div>
 </div>
-	
-	  </div>
-   </div>
-  </div>
-  <?php include 'footer.php'; ?>
+      </div>
+	  <br>
+    </div>
+<?php include 'footer.php'; ?>
 </body>
 </html>

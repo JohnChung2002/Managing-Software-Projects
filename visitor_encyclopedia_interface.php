@@ -40,7 +40,7 @@
     <div class="container border border-success rounded my-5">
       <div class="row text-center">  
         <div class="col-4 w-100">
-          <h1 class="text-uppercase my-3">Gardening Encyclopedia</h1>
+          <h1 class="text-uppercase my-4">Gardening Encyclopedia</h1>
 		  	  <img src="images/Cactiplant1.jpg">
 		<br>
         </div>
@@ -64,8 +64,8 @@
 		</p>
         </div>
 
-<div class="card-group">
-  <div class="card" style="cursor: pointer;" onclick="window.location.href='plant_encyclopedia.php'">
+<div class="card-group mb-3">
+  <div class="card ms-5" style="cursor: pointer;" onclick="window.location.href='plant_encyclopedia.php'">
     <img class="card-img-top" src="images/Cactus7.jpg" alt="...">
     <div class="card-body">
       <h5 class="card-title">Plants</h5>
@@ -88,7 +88,7 @@
 	  </p>
     </div>
   </div>
-   <div class="card" style="cursor: pointer;" onclick="window.location.href='fertilizer_encyclopedia.php'">
+   <div class="card me-5" style="cursor: pointer;" onclick="window.location.href='fertilizer_encyclopedia.php'">
     <img class="card-img-top" src="images/Cactus7.jpg" alt="...">
     <div class="card-body">
       <h5 class="card-title">Fertilizer</h5>

@@ -7,7 +7,7 @@
     <?php include 'page_head.php'; ?>
     <title>Cacti Succulent Kuching</title>
 </head>
-<body>
+<body id = 'version_id'>
     <?php include 'header.php'; ?>
     <?php include 'database_credentials.php'; ?>
     <?php

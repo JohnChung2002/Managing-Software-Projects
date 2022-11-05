@@ -9,50 +9,30 @@ include "auth/is_loggedin.php";
 </head>
 <body>
  <?php include 'header.php'; ?>
-     <div id="CactusBanner" class="carousel slide" data-bs-ride="false">
-        <div class="carousel-indicators">
-          <button type="button" data-bs-target="#CactusBanner" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-          <button type="button" data-bs-target="#CactusBanner" data-bs-slide-to="1" aria-label="Slide 2"></button>
-        </div>
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img src="images/Cactiplant1.jpg" class="d-block w-100" alt="...">
-            <div class="carousel-caption d-none d-md-block">
-              <h5>First slide label</h5>
-              <p>Some representative placeholder content for the first slide.</p>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <img src="images/Cactus4.png" class="d-block w-100 h-100" alt="...">
-            <div class="carousel-caption d-none d-md-block">
-              <h5>Second slide label</h5>
-              <p>Some representative placeholder content for the second slide.</p>
-            </div>
-          </div>
-      </div>
-      <button class="carousel-control-prev" type="button" data-bs-target="#CactusBanner" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#CactusBanner" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-      </button>
-    </div>
 	
 <div class="container border border-success rounded my-5">
    <div class="row text-center">  
-        <div class=" w-100">
+        <div class=" w-70 mx-4">
           <h1 class="text-uppercase mt-5">Booking Dashboard</h1>
-		<br>
-        </div>
-   </div>      
+		 </div>
+	</div>	  
+<div class="row justify-content-center">
+    <div class="w-75 my-4">
+		  <p>
+		  Cacti-Succulent Kuching is a local homegrown business specialized in selling various 
+            type and size of succulent plants. Apart from selling succulent plants, we also sell different type 
+            of gardening tools, soils and fertilizers at an affordable cost. Cacti-Succulent Kuching is setup in 
+            2020  in  which  business  is  running  both  at  home  as  well  as  weekend  market.  Our  primary  
+            mission  is  to  establish  a  long-lasting  relationship  of  trust  and  commitment  with  each  visitor 
+            through providing the highest level of customer service.
+		   </p>
+     </div>     
   <div class="row mx-5 mb-4">
     <?php 
     if($_SESSION["user_role"] == "Admin") {
       echo '
       <div class="col">
-        <div class="card p-5 my-5 border">
+        <div class="card mx-5 border">
           <img src="images/Cactus6.jpeg" class="card-img-top w-60" alt="...">
           <div class="card-body">
             <h5 class="card-title">UPDATE BOOKING AVAILABILITY</h5>
@@ -63,21 +43,27 @@ include "auth/is_loggedin.php";
       </div>';
     }?>
     <div class="col">
-      <div class="card p-5 my-2 border">
+      <div class="card mx-5 border">
         <img src="images/Cactus5.jpeg" class="card-img-top w-60" alt="...">
         <div class="card-body">
           <h5 class="card-title">APPOINTMENT REQUEST</h5>
-          <p class="card-text">Book a new appointment</p>
+          <p class="card-text">
+		  Simply choose a date and time that works for you. 
+		  You will receive a notification with your appointment details once you have scheduled one.
+		  </p>
           <a href="createbooking.php" class="btn btn-primary">Create Booking</a>
       </div>
       </div>
     </div>
     <div class="col">
-      <div class="card p-5 my-2 border">
+      <div class="card mx-5 border">
         <img src="images/Cactus6.jpeg" class="card-img-top w-60" alt="...">
         <div class="card-body">
           <h5 class="card-title">MANAGE YOUR BOOKING</h5>
-          <p class="card-text">Cancel, update and view booking appointment</p>
+          <p class="card-text">
+		  We understand that your plans can occasionally change. 
+		  With this feature, you can easily and instantly make changes to your appointment online.
+		  </p>
           <a href="bookinghistory.php" class="btn btn-primary">Manage Booking</a>
       </div>
       </div>
@@ -86,7 +72,7 @@ include "auth/is_loggedin.php";
     if($_SESSION["user_role"] == "Admin") {
       echo '
       <div class="col">
-      <div class="card p-5 my-2 border">
+      <div class="card mx-5 border">
         <img src="images/Cactus6.jpeg" class="card-img-top w-60" alt="...">
         <div class="card-body">
           <h5 class="card-title">SEARCH BOOKING</h5>
@@ -96,7 +82,7 @@ include "auth/is_loggedin.php";
       </div>
     </div>
     <div class="col">
-      <div class="card p-5 my-2 border">
+      <div class="card mx-5 border">
         <img src="images/Cactus6.jpeg" class="card-img-top w-60" alt="...">
         <div class="card-body">
           <h5 class="card-title">CALENDAR BOOKING VIEW</h5>
@@ -110,8 +96,6 @@ include "auth/is_loggedin.php";
   </div>
     </div>
   </div>
-</div>
-
   <?php include 'footer.php'; ?>
 </body>
 </html>

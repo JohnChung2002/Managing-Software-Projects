@@ -39,6 +39,7 @@
                 autosave_restore_when_empty: true,
              });
              tinyMCE.get('page_resource').getContent();
+             tinymce.get("page_resource").setContent("<p>Hello world!</p>");
             </script>
             <input type="Submit" id = "page_resource" value="Submit">
 

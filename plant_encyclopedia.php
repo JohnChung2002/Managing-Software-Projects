@@ -15,7 +15,7 @@
 	if ($conn->connect_error) {
 		die("Connection failed(because there is no data in the database yet): " . $conn->connect_error);
 	}
-	$sql = "SELECT item_id, item_category, item_subcategory, item_name, item_image, availability_in_store, price_in_store, description FROM encyclopedia_items WHERE item_category='Plants'";
+	$sql = "SELECT item_id, item_category, item_subcategory, item_name, item_image, availability_in_store, price_in_store, description FROM encyclopedia_items WHERE item_category='Plants' OR item_category='Seeds'";
 	$result = $conn->query($sql);
 	if ($result->num_rows > 0) {
 		while($row = $result->fetch_assoc()) {

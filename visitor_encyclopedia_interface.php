@@ -65,7 +65,7 @@
         </div>
 
 <div class="card-group mb-3">
-  <div class="card ms-5" style="cursor: pointer;" onclick="window.location.href='plant_encyclopedia.php'">
+  <div class="card mx-5" style="cursor: pointer;" onclick="window.location.href='plant_encyclopedia.php'">
     <img class="card-img-top" src="images/Cactus7.jpg" alt="...">
     <div class="card-body">
       <h5 class="card-title">Plants</h5>
@@ -88,7 +88,7 @@
 	  </p>
     </div>
   </div>
-   <div class="card me-5" style="cursor: pointer;" onclick="window.location.href='fertilizer_encyclopedia.php'">
+   <div class="card mx-5" style="cursor: pointer;" onclick="window.location.href='fertilizer_encyclopedia.php'">
     <img class="card-img-top" src="images/Cactus7.jpg" alt="...">
     <div class="card-body">
       <h5 class="card-title">Fertilizer</h5>

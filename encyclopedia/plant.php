@@ -53,5 +53,5 @@ if(mysqli_num_rows($query_run) > 0){
           echo "<p class='fw-bold fs-4 text-center'>No Record Found</p>";}
     }
 ?>
-</div>
+
 </div>

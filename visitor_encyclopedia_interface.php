@@ -3,6 +3,12 @@
 <head>
     <?php include "page_head.php";?>
     <title>Gardening Encyclopedia</title>
+	  <style>
+      .card:hover{
+        box-shadow: 5px 6px 6px 2px #e9ecef;
+        transform: scale(1.1);
+      }
+    </style>
 </head>
 <body>
   <?php include 'header.php'; ?>

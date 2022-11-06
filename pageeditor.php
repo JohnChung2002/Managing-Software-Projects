@@ -7,28 +7,7 @@
         <?php include 'page_head.php'; ?>
         <script src="https://cdn.tiny.cloud/1/pa1myav7w2ag023kos2mm4meskw8zg8lnk8o6wjescoiofe4/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
         <title>Cacti Succulent Kuching</title>
-    </head>
-
-    <body>
-        <?php include 'header.php'; ?>
-        <?php include 'database_credentials.php'; ?>
-        <?php
-        if (isset($_POST["mytextarea"])) {	 
-            echo "You entered: " . $_POST["mytextarea"];
-        }
-        $conn = new mysqli($servername, $username, $password, $database);
-
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-          }
-        ?>
-
-        <form method="PUT" action = "homepage_edit.php">
-
-            <textarea name="page_resource">
-            Welcome to TinyMCE!
-            </textarea>
-            <script>
+        <script>
             tinymce.init({
                 selector: 'textarea',   
                 plugins: 'save anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
@@ -38,10 +17,37 @@
                 tinycomments_author: 'Cacti Succulent Kuching',
                 autosave_restore_when_empty: true,
              });
-             tinyMCE.get('page_resource').getContent();
-             tinymce.get("page_resource").setContent("<p>Hello world!</p>");
+             
+        </script>
+    </head>
+
+    <body>
+        <?php include 'header.php'; ?>
+        <?php include 'database_credentials.php'; ?>
+        <?php
+        if (isset($_POST["page_resource"])) {	 
+            echo "You entered: " . $_POST["page_resource"];
+        }
+        $conn = new mysqli($servername, $username, $password, $database);
+
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+          }
+        ?>
+
+        <form method="POST" action = "api/homepage_edit.php">
+
+            <textarea name="page_resource">
+            Welcome to TinyMCE!
+            </textarea>
+            
+            <script>
+                const contentOne = 'page_resource'
+                tinyMCE.get('page_resource').getContent();
+                tinymce.get("page_resource").setContent("<p>Hello world!</p>");
             </script>
-            <input type="Submit" id ="page_resource_button" value="page_resource">
+
+            <button id ="page_resource_button" value="page_resource" class = "button_style">Submit</button>
 
         </form>
 

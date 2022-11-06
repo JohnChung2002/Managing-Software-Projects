@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS `user_credentials` (
     account_status ENUM('Unactivated', 'Activated', 'Pending Reset', 'Pending Delete', 'Deleted') NOT NULL,
     account_token CHAR(22),
     token_expiry DATETIME,
-    notification_token JSON,
+    notification_token JSON NOT NULL DEFAULT (JSON_ARRAY()),
     PRIMARY KEY (email_address),
     FOREIGN KEY (user_id) REFERENCES user_info(user_id)
 );
@@ -75,16 +75,18 @@ CREATE TABLE IF NOT EXISTS `encyclopedia_items` (
 CREATE TABLE IF NOT EXISTS `notification_history` (
     notification_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
     notification_timestamp TIMESTAMP NOT NULL,
-    notification_type ENUM('Booking Confirmation', 'Booking Update', 'Booking Cancellation', 'Booking Reminder', 'Account Activation', 'Account Deactivation', 'Account Reset', 'Account Delete') NOT NULL,
-    notification_content TEXT NOT NULL,
-    notification_sent_email VARCHAR(254),
-    notification_sent_phone JSON,
+    user_id INT UNSIGNED NOT NULL,
+    notification_type ENUM('Booking Confirmation', 'Booking Update', 'Booking Cancellation', 'Booking Reminder', 'Promotion', 'Announcement') NOT NULL,
+    notification_title VARCHAR(255) NOT NULL,
+    notification_link TEXT NOT NULL,
     notification_status ENUM('Unread', 'Read') NOT NULL,
-    PRIMARY KEY (notification_id)
+    PRIMARY KEY (notification_id),
+    FOREIGN KEY (user_id) REFERENCES user_info(user_id)
 );
 CREATE TABLE IF NOT EXISTS `enquiries` (
     enquiry_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
     enquiry_timestamp TIMESTAMP NOT NULL,
+    contact_name VARCHAR(255) NOT NULL,
     contact_info VARCHAR(254) NOT NULL,
     enquiry_subject VARCHAR(255) NOT NULL,
     enquiry_content TEXT NOT NULL,

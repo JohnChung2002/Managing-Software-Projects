@@ -21,18 +21,13 @@
               }
               
               // get the post records
-              $fname = $_POST['fname'];
-              $lname = $_POST['lname'];
-              $mail = $_POST['mail'];
-              $address = $_POST['saddress'];
-              $citytown = $_POST['citytown'];
-              $state = $_POST['statelist'];
-              $postcode = $_POST['postcode'];
-              $contact = $_POST['tel'];
-              $subject = $_POST['subject'];
-              $section = $_POST['servlist'];
-              $service = $_POST['subcategory'];
-              $comment = $_POST['issuedes'];
+              $itemname = $_POST['fname'];
+              $itemcategory = $_POST['lname'];
+              $itemsubcategory = $_POST['mail'];
+              $itemimage = $_POST['saddress'];
+              $itemavailability = $_POST['citytown'];
+              $itemprice = $_POST['statelist'];
+              $itemdesc = $_POST['postcode'];
               
               $sql = "INSERT INTO encylopedia_items (`first_name`, `last_name`, `email`, `address`, `citytown`,`state`,`postcode`,`contact`,`subject`,`section`,`service`,`comments`) VALUES ('$fname', '$lname', '$mail', '$address', '$citytown','$state','$postcode','$contact','$subject','$section','$service','$comment')";
 

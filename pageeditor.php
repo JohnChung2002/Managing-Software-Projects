@@ -23,7 +23,7 @@
           }
         ?>
 
-        <form method="POST" action = "homepage_edit.php">
+        <form method="PUT" action = "homepage_edit.php">
 
             <textarea name="page_resource">
             Welcome to TinyMCE!
@@ -41,7 +41,7 @@
              tinyMCE.get('page_resource').getContent();
              tinymce.get("page_resource").setContent("<p>Hello world!</p>");
             </script>
-            <input type="Submit" id = "page_resource" value="Submit">
+            <input type="Submit" id ="page_resource_button" value="page_resource">
 
         </form>
 

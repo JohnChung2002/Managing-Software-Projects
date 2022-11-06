@@ -23,7 +23,7 @@
           }
         ?>
 
-        <form method="POST">
+        <form method="POST" action = "homepage_edit.php">
 
             <textarea name="page_resource">
             Welcome to TinyMCE!

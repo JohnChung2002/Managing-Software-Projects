@@ -35,21 +35,21 @@
           }
         ?>
 
-        <form method="POST" action = "api/homepage_edit.php">
+        <form method="POST">
 
             <textarea name="page_resource">
-            Welcome to TinyMCE!
+                <?php include 'body.php'; ?>
             </textarea>
             
-            <script>
-                const contentOne = 'page_resource'
-                tinyMCE.get('page_resource').getContent();
-                tinymce.get("page_resource").setContent("<p>Hello world!</p>");
-            </script>
-
-            <button id ="page_resource_button" value="page_resource" class = "button_style">Submit</button>
-
         </form>
+
+        <div class = "form-button">
+			<input type="submit" value="Register"/>
+		</div>
+
+        <div class = "form-button">
+            <button id='page_resource_button' class="button_style" name="New Content">Press to set new content</button>
+		</div>
 
         
 
@@ -57,4 +57,16 @@
 
         <?php include 'footer.php'; ?>
     </body>
+
+    <script>
+            const ContentOne = 'page_resource'
+            tinyMCE.get('page_resource').getContent();
+            tinymce.get("page_resource").setContent("<p>Hello world!</p>");
+            function Setcontent() {
+                var ContentSet = tinymce.get('page_resource').setContent(contentOne);
+            }
+
+            var buttonSet = document.getElementById('page_resource_button');
+            buttonSet.addEventListener('click', Setcontent, false);
+    </script>
 </html>

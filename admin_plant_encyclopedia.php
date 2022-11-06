@@ -8,6 +8,10 @@
 	<?php include 'header.php'; ?>
   <h1 class="text-center mt-5">Plant Encyclopedia</h1>
   <div class="container p-5 my-5 border">
+    <div class="d-grid gap-2">
+      <button type='button' class='btn btn-primary' onclick='window.location.href="admin_encylopedia_additem.php"'>Add New Plant</button>
+      <br>
+    </div>
     <div class='row'>
 <?php
     require_once 'database_credentials.php'; // File of the database credentials PATH MAYBE UPDATED
@@ -47,8 +51,8 @@
 
                  <div class='d-flex justify-content-between align-items-center'>
                     <div class='btn-group'>
-                        <button type='button' class='btn btn-primary' onclick='window.location.href=\"updatebooking.php?id=". $row["item_id"] ."\"'>Edit Item</button>
-                        <button type='button' class='btn btn-danger' onclick='window.location.href=\"cancelbooking.php?id=". $row["item_id"] ."\"'>Delete Item</button>
+                        <button type='button' class='btn btn-primary' onclick='window.location.href=\"admin_encylopedia_edititem.php?id=". $row["item_id"] ."\"'>Edit Item</button>
+                        <button type='button' class='btn btn-danger' onclick='window.location.href=\"admin_encylopedia_deleteitem.php?id=". $row["item_id"] ."\"'>Delete Item</button>
                     </div>
                 </div>
 </div>

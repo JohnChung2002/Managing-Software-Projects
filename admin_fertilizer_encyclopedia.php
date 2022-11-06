@@ -8,6 +8,10 @@
 	<?php include 'header.php'; ?>
   <h1 class="text-center mt-5">Fertilizer Encyclopedia</h1>
   <div class="container p-5 my-5 border">
+    <div class="d-grid gap-2">
+      <button type='button' class='btn btn-primary' onclick='window.location.href="admin_encylopedia_additem.php"'>Add New Fertilizer</button>
+      <br>
+    </div>
     <div class='row'>
 <?php
     require_once 'database_credentials.php'; // File of the database credentials PATH MAYBE UPDATED

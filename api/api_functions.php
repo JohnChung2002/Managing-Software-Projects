@@ -6,6 +6,7 @@
 
     require_once $_SERVER['DOCUMENT_ROOT']."/database_credentials.php";
 
+    date_default_timezone_set("Asia/Kuala_Lumpur");
     function validate_date($date) {
         return date_create_from_format("Y-m-d", $date) !== false;
     }

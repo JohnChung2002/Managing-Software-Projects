@@ -3,18 +3,24 @@
 <head>
     <?php include "page_head.php";?>
     <title>Gardening Encyclopedia</title>
+    <style>
+      aside{
+        width: 35%;
+      }
+      </style>
 </head>
 <body>
   <?php include 'header.php'; ?>
   <div class="container border border-success rounded my-5">
         <div class="col-4 w-100">
           <h1 class="text-uppercase my-4 text-center">Add New Item</h1>
-          <p class="fs-5 fw-bold text-center">
-              Instructions for uploading image:
-                1.
-                2.
-                3.
-          </p>
+          <aside class="float-end">
+              Instructions for uploading image: <br/>
+                1. Head over to <a href="https://imgur.com/upload">Imagur</a> to upload an image <br/>
+                2. Upload the image/copy the link of the image from online and paste it in the box <br/>
+                3. Grab link and copy paste it in to the "Item Image" field!
+          </aside>
+          <div class="px-2">
           <form action="admin_encyclopedia_addtodatabase.php" method="post" novalidate="novalidate">
             <fieldset>
               <label>Product Name: <input type="text" name="productname" id="productname" maxlength="40" required="required"></label><br />
@@ -45,7 +51,7 @@
                   <input type="radio" id="notavailable" name="iavailability" value="Not Available">
                   <label for="notavailable">Not Available</label><br>
                 </div>
-                
+                </br>
                 </br>
               <label>Price In Store: <input type="text" name="iprice" id="iprice" required="required"></label><br />
               <br />
@@ -57,6 +63,7 @@
               <input type="reset" class="buttons" value="Reset">
             </div>
 		      </form>
+          </div>
           <br />
         </div>
     </div>

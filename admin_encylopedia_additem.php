@@ -5,7 +5,7 @@
     <title>Gardening Encyclopedia</title>
     <style>
       aside{
-        width: 35%;
+        width: 25%;
       }
       </style>
 </head>
@@ -14,16 +14,18 @@
   <div class="container border border-success rounded my-5">
         <div class="col-4 w-100">
           <h1 class="text-uppercase my-4 text-center">Add New Item</h1>
+          <br/>
           <aside class="float-end">
               Instructions for uploading image: <br/>
-                1. Head over to <a href="https://imgur.com/upload">Imagur</a> to upload an image <br/>
-                2. Upload the image/copy the link of the image from online and paste it in the box <br/>
-                3. Grab link and copy paste it in to the "Item Image" field!
+                1. Head over to <a target=”_blank” href="https://imgur.com/upload">Imagur</a> to upload an image. <br/>
+                2. Upload the image/copy the link of the image from online and paste it in the box. <br/>
+                3. Hover over the image to show the copy link button and click it. <br />
+                4. Paste it in to the "Item Image" field and add .jpeg behind the link!
           </aside>
           <div class="px-2">
           <form action="admin_encyclopedia_addtodatabase.php" method="post" novalidate="novalidate">
             <fieldset>
-              <label>Product Name: <input type="text" name="productname" id="productname" maxlength="40" required="required"></label><br />
+              <label>Product Name: <input type="text" name="productname" id="productname" maxlength="50" required="required"></label><br />
               <br />
               <label for="icategory">Item Category:</label>
                 <select id="icategory" name="icategory" required="required">
@@ -38,9 +40,9 @@
                 </select>
               <br />
               <br />
-              <label>Item Subcategory: <input type="text" name="isubcategory" id="isubcategory" maxlength="20" required="required"></label><br />
+              <label>Item Subcategory: <input type="text" name="isubcategory" id="isubcategory" maxlength="30" required="required"></label><br />
               <br />
-              <label>Item Image (Link Only): <input type="text" name="iimage" id="iimage" maxlength="20" required="required"></label><br />
+              <label>Item Image (Link Only): <input type="text" name="iimage" id="iimage" maxlength="50" required="required"></label><br />
               <br />
                 <p>Item Availability In Store: </p>
                 <div class="form-check form-check-inline">

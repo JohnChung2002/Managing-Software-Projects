@@ -11,14 +11,16 @@
         <div class="col-4 w-100">
           <h1 class="text-uppercase my-4">Add Item Successfully</h1>
           <?php
-            //if(isset($_POST['productname'])){
-              //$conn = start_connection();
-              //if (!$conn) {
-                //die("Connection failed: " . mysqli_connect_error());
-              //}else{
-                //echo "Successfully connecting to the database\n";
-                //echo "<br />";
-              //}
+            require_once 'database_credentials.php'; // File of the database credentials PATH MAYBE UPDATED
+            
+            if(isset($_POST['productname'])){
+              $conn = new mysqli($servername, $username, $password, $database);
+              if (!$conn) {
+                die("Connection failed: " . mysqli_connect_error());
+              }else{
+                echo "Successfully connecting to the database\n";
+                echo "<br />";
+              }
               
               // get the post records
               $productname = $_POST['productname'];
@@ -29,24 +31,24 @@
               $iprice = $_POST['iprice'];
               $idesc = $_POST['idesc'];
               
-              //$sql = "INSERT INTO encylopedia_items (`item_category`, `item_subcategory`, `item_name`, `item_image`, `availability_in_store`,`price_in_store`,`description`) VALUES ('$itemcategory', '$itemsubcategory', '$itemname', '$itemimage', '$itemavailability','$itemprice','$itemdesc')";
+              $sql = "INSERT INTO encyclopedia_items (`item_category`, `item_subcategory`, `item_name`, `item_image`, `availability_in_store`,`price_in_store`,`description`) VALUES ('$icategory', '$isubcategory', '$productname', '$iimage', '$iavailability','$iprice','$idesc')";
 
-              // insert in database 
-              //$rs = mysqli_query($conn, $sql);
-              //if($rs){
-                //echo "Item added successfully.";
-              //}
-            //else{
-              //echo "Error: " . $sql . "<br />" . mysqli_error($con);
+              //insert in database 
+              $rs = mysqli_query($conn, $sql);
+              if($rs){
+                echo "Item added successfully.";
+              }
+            else{
+              echo "Error: " . $sql . "<br />" . mysqli_error($conn);
           
-            //}
-            //}
+            }
+            }
           ?>
           
         </div>
           </div>
       
-      <p><?php echo "<img class='img-fluid' src=$iimage/>"; ?></p>
+      <p><?php echo "<img class='img-fluid' src=$iimage \>"; ?></p>
       <p>Item Name: <?php echo $productname;?></p>
       <p>Item Category: <?php echo  $icategory;?></p>
       <p>Item Subcategory: <?php echo $isubcategory;?></p>

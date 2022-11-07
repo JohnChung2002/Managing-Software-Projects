@@ -9,72 +9,55 @@
 </head>
 <body>
 <?php include 'header.php';
-    include 'profile_info.php';
-    $profile = getProfile();
-    $name = $profile['name'];
-    $email = $profile['email'];
-    $phone = $profile['phone'];
-    if(!is_null($profile['preference'])){
-        $preference = implode(",",$profile['preference']);
-    } else {
-        $preference = "No preference";
-    }
-    if(!is_null($profile['profileImage'])){
-        $pictureHash = $profile['profileImage'];
-    } else {
-        $pictureHash = "mCHMpLT";
-    }
- 
-    $client_id = "180713470d0aee0";
-    $ch = curl_init();
-    $url = "https://api.imgur.com/3/image/$pictureHash";
-    curl_setopt_array($ch,[CURLOPT_URL=>$url,CURLOPT_HTTPHEADER=>array('Authorization: Client-ID ' . $client_id),CURLOPT_RETURNTRANSFER=>TRUE,CURLOPT_SSL_VERIFYPEER=>FALSE]);
-    $result = curl_exec($ch);
-    curl_close($ch);
-    $json_array = json_decode($result, true);
-    $image_url = $json_array['data']['link'];
+    include 'profile/profile_info.php';
+    $name = $_SESSION['name'];
+    $email = $_SESSION['email'];
+    $phone = $_SESSION['phone'];
+    $preference = $_SESSION['preference'];
+    $profileImg = $_SESSION['profileImg'];
 
     echo"
     <div class='container p-5 align-items-center justify-content-center'>
+        <h2 class='m-2'>Your Profile</h2>
         <div class='col-auto'>
-            <input type='submit' class='btn btn-outline-primary float-end' name='btnEditProfile' value='Edit Profile'/>
+            <button type='button' class='btn btn-outline-primary float-end' onclick=\"location.href='profilepage-edit.php';\"> Edit Profile</button>
         </div>
         <div class='row'>
             <div class='profile-img'>
-                <img src='$image_url' class='rounded mx-auto d-block' alt='$name Profile Picture' />
+                <img src='$profileImg' class='rounded mx-auto d-block' alt='$name Profile Picture' />
             </div>
         </div>
         <div class='row'>
-            <div class='col-md-8 p-5'>
-                <div class='row my-3'>
-                    <div class='col-md-6'>
+            <div class='col p-5'>
+                <div class='row my-3 border border-dark rounded-pill p-2'>
+                    <div class='col-md-6 d-flex align-items-center'>
                         <label>Name</label>
                     </div>
-                    <div class='col-md-6'>
+                    <div class='col-md-6 d-flex align-items-center'>
                         <p id='name'>$name</p>
                     </div>
                 </div>
-                <div class='row my-3'>
-                    <div class='col-md-6'>
+                <div class='row my-3 border border-dark rounded-pill p-2'>
+                    <div class='col-md-6 d-flex align-items-center'>
                         <label>Email</label>
                     </div>
                     <div class='col-md-6'>
                         <p id='email'>$email</p>
                     </div>
                 </div>
-                <div class='row my-3'>
-                    <div class='col-md-6'>
+                <div class='row my-3 border border-dark rounded-pill p-2'>
+                    <div class='col-md-6 d-flex align-items-center'>
                         <label>Phone</label>
                     </div>
                     <div class='col-md-6'>
                         <p id='phone'>$phone</p>
                     </div>
                 </div>
-                <div class='row my-3'>
-                    <div class='col-md-6'>
+                <div class='row my-3 border border-dark rounded-pill p-2'>
+                    <div class='col-md-6 col-md-6 d-flex align-items-center'>
                         <label>Preference</label>
                     </div>
-                    <div class='col-md-6'>
+                    <div class='col-md-6 content_center'>
                         <p id='preference'>$preference</p>
                     </div>
                 </div>

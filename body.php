@@ -22,21 +22,7 @@ echo '
         </div>
       </div>
     </div>
-    <div class="container border border-success text-center rounded my-5 h-100" >
-      <nav id="navbar-example2" class="navbar bg-light px-3 mb-3">
-      </nav>
-      <div class="row text-center">
-        <div class="col-4 w-100">
-          <h1 class="text-uppercase mt-5">News and Updates</h1>
-          <span class="d-block p-1" style="background-color: gray;"></span>
-        </div>
-      </div>
-      <div class="row justify-content-center">
-        <div class=" col-4 fs-4 w-75 my-5 ">
-          <p style="color: gray;"> No Updates for now, please check again later</p>
-        </div>
-      </div>
-    </div>
+    
 ';
 
 ?>

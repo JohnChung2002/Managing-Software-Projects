@@ -14,8 +14,8 @@
             die("Connection failed: " . $conn->connect_error);
           }
         
-        $fname = $_POST['page_resource'];
-        $lname = $_POST['lname'];
+        $page_resource = $_POST['page_resource'];
+        $remarks = $_POST['remarks'];
         $sql = "INSERT INTO homepage_info (page_resource,remarks)
             VALUES ('$page_resource','$remarks')";
           

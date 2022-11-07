@@ -35,10 +35,39 @@
           }
         ?>
 
-        <form method="POST">
+        <form method="POST" id="edit_form" action="homepage/editprocess.php" >
 
             <textarea name="page_resource">
-                <?php include 'body.php'; ?>
+                <?php 
+                    $sql = "SELECT page_resource FROM Homepage_info ORDER BY version_id DESC LIMIT 1";
+                    $result = $conn->query($sql);
+
+                    if ($result->num_rows > 0) {
+                        while($row = $result->fetch_assoc()) {
+                          echo $row["page_resource"];
+                        }
+                      } else{
+                        echo "0 results";
+                      }
+                    
+                 ?>
+                 <div class="container border border-success rounded my-5 " >
+                    <div class="row text-center">
+                     <div class="col-4 w-100">
+                        <h1 class="text-uppercase my-5">Cacti-Succulent Kuching</h1>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class=" col-4 fs-4 w-75 my-5 ">
+                    <p> Cacti-Succulent Kuching is a local homegrown business specialized in selling various 
+                        type and size of succulent plants. Apart from selling succulent plants, we also sell different type 
+                        of gardening tools, soils and fertilizers at an affordable cost. Cacti-Succulent Kuching is setup in 
+                        2020  in  which  business  is  running  both  at  home  as  well  as  weekend  market.  Our  primary  
+                        mission  is  to  establish  a  long-lasting  relationship  of  trust  and  commitment  with  each  visitor 
+                        through providing the highest level of customer service.</p>
+                    </div>
+                </div>
+                </div>
             </textarea>
             <div class = "remarks">
 				<label for = "remarks">Remarks</label><br><input type = "text" id="remarks" name ="remarks"  />*</br>
@@ -58,7 +87,10 @@
 
 
 
-        <?php include 'footer.php'; ?>
+        <?php 
+        include 'footer.php'; 
+        $conn->close();
+        ?>
     </body>
 
     <script>

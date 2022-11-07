@@ -17,6 +17,11 @@
         session_start(); 
     } 
     
+    // Check if SuperAdmin creating admin account
+    if(isset($_SESSION['user_role']) && $_SESSION['user_role'] == "Super Admin"){
+        $userRole = "Admin";
+    }
+
     $nameMsgBool = NameValidation();
     $emailMsgBool = EmailValidation();
     $passwordMsgBool = PasswordValidation();
@@ -96,13 +101,14 @@
             $sql->execute();
             $result = $sql->get_result();
             $userID = mysqli_fetch_assoc($result)['user_id'];
+            echo $userID;
             
-            $sql = $conn -> prepare("INSERT INTO user_credentials (email_address, password, user_id, user_role, account_status) VALUES (?, ?, ?, 'User', 'Unactivated');");
-            $sql->bind_param('ssi', $email, $hashedPassword, $userID);
+            $sql = $conn -> prepare("INSERT INTO user_credentials (email_address, password, user_id, user_role, account_status) VALUES (?, ?, ?, ?, 'Unactivated');");
+            $sql->bind_param('sssi', $email, $hashedPassword, $userRole, $userID);
             $sql->execute();
 
             // Send email to user with the token for verification
-            sendAccountVerificationEmail($email);
+            sendAccountVerificationEmail($email,$email);
             $_SESSION['signupMsg'] = "
             <div class='alert alert-success'>
                 Account created successfully. Please check your email for verification.

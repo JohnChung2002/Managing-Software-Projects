@@ -102,8 +102,6 @@
             $sql->execute();
             $result = $sql->get_result();
             $userID = mysqli_fetch_assoc($result)['user_id'];
-            echo $userID;
-            echo $userRole;
             
             $sql = $conn -> prepare("INSERT INTO user_credentials (email_address, password, user_id, user_role, account_status) VALUES (?, ?, ?, ?, 'Unactivated');");
             $sql->bind_param('ssis', $email, $hashedPassword, $userID, $userRole);

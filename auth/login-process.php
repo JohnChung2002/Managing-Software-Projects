@@ -46,7 +46,7 @@
                 $_SESSION['user_id'] = $user_id;
                 $_SESSION['user_role'] = $user_role;
                 
-                // header("Location: dashboard.php");
+                header("Location: dashboard.php");
             }else{
                 // INCORRECT PASSWORD
                 $_SESSION['loginMsg'] = "

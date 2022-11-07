@@ -11,7 +11,7 @@
   <div class="container p-5 my-5 border">
     <div class='row'>
       <?php  
-        include 'booking/booking_functions.php';
+        include 'booking/enquiry_functions.php';
         getEnquiryRequest();
       ?>
     </div>

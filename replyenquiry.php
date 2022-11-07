@@ -14,7 +14,7 @@
   
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        include "booking/booking_functions.php";
+        include "booking/enquiry_functions.php";
         answerenquiry();
     }
 
@@ -25,7 +25,7 @@
         <div class='container p-5 my-5 border'>
             <p>You are now replying to the current enquiry.</p>";
         getBookingInformation($_GET["id"]);
-        
+
         echo "
             <form method='post' class='row g-3 needs-validation' novalidate>
             <div class='col-md-6'>
@@ -35,7 +35,7 @@
             <div class='invalid-feedback'>Please enter a response.  </div>
             </div>
             <div class='col-12'>
-                <button type='submit' class='btn btn-primary'>Reponse Now</button>
+                <button type='submit' class='btn btn-primary'>Response Now</button>
                 <button type='reset' class='btn btn-primary'>Reset</button>
             </div>
             </form>

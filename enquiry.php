@@ -12,7 +12,7 @@
 <body>
 <?php include 'header.php';  
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        require "booking/booking_functions.php";
+        require "booking/enquiry_functions.php";
         newenquiry();} ?>
 
 <h1 class="text-center mt-5">ENQUIRY</h1>

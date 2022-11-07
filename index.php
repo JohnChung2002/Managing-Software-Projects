@@ -11,10 +11,7 @@
     <?php include 'header.php'; ?>
     <?php include 'database_credentials.php'; ?>
     <?php
-        if (isset($_POST["mytextarea"])) {	 
-            echo "You entered: " . $_POST["mytextarea"];
-        }
-        $conn = new mysqli($servername, $username, $password, $database);
+        $conn = mysqli_connect($servername, $username, $password, $database);
 
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
@@ -58,7 +55,7 @@
         <span class="visually-hidden">Next</span>
       </button>
     </div>
-    
+
     <?php include 'body.php'; ?>
     <?php include 'footer.php'; ?>
 </body>

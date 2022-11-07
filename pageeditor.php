@@ -28,7 +28,7 @@
         if (isset($_POST["page_resource"])) {	 
             echo "You entered: " . $_POST["page_resource"];
         }
-        $conn = new mysqli($servername, $username, $password, $database);
+        $conn = mysqli_connect($servername, $username, $password, $database);
 
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
@@ -40,12 +40,15 @@
             <textarea name="page_resource">
                 <?php include 'body.php'; ?>
             </textarea>
-            
+            <div class = "remarks">
+				<label for = "remarks">Remarks</label><br><input type = "text" id="remarks" name ="remarks"  />*</br>
+			</div>
+            <div class = "form-button">
+			    <input type="submit" value="Submit"/>
+		    </div>
         </form>
 
-        <div class = "form-button">
-			<input type="submit" value="Register"/>
-		</div>
+        
 
         <div class = "form-button">
             <button id='page_resource_button' class="button_style" name="New Content">Press to set new content</button>

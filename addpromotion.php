@@ -23,15 +23,24 @@
 
         <form method="POST" id="promotion_form"  >
 
-            <textarea name="page_resource">
-                
-            </textarea>
-            <div class = "remarks">
-				<label for = "remarks">Remarks</label><br><input type = "text" id="remarks" name ="remarks"  />*</br>
-			</div>
-            <div class = "form-button">
-			    <input type="submit" value="Submit"/>
-		    </div>
+            <div class="col-md-4">
+                <label for="inputState" class="form-label">Choose Type</label>
+                <select id="inputState" class="form-select">
+                    <option selected>Announcement</option>
+                    <option>Promtotion</option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label for="inputEmail4" class="form-label">Title</label>
+                <input type="title" class="form-control" id="content_title">
+            </div>
+            <div class="col-md-6">
+                <label for="inputPassword4" class="form-label">Image</label>
+                <input type="file" class="form-control" id="content_image">
+            </div>
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary">Sign in</button>
+            </div>
         </form>
 
     

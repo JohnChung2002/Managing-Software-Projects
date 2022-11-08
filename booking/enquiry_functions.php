@@ -172,7 +172,7 @@ function createEnquiryTicketEmail($id) {
     mysqli_free_result($result);
     mysqli_close($conn);
     $callurl = curl_init();
-    $api_link = "https://script.google.com/macros/s/AKfycbzEmPmrvMotIn0uxclJALy5WCurHuaGxNWPU95Cwqrm7dGqpaI2uWXHcGpULVav6ps/exec";
+    $api_link = "https://script.google.com/macros/s/AKfycbx6V8SSEY41OtIe-VV4Xk7_2Z-7wf2BPghVRszI12MM6KTApzYhe7pTRY-4eaj063U/exec";
     $param = "?key=EB3914D9F167D9A414DF438C7D4CD&action=createenquiryticket&email={$email}&name={$name}&id={$id}&title={$subject}&enquiry={$content}";
     $url = $api_link . $param;
     curl_setopt_array($callurl,[CURLOPT_URL=>$url,CURLOPT_TIMEOUT_MS=>1000,CURLOPT_RETURNTRANSFER=>FALSE]);
@@ -195,7 +195,7 @@ function answerEnquiryTicketEmail($id) {
     mysqli_free_result($result);
     mysqli_close($conn);
     $callurl = curl_init();
-    $api_link = "https://script.google.com/macros/s/AKfycbzEmPmrvMotIn0uxclJALy5WCurHuaGxNWPU95Cwqrm7dGqpaI2uWXHcGpULVav6ps/exec";
+    $api_link = "https://script.google.com/macros/s/AKfycbx6V8SSEY41OtIe-VV4Xk7_2Z-7wf2BPghVRszI12MM6KTApzYhe7pTRY-4eaj063U/exec";
     $param = "?key=EB3914D9F167D9A414DF438C7D4CD&action=answerenquiry&email={$email}&name={$name}&id={$id}&title={$subject}&reply={$reply}";
     $url = $api_link . $param;
     curl_setopt_array($callurl,[CURLOPT_URL=>$url,CURLOPT_TIMEOUT_MS=>1000,CURLOPT_RETURNTRANSFER=>FALSE]);

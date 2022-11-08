@@ -9,7 +9,7 @@
 	
 <h1 class="text-center mt-5">Gardening Tools Encyclopedia</h1>	
 <div class="container my-5 p-5 border" style="background-image:url('images/texture_background.jpeg');">
-<button class="btn btn-light" disabled>All</button>
+<button class="btn btn-dark" onclick="window.location.href='gardening_tools_details.php'">All</button>
 <button class="btn btn-dark mx-2" onclick="window.location.href='gardening_tools_price.php'">Sort by Price</button>
 <button class="btn btn-dark" onclick="window.location.href='gardening_tools_availability.php'">Filter by Availability</button>
 <br>

@@ -1,3 +1,6 @@
+<?php 
+    include 'auth/is_loggedin.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +17,7 @@
     </div>
     <div class='row'>
 <?php
-    require_once 'database_credentials.php'; // File of the database credentials PATH MAYBE UPDATED
+  require_once 'database_credentials.php'; // File of the database credentials PATH MAYBE UPDATED
 	$conn = new mysqli($servername, $username, $password, $database);
 	if ($conn->connect_error) {
 		die("Connection failed(because there is no data in the database yet): " . $conn->connect_error);

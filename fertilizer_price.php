@@ -7,9 +7,17 @@
 <body>
 	<?php include 'header.php'; ?>
 	
-<h1 class="text-center mt-5">Fertilizer Encyclopedia</h1>	
-<div class="container my-5 p-5 border" style="background-image:url('images/texture_background.jpeg');">
-<button class="btn btn-dark" onclick="window.location.href='fertilizer_encyclopedia.php'">All</button>
+<h1 class="text-center mt-5">Fertilizer Encyclopedia</h1>
+<div class="container mt-5">
+<nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="fertilizer_encyclopedia.php">Fertilizer Encyclopedia</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Price</li>
+  </ol>
+</nav>
+</div>		
+<div class="container my-4 p-5 border" style="background-image:url('images/texture_background.jpeg');">
+<button class="btn btn-dark" onclick="window.location.href='fertilizer_details.php'">All</button>
 <button class="btn btn-light mx-2" disabled>Sort by Price</button>
 <button class="btn btn-dark" onclick="window.location.href='fertilizer_availability.php'">Filter by Availability</button>
 <br>

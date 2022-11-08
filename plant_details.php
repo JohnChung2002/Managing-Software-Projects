@@ -16,7 +16,7 @@
   </ol>
 </nav>
 </div>	
-<div class="container my-5 p-5 border" style="background-image:url('images/texture_background.jpeg');">
+<div class="container my-4 p-5 border" style="background-image:url('images/texture_background.jpeg');">
 <button class="btn btn-light" disabled>All</button>
 <button class="btn btn-dark mx-2" onclick="window.location.href='plant_price.php'">Sort by Price</button>
 <button class="btn btn-dark" onclick="window.location.href='plant_availability.php'">Filter by Availability</button>

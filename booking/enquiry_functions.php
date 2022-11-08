@@ -59,20 +59,12 @@ function newenquiry(){
 
 function getEnquiryRequest(){
 
+
     $conn = start_connection();
-    // $email = $_GET("SELECT contact_info FROM enquiries;");
-
-    $sql = $conn -> prepare("SELECT enquiry_id, contact_name, contact_info, enquiry_subject, enquiry_content, enquiry_status FROM enquiries WHERE contact_info=? ORDER BY contact_name DESC;");
-    $sql->bind_param('s', $email);
-    $sql->execute();
-    $result = $sql->get_result();
    
-
-    // $command = "SELECT enquiry_id, contact_name, contact_info, enquiry_subject, enquiry_content, enquiry_status FROM enquiries WHERE contact_info=? ORDER BY contact_name DESC;";
-    // $stmt = mysqli_prepare($conn, $command);
-    // mysqli_stmt_bind_param($stmt, "s",$email);
-    // mysqli_stmt_execute($stmt); 
-    // $result = mysqli_stmt_get_result($stmt);
+    $user_id = $_SESSION["user_id"];
+    $command = "SELECT enquiry_id, contact_name, contact_info, enquiry_subject, enquiry_content, enquiry_status FROM enquiries ORDER BY contact_name DESC;";
+    $result = mysqli_query($conn , $command);
 
     if (mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
@@ -84,19 +76,21 @@ function getEnquiryRequest(){
                     <p class='card-text'>
                     Enquiry requested by: " . $row["contact_name"] . " 
                     <br/>
-                    email : ". $row["enquiry_contact"] . "
+                    email : ". $row["contact_info"] . "
                     <br/>
                     Subject: " . $row["enquiry_subject"] . "
                     <br/>
                     Comments: " . $row["enquiry_content"] . "
                     <br/>
                     Status: " . $row["enquiry_status"] . "
+                    <br/>
+                    Enquiry ID: " . $row["enquiry_id"] . "
                     </p>";
             if ($row["enquiry_status"] == "Unanswered") {
                 echo "
                 <div class='d-flex justify-content-between align-items-center'>
                     <div class='btn-group'>
-                        <button type='button' class='btn btn-danger' onclick='window.location.href=\"replyenquiry.php?id=". $row["enquiry_id"] ."\"'>Reply</button>
+                        <button type='button' class='btn btn-primary' onclick='window.location.href=\"replyenquiry.php?id=". $row["enquiry_id"] ."\"'>Reply</button>
                     </div>
                 </div>";
             }   
@@ -114,52 +108,55 @@ function getEnquiryRequest(){
     }
 }
 
-// function getEnquiryInformation($enquiry_id) {
-//     $conn = start_connection();
-//     $command = "SELECT contact_name, contact_info, enquiry_subject, enquiry_content FROM enquiries WHERE enquiry_id=? ;";
-//     $stmt = mysqli_prepare($conn, $command);
-//     mysqli_stmt_bind_param($stmt, "s", $enquiry_id);
-//     mysqli_stmt_execute($stmt);
-//     $result = mysqli_stmt_get_result($stmt);
-//     $row = mysqli_fetch_assoc($result);
-//     mysqli_free_result($result);
-//     echo "
-//     Enquiry requested by: " . $row["contact_name"] . " 
-//     <br/>
-//     email : ". $row["enquiry_contact"] . "
-//     <br/>
-//     Subject: " . $row["enquiry_subject"] . "
-//     <br/>
-//     Comments: " . $row["enquiry_content"] . "
-//     ";
-// }
+function getEnquiryInformation($enquiry_id) {
+    $conn = start_connection();
+    // $user_id = $_SESSION["user_id"];
+    $command = "SELECT contact_name, contact_info, enquiry_subject, enquiry_content FROM enquiries WHERE enquiry_id=? ;";
+    $stmt = mysqli_prepare($conn, $command);
+    mysqli_stmt_bind_param($stmt, "s", $enquiry_id);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    $row = mysqli_fetch_assoc($result);
+    mysqli_free_result($result);
+    echo "
+    <strong>Enquiry requested by :</strong> " . $row["contact_name"] . " 
+    <br/>
+    <strong>Email :</strong> ". $row["contact_info"] . "
+    <br/>
+    <strong>Subject :</strong> " . $row["enquiry_subject"] . "
+    <br/>
+    <strong>Comments :</strong> " . $row["enquiry_content"] . "
+    </p>";
+}
 
-// function answerenquiry() {
-//     if ( !empty($_POST["inputReason"])) {
-//         $enquiry_id = ["SELECT enquiry_id FROM enquiries"]
-//         $reason = $_POST["inputReason"];
-//         $conn = start_connection();
-//         $command = "UPDATE enquiries SET enquiry_status='Answered', enquiry_reply=? WHERE booking_id=?;";
-//         $stmt = mysqli_prepare($conn, $command);
-//         mysqli_stmt_bind_param($stmt, "ss", $reason, $enquiry_id);
-//         if (mysqli_stmt_execute($stmt)) {
-//             echo "
-//             <div class='container'>
-//                 <div class='alert alert-success mt-4'>
-//                 Booking cancelled successfully! Please check your email or booking page for more details.
-//                 </div>
-//             </div>";
-//             mysqli_close($conn);
-//             return true;
-//         }
-//         mysqli_close($conn);
-//     }
-//     echo "
-//     <div class='container'>
-//         <div class='alert alert-danger'>
-//         Invalid request. Please try again.
-//         </div>
-//     </div>";
-//     return false;
-// }
+function answerenquiry() {
+    if ( !empty($_POST["inputReason"])) {
+
+        $enquiry_id = $_GET["id"];
+        $reason = $_POST["inputReason"];
+        
+        $conn = start_connection();
+        $command = "UPDATE enquiries SET enquiry_status='Answered', enquiry_reply=? WHERE enquiry_id=?;";
+        $stmt = mysqli_prepare($conn, $command);
+        mysqli_stmt_bind_param($stmt, "ss", $reason, $enquiry_id);
+        if (mysqli_stmt_execute($stmt)) {
+            echo "
+            <div class='container min-vh-100'>
+            <div class='alert alert-success mt-4'>
+                Enquiry replied successfully! A mail will be sent to their email.
+                </div>
+            </div>";
+            mysqli_close($conn);
+            return true;
+        }
+        mysqli_close($conn);
+    }
+    echo "
+    <div class='container'>
+        <div class='alert alert-danger'>
+        Invalid request. Please try again.
+        </div>
+    </div>";
+    return false;
+}
 ?>

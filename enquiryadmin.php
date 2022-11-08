@@ -1,4 +1,8 @@
 
+<?php
+  include 'auth/is_admin.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

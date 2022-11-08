@@ -59,11 +59,8 @@ function newenquiry(){
 
 function getEnquiryRequest(){
 
-
     $conn = start_connection();
-   
-    $user_id = $_SESSION["user_id"];
-    $command = "SELECT enquiry_id, contact_name, contact_info, enquiry_subject, enquiry_content, enquiry_status FROM enquiries ORDER BY contact_name DESC;";
+    $command = "SELECT enquiry_id, contact_name, contact_info, enquiry_subject, enquiry_content, enquiry_status FROM enquiries ORDER BY enquiry_id DESC;";
     $result = mysqli_query($conn , $command);
 
     if (mysqli_num_rows($result) > 0) {

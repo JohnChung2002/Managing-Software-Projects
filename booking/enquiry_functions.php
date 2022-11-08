@@ -159,4 +159,50 @@ function answerenquiry() {
     </div>";
     return false;
 }
+
+function createEnquiryTicketEmail($id) {
+    $conn = start_connection();
+    $command = "SELECT contact_name, contact_info, enquiry_subject, enquiry_content FROM enquiries WHERE enquiry_id=? AND enquiry_status='Unanswered';";
+    $stmt = mysqli_prepare($conn, $command);
+    mysqli_stmt_bind_param($stmt, "i", $id);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    $row = mysqli_fetch_assoc($result);
+    $name = $row["contact_name"];
+    $email = $row["contact_info"];
+    $subject = $row["enquiry_subject"];
+    $content = $row["enquiry_content"];
+    mysqli_free_result($result);
+    mysqli_close($conn);
+    $callurl = curl_init();
+    $api_link = "https://script.google.com/macros/s/AKfycbzEmPmrvMotIn0uxclJALy5WCurHuaGxNWPU95Cwqrm7dGqpaI2uWXHcGpULVav6ps/exec";
+    $param = "?key=EB3914D9F167D9A414DF438C7D4CD&action=createenquiryticket&email={$email}&name={$name}&id={$id}&title={$subject}&enquiry={$content}";
+    $url = $api_link . $param;
+    curl_setopt_array($callurl,[CURLOPT_URL=>$url,CURLOPT_TIMEOUT_MS=>1000,CURLOPT_RETURNTRANSFER=>FALSE]);
+    curl_exec($callurl);
+    curl_close($callurl);
+}
+
+function answerEnquiryTicketEmail($id) {
+    $conn = start_connection();
+    $command = "SELECT contact_name, contact_info, enquiry_subject, enquiry_reply FROM enquiries WHERE enquiry_id=? AND enquiry_status='Answered';";
+    $stmt = mysqli_prepare($conn, $command);
+    mysqli_stmt_bind_param($stmt, "i", $id);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    $row = mysqli_fetch_assoc($result);
+    $name = $row["contact_name"];
+    $email = $row["contact_info"];
+    $subject = $row["enquiry_subject"];
+    $reply = $row["enquiry_reply"];
+    mysqli_free_result($result);
+    mysqli_close($conn);
+    $callurl = curl_init();
+    $api_link = "https://script.google.com/macros/s/AKfycbzEmPmrvMotIn0uxclJALy5WCurHuaGxNWPU95Cwqrm7dGqpaI2uWXHcGpULVav6ps/exec";
+    $param = "?key=EB3914D9F167D9A414DF438C7D4CD&action=answerenquiry&email={$email}&name={$name}&id={$id}&title={$subject}&reply={$reply}";
+    $url = $api_link . $param;
+    curl_setopt_array($callurl,[CURLOPT_URL=>$url,CURLOPT_TIMEOUT_MS=>1000,CURLOPT_RETURNTRANSFER=>FALSE]);
+    curl_exec($callurl);
+    curl_close($callurl);
+}
 ?>

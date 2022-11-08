@@ -25,6 +25,17 @@
           else {
               echo "Error: " . $sql . "<br>" . mysqli_error($conn);
               }
+        
+              $sql = "SELECT page_resource FROM Homepage_info ORDER BY version_id DESC LIMIT 1";
+              $result = $conn->query($sql);
+
+              if ($result->num_rows > 0) {
+                  while($row = $result->fetch_assoc()) {
+                    echo $row["page_resource"];
+                  }
+                } else{
+                  echo "0 results";
+                }
               
           
     ?>

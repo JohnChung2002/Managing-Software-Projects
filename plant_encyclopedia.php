@@ -9,7 +9,7 @@
 	
 <h1 class="text-center mt-5">Plant Encyclopedia</h1>	
 <div class="container my-5 p-5 border" style="background-image:url('images/texture_background.jpeg');">
-<button class="btn btn-light" disabled>All</button>
+<button class="btn btn-dark" onclick="window.location.href='plant_details.php'">All</button>
 <button class="btn btn-dark mx-2" onclick="window.location.href='plant_price.php'">Sort by Price</button>
 <button class="btn btn-dark" onclick="window.location.href='plant_availability.php'">Filter by Availability</button>
 <br>

@@ -7,19 +7,19 @@
 <body>
 	<?php include 'header.php'; ?>
 	
-<h1 class="text-center mt-5">Plant Encyclopedia</h1>
+<h1 class="text-center mt-5">Plant Encyclopedia</h1>	
 <div class="container mt-5">
 <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="plant_encyclopedia.php">Plant Encyclopedia</a></li>
-    <li class="breadcrumb-item active" aria-current="page">Availability</li>
+    <li class="breadcrumb-item active" aria-current="page">All Details</li>
   </ol>
 </nav>
 </div>	
-<div class="container my-4 p-5 border" style="background-image:url('images/texture_background.jpeg');">
-<button class="btn btn-dark" onclick="window.location.href='plant_details.php'">All</button>
+<div class="container my-5 p-5 border" style="background-image:url('images/texture_background.jpeg');">
+<button class="btn btn-light" disabled>All</button>
 <button class="btn btn-dark mx-2" onclick="window.location.href='plant_price.php'">Sort by Price</button>
-<button class="btn btn-light" disabled>Filter by Availability</button>
+<button class="btn btn-dark" onclick="window.location.href='plant_availability.php'">Filter by Availability</button>
 <br>
 <br>
 <label for="" class='fw-bold fs-5'>Item ID:</label>
@@ -35,7 +35,7 @@
 	if ($conn->connect_error) {
 		die("Connection failed(because there is no data in the database yet): " . $conn->connect_error);
 	}
-	$sql = "SELECT * FROM encyclopedia_items WHERE (item_category='Plants' OR item_category='Seeds') AND availability_in_store='Available'";
+	$sql = "SELECT item_id, item_category, item_subcategory, item_name, item_image, availability_in_store, price_in_store, description FROM encyclopedia_items WHERE item_category='Plants' OR item_category='Seeds'";
 	$result = $conn->query($sql);
 	if ($result->num_rows > 0) {
 		while($row = $result->fetch_assoc()) {
@@ -45,14 +45,29 @@
 			<div class='card-body'>
 				<p class='card-text fw-bold text-center'> 
                             Item ID:
-                            ".$row["item_id"]."			
+                            ".$row["item_id"]."
                  </p>
 				 <img class='img-fluid my-3' src=".$row["item_image"]."/>
-				 <br>
-				 <p class='card-text text-center'> 
-                            Availability in store:
-                            ".$row["availability_in_store"]."			
-                 </p>		
+				 <p class='card-text fw-bold text-center'> 
+                            Item Name:
+                            ".$row["item_name"]."
+                 </p>
+				 <p class='card-text fw-bold text-center'> 
+                            Item Subcategory:
+                            ".$row["item_subcategory"]."
+                 </p>
+				 <p class='card-text fw-bold text-center'> 
+                            Item Availability:
+                            ".$row["availability_in_store"]."
+                 </p>
+				 <p class='card-text fw-bold text-center'> 
+                            Price: RM
+                            ".$row["price_in_store"]."
+                 </p>
+				 <p class='card-text fw-bold text-center'> 
+                            Description:
+                            ".$row["description"]."
+                 </p>
 			</div>
 		</div>
 	</div>";

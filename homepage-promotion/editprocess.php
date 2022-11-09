@@ -1,21 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <?php include 'page_head.php'; ?>
+    <?php include '../page_head.php'; ?>
     <title>Cacti Succulent Kuching</title>
 </head>
 <body id = 'version_id'>
-    <?php include 'header.php'; ?>
-    <?php include 'database_credentials.php'; ?>
+    <?php include '../database_credentials.php'; ?>
     <?php
+
         $conn = mysqli_connect($servername, $username, $password, $database);
 
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
           }
         
-        $content_type = $_POST['content_type']
-        $content_title = $_POST['content_title'];
+        $page_resource = $_POST['page_resource'];
         $remarks = $_POST['remarks'];
         $sql = "INSERT INTO homepage_info (page_resource,remarks)
             VALUES ('$page_resource','$remarks')";
@@ -40,7 +39,10 @@
               
           
     ?>
+
+    <button type="button" class="btn btn-success">
+        <a href="/Managing-Software-Projects/pageeditor.php"> Go Back </a>
+    </button>
      
-    <?php include 'footer.php'; ?>
 </body>
 </html>

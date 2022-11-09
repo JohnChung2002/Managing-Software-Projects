@@ -32,7 +32,7 @@
           }
         ?>
 
-        <form method="POST" id="edit_form" action="editprocess.php" >
+        <form method="POST" id="edit_form" action="homepage-promotion/editprocess.php" >
 
             <textarea name="page_resource">
                 <?php 

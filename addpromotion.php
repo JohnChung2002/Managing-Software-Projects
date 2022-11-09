@@ -12,34 +12,30 @@
 
     <body>
         <?php include 'header.php'; ?>
-        <?php include 'database_credentials.php'; ?>
-        <?php
-        $conn = mysqli_connect($servername, $username, $password, $database);
 
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-          }
-        ?>
-
-        <form method="POST" id="promotion_form"  >
+        <form method="post" id="promotion_form" action = "homepage-promotion/promotionformprocess.php" >
 
             <div class="col-md-4">
-                <label for="inputState" class="form-label">Choose Type</label>
-                <select id="inputState" class="form-select">
-                    <option selected>Announcement</option>
-                    <option>Promtotion</option>
+                <label for="content_type" class="form-label">Choose Type</label>
+                <select name = "content_type" id="content_type" class="form-select">
+                    <option value = "Announcement">Announcement</option>
+                    <option value = "Promotion">Promotion</option>
                 </select>
             </div>
             <div class="col-md-6">
-                <label for="inputEmail4" class="form-label">Title</label>
-                <input type="title" class="form-control" id="content_title">
+                <label for="content_title" class="form-label">Title</label>
+                <input type="title" class="form-control" name = "content_title" id="content_title">
             </div>
             <div class="col-md-6">
-                <label for="inputPassword4" class="form-label">Image</label>
-                <input type="file" class="form-control" id="content_image">
+                <label for="content_resource" class="form-label">Description</label>
+                <input type="text" class="form-control" name = "content_resource" id="content_resource">
+            </div>
+            <div class="col-md-6">
+                <label for="content_image" class="form-label">Image</label>
+                <input type="file" class="form-control" name = "content_image" id="content_image">
             </div>
             <div class="col-12">
-                <button type="submit" class="btn btn-primary">Sign in</button>
+                <button type="submit" value="Submit" class="btn btn-primary">Submit</button>
             </div>
         </form>
 
@@ -47,7 +43,6 @@
 
         <?php 
         include 'footer.php'; 
-        $conn->close();
         ?>
     </body>
 

@@ -55,7 +55,7 @@
                  <div class='d-flex justify-content-between align-items-center'>
                     <div class='btn-group'>
                         <button type='button' class='btn btn-primary' onclick='window.location.href=\"admin_encylopedia_edititem.php?id=". $row["item_id"] ."\"'>Edit Item</button>
-                        <button type='button' class='btn btn-danger' onclick='window.location.href=\"admin_encylopedia_deleteitem.php?id=". $row["item_id"] ."\"'>Delete Item</button>
+                        <button type='button' class='btn btn-danger' onclick='window.location.href=\"admin_encyclopedia_deleteitem.php?id=". $row["item_id"] ."\"'>Delete Item</button>
                     </div>
                 </div>
 </div>

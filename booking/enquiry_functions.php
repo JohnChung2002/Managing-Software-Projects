@@ -39,11 +39,17 @@ function newenquiry(){
                     Enquiry has been submitted successfully! You will receive a response back to your email within 5 business days depending on the queue. Please do check your junk folder too.
                     </div>
                 </div>";
+
                 return true; 
             }
             mysqli_free_result($result);
         }
         mysqli_close($conn);
+
+        $conn = start_connection();
+        $command = "SELECT enquiry_id FROM enquiries ;";
+        createEnquiryTicketEmail($row["enquiry_id"]);
+
     }
     
     echo"
@@ -136,6 +142,9 @@ function answerenquiry() {
         $command = "UPDATE enquiries SET enquiry_status='Answered', enquiry_reply=? WHERE enquiry_id=?;";
         $stmt = mysqli_prepare($conn, $command);
         mysqli_stmt_bind_param($stmt, "ss", $reason, $enquiry_id);
+
+        answerEnquiryTicketEmail($enquiry_id);
+        
         if (mysqli_stmt_execute($stmt)) {
             echo "
             <div class='container min-vh-100'>
@@ -143,6 +152,7 @@ function answerenquiry() {
                 Enquiry replied successfully! A mail will be sent to their email.
                 </div>
             </div>";
+            
             mysqli_close($conn);
             return true;
         }

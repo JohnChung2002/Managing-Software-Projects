@@ -18,7 +18,7 @@
         answerenquiry();
          }?>
 
-    
+
 
     <h1 class='text-center mt-5'>REPLY ENQUIRY</h1>
     <div class='container p-5 my-5 border'>

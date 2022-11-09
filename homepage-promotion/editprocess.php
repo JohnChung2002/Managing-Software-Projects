@@ -20,7 +20,7 @@
             VALUES ('$page_resource','$remarks')";
           
           if (mysqli_query($conn, $sql)) {
-              echo "New record created successfully\n";
+              echo '<h1 class = "position-absolute bottom-0 start-50 translate-middle"> New record created successfully </h1>';
               } 
           else {
               echo "Error: " . $sql . "<br>" . mysqli_error($conn);
@@ -40,8 +40,8 @@
           
     ?>
 
-    <button type="button" class="btn btn-success">
-        <a href="/Managing-Software-Projects/pageeditor.php"> Go Back </a>
+    <button type="button" class="btn btn-success position-absolute top-70 start-50 translate-middle mt-1">
+        <a class="text-white-50" href="/Managing-Software-Projects/pageeditor.php"> Go Back </a>
     </button>
      
 </body>

@@ -32,37 +32,33 @@
           }
         ?>
 
-        <form method="POST" id="edit_form" action="homepage-promotion/editprocess.php" >
+        <form method="POST" id="edit_form" class = "justfiy-content-center"action="homepage-promotion/editprocess.php" >
+            <h1 class = "mb-3 ms-3 mt-3"> Welcome to homepage edit</h1>
+            <div class = "mb-3">
+                <textarea name="page_resource">
+                    <?php 
+                        $sql = "SELECT page_resource FROM Homepage_info ORDER BY version_id DESC LIMIT 1";
+                        $result = $conn->query($sql);
 
-            <textarea name="page_resource">
-                <?php 
-                    $sql = "SELECT page_resource FROM Homepage_info ORDER BY version_id DESC LIMIT 1";
-                    $result = $conn->query($sql);
-
-                    if ($result->num_rows > 0) {
-                        while($row = $result->fetch_assoc()) {
-                          echo $row["page_resource"];
+                        if ($result->num_rows > 0) {
+                            while($row = $result->fetch_assoc()) {
+                            echo $row["page_resource"];
+                            }
+                        } else{
+                            echo "0 results";
                         }
-                      } else{
-                        echo "0 results";
-                      }
-                    
-                 ?>
-            </textarea>
-            <div class = "remarks">
-				<label for = "remarks">Remarks</label><br><input type = "text" id="remarks" name ="remarks"  />*</br>
+                        
+                    ?>
+                </textarea>
+            </div>
+            <div class="input-group p-3">
+				<label class = "mx-3" for = "remarks">Remarks</label>
+                <input  class="form-control" type = "text" id="remarks" name ="remarks"/>
 			</div>
-            <div class = "form-button">
-			    <input type="submit" value="Submit"/>
+            <div class = "btn btn-success mb-3 ms-3">
+			    <input class = "btn btn-success" type="submit" value="Submit"/>
 		    </div>
         </form>
-
-        
-
-        <div class = "form-button">
-            <button id='page_resource_button' class="button_style" name="New Content">Press to set new content</button>
-		</div>
-
         
 
 
@@ -72,16 +68,4 @@
         $conn->close();
         ?>
     </body>
-
-    <script>
-            const ContentOne = 'page_resource'
-            tinyMCE.get('page_resource').getContent();
-            tinymce.get("page_resource").setContent("<p>Hello world!</p>");
-            function Setcontent() {
-                var ContentSet = tinymce.get('page_resource').setContent(contentOne);
-            }
-
-            var buttonSet = document.getElementById('page_resource_button');
-            buttonSet.addEventListener('click', Setcontent, false);
-    </script>
 </html>

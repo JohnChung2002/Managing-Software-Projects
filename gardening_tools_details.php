@@ -48,23 +48,23 @@
                             ".$row["item_id"]."
                  </p>
 				 <img class='img-fluid my-3' src=".$row["item_image"]."/>
-				 <p class='card-text fw-bold text-center'> 
+				 <p class='card-text'> 
                             Item Name:
                             ".$row["item_name"]."
                  </p>
-				 <p class='card-text fw-bold text-center'> 
+				 <p class='card-text'> 
                             Item Subcategory:
                             ".$row["item_subcategory"]."
                  </p>
-				 <p class='card-text fw-bold text-center'> 
+				 <p class='card-text'> 
                             Item Availability:
                             ".$row["availability_in_store"]."
                  </p>
-				 <p class='card-text fw-bold text-center'> 
+				 <p class='card-text'> 
                             Price: RM
                             ".$row["price_in_store"]."
                  </p>
-				 <p class='card-text fw-bold text-center'> 
+				 <p class='card-text'> 
                             Description:
                             ".$row["description"]."
                  </p>

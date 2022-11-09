@@ -16,7 +16,7 @@
             include 'homepage-promotion/imgurupload.php'; 
         ?>
 
-        <form method="post" id="promotion_form" action = "homepage-promotion/promotionformprocess.php" >
+        <form class ="p-4 vh-100" method="post" id="promotion_form" action = "homepage-promotion/promotionformprocess.php" >
 
             <div class="col-md-4">
                 <label for="content_type" class="form-label">Choose Type</label>
@@ -37,8 +37,8 @@
                 <label for="content_image" class="form-label">Image</label>
                 <input type="file" class="form-control" name = "content_image" id="content_image">
             </div>
-            <div class="col-12">
-                <button type="submit" value="Submit" class="btn btn-primary">Submit</button>
+            <div class="pt-4">
+                <button type="submit" value="Submit" class="btn btn-success">Submit</button>
             </div>
         </form>
 

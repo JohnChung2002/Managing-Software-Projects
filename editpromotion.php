@@ -42,7 +42,10 @@
                     <td><?php echo $row["content_type"]; ?></td>
                     <td><?php echo $row["content_title"]; ?></td>
                     <td><?php echo $row["content_resource"]; ?></td>
-                    <td><a href="homepage-promotion/deletepromotion.php?content_id=<?php echo $row["content_id"]; ?>">Delete</a></td>
+                    <td>
+                        <a href="homepage-promotion/deletepromotion.php?content_id=<?php echo $row["content_id"]; ?>">Delete</a>
+                        <a href="homepage-promotion/editpromotion.php?content_id=<?php echo $row["content_id"]; ?>">Edit</a>
+                    </td>
                 </tr>
                 <?php
                 $i++;

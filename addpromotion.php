@@ -11,7 +11,10 @@
     </head>
 
     <body>
-        <?php include 'header.php'; ?>
+        <?php 
+            include 'header.php';
+            include 'homepage-promotion/imgurupload.php'; 
+        ?>
 
         <form method="post" id="promotion_form" action = "homepage-promotion/promotionformprocess.php" >
 

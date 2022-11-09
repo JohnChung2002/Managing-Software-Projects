@@ -20,30 +20,40 @@ if(mysqli_num_rows($query_run) > 0){
 ?>
 <br>
 <div class="container p-5" style="background-color: white;">
-<div class="row">
-  <div class="col">
-	<label for="" class='fw-bold fs-5'>Item Name:</label>
-    <input type="text" value="<?= $row['item_name']; ?>" class="form-control">
-  </div>
-  <div class="col">
-	<label for="" class='fw-bold fs-5'>Availability In Store:</label>
-    <input type="text" value="<?= $row['availability_in_store']; ?>" class="form-control">
-  </div>
-  <div class="col">
-	<label for="" class='fw-bold fs-5'>Item Subcategory:</label>
-    <input type="text" value="<?= $row['item_subcategory']; ?>" class="form-control">
-  </div>
+<div class="container w-50 p-3">
+<img class='img-fluid' src="<?= $row['item_image'];?>">
 </div>
-<br>
-<div class="row">
-  <div class="col">
-	<label for="" class='fw-bold fs-5'>Price in store:</label>
-    <input type="text" value="RM <?= $row['price_in_store']; ?>" class="form-control">
-  </div>
-  <div class="col">
-	<label for="" class='fw-bold fs-5'>Description:</label>
-    <input type="text" value="<?= $row['description']; ?>" class="form-control">
-  </div>
+<div class="list-group w-50 mx-auto">
+  <a href="#" class="list-group-item list-group-item-action" aria-current="true">
+    <div class="d-flex w-100 justify-content-center">
+      <h5 class="mb-1">Item Name:</h5>
+    </div>
+    <p class="mb-1 text-center"><?= $row['item_name']; ?></p>
+  </a>
+  <a href="#" class="list-group-item list-group-item-action" aria-current="true">
+    <div class="d-flex w-100 justify-content-center">
+      <h5 class="mb-1">Availability In Store:</h5>
+    </div>
+    <p class="mb-1 text-center"><?= $row['availability_in_store']; ?></p>
+  </a> 
+  <a href="#" class="list-group-item list-group-item-action" aria-current="true">
+    <div class="d-flex w-100 justify-content-center">
+      <h5 class="mb-1">Item Subcategory:</h5>
+    </div>
+    <p class="mb-1 text-center"><?= $row['item_subcategory']; ?></p>
+  </a> 
+    <a href="#" class="list-group-item list-group-item-action" aria-current="true">
+    <div class="d-flex w-100 justify-content-center">
+      <h5 class="mb-1">Price in store:</h5>
+    </div>
+    <p class="mb-1 text-center"> RM <?= $row['price_in_store']; ?></p>
+  </a>  
+    <a href="#" class="list-group-item list-group-item-action" aria-current="true">
+    <div class="d-flex w-100 justify-content-center">
+      <h5 class="mb-1">Description:</h5>
+    </div>
+    <p class="mb-1 text-center"><?= $row['description']; ?></p>
+  </a>
 </div>
 <?php
 	}

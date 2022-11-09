@@ -560,4 +560,22 @@ function updateAvailability() {
         </div>";
     }
 }
+
+function checkBooking($id) {
+    $conn = start_connection();
+    $command = "SELECT appointment_date, appointment_timeslot, number_of_attendees FROM booking_info WHERE booking_id=?;";
+    $stmt = mysqli_prepare($conn, $command);
+    mysqli_stmt_bind_param($stmt, "s", $id);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    if (mysqli_num_rows($result) == 1) {
+        $row = mysqli_fetch_assoc($result);
+        mysqli_free_result($result);
+        mysqli_close($conn);
+        return $row;
+    }
+    mysqli_free_result($result);
+    mysqli_close($conn);
+    return false;
+}
 ?>

@@ -8,7 +8,7 @@
 
     $conn = start_connection();
     $user_id = $_SESSION['user_id'];
-    $sql = "SELECT * FROM notification_history WHERE user_id = ? ORDER BY notification_id DESC";
+    $sql = "SELECT * FROM notification_history WHERE user_id = ? ORDER BY notification_id DESC LIMIT 5";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param('i', $user_id);
     $stmt->execute();
@@ -16,7 +16,7 @@
     $notifications = array();
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
-        echo "<li><a class='dropdown-item' href='#'>{$row['notification_title']}</a></li>";
+        echo "<li><a class='dropdown-item' href='{$row['notification_link']}'>{$row['notification_title']}</a></li>";
         }
     } else {
         echo "<li><a class='dropdown-item' href='#'>No notifications</a></li>";

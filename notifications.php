@@ -13,14 +13,11 @@
 <?php 
     include 'header.php';
     require_once $_SERVER['DOCUMENT_ROOT'].'/notification/notification_functions.php'; 
-    
     echo '
     <h1 class="text-center mt-5">All Notifications</h1>
     <div class="container overflow-auto list-group my-5" style="min-height: 80vh; max-height: 80vh;">';
     load_notifications();
     echo '</div>';
-    
-
     include 'footer.php'; ?>
 </body>
 </html>

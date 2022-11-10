@@ -34,12 +34,16 @@
 	echo 
 	"<div class='col-md-4 mb-4'>
 		<div class='card mb-4 shadow-sm h-100'>
-			<div class='card-body'>
+			<div class='card-body' style='cursor: pointer;' onclick='window.location.href=\"gardeningtools_encyclopedia.php\"'>
 				<p class='card-text fw-bold text-center'> 
                             Item ID:
                             ".$row["item_id"]."
                  </p>
 				 <img class='img-fluid my-3' src=".$row["item_image"]."/>
+				 <p class='card-text text-center'> 
+                            Item Name:
+                            ".$row["item_name"]."
+                 </p>
 			</div>
 		</div>
 	</div>";

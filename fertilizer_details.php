@@ -41,7 +41,7 @@
 	echo 
 	"<div class='col-md-4 mb-4'>
 		<div class='card mb-4 shadow-sm h-100'>
-			<div class='card-body'>
+			<div class='card-body' style='cursor: pointer;' onclick='window.location.href=\"fertilizer_details.php\"'>
 				<p class='card-text fw-bold text-center'> 
                             Item ID:
                             ".$row["item_id"]."

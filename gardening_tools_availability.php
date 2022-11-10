@@ -42,7 +42,7 @@
 	echo 
 	"<div class='col-md-4 mb-4'>
 		<div class='card mb-4 shadow-sm h-100'>
-			<div class='card-body'>
+			<div class='card-body' style='cursor: pointer;' onclick='window.location.href=\"gardening_tools_availability.php\"'>
 				<p class='card-text fw-bold text-center'> 
                             Item ID:
                             ".$row["item_id"]."			
@@ -50,9 +50,13 @@
 				 <img class='img-fluid my-3' src=".$row["item_image"]."/>
 				 <br>
 				 <p class='card-text text-center'> 
+                            Item Name:
+                            ".$row["item_name"]."			
+                 </p>
+				 <p class='card-text text-center'> 
                             Availability in store:
                             ".$row["availability_in_store"]."			
-                 </p>		
+                 </p>
 			</div>
 		</div>
 	</div>";

@@ -55,6 +55,11 @@
     // Update password
     if($passwordMsgBool['is_valid']){
         $userInputPassword = $passwordMsgBool['password'];
+    }else if(!empty($passwordMsgBool['password'])){
+        $msg = $passwordMsgBool['errMsg'];
+        $_SESSION['editMsg'] = "<div class='alert alert-danger'>
+                    $msg
+                </div>";
     }
 
     if($hashBoolValidation['is_valid'] && $passwordMsgBool['is_valid'] && !empty($_POST['password'])){

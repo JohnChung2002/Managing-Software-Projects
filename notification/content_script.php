@@ -9,12 +9,12 @@ if ($val !== false) {
     }
     include 'notification_functions.php';    
     if ($val["k"] == $GLOBALS['api_key']) {
-        $user_id = $val["i"];
+        $user_id = (int)$val["i"];
         $content_type = $val["t"];
         $content_title = $val["s"];
-        $content_id = $val['c'];
+        $content_id = (int)$val['c'];
         $url = "https://cactisucculentkuching.cf/content.php?id=".$content_id;
-        for ($i = 0; $i <= $val['i']; $i++) {
+        for ($i = 1; $i <= $val['i']; $i++) {
             update_notification_data($i, $content_type, $content_title , $url);
             retrieve_content_info_for_email_notification($content_id);
             load_user_notification_tokens($content_id, $content_title, $content_type);

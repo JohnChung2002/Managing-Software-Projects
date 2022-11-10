@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS `user_credentials` (
     account_status ENUM('Unactivated', 'Activated', 'Pending Reset', 'Pending Delete', 'Deleted') NOT NULL,
     account_token CHAR(22),
     token_expiry DATETIME,
-    notification_token JSON NOT NULL DEFAULT (JSON_ARRAY()),
+    notification_token JSON NOT NULL DEFAULT '[]',
     PRIMARY KEY (email_address),
     FOREIGN KEY (user_id) REFERENCES user_info(user_id)
 );

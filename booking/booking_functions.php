@@ -556,10 +556,14 @@ function checkBooking($id) {
 }
 
 function trigger_booking_background($action, $title, $booking_id) {
+    $action = escapeshellarg($action);
+    $title = escapeshellarg($title);
+    $booking_id = escapeshellarg($booking_id);
+    $key = escapeshellarg($GLOBALS['api_key']);
     if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
-        pclose(popen("START /MIN php \"notification\\booking_script.php\" -a$action -t$title -i$booking_id -k{$GLOBALS['api_key']}", "r"));
+        pclose(popen("START /MIN php \"notification\\booking_script.php\" -a$action -t$title -i$booking_id -k$key", "r"));
     } else {
-        pclose(popen("php \"notification/booking_script.php\" -a$action -t$title -i$booking_id -k{$GLOBALS['api_key']} >/dev/null 2>/dev/null &", "r"));
+        pclose(popen("php \"notification/booking_script.php\" -a$action -t$title -i$booking_id -k$key >/dev/null 2>/dev/null &", "r"));
     }
 }
 ?>

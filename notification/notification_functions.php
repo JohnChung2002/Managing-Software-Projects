@@ -334,10 +334,15 @@
         $row = mysqli_fetch_assoc($result);
         $user_id = $row['user_id'];
         mysqli_free_result($result);
+        $user_id = escapeshellarg($user_id);
+        $content_id = escapeshellarg($content_id);
+        $type = escapeshellarg($type);
+        $title = escapeshellarg($title);
+        $key = escapeshellarg($GLOBALS['api_key']);
         if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
-            pclose(popen("START /MIN php \"notification\\content_script.php\" -i$user_id -s$title -t$type -c$content_id -k{$GLOBALS['api_key']}", "r"));
+            pclose(popen("START /MIN php \"notification\\content_script.php\" -i$user_id -s$title -t$type -c$content_id -k$key", "r"));
         } else {
-            pclose(popen("php \"notification/content_script.php\" -i$user_id -s$title -t$type -c$content_id -k{$GLOBALS['api_key']} >/dev/null 2>/dev/null &", "r"));
+            pclose(popen("php \"notification/content_script.php\" -i$user_id -s$title -t$type -c$content_id -k$key >/dev/null 2>/dev/null &", "r"));
         }
         mysqli_close($conn);
     }

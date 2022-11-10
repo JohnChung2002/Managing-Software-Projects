@@ -25,12 +25,12 @@
 	    ?>
             <table class="table">
                 <tr>
-                <td>Employee Id</td>
-                <td>First Name</td>
-                <td>Last Name</td>
-                <td>City</td>
-                <td>Email id</td>
-                <td>Action</td>
+                    <td>Content Id</td>
+                    <td>Content Image</td>
+                    <td>Content Type</td>
+                    <td>Title</td>
+                    <td>Description</td>
+                    <td>Action</td>
                 </tr>
                 <?php
                 $i=0;
@@ -38,7 +38,7 @@
                 ?>
                 <tr>
                     <td><?php echo $row["content_id"]; ?></td>
-                    <td><img src =<?php echo $row["content_image"]; ?> class="img-thumbnail" alt = ""/></td>
+                    <td><img src =<?php echo $row["content_image"]; ?> class="img-thumbnail" alt = "" width="200" height="200"/></td>
                     <td><?php echo $row["content_type"]; ?></td>
                     <td><?php echo $row["content_title"]; ?></td>
                     <td><?php echo $row["content_resource"]; ?></td>

@@ -43,6 +43,7 @@
             </div>
             <div class="col-md-6">
                 <label for="content_image" class="form-label">Image</label>
+                <img src =<?php echo $row["content_image"]; ?> class="img-thumbnail" alt = "" width="200" height="200"/>
                 <input type="file" class="form-control" name = "content_image" id="content_image" value="<?php echo $row['content_image']; ?>">
             </div>
             <div class="col-12">

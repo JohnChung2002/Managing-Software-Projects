@@ -13,10 +13,21 @@
     <body>
         <?php 
             include 'header.php';
-            include 'homepage-promotion/imgurupload.php'; 
+            include 'homepage-promotion/upload2imgur.php'; 
         ?>
 
-        <form class ="p-4 vh-100" method="post" id="promotion_form" action = "homepage-promotion/promotionformprocess.php" >
+        <form class ="p-4" method="post" action="" class="form" enctype="multipart/form-data">
+            <div class="col-md-6">
+                <h3>Please Upload to Imgur before continuing</h3>
+                <label class = "mb-2"> Image for Content </label>
+                <input type="file" name="image" class="form-control">
+            </div>
+            <div class="pt-4">
+                <input type="submit" class="btn btn-success" name="submit" value="Upload to Imgur"/>
+            </div>
+        </form>
+
+        <form class ="p-4 vh-100" method="post" id="promotion_form" action = "homepage-promotion/promotionformprocess.php" enctype="multipart/form-data" >
 
             <div class="col-md-4">
                 <label for="content_type" class="form-label">Choose Type</label>
@@ -34,8 +45,10 @@
                 <input type="text" class="form-control" name = "content_resource" id="content_resource">
             </div>
             <div class="col-md-6">
-                <label for="content_image" class="form-label">Image</label>
-                <input type="file" class="form-control" name = "content_image" id="content_image">
+                <?php if(!empty($imgurData)){ ?>
+                    <img src="<?php echo $imgurData->data->link; ?>" class="img-thumbnail" width="200" height="200" alt="...">
+                    <input type="text" class="form-control" name = "content_image" id="content_image" value = "<?php echo $imgurData->data->link; ?>">
+                <?php } ?>
             </div>
             <div class="pt-4">
                 <button type="submit" value="Submit" class="btn btn-success">Submit</button>
@@ -48,5 +61,4 @@
         include 'footer.php'; 
         ?>
     </body>
-
 </html>

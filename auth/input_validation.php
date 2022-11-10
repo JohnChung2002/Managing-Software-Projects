@@ -107,7 +107,7 @@
         $bool = false;
         if(isset($_POST["remarks"])){
             if(!empty($_POST["remarks"])){
-                $name = $_POST["remarks"];
+                $remarks = $_POST["remarks"];
                 if(preg_match("/^[a-zA-Z\s]+$/", $remarks)){
                     $remarksMsg = "";
                     $bool = true;
@@ -126,7 +126,7 @@
         $bool = false;
         if(isset($_POST["content_title"])){
             if(!empty($_POST["content_title"])){
-                $name = $_POST["content_title"];
+                $content_title = $_POST["content_title"];
                 if(preg_match("/^[a-zA-Z\s]+$/", $content_title)){
                     $titlesMsg = "";
                     $bool = true;
@@ -138,6 +138,25 @@
             }
         }
         return array("content_title"=>$content_title, "errMsg"=>$titleMsg, "is_valid"=>$bool);
+    }
+
+    function DescriptionValidation(){
+        $content_resource = $resourceMsg = "";
+        $bool = false;
+        if(isset($_POST["content_resource"])){
+            if(!empty($_POST["content_resource"])){
+                $content_resource = $_POST["content_resource"];
+                if(preg_match("/^[a-zA-Z\s]+$/", $content_resource)){
+                    $resourceMsg = "";
+                    $bool = true;
+                }else{
+                    $resourceMsg = "Only letters and white space allowed";
+                }
+            }else{
+                $resourceMsg = "Name is required";
+            }
+        }
+        return array("content_title"=>$content_resource, "errMsg"=>$resourceMsg, "is_valid"=>$bool);
     }
 
 ?>

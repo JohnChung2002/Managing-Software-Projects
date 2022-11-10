@@ -5,7 +5,9 @@
     <title>Cacti Succulent Kuching</title>
 </head>
 <body id = 'version_id'>
-    <?php include '../database_credentials.php'; ?>
+    <?php 
+        include '../database_credentials.php'; 
+    ?>
     <?php
         include 'imgurupload.php';
         $conn = mysqli_connect($servername, $username, $password, $database);
@@ -38,7 +40,7 @@
                     <th scope="col"> Title </th>
                     <th scope="col"> Description </th>
                     <tr>
-                        <td><?php echo $content_image;?></td>
+                        <td><img src = <?php echo $content_image;?> alt= ""></td>
                         <td><?php echo $content_type;?></td>
                         <td><?php echo $content_title;?></td>
                         <td><?php echo $content_resource;?></td>
@@ -47,8 +49,8 @@
                 </table>
         </div>
 
-        <button type="button" class="btn btn-success">
-            <a href="../addpromotion.php"> Go Back </a>
+        <button type="button" class="btn btn-success ms-4">
+            <a href="../addpromotion.php" class = "text-white" > Go Back </a>
         </button>
     
 </body>

@@ -42,6 +42,5 @@
         $_SESSION['phone'] = $phone;
         $_SESSION['preference'] = $preference;
         $_SESSION['profileImg'] = $picture;
-        // return array('name'=>$name, 'email'=>$email, 'phone'=>$phone, 'preference'=>$preference, 'profileImage'=>$picture);
     }
 ?>

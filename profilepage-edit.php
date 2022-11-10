@@ -16,7 +16,7 @@
     $phone = $_SESSION['phone'];
     $preference = $_SESSION['preference'];
     $profileImg = $_SESSION['profileImg'];
-    // echo "<div class='container p-3 vh-100'>";
+    echo "<div class='container p-5 align-items-center justify-content-center'>";
     if(isset($_SESSION['editMsg'])){
         $msg = $_SESSION['editMsg']; 
         unset($_SESSION['editMsg']);
@@ -24,15 +24,14 @@
     }
 ?>
     <script src="script/password-integrity.js"></script>
-    <div class='container p-5 align-items-center justify-content-center'>
         <form class="needs-validation" action="profilepage-edit.php" method="post" id="signupreset-form"  enctype="multipart/form-data" novalidate>
             <fieldset>
                 <legend>Edit Profile</legend>
                 <div class="row mb-3">
                     <div class='profile-img'>
-                        <img src='<?php echo"$profileImg";?>' class='rounded mx-auto d-block' alt='$name Profile Picture' />
+                        <img src='<?php echo"$profileImg";?>' class='rounded mx-auto d-block' alt='<?php echo"$name's";?> Profile Picture' />
                     </div>
-                    <h6>Upload a different photo...</h6>
+                    <h6>Upload Profile Picture</h6>
                     <input type="file" name="image" id="image" class="text-center center-block file-upload">
                 </div>
 
@@ -90,7 +89,10 @@
                 <input type="text" name="hashValue" id="hashValue" hidden />
 
                 <button type="submit" class="btn btn-primary">Save Changes</button>
-                <button type='button' class='btn btn-outline-danger float-end' onclick="location.href='deleteaccount-user.php';">Delete Account</button>
+                <?php
+                    if($_SESSION['user_role'] == "User"){
+                    echo '<button type="button" class="btn btn-outline-danger float-end" onclick="location.href="deleteaccount-user.php";">Delete Account</button>';}
+                ?>
             </fieldset>
         </form>
     </div>

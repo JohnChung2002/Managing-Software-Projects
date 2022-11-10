@@ -23,11 +23,16 @@ if ($logged_in) {
   <li class="nav-item">
     <a class="nav-link " href="dashboard.php"><p class ="fs-5 mx-3 mt-3" style="color: white;">Booking</p></a>
   </li>';
-  if ($user_role == 'Admin') {
+  if ($user_role == 'Admin' || $user_role == 'Super Admin') {
     echo '
     <li class="nav-item">
       <a class="nav-link " href="report.php">
         <p class ="fs-5 mx-3 mt-3" style="color: white;">Statistics / Reports</p>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link " href="deleteaccount-admin.php">
+        <p class ="fs-5 mx-3 mt-3" style="color: white;">Delete Account</p>
       </a>
     </li>';
   }

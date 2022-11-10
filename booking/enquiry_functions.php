@@ -11,54 +11,63 @@ date_default_timezone_set("Asia/Kuala_Lumpur");
 
 function newenquiry(){
     if (!empty($_POST["name"]) && !empty($_POST["email"])  && !empty($_POST["inputSubject"]) && !empty($_POST["inputComment"])) {
+        
        
 
         $name = $_POST["name"];
         $email = $_POST["email"];
         $InputReason = $_POST["inputSubject"];
         $InputComment = $_POST["inputComment"];
+
         $conn = start_connection();
     
-        while (True){   
+  
 
-            $sql = $conn -> prepare("SELECT * FROM enquiries WHERE contact_info = ?;");
-            $sql->bind_param('s', $email);
-            $sql->execute();
-            $result = $sql->get_result();
+        $sql = $conn -> prepare("SELECT * FROM enquiries WHERE contact_info = ?;");
+        $sql->bind_param('s', $email);
+        $sql->execute();
+        $result = $sql->get_result();
 
-            if (mysqli_num_rows($result) == 0) {
-                mysqli_free_result($result);
+        mysqli_free_result($result);
 
-                $stmt = $conn -> prepare("INSERT INTO enquiries (contact_name, contact_info, enquiry_subject, enquiry_content, enquiry_status) VALUES (?, ?, ?, ?, 'Unanswered');");
-                $stmt->bind_param('ssss', $name, $email, $InputReason, $InputComment);
-                $stmt->execute();                             
-                $stmt->close();
-                echo "
-                <div class='container'>
-                    <div class='alert alert-success mt-4'>
-                    Enquiry has been submitted successfully! You will receive a response back to your email within 5 business days depending on the queue. Please do check your junk folder too.
-                    </div>
-                </div>";
+        $stmt = $conn -> prepare("INSERT INTO enquiries (contact_name, contact_info, enquiry_subject, enquiry_content, enquiry_status) VALUES (?, ?, ?, ?, 'Unanswered');");
+        $stmt->bind_param('ssss', $name, $email, $InputReason, $InputComment);
+        $stmt->execute();                             
+        $stmt->close();
+        echo "
+        <div class='container'>
+            <div class='alert alert-success mt-4'>
+            Enquiry has been submitted successfully! You will receive a response back to your email within 5 business days depending on the queue. Please do check your junk folder too.
+            </div>
+        </div>";
 
-                return true; 
-            }
-            mysqli_free_result($result);
-        }
+
         mysqli_close($conn);
 
         $conn = start_connection();
-        $command = "SELECT enquiry_id FROM enquiries ;";
-        createEnquiryTicketEmail($row["enquiry_id"]);
+
+        $command = "SELECT enquiry_id FROM enquiries ORDER BY enquiry_id DESC LIMIT 1;";
+
+
+        $result = mysqli_query($conn, $command);
+
+        $row = mysqli_fetch_assoc($result);
+        $id = $row["enquiry_id"];
+
+        mysqli_close($conn);
+
+        createEnquiryTicketEmail($id);
 
     }
-    
+    else{
     echo"
     <div class='container'>
         <div class='alert alert-danger'>
         Invalid request. Please try again.
         </div>
     </div>"; 
-    return false;
+    }
+    
 }
 
 
@@ -143,7 +152,7 @@ function answerenquiry() {
         $stmt = mysqli_prepare($conn, $command);
         mysqli_stmt_bind_param($stmt, "ss", $reason, $enquiry_id);
 
-        answerEnquiryTicketEmail($enquiry_id);
+        
         
         if (mysqli_stmt_execute($stmt)) {
             echo "
@@ -155,7 +164,9 @@ function answerenquiry() {
             
             mysqli_close($conn);
             return true;
+            
         }
+        answerEnquiryTicketEmail($enquiry_id);
         mysqli_close($conn);
     }
     echo "
@@ -175,7 +186,9 @@ function createEnquiryTicketEmail($id) {
     mysqli_stmt_execute($stmt);
     $result = mysqli_stmt_get_result($stmt);
     $row = mysqli_fetch_assoc($result);
+
     $name = $row["contact_name"];
+    
     $email = $row["contact_info"];
     $subject = $row["enquiry_subject"];
     $content = $row["enquiry_content"];

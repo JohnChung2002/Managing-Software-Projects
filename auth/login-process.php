@@ -65,7 +65,7 @@
         }
 
         // Change the account status to activated if the account is pending delete
-        if($_SESSION['is_login'] && $account_status == 'Pending Delete'){
+        if(isset($_SESSION['is_login']) && $_SESSION['is_login'] && $account_status == 'Pending Delete'){
             $sql = $conn -> prepare("UPDATE user_credentials SET token_expiry = NULL, account_status = 'Activated' WHERE user_id = ?;");
             $sql->bind_param('i', $user_id);
             $sql->execute();

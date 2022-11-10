@@ -113,7 +113,7 @@
             $content_title = $row["content_title"];
             $content_type = $row["content_type"];
             mysqli_free_result($result);
-            $command = "SELECT email_address FROM user_info WHERE user_role='User';";
+            $command = "SELECT email_address FROM user_credentials WHERE user_role='User' AND account_status <> 'Deleted';";
             $result = mysqli_query($conn, $command);
             while ($row = mysqli_fetch_assoc($result)) {
                 $user_email = $row["email_address"];
@@ -131,6 +131,37 @@
         curl_setopt_array($callurl,[CURLOPT_URL=>$url,CURLOPT_TIMEOUT_MS=>1000,CURLOPT_RETURNTRANSFER=>FALSE]);
         curl_exec($callurl);
         curl_close($callurl);
+    }
+
+    function load_user_notification_tokens($id, $title, $type) {
+        $conn = start_connection();
+        $command = "SELECT notification_token FROM user_credentials WHERE user_role='User' AND notification_token <> json_array();";
+        $result = mysqli_query($conn, $command);
+        while ($row = mysqli_fetch_assoc($result)) {
+            $user_notification_token = json_decode($row["notification_token"]);
+            trigger_content_push_notification($user_notification_token, $id, $title, $type);
+        }
+        mysqli_free_result($result);
+        mysqli_close($conn);
+    }
+
+    function trigger_content_push_notification($notification_token, $id, $title, $type) {
+        $path = $_SERVER['DOCUMENT_ROOT'].'/firebase.json';
+        $current_url = "https://cactisucculentkuching.cf";
+        $factory = (new Factory)->withServiceAccount($path);
+        $messaging = $factory->createMessaging();
+        $config = WebPushConfig::fromArray([
+            'notification' => [
+                'title' => "[$type] $title",
+                'body' => "There is a new $type from Cacti Succulent Kuching."
+            ],
+            'fcm_options' => [
+                'link' => "{$current_url}/content.php?id={$id}",
+            ],
+        ]);
+        $message = CloudMessage::new()
+            ->withWebPushConfig($config);
+        $messaging->sendMulticast($message, $notification_token);
     }
 
     function trigger_booking_push_notification($action, $notification_token, $booking_id, $appointment_date, $appointment_timeslot, $number_of_attendees) {
@@ -288,5 +319,26 @@
         } else {
             echo "<h5>No notifications to display.</h5>";
         }
+    }
+
+    function trigger_content_background($type, $title, $image, $content) {
+        $conn = start_connection();
+        $command = "INSERT INTO content_info (content_type, content_title, content_image, content_resource) VALUES (?, ?, ?, ?)";
+        $stmt = mysqli_prepare($conn, $command);
+        mysqli_stmt_bind_param($stmt, 'ssss', $type, $title, $image, $content);
+        mysqli_stmt_execute($stmt);
+        $content_id = mysqli_insert_id($conn);
+        mysqli_stmt_close($stmt);
+        $command = "SELECT user_id FROM user_credentials ORDER BY user_id DESC LIMIT 1;"; 
+        $result = mysqli_query($conn, $command);
+        $row = mysqli_fetch_assoc($result);
+        $user_id = $row['user_id'];
+        mysqli_free_result($result);
+        if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
+            pclose(popen("START /MIN php \"notification\\content_script.php\" -i$user_id -s$title -t$type -c$content_id -k{$GLOBALS['api_key']}", "r"));
+        } else {
+            pclose(popen("php \"notification/content_script.php\" -i$user_id -s$title -t$type -c$content_id -k{$GLOBALS['api_key']} >/dev/null 2>/dev/null &", "r"));
+        }
+        mysqli_close($conn);
     }
 ?>

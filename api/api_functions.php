@@ -3,7 +3,7 @@
         http_response_code(403);
         exit;
     }
-
+    
     require_once $_SERVER['DOCUMENT_ROOT']."/database_credentials.php";
 
     date_default_timezone_set("Asia/Kuala_Lumpur");

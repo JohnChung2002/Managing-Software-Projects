@@ -138,11 +138,7 @@ function createUserBooking() {
                                 </div>
                             </div>";
                             mysqli_close($conn);
-                            $ids = retrive_booking_info_for_email_notification("createbooking", $booking_id);
-                            foreach ($ids as $id) {
-                                update_notification_data($id, "Booking Confirmation", "[$booking_id] Booking Confirmation", "https://cactisucculentkuching.cf/booking.php?booking_id=$booking_id");
-                            }
-                            retrive_booking_info_for_push_notification("createbooking", $booking_id);
+                            trigger_booking_background("createbooking", "Booking Confirmation", $booking_id);
                             return true;
                         }
                     }
@@ -217,11 +213,7 @@ function adminCreateBooking() {
                                 </div>
                             </div>";
                             mysqli_close($conn);
-                            $ids = retrive_booking_info_for_email_notification("createbooking", $booking_id);
-                            foreach ($ids as $id) {
-                                update_notification_data($id, "Booking Confirmation", "[$booking_id] Booking Confirmation", "https://cactisucculentkuching.cf/booking.php?booking_id=$booking_id");
-                            }
-                            retrive_booking_info_for_push_notification("createbooking", $booking_id);
+                            trigger_booking_background("createbooking", "Booking Confirmation", $booking_id);
                             return true;
                         }
                     }
@@ -293,11 +285,7 @@ function updateUserBooking() {
                             </div>
                         </div>";
                         mysqli_close($conn);
-                        $ids = retrive_booking_info_for_email_notification("updatebooking", $booking_id);
-                        foreach ($ids as $id) {
-                            update_notification_data($id, "Booking Update", "[$booking_id] Booking Update", "https://cactisucculentkuching.cf/booking.php?booking_id=$booking_id");
-                        }
-                        retrive_booking_info_for_push_notification("updatebooking", $booking_id);
+                        trigger_booking_background("updatebooking", "Booking Update", $booking_id);
                         return true;
                     }
                 }
@@ -343,11 +331,7 @@ function adminUpdateBooking() {
                             </div>
                         </div>";
                         mysqli_close($conn);
-                        $ids = retrive_booking_info_for_email_notification("updatebooking", $booking_id);
-                        foreach ($ids as $id) {
-                            update_notification_data($id, "Booking Update", "[$booking_id] Booking Update", "https://cactisucculentkuching.cf/booking.php?booking_id=$booking_id");
-                        }
-                        retrive_booking_info_for_push_notification("updatebooking", $booking_id);
+                        trigger_booking_background("updatebooking", "Booking Update", $booking_id);
                         return true;
                     }
                 }
@@ -389,11 +373,7 @@ function cancelUserBooking() {
                     </div>
                 </div>";
                 mysqli_close($conn);
-                $ids = retrive_booking_info_for_email_notification("cancelbooking", $booking_id);
-                foreach ($ids as $id) {
-                    update_notification_data($id, "Booking Cancellation", "[$booking_id] Booking Cancellation", "https://cactisucculentkuching.cf/booking.php?booking_id=$booking_id");
-                }
-                retrive_booking_info_for_push_notification("cancelbooking", $booking_id);
+                trigger_booking_background("cancelbooking", "Booking Cancellation", $booking_id);
                 return true;
             }
         }
@@ -432,11 +412,7 @@ function adminCancelBooking() {
                     </div>
                 </div>";
                 mysqli_close($conn);
-                $ids = retrive_booking_info_for_email_notification("cancelbooking", $booking_id);
-                foreach ($ids as $id) {
-                    update_notification_data($id, "Booking Cancellation", "[$booking_id] Booking Cancellation", "https://cactisucculentkuching.cf/booking.php?booking_id=$booking_id");
-                }
-                retrive_booking_info_for_push_notification("cancelbooking", $booking_id);
+                trigger_booking_background("cancelbooking", "Booking Cancellation", $booking_id);
                 return true;
             }
         }
@@ -577,5 +553,13 @@ function checkBooking($id) {
     mysqli_free_result($result);
     mysqli_close($conn);
     return false;
+}
+
+function trigger_booking_background($action, $title, $booking_id) {
+    if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
+        pclose(popen("START /MIN php \"notification\\booking_script.php\" -a$action -t$title -i$booking_id -k{$GLOBALS['api_key']}", "r"));
+    } else {
+        pclose(popen("php \"notification/booking_script.php\" -a$action -t$title -i$booking_id -k{$GLOBALS['api_key']} >/dev/null 2>/dev/null &", "r"));
+    }
 }
 ?>

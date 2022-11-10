@@ -55,7 +55,6 @@
     // Function to send email to confirm account deletion
     function sendDeleteAccountEmail($email){
         // Initilaize the connection
-        $token= "";
         $conn = mysqli_connect($GLOBALS['servername'], $GLOBALS['username'], $GLOBALS['password'], $GLOBALS['database']);
         // Generate token expiry
         $tokenExpiry = date("Y-m-d H:i:s", strtotime("+1 day")); // 1 day from now

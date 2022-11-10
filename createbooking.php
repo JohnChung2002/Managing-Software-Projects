@@ -19,7 +19,7 @@ include "auth/is_loggedin.php";
             adminCreateBooking();
         } 
         echo '
-            <h1 class="text-center mt-5">CREATE NEW BOOKING</h1>
+            <h1 class="text-center mt-5">REQUEST APPOINTMENT</h1>
             <div class="container p-5 my-5 border">
                 <form method="post" class="row g-3 needs-validation" novalidate>
                     <div class="col-10">

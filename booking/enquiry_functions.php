@@ -154,28 +154,27 @@ function answerenquiry() {
 
         
         
-        if (mysqli_stmt_execute($stmt)) {
-            echo "
-            <div class='container min-vh-100'>
-            <div class='alert alert-success mt-4'>
-                Enquiry replied successfully! A mail will be sent to their email.
-                </div>
-            </div>";
-            
-            mysqli_close($conn);
-            return true;
-            
-        }
-        answerEnquiryTicketEmail($enquiry_id);
+        mysqli_stmt_execute($stmt);
+        echo "
+        <div class='container min-vh-100'>
+        <div class='alert alert-success mt-4'>
+            Enquiry replied successfully! A mail will be sent to their email.
+            </div>
+        </div>";
+
         mysqli_close($conn);
+        answerEnquiryTicketEmail($enquiry_id);
+  
+            
     }
-    echo "
-    <div class='container'>
-        <div class='alert alert-danger'>
-        Invalid request. Please try again.
-        </div>
-    </div>";
-    return false;
+    else {
+        echo "
+        <div class='container min-vh-100'>
+            <div class='alert alert-info'>
+            No enquiries have been submitted.
+            </div>
+        </div>";
+    }
 }
 
 function createEnquiryTicketEmail($id) {

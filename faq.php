@@ -116,6 +116,9 @@
 
 <?php include 'footer.php'; ?>
 
+<!-- this is for livechat js -->
+<script src="//code.tidio.co/65ll30ygjlj2lg3xud5tni1xyqgi7ffw.js" async></script>
+
 
 </body>
 </html>

@@ -55,6 +55,12 @@
       <p>Availability in store: <?php echo $iavailability;?></p>
       <p>Price in store: <?php echo $iprice;?></p>
       <p>Description: <?php echo $idesc;?></p>
+
+      
+      <div class='d-grid gap-2'>
+        <a href='admin_encyclopedia_interface.php'><button type='button' class='btn btn-primary'>Back To Encyclopedia</button></a>
+        <br>
+      </div>
 	    
     </div>
   <?php include 'footer.php'; ?>

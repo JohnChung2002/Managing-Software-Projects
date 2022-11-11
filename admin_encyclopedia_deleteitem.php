@@ -21,6 +21,12 @@
             include "encyclopedia_functions.php";
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 deleteEncylopediaItem();
+                echo"
+                <div class='d-grid gap-2'>
+                  <a href='admin_encyclopedia_interface.php'><button type='button' class='btn btn-primary'>Back To Encyclopedia</button></a>
+                  <br>
+                </div>
+                ";
             } else {
                 echo"
                 <h1 class='text-uppercase my-4 text-center'>Delete Existing Item</h1>

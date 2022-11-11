@@ -22,7 +22,7 @@
         <div class="col-4 w-100">
           <h1 class="text-uppercase my-4">Gardening Encyclopedia</h1>
           <p class="fs-5 fw-bold text-center">Explore plants, gardening tools and fertilizer</p>
-		  	  <img src="images/Cactus8.jpg" class="w-auto p-3">
+		  	  <img src="images/Cactus8.jpg" class="w-auto p-3 img-fluid">
 		<br>
         </div>
       </div>

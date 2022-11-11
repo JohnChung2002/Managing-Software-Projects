@@ -106,15 +106,29 @@ function retrieveFormDetails($item_id){
               <br />
               <label>Item Image (Link Only): <input type='text' name='iimage' id='iimage' maxlength='50' required='required' value='".$row['item_image']."'></label><br />
               <br />
-                <p>Item Availability In Store: </p>
+                <p>Item Availability In Store: </p>";   
+            if($row["availability_in_store"]=="Available"){
+                echo"
                 <div class='form-check form-check-inline'>
-                  <input type='radio' id='available' name='iavailability' value='Available'>Available<br/>
+                  <input type='radio' id='available' name='iavailability' value='Available' CHECKED>Available<br/>
                 </div>
                 <div class='form-check form-check-inline'>
                   <input type='radio' id='notavailable' name='iavailability' value='Not Available'>Not Available<br/>
                 </div>
                 </br>
+                </br>";
+            }elseif($row["availability_in_store"]=="Not Available"){
+                echo"
+                <div class='form-check form-check-inline'>
+                  <input type='radio' id='available' name='iavailability' value='Available'>Available<br/>
+                </div>
+                <div class='form-check form-check-inline'>
+                  <input type='radio' id='notavailable' name='iavailability' value='Not Available' CHECKED>Not Available<br/>
+                </div>
                 </br>
+                </br>";
+            };
+            echo"
               <label>Price In Store: <input type='text' name='iprice' id='iprice' required='required' value='".$row['price_in_store']."'></label><br />
               <br />
               <label>Description: <input type='text' name='idesc' id='idesc' required='required' value='".$row['description']."'></label><br />

@@ -20,9 +20,6 @@ function newenquiry(){
         $InputComment = $_POST["inputComment"];
 
         $conn = start_connection();
-    
-  
-        
         $stmt = $conn -> prepare("INSERT INTO enquiries (contact_name, contact_info, enquiry_subject, enquiry_content, enquiry_status) VALUES (?, ?, ?, ?, 'Unanswered');");
         $stmt->bind_param('ssss', $name, $email, $InputReason, $InputComment);
         $stmt->execute();                             
@@ -31,16 +28,12 @@ function newenquiry(){
         mysqli_close($conn);
 
 
-        
         $conn = start_connection();
-        // $command0= "SELECT enquiry_id FROM enquiries WHERE contact_info=$email DESC LIMIT 1;";
-        // $command = "SELECT enquiry_id FROM enquiries WHERE contact_info ='"$email"' ORDER BY enquiry_id DESC LIMIT 1;";
-
         $stmt = $conn -> prepare("SELECT enquiry_id FROM enquiries WHERE contact_info =? ORDER BY enquiry_id DESC LIMIT 1;");
         $stmt->bind_param('s', $email);
         $stmt->execute();
 
-        // $result = mysqli_query($conn, $command);
+
         $result = $stmt->get_result();
         $stmt->close();
 

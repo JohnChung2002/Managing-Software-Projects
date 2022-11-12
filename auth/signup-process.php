@@ -7,7 +7,7 @@
     include dirname(__FILE__).'/input_validation.php';
     include dirname(__FILE__).'/authentication-module.php';
     include dirname(__FILE__).'/send_email.php';
-    require_once $_SERVER['DOCUMENT_ROOT'].'/database_credentials.php';
+    require_once 'database_credentials.php'; // File of the database credentials PATH MAYBE UPDATED
 
     $name = $userInputPassword = $email = $gender = $phone = "";
     $nameMsgBool = $emailMsgBool = $passwordMsgBool = $genderMsgBool = $phoneMsgBool = "";

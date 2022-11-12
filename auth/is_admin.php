@@ -4,10 +4,7 @@
         exit;
     }
 
-    if(!isset($_SESSION)) { 
-        session_start(); 
-    } 
-    
+    session_start();
     if(isset($_SESSION['is_login']) && $_SESSION['is_login'] == true){
         if ($_SESSION['user_role'] == "Admin" || $_SESSION['user_role'] == "Super Admin") {
             return true;

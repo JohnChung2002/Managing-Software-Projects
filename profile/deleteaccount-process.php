@@ -1,5 +1,5 @@
 <?php
-    require_once $_SERVER['DOCUMENT_ROOT']."/Managing-Software-Projects/database_credentials.php";
+    require_once $_SERVER['DOCUMENT_ROOT']."/database_credentials.php";
     $deletedCount = 0;
     $conn = mysqli_connect($GLOBALS['servername'], $GLOBALS['username'], $GLOBALS['password'], $GLOBALS['database']);
     $sql = "SELECT token_expiry, user_id FROM user_credentials WHERE account_status = 'Pending Delete'";

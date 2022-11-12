@@ -1,5 +1,5 @@
 <?php
-    require_once $_SERVER['DOCUMENT_ROOT']."/Managing-Software-Projects/database_credentials.php";
+    require_once $_SERVER['DOCUMENT_ROOT']."/database_credentials.php";
     // Set the session for message
     if(!isset($_SESSION)) { 
         session_start(); 

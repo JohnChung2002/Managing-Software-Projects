@@ -10,7 +10,7 @@
         session_start(); 
     }
     require_once 'database_credentials.php';
-    include $_SERVER['DOCUMENT_ROOT'].'/Managing-Software-Projects/auth/send_email.php';
+    include $_SERVER['DOCUMENT_ROOT'].'/auth/send_email.php';
 
     sendDeleteAccountEmail($_SESSION['email']);
     $message = "

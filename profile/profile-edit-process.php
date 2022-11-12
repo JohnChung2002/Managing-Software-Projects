@@ -4,10 +4,10 @@
         exit;
     }
 
-    include $_SERVER['DOCUMENT_ROOT'].'/Managing-Software-Projects/auth/input_validation.php';
-    include $_SERVER['DOCUMENT_ROOT'].'/Managing-Software-Projects/auth/authentication-module.php';
-    include $_SERVER['DOCUMENT_ROOT'].'/Managing-Software-Projects/auth/send_email.php';
-    require_once $_SERVER['DOCUMENT_ROOT']."/Managing-Software-Projects/database_credentials.php";
+    include $_SERVER['DOCUMENT_ROOT'].'/auth/input_validation.php';
+    include $_SERVER['DOCUMENT_ROOT'].'/auth/authentication-module.php';
+    include $_SERVER['DOCUMENT_ROOT'].'/auth/send_email.php';
+    require_once $_SERVER['DOCUMENT_ROOT']."/database_credentials.php";
 
     // Set the session for message
     if(!isset($_SESSION)) { 

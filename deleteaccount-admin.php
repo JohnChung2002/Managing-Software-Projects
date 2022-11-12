@@ -1,6 +1,6 @@
 <?php
-    include $_SERVER['DOCUMENT_ROOT'].'/Managing-Software-Projects/auth/is_admin.php';
-    include $_SERVER['DOCUMENT_ROOT'].'/Managing-Software-Projects/database_credentials.php';
+    include $_SERVER['DOCUMENT_ROOT'].'/auth/is_admin.php';
+    include $_SERVER['DOCUMENT_ROOT'].'/database_credentials.php';
 
     // Change the user role
     if($_SESSION['user_role'] == "Admin"){

@@ -23,7 +23,7 @@
         <?php  
 		    if (mysqli_num_rows($result) > 0) {
 	    ?>
-            <table class="table">
+            <table class="table table-bordered mx-auto w-75 p-3">
                 <tr>
                     <td>Content Id</td>
                     <td>Content Image</td>
@@ -43,8 +43,8 @@
                     <td><?php echo $row["content_title"]; ?></td>
                     <td><?php echo $row["content_resource"]; ?></td>
                     <td>
-                        <a href="homepage-promotion/deletepromotion.php?content_id=<?php echo $row["content_id"]; ?>">Delete</a>
-                        <a href="homepage-promotion/editpromotion.php?content_id=<?php echo $row["content_id"]; ?>">Edit</a>
+                        <a href="homepage-promotion/deletepromotion.php?content_id=<?php echo $row["content_id"]; ?>"> <img src = "images/4021663.png" class="img-thumbnail" alt = "" width="50" height="50" /></a>
+                        <a href="homepage-promotion/editpromotion.php?content_id=<?php echo $row["content_id"]; ?>"><img src = "images/84380.png" class="img-thumbnail" alt = "" width="50" height="50" /></a>
                     </td>
                 </tr>
                 <?php
@@ -59,6 +59,15 @@
 			}
 			?>
 
+            <div class="container w-100 rounded my-5 " >
+                    <div class="row text-end">
+                        <div class="col-4 w-100">
+                        <button type="button" class="btn btn-success justify-content-center">
+                            <a href="addpromotion.php" class = "text-white" > Add content </a>
+                        </button>
+                        </div>
+                    </div>
+                </div>
         <?php 
         include 'footer.php'; 
         $conn->close();

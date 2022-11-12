@@ -58,7 +58,7 @@
 
     
 
-    <div class="container border border-success rounded my-5 " >
+    <div class="container border border-success w-100 rounded my-5 " >
           <div class="row text-center">
             <div class="col-4 w-100">
               <h1 class="text-uppercase my-5">Cacti-Succulent Kuching</h1>
@@ -83,7 +83,7 @@
           </div>
     </div>
 
-    <div class="container border border-success text-center rounded my-5 h-100" >
+    <div class="container border border-success text-center w-100 rounded my-5 h-100" >
       <nav id="navbar-example2" class="navbar bg-light px-3 mb-3">
       </nav>
       <div class="row text-center">
@@ -110,7 +110,7 @@
                 while($row = mysqli_fetch_array($result2)) {
                 ?>
                 <tr>
-                    <td><img src =<?php echo $row["content_image"]; ?> class="img-thumbnail" alt = "" width="800" height="800"/></td>
+                    <td><img src =<?php echo $row["content_image"]; ?> class="img-thumbnail" alt = "" width="400" height="400"/></td>
                     <td><?php echo $row["content_title"]; ?></td>
                     <td><a href="announcement.php?content_id=<?php echo $row["content_id"]; ?>">Read More</a></td>
                 </tr>
@@ -130,7 +130,7 @@
       </div>
     </div>
 
-    <div class="container border border-success text-center rounded my-5 h-100" >
+    <div class="container border border-success text-center w-100 rounded my-5 h-100" >
       <nav id="navbar-example2" class="navbar bg-light px-3 mb-3">
       </nav>
       <div class="row text-center">
@@ -157,7 +157,7 @@
                 while($row = mysqli_fetch_array($result3)) {
                 ?>
                 <tr>
-                    <td><img src =<?php echo $row["content_image"]; ?> class="img-thumbnail" alt = "" width="800" height="800"/></td>
+                    <td><img src =<?php echo $row["content_image"]; ?> class="img-thumbnail" alt = "" width="400" height="400"/></td>
                     <td><?php echo $row["content_title"]; ?></td>
                     <td><a href="announcement.php?content_id=<?php echo $row["content_id"]; ?>">Read More</a></td>
                 </tr>

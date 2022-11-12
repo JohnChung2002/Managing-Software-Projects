@@ -1,23 +1,51 @@
-<?php
-    include '../page_head.php';
-    require_once $_SERVER['DOCUMENT_ROOT'].'/Managing-Software-Projects/api/api_functions.php';
-    $conn = mysqli_connect($servername, $username, $password, $database);
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <?php include '../page_head.php'; ?>
+    <title>Deleting Content</title>
+</head>
+<body id = 'version_id'>
+    <?php include '../database_credentials.php'; ?>
+    <?php
+
+        $conn = mysqli_connect($servername, $username, $password, $database);
+
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
           }
+        
+        $sql = "DELETE FROM content_info WHERE content_id='" . $_GET["content_id"] . "'";      
+          
+    ?>
 
-    $sql = "DELETE FROM content_info WHERE content_id='" . $_GET["content_id"] . "'";
-        if (mysqli_query($conn, $sql)) {
-            echo '
-                    <div class="d-flex justify-content-center mx-auto">
-                        <h1> Content deleted successfully </h1>
+        <div class="container border border-success w-50 rounded my-5 " >
+                  <div class="row text-center">
+                    <div class="col-4 w-100">
+                      <h1 class="text-uppercase my-5">
+                        <?php
+                           if (mysqli_query($conn, $sql)) {
+                            echo 'New record created successfully ';
+                            } 
+                        else {
+                            echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+                        }
+                        ?>
+                      </h1>
                     </div>
-                    <button type="button" class="btn btn-success position-absolute top-50 start-50 translate-middle">
-                        <a href="/Managing-Software-Projects/editpromotion.php" class = "text-white justify-content-center"> GO BACK</a>
-                    </button>
-                    ';
-        } else {
-            echo "Error deleting content: " . mysqli_error($conn);
-        }
-        mysqli_close($conn);
-?>
+                  </div>
+                  <div class="row justify-content-center">
+                    <div class=" col-4 fs-4 w-75 my-5 ">
+
+                          <button type="button" class="btn btn-success position-absolute top-70 start-50 translate-middle mt-1">
+                              <a class="text-white" href="/Managing-Software-Projects/promotioninfo.php"> Go Back </a>
+                          </button>
+                    </div>
+                  </div>
+            </div>
+        <?php
+            mysqli_close($conn);
+        ?>
+    
+     
+</body>
+</html>

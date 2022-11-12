@@ -4,7 +4,8 @@
         exit;
     }
 
-    require_once "database_credentials.php";
+    require_once $_SERVER['DOCUMENT_ROOT'].'/database_credentials.php';
+    require_once $_SERVER['DOCUMENT_ROOT'].'/api_credentials.php';
 
     // Function to send email to the user for verification
     function sendAccountVerificationEmail($email, $newEmail){
@@ -20,10 +21,8 @@
         $stmt->execute();
 
         $callurl = curl_init();
-        // CHANGE THE API_LINK WHEN DEPLOYING
-        $api_link = "https://script.google.com/macros/s/AKfycbzEmPmrvMotIn0uxclJALy5WCurHuaGxNWPU95Cwqrm7dGqpaI2uWXHcGpULVav6ps/exec";
-        $param = "?key=EB3914D9F167D9A414DF438C7D4CD&email={$newEmail}&action=verification&token={$token}";
-        $url = $api_link . $param;
+        $param = "?key={$GLOBALS['api_key']}&email={$email}&action=verification&token={$token}";
+        $url = $GLOBALS['api_link'] . $param;
         curl_setopt_array($callurl,[CURLOPT_URL=>$url,CURLOPT_TIMEOUT_MS=>1000,CURLOPT_RETURNTRANSFER=>FALSE]);
         curl_exec($callurl);
         curl_close($callurl);
@@ -43,10 +42,8 @@
         $stmt->execute();
 
         $callurl = curl_init();
-        // CHANGE THE API_LINK WHEN DEPLOYING
-        $api_link = "https://script.google.com/macros/s/AKfycbzEmPmrvMotIn0uxclJALy5WCurHuaGxNWPU95Cwqrm7dGqpaI2uWXHcGpULVav6ps/exec";
-        $param = "?key=EB3914D9F167D9A414DF438C7D4CD&email={$email}&action=reset&token={$token}";
-        $url = $api_link . $param;
+        $param = "?key={$GLOBALS['api_key']}&email={$email}&action=verification&token={$token}";
+        $url = $GLOBALS['api_link'] . $param;
         curl_setopt_array($callurl,[CURLOPT_URL=>$url,CURLOPT_TIMEOUT_MS=>1000,CURLOPT_RETURNTRANSFER=>FALSE]);
         curl_exec($callurl);
         curl_close($callurl);
@@ -63,10 +60,8 @@
         $stmt->execute();
 
         $callurl = curl_init();
-        // CHANGE THE API_LINK WHEN DEPLOYING
-        $api_link = "https://script.google.com/macros/s/AKfycbzEmPmrvMotIn0uxclJALy5WCurHuaGxNWPU95Cwqrm7dGqpaI2uWXHcGpULVav6ps/exec";
-        $param = "?key=EB3914D9F167D9A414DF438C7D4CD&email={$email}&action=deleteaccount";
-        $url = $api_link . $param;
+        $param = "?key={$GLOBALS['api_key']}&email={$email}&action=verification&token={$token}";
+        $url = $GLOBALS['api_link'] . $param;
         curl_setopt_array($callurl,[CURLOPT_URL=>$url,CURLOPT_TIMEOUT_MS=>1000,CURLOPT_RETURNTRANSFER=>FALSE]);
         curl_exec($callurl);
         curl_close($callurl);

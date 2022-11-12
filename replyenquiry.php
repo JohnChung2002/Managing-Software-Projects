@@ -19,15 +19,14 @@
          }
 
 
-         ob_start();
+    else{
     echo"
     <h1 class='text-center mt-5'>REPLY ENQUIRY</h1>
     <div class='container p-5 my-5 border'>
         <p>You are now replying to the current enquiry:</p>
         ";
 
-        
-        require_once 'booking/enquiry_functions.php';
+    
         getEnquiryInformation($_GET["id"]);
          echo"
         <form method='post' class='row g-3 needs-validation' novalidate>
@@ -39,13 +38,15 @@
         <div class='invalid-feedback'>Please enter a response.  </div>
         </div>
         <div class='col-12'>
-            <button  href='enquiryadmin.php' type='submit' class='btn btn-primary'>Response Now</button>
+            <button type='submit' class='btn btn-primary'>Response Now</button>
             <button type='reset' class='btn btn-primary'>Reset</button>
         </div>
         </form>
         <script src='script/booking_validation.js'></script>
     </div>";
-    ob_end_clean();
+    };
+    
+
     
    
 

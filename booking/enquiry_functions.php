@@ -22,41 +22,42 @@ function newenquiry(){
         $conn = start_connection();
     
   
-
-        $sql = $conn -> prepare("SELECT * FROM enquiries WHERE contact_info = ?;");
-        $sql->bind_param('s', $email);
-        $sql->execute();
-        $result = $sql->get_result();
-
-        mysqli_free_result($result);
-
+        
         $stmt = $conn -> prepare("INSERT INTO enquiries (contact_name, contact_info, enquiry_subject, enquiry_content, enquiry_status) VALUES (?, ?, ?, ?, 'Unanswered');");
         $stmt->bind_param('ssss', $name, $email, $InputReason, $InputComment);
         $stmt->execute();                             
         $stmt->close();
+
+        mysqli_close($conn);
+
+
+        
+        $conn = start_connection();
+        // $command0= "SELECT enquiry_id FROM enquiries WHERE contact_info=$email DESC LIMIT 1;";
+        // $command = "SELECT enquiry_id FROM enquiries WHERE contact_info ='"$email"' ORDER BY enquiry_id DESC LIMIT 1;";
+
+        $stmt = $conn -> prepare("SELECT enquiry_id FROM enquiries WHERE contact_info =? ORDER BY enquiry_id DESC LIMIT 1;");
+        $stmt->bind_param('s', $email);
+        $stmt->execute();
+
+        // $result = mysqli_query($conn, $command);
+        $result = $stmt->get_result();
+        $stmt->close();
+
+        $row = mysqli_fetch_assoc($result);
+        $id = $row["enquiry_id"];
+        
+
+        mysqli_close($conn);
+
+        createEnquiryTicketEmail($id);
+
         echo "
         <div class='container'>
             <div class='alert alert-success mt-4'>
             Enquiry has been submitted successfully! You will receive a response back to your email within 5 business days depending on the queue. Please do check your junk folder too.
             </div>
         </div>";
-
-
-        mysqli_close($conn);
-
-        $conn = start_connection();
-
-        $command = "SELECT enquiry_id FROM enquiries ORDER BY enquiry_id DESC LIMIT 1;";
-
-
-        $result = mysqli_query($conn, $command);
-
-        $row = mysqli_fetch_assoc($result);
-        $id = $row["enquiry_id"];
-
-        mysqli_close($conn);
-
-        createEnquiryTicketEmail($id);
 
     }
     else{
@@ -122,7 +123,6 @@ function getEnquiryRequest(){
 
 function getEnquiryInformation($enquiry_id) {
     $conn = start_connection();
-    // $user_id = $_SESSION["user_id"];
     $command = "SELECT contact_name, contact_info, enquiry_subject, enquiry_content FROM enquiries WHERE enquiry_id=? ;";
     $stmt = mysqli_prepare($conn, $command);
     mysqli_stmt_bind_param($stmt, "s", $enquiry_id);
@@ -152,8 +152,6 @@ function answerenquiry() {
         $stmt = mysqli_prepare($conn, $command);
         mysqli_stmt_bind_param($stmt, "ss", $reason, $enquiry_id);
 
-        
-        
         mysqli_stmt_execute($stmt);
         echo "
         <div class='container min-vh-100'>
@@ -164,7 +162,6 @@ function answerenquiry() {
 
         mysqli_close($conn);
         answerEnquiryTicketEmail($enquiry_id);
-  
             
     }
     else {

@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <head>
     <?php include "page_head.php"; ?>
-    <script src="https://script.google.com/macros/s/AKfycbzMpikSDfR-Lgp3afhnekAfinqVTsjhIse7ws2lBTq3hYpqRpWROc7-OSPKJ4qRbKUYmQ/exec"></script>
     <!--for ajax requests-->
     <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
     <!-- javascript for the calendar (date picker)-->
@@ -76,8 +75,6 @@
 
 <?php include 'footer.php'; ?>
 
-<!-- this is for livechat js -->
-<script src="//code.tidio.co/65ll30ygjlj2lg3xud5tni1xyqgi7ffw.js" async></script>
 
 </body>
 </html>

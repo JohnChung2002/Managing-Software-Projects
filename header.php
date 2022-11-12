@@ -64,11 +64,16 @@ if ($logged_in) {
   <li class="nav-item">
     <a class="nav-link " href="dashboard.php"><p class ="fs-5 mx-3 mt-3" style="color: white;">Booking</p></a>
   </li>';
-  if ($user_role == 'Admin') {
+  if ($user_role == 'Admin' || $user_role == 'Super Admin') {
     echo '
     <li class="nav-item">
       <a class="nav-link " href="report.php">
         <p class ="fs-5 mx-3 mt-3" style="color: white;">Statistics / Reports</p>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link " href="deleteaccount-admin.php">
+        <p class ="fs-5 mx-3 mt-3" style="color: white;">Delete Account</p>
       </a>
     </li>';
   }
@@ -98,7 +103,7 @@ if (!$logged_in) {
           loading="lazy"/>
     </a>
     <ul class="dropdown-menu">
-      <li><a class="dropdown-item" href="#">My Profile</a></li>
+      <li><a class="dropdown-item" href="profilepage.php">My Profile</a></li>
       <li><a class="dropdown-item" href="#">Another action</a></li>
       <li><hr class="dropdown-divider"></li>
       <li><a class="dropdown-item" href="logout.php">Log Out</a></li>

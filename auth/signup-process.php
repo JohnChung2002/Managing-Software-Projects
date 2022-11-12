@@ -16,7 +16,7 @@
     if(!isset($_SESSION)) { 
         session_start(); 
     } 
-    
+
     $nameMsgBool = NameValidation();
     $emailMsgBool = EmailValidation();
     $passwordMsgBool = PasswordValidation();
@@ -57,7 +57,13 @@
     // All input validation is successful.
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if($nameMsgBool['is_valid'] && $emailMsgBool['is_valid'] && $passwordMsgBool['is_valid'] && $genderMsgBool['is_valid'] && $hashBool['is_integrity'] && $phoneMsgBool['is_valid']){
-            sendDataToDatabase($servername, $username, $password, $database, $name, $email, $hashedPassword, $gender, $phone);
+            // Check if SuperAdmin creating admin account
+            if(isset($_SESSION['user_role']) && $_SESSION['user_role'] == "Super Admin"){
+                $userRole = "Admin";
+            }else{
+                $userRole = "User";
+            }
+            sendDataToDatabase($servername, $username, $password, $database, $name, $email, $hashedPassword, $gender, $phone, $userRole);
         } else {
             $_SESSION['signupMsg'] = "
                 <div class='alert alert-danger'>
@@ -68,7 +74,7 @@
     }
 
     // Function to send data over to database
-    function sendDataToDatabase($servername, $username, $password, $database, $name, $email, $hashedPassword, $gender, $phone){
+    function sendDataToDatabase($servername, $username, $password, $database, $name, $email, $hashedPassword, $gender, $phone, $userRole){
         // Initialise connection to database
         $conn = mysqli_connect($servername, $username, $password, $database);
 
@@ -97,12 +103,12 @@
             $result = $sql->get_result();
             $userID = mysqli_fetch_assoc($result)['user_id'];
             
-            $sql = $conn -> prepare("INSERT INTO user_credentials (email_address, password, user_id, user_role, account_status) VALUES (?, ?, ?, 'User', 'Unactivated');");
-            $sql->bind_param('ssi', $email, $hashedPassword, $userID);
+            $sql = $conn -> prepare("INSERT INTO user_credentials (email_address, password, user_id, user_role, account_status) VALUES (?, ?, ?, ?, 'Unactivated');");
+            $sql->bind_param('ssis', $email, $hashedPassword, $userID, $userRole);
             $sql->execute();
 
             // Send email to user with the token for verification
-            sendAccountVerificationEmail($email);
+            sendAccountVerificationEmail($email,$email);
             $_SESSION['signupMsg'] = "
             <div class='alert alert-success'>
                 Account created successfully. Please check your email for verification.

@@ -41,7 +41,7 @@
     ?>
 
     <button type="button" class="btn btn-success position-absolute top-70 start-50 translate-middle mt-1">
-        <a class="text-white-50" href="/Managing-Software-Projects/pageeditor.php"> Go Back </a>
+        <a class="text-white" href="/Managing-Software-Projects/pageeditor.php"> Go Back </a>
     </button>
      
 </body>

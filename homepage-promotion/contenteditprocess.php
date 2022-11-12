@@ -14,7 +14,7 @@
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
           }
-
+        
         $content_id = $_POST['content_id'];
         $content_type = $_POST['content_type'];
         $content_title = $_POST['content_title'];
@@ -40,7 +40,6 @@
                     <th scope="col"> Title </th>
                     <th scope="col"> Description </th>
                     <tr>
-                        <td><?php echo $content_id;?></td>
                         <td><img src = <?php echo $content_image;?> alt= ""></td>
                         <td><?php echo $content_type;?></td>
                         <td><?php echo $content_title;?></td>

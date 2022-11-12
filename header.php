@@ -35,7 +35,10 @@ if ($logged_in) {
 echo '
 <li class="nav-item">
   <a class="nav-link" href="#"><p class ="fs-5 mx-3 mt-3" style="color: white;">Plant Encyclopedia</p></a>
-</li>';
+</li>
+<li class="nav-item">
+  <a class="nav-link" href="promotioninfo.php"><p class ="fs-5 mx-3 mt-3" style="color: white;">Edit Content</p></a>
+</li>' ;
 if (!$logged_in) {
   echo '
   <li class="nav-item">

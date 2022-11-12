@@ -14,11 +14,11 @@
         <?php include 'header.php'; ?>
         <?php include 'database_credentials.php'; ?>
         <?php
-        $conn = mysqli_connect($servername, $username, $password, $database);
-        $result = mysqli_query($conn,"SELECT * FROM content_info");
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-          }
+            $conn = mysqli_connect($servername, $username, $password, $database);
+            $result = mysqli_query($conn,"SELECT * FROM content_info");
+            if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+            }
         ?>
         <?php  
 		    if (mysqli_num_rows($result) > 0) {

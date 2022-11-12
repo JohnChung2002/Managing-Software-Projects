@@ -7,7 +7,7 @@
     <?php include 'page_head.php'; ?>
     <title>Cacti Succulent Kuching</title>
 </head>
-<body id = 'version_id'>
+<body>
     <?php include 'header.php'; ?>
     <?php include 'database_credentials.php'; ?>
     <?php
@@ -112,7 +112,7 @@
                 <tr>
                     <td><img src =<?php echo $row["content_image"]; ?> class="img-thumbnail" alt = "" width="800" height="800"/></td>
                     <td><?php echo $row["content_title"]; ?></td>
-                    <td><?php echo $row["content_resource"]; ?></td>
+                    <td><a href="announcement.php?content_id=<?php echo $row["content_id"]; ?>">Read More</a></td>
                 </tr>
                 <?php
                 $i++;
@@ -159,7 +159,7 @@
                 <tr>
                     <td><img src =<?php echo $row["content_image"]; ?> class="img-thumbnail" alt = "" width="800" height="800"/></td>
                     <td><?php echo $row["content_title"]; ?></td>
-                    <td><?php echo $row["content_resource"]; ?></td>
+                    <td><a href="announcement.php?content_id=<?php echo $row["content_id"]; ?>">Read More</a></td>
                 </tr>
                 <?php
                 $i++;

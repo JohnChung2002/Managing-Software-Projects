@@ -134,7 +134,7 @@
                     $titleMsg = "Only letters and white space allowed";
                 }
             }else{
-                $titleMsg = "Name is required";
+                $titleMsg = "Title is required";
             }
         }
         return array("content_title"=>$content_title, "errMsg"=>$titleMsg, "is_valid"=>$bool);
@@ -153,10 +153,29 @@
                     $resourceMsg = "Only letters and white space allowed";
                 }
             }else{
-                $resourceMsg = "Name is required";
+                $resourceMsg = "Description is required";
             }
         }
         return array("content_title"=>$content_resource, "errMsg"=>$resourceMsg, "is_valid"=>$bool);
+    }
+
+    function ImageValidation(){
+        $content_image = $imageMsg = "";
+        $bool = false;
+        if(isset($_POST["content_image"])){
+            if(!empty($_POST["content_image"])){
+                $content_image = $_POST["content_image"];
+                if(preg_match("/^[a-zA-Z\s]+$/", $content_image)){
+                    $imageMsg = "";
+                    $bool = true;
+                }else{
+                    $imageMsg = "Only letters and white space allowed";
+                }
+            }else{
+                $imageMsg = "Imgur URL is required";
+            }
+        }
+        return array("content_image"=>$content_image, "errMsg"=>$imageMsg, "is_valid"=>$bool);
     }
 
 ?>

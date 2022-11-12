@@ -23,6 +23,7 @@
             } else {
                 echo"
                 <h1 class='text-uppercase my-4 text-center'>Edit Existing Item</h1>
+                <p class='text-center'>Your are editing deleting this item from the encyclopedia.</p>
           <br/>
           <aside class='float-end'>
               Instructions for uploading image: <br/>

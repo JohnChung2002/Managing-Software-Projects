@@ -30,11 +30,11 @@
             } else {
                 echo"
                 <h1 class='text-uppercase my-4 text-center'>Delete Existing Item</h1>
-                <p>Your are now deleting this item from the encyclopedia.</p>";
+                <p class='text-center'>Your are now deleting this item from the encyclopedia.</p>";
                 getEncyclopediaDetails($_GET["id"]);
                 echo "
                 <form method='post' class='row g-3 needs-validation' novalidate>
-                <div class='col-12'>
+                <div class='col-12 text-center'>
                     <button type='submit' class='btn btn-primary'>Delete Item</button>
                     <button type='reset' class='btn btn-primary'>Cancel</button>
                 </div>

@@ -12,8 +12,9 @@ function getEncyclopediaDetails($item_id) {
     $row = mysqli_fetch_assoc($result);
     mysqli_free_result($result);
     echo "
-    <p class='card-text'>
-		<img class='img-fluid' src=".$row["item_image"]."/>
+    <div style='width:100%'>
+    <p class='card-text text-center'>
+		<img class='img-fluid' style='width:30%; height: 50%;' src=".$row["item_image"]."/>
         <br>
         Item Name: 
         ".$row["item_name"]."
@@ -32,7 +33,9 @@ function getEncyclopediaDetails($item_id) {
         <br>
         Description: 
         ".$row["description"]."
-    </p>";
+    </p>
+    </div>
+    <br/>";
 }
 
 function deleteEncylopediaItem() {

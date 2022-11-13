@@ -16,17 +16,26 @@
           $content_resource = $_POST['content_resource'];
           $content_image = $_POST['content_image'];
                   
-          // mysql query to Update data
+          
           $query = "UPDATE content_info SET content_type = '$content_type' , content_title = '$content_title' ,content_resource = '$content_resource' , content_image = '$content_image'  WHERE content_id = '$content_id'";
           
           $result = mysqli_query($conn, $query);
-          
           if($result)
-          {
-              echo 'Data Updated';
-          }else{
-              echo 'Data Not Updated';
-          }    
+                {
+                    echo '
+                        <div class="alert alert-success" role="alert">
+                            Data Updated
+                        </div>
+                    ';
+                }else{
+                    echo '
+                        <div class="alert alert-success" role="alert">
+                            Data Not Updated
+                        </div>
+                    ';
+                }  
+            
+            
     }
 
     $result2 = mysqli_query($conn,"SELECT * FROM content_info WHERE content_id='" . $_GET['content_id'] . "'");
@@ -79,11 +88,14 @@
             </div>
             <div class="col-md-6">
                 <label for="content_image" class="form-label">Image URL</label>
-                <input type="text" class="form-control" name = "content_image" id="content_image" value="<?php echo $row['content_image']; ?>">
+                <input type="hidden" class="form-control" name = "content_image" id="content_image" value="<?php echo $row['content_image']; ?>">
                 <?php if(!empty($imgurData)){ ?>
                     <img src="<?php echo $imgurData->data->link; ?>" class="img-thumbnail" width="200" height="200" alt="...">
                     <input type="text" class="form-control" name = "content_image" id="content_image" value = "<?php echo $imgurData->data->link; ?>">
-                <?php } ?>
+                <?php }else{?>
+                    <img src="<?php echo $row['content_image']; ?>" class="img-thumbnail" width="200" height="200" alt="...">
+                    <input type="text" class="form-control" name = "content_image" id="content_image" value="<?php echo $row['content_image']; ?>">
+                <?php }?>    
             </div>
             <div class="pt-4">
                 <button type="submit" name = "update" value="Submit" class="btn btn-success">Submit</button>

@@ -24,7 +24,7 @@
                       <h1 class="text-uppercase my-5">
                         <?php
                            if (mysqli_query($conn, $sql)) {
-                            echo 'New record created successfully ';
+                            echo 'Content has been deleted successfully ';
                             } 
                         else {
                             echo "Error: " . $sql . "<br>" . mysqli_error($conn);
@@ -35,7 +35,6 @@
                   </div>
                   <div class="row justify-content-center">
                     <div class=" col-4 fs-4 w-75 my-5 ">
-
                           <button type="button" class="btn btn-success position-absolute top-70 start-50 translate-middle mt-1">
                               <a class="text-white" href="/Managing-Software-Projects/promotioninfo.php"> Go Back </a>
                           </button>

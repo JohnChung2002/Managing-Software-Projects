@@ -6,7 +6,8 @@
 </head>
 <body>
     <?php 
-        include '../database_credentials.php'; 
+        include '../database_credentials.php';
+        include '../header.php'; 
     ?>
     <?php
         $conn = mysqli_connect($servername, $username, $password, $database);
@@ -64,6 +65,8 @@
             
         </div>
         
-    
+        <?php
+           mysqli_close($conn);  
+        ?>                      
 </body>
 </html>

@@ -38,7 +38,6 @@
                   </div>
                   <div class="row justify-content-center">
                     <div class=" col-4 fs-4 w-75 my-5 ">
-
                           <button type="button" class="btn btn-success position-absolute top-70 start-50 translate-middle mt-1">
                               <a class="text-white" href="/Managing-Software-Projects/pageeditor.php"> Go Back </a>
                           </button>

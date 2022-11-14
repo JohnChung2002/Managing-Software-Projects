@@ -9,9 +9,8 @@
     require_once 'database_credentials.php'; // File of the database credentials PATH MAYBE UPDATED
     include 'auth/send_email.php';
 
-    if(isset($_GET['token']) && isset($_GET['email'])){
+    if(isset($_GET['token'])){
         $token = $_GET['token'];
-        $newEmail = $_GET['email'];
         $conn = mysqli_connect($servername, $username, $password, $database);
         $sql = $conn -> prepare("SELECT email_address, token_expiry FROM user_credentials WHERE account_token = ? LIMIT 1;");
         $sql->bind_param('s', $token);
@@ -19,16 +18,12 @@
         $result = $sql->get_result();
         if(mysqli_num_rows($result) > 0){
             $user = mysqli_fetch_assoc($result);
-            $tokenExpiry = $user['token_expiry'];
             $email = $user['email_address'];
+            $tokenExpiry = $user['token_expiry'];
 
             if(date("Y-m-d H:i:s") < date($tokenExpiry)){
-                $stmt = $conn -> prepare("UPDATE user_credentials SET email_address = ?, account_token = NULL, account_status = 'Activated', token_expiry = NULL WHERE account_token = ?");
-                $stmt->bind_param('ss', $newEmail, $token);
-                $stmt->execute();
-
-                $stmt = $conn -> prepare("UPDATE user_info SET email_address = ? WHERE email_address = ?");
-                $stmt->bind_param('ss', $newEmail, $email);
+                $stmt = $conn -> prepare("UPDATE user_credentials SET account_token = NULL, account_status = 'Activated', token_expiry = NULL WHERE email_address = ?");
+                $stmt->bind_param('s', $email);
                 $stmt->execute();
                 $message = "
                     <div class='alert alert-success'>
@@ -42,7 +37,7 @@
                     Your token has expired. Please check your email again.
                 </div>
                 ";
-                sendAccountVerificationEmail($email, $newEmail);
+                sendAccountVerificationEmail($email);
             }
         }else{
             $message = "

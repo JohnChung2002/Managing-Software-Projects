@@ -78,12 +78,20 @@ if ($logged_in) {
     </li>';
   }
 }
-if ($user_role == 'Admin' || $user_role == 'Super Admin') {
-  echo '
-  <li class="nav-item">
-    <a class="nav-link" href="visitor_encyclopedia_interface.php"><p class ="fs-5 mx-3 mt-3" style="color: white;">Plant Encyclopedia</p></a>
-  </li>';
-} else {
+if ($logged_in) {
+  if ($user_role == 'Admin' || $user_role == 'Super Admin') {
+    echo '
+    <li class="nav-item">
+      <a class="nav-link" href="visitor_encyclopedia_interface.php"><p class ="fs-5 mx-3 mt-3" style="color: white;">Plant Encyclopedia</p></a>
+    </li>';
+  } else {
+    echo '
+    <li class="nav-item">
+      <a class="nav-link" href="visitor_encyclopedia_interface.php"><p class ="fs-5 mx-3 mt-3" style="color: white;">Plant Encyclopedia</p></a>
+    </li>';
+  }
+} 
+if (!$logged_in) {
   echo '
   <li class="nav-item">
     <a class="nav-link" href="visitor_encyclopedia_interface.php"><p class ="fs-5 mx-3 mt-3" style="color: white;">Plant Encyclopedia</p></a>

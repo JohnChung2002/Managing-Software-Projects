@@ -37,18 +37,20 @@
         if ($result = mysqli_query($conn, $command)) {
             while ($row = mysqli_fetch_assoc($result)) {
                 $notification_token = json_decode($row['notification_token']);
-                $config = WebPushConfig::fromArray([
-                    'notification' => [
-                        'title' => "[{$row['booking_id']}] Booking Reminder",
-                        'body' => 'Your booking is in 30 minutes.'
-                    ],
-                    'fcm_options' => [
-                        'link' => "{$current_url}/login.php",
-                    ],
-                ]);
-                $message = CloudMessage::new()
-                    ->withWebPushConfig($config);
-                $messaging->sendMulticast($message, $notification_token);
+                if (!empty($notification_token)) {
+                    $config = WebPushConfig::fromArray([
+                        'notification' => [
+                            'title' => "[{$row['booking_id']}] Booking Reminder",
+                            'body' => 'Your booking is in 30 minutes.'
+                        ],
+                        'fcm_options' => [
+                            'link' => "{$current_url}/login.php",
+                        ],
+                    ]);
+                    $message = CloudMessage::new()
+                        ->withWebPushConfig($config);
+                    $messaging->sendMulticast($message, $notification_token);
+                }
             }
         }
     }

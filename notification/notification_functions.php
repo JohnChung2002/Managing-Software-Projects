@@ -139,7 +139,9 @@
         $result = mysqli_query($conn, $command);
         while ($row = mysqli_fetch_assoc($result)) {
             $user_notification_token = json_decode($row["notification_token"]);
-            trigger_content_push_notification($user_notification_token, $id, $title, $type);
+            if (!empty($user_notification_token)) {
+                trigger_content_push_notification($user_notification_token, $id, $title, $type);
+            }
         }
         mysqli_free_result($result);
         mysqli_close($conn);

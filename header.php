@@ -72,6 +72,11 @@ if ($logged_in) {
       </a>
     </li>
     <li class="nav-item">
+      <a class="nav-link " href="signup.php">
+        <p class ="fs-5 mx-3 mt-3" style="color: white;">Create Admin Account</p>
+      </a>
+    </li>
+    <li class="nav-item">
       <a class="nav-link " href="deleteaccount-admin.php">
         <p class ="fs-5 mx-3 mt-3" style="color: white;">Delete Account</p>
       </a>

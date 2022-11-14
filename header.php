@@ -82,8 +82,8 @@ if ($logged_in) {
   }
   if ($user_role == 'Super Admin') {
     echo '
-    <li class="nav-item dropdown me-5">
-      <a class="nav-link me-3" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <li class="nav-item dropdown">
+      <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
         <p class="dropdown-toggle fs-5 mx-3 mt-3" style="color: white;">Account Management</p>
       </a>
       <ul class="dropdown-menu">

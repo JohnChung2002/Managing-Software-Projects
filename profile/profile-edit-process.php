@@ -20,6 +20,8 @@
     $genderMsgBool = GenderValidation();
     $hashBoolValidation = HashValidation();
     $phoneMsgBool = PhoneValidation();
+    $preferenceMsgBool = PreferenceValidation();
+    $msg = $preferenceMsgBool['errMsg'];
 
     // Update name
     if($nameMsgBool['is_valid']){
@@ -92,6 +94,28 @@
         }
     }else{
         $hashBool['is_integrity'] = false;
+    }
+
+    if($preferenceMsgBool['is_valid']){
+        $preference = $preferenceMsgBool['preference'];
+        $array = explode(", ", $preference);
+        $data = '[';
+        $count = 0;
+        foreach($array as $n){
+            $count += 1;
+            if($count < count($array)){
+                $data .= '"'.$n.'", ';
+            }else{
+                $data .= '"'.$n.'"]';
+            }
+        }
+        echo $data;
+        $conn = mysqli_connect($GLOBALS['servername'], $GLOBALS['username'], $GLOBALS['password'], $GLOBALS['database']);
+        $sql = "UPDATE user_info SET preference = ? WHERE user_id = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("si", $data, $_SESSION['user_id']);
+        $stmt->execute();
+        $stmt->close();
     }
 
     // Upload picture to imgur if user upload a new picture

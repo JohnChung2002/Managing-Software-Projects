@@ -10,7 +10,7 @@
 <body>
   <?php include 'header.php'; 
   include "booking/enquiry_functions.php";
-
+  if (!empty($_GET["id"]) ){
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         answerenquiry();
     }
@@ -38,7 +38,15 @@
         </form>
         <script src='script/booking_validation.js'></script>
     </div>";
-    };
+    }
+    }else{
+        echo "
+        <div class='container min-vh-100'>
+            <div class='alert alert-info'>
+            Please choose an enquiry to response <a href ='enquiryadmin.php'>here.</a>
+            </div>
+        </div>";
+    }
    include 'footer.php';?>
 </body>
 </html>

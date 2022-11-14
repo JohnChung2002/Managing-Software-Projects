@@ -18,10 +18,10 @@
   <div class="accordion-item">
     <h2 class="accordion-header" id="headingOne">
       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-        <h5>What is the purpose of Cacti Succulent plant?</h5>
+      <h5>What is the purpose of Cacti Succulent Kuching?</h5>
       </button>
     </h2>
-    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
       <div class="accordion-body">
       <ul>
        <li> Cacti-Succulent Kuching is a local homegrown business specialized in selling various types and size of succulent plants and its utilities.</li>
@@ -40,10 +40,11 @@
     </h2>
     <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
       <div class="accordion-body">
-     
-        <li>Please make sure that your account is first verified. Do check your junks inyour email as the email might end up there.<li>
+      <ul>
+        <li>Please make sure that your account is first verified. Do check your junks in your email as the email might end up there.</li>
         <li> You may reset your password <a href="https://cactisucculentkuching.cf/resetpassword.php" class="link-primary">here</a> if you have forgotten your password.</li>
-    
+
+      </ul>
       </div>
     </div>
   </div>
@@ -58,7 +59,9 @@
     </h2>
     <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
       <div class="accordion-body">
-        <li>After logged into your account, click booking at the top on the navigation bar, and choose the <strong>Update Booking</strong> option.</li>
+      <ul>
+          <li>After logged into your account, click booking at the top on the navigation bar, and choose the <strong>Update Booking</strong> option.</li>
+        </ul>
       </div>
     </div>
   </div>
@@ -68,12 +71,14 @@
 <div class="accordion-item">
     <h2 class="accordion-header" id="headingFour">
       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-        <h5>Will the admin be able to look at my acoount details like password?</h5>
+        <h5>Will the admin be able to look at my account details like password?</h5>
       </button>
     </h2>
     <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
       <div class="accordion-body">
-        <li> Every account's password will be encrypted and the admins will not be able to look at the user's personal information.</li>
+      <ul>    
+          <li> Every account's password will be encrypted and the admins will not be able to look at the user's personal information.</li>
+        </ul>
       </div>
     </div>
   </div>
@@ -103,7 +108,9 @@
     </h2>
     <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#accordionExample">
       <div class="accordion-body">
-        <li>You may reset your password <a href="https://cactisucculentkuching.cf/resetpassword.php" class="link-primary">here</a> if you have forgotten your password.</li>
+      <ul>  
+          <li>You may reset your password <a href="https://cactisucculentkuching.cf/resetpassword.php" class="link-primary">here</a> if you have forgotten your password.</li>
+        </ul>
       </div>
     </div>
   </div>

@@ -32,7 +32,7 @@ include "auth/is_loggedin.php";
         <div class="card-body">
           <h5 class="card-title">APPOINTMENT REQUEST</h5>
           <p class="card-text">Book a new appointment</p>
-          <a href="createbooking.php" class="btn btn-primary">Create Booking</a>
+          <a href="createbooking.php" class="btn btn-primary">Requesr an appointment</a>
       </div>
       </div>
     </div>
@@ -78,7 +78,20 @@ include "auth/is_loggedin.php";
           <a href="viewbookings.php" class="btn btn-primary">Calendar Booking View</a>
       </div>
       </div>
-    </div>';
+    </div>
+    
+    <div class="col">
+    <div class="card p-5 my-5 border">
+      <img src="images/reqenquiry.png" class="card-img-top w-50" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">REPLY ENQUIRY</h5>
+        <p class="card-text">View and response enquiries made</p>
+        <a href="enquiryadmin.php" class="btn btn-primary">Reply Enquiry</a>
+    </div>
+    </div>
+  </div>'
+    
+    ;
     } else {
         echo '
         <div class="col">
@@ -90,7 +103,20 @@ include "auth/is_loggedin.php";
                 <a href="bookinghistory.php" class="btn btn-primary">Booking History</a>
             </div>
             </div>
-        </div>';
+        </div>
+
+        <div class="col">
+        <div class="card p-5 my-5 border">
+          <img src="images/reqenquiry.png" class="card-img-top w-50" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">REQUEST ENQUIRY</h5>
+            <p class="card-text">Request an enquiry regarding any questions!</p>
+            <a href="enquiry.php" class="btn btn-primary">Request Enquiry</a>
+        </div>
+        </div>
+      </div>
+        
+';
     }
     ?>
   </div>

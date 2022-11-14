@@ -5,6 +5,8 @@ if ( basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"]) ) {
 }
 echo '
 <section class="">
+<!-- this is for livechat js -->
+<script src="//code.tidio.co/65ll30ygjlj2lg3xud5tni1xyqgi7ffw.js" async></script>
     <footer class="text-white text-center" style="background-color: #1AA36D;" > 
         <div class="container p-4" >
             <div class="row">

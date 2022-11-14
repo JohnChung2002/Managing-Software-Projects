@@ -4,13 +4,13 @@
         exit;
     }
 
-    require_once 'database_credentials.php';
+    require_once $_SERVER['DOCUMENT_ROOT'].'/database_credentials.php';
     include dirname(__FILE__).'/send_email.php';
     include dirname(__FILE__).'/input_validation.php';
     include dirname(__FILE__).'/authentication-module.php';
     
     // Set the session for message
-    if(!isset($_SESSION)) { 
+    if(session_status() === PHP_SESSION_NONE) { 
         session_start(); 
     } 
 

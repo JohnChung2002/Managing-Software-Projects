@@ -4,11 +4,11 @@
         exit;
     }
     
-    require_once 'database_credentials.php'; // File of the database credentials PATH MAYBE UPDATED
+    require_once $_SERVER['DOCUMENT_ROOT'].'/database_credentials.php';
     include dirname(__FILE__).'/send_email.php';
     
     // Set the session for message
-    if(!isset($_SESSION)) { 
+    if(session_status() === PHP_SESSION_NONE) { 
         session_start(); 
     } 
 

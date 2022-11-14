@@ -6,12 +6,10 @@
 <head>
     <?php include "page_head.php"; ?>
     <title>Cancelling Appointment</title>
-    <!--for ajax requests-->
-    <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
 </head>
 <body>
   <?php include 'header.php'; 
-  if ($_SESSION["user_role"] == "Admin") {
+  if ($_SESSION["user_role"] == "Admin" || $_SESSION["user_role"] == "Super Admin") {
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         include "booking/booking_functions.php";
         adminCancelBooking();

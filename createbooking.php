@@ -5,21 +5,19 @@ include "auth/is_loggedin.php";
 <head>
     <?php include "page_head.php"; ?>
     <title>Create Booking</title>
-    <!--for ajax requests-->
-    <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
     <!-- javascript for the calendar (date picker)-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js" integrity="sha512-T/tUfKSV1bihCnd+MxKD0Hm1uBBroVYBOYSk1knyvQ9VyZJpc/ALb4P0r6ubwVPSGB2GvjeoMAJJImBG12TiaQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!--css for the calendar (date picker)-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" integrity="sha512-mSYUmp1HYZDFaVKK//63EcZq4iFWFjxSL+Z3T/aCt4IO9Cejm03q3NKKYN6pFQzY0SBOr8h+eCIAZHPXcpZaNw==" crossorigin="anonymous" referrerpolicy="no-referrer" /></head>
 <body>
 <?php include 'header.php'; 
-    if ($_SESSION["user_role"] == "Admin") {
+    if ($_SESSION["user_role"] == "Admin" || $_SESSION["user_role"] == "Super Admin") {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             include "booking/booking_functions.php";
             adminCreateBooking();
         } 
         echo '
-            <h1 class="text-center mt-5">CREATE NEW BOOKING</h1>
+            <h1 class="text-center mt-5">APPOINTMENT REQUEST</h1>
             <div class="container p-5 my-5 border">
                 <form method="post" class="row g-3 needs-validation" novalidate>
                     <div class="col-10">
@@ -98,7 +96,7 @@ include "auth/is_loggedin.php";
             createUserBooking();
         } 
         echo '
-        <h1 class="text-center mt-5">CREATE NEW BOOKING</h1>
+        <h1 class="text-center mt-5">APPOINTMENT REQUEST</h1>
         <div class="container p-5 my-5 border">
         <form method="post" class="row g-3 needs-validation" novalidate>
             <div id="datepicker-container"></div>

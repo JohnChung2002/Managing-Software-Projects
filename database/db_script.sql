@@ -13,12 +13,13 @@ CREATE TABLE IF NOT EXISTS `user_credentials` (
     email_address VARCHAR(254) NOT NULL,
     password CHAR(60) NOT NULL,
     user_id INT UNSIGNED NOT NULL,
-    user_role ENUM('Admin', 'User') NOT NULL,
+    profile_image TEXT,
+    user_role ENUM('Super Admin', 'Admin', 'User') NOT NULL,
     account_created_timestamp TIMESTAMP,
-    account_status ENUM('Unactivated', 'Activated', 'Pending Reset', 'Deleted') NOT NULL,
+    account_status ENUM('Unactivated', 'Activated', 'Pending Reset', 'Pending Delete', 'Deleted') NOT NULL,
     account_token CHAR(22),
     token_expiry DATETIME,
-    notification_token JSON,
+    notification_token JSON NOT NULL DEFAULT '[]',
     PRIMARY KEY (email_address),
     FOREIGN KEY (user_id) REFERENCES user_info(user_id)
 );
@@ -30,6 +31,7 @@ CREATE TABLE IF NOT EXISTS `booking_info` (
     user_id INT UNSIGNED NOT NULL,
     number_of_attendees TINYINT UNSIGNED NOT NULL,
     booking_status ENUM('Confirmed', 'Cancelled') NOT NULL,
+    edit_count INT UNSIGNED NOT NULL,
     cancellation_remarks VARCHAR(255),
     PRIMARY KEY (booking_id),
     FOREIGN KEY (user_id) REFERENCES user_info(user_id)
@@ -59,26 +61,43 @@ CREATE TABLE IF NOT EXISTS `content_info` (
     content_resource TEXT,
     PRIMARY KEY (content_id)
 );
-CREATE TABLE IF NOT EXISTS `encyclopedia_item_categories` (
-    item_category_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    item_category_name VARCHAR(255) NOT NULL,
-    PRIMARY KEY (item_category_id)
-);
-CREATE TABLE IF NOT EXISTS `encyclopedia_item_types` (
-    item_type_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    item_type_name VARCHAR(255) NOT NULL,
-    item_category_id INT UNSIGNED NOT NULL,
-    PRIMARY KEY (item_type_id),
-    FOREIGN KEY (item_category_id) REFERENCES encyclopedia_item_categories(item_category_id)
-);
 CREATE TABLE IF NOT EXISTS `encyclopedia_items` (
     item_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    item_type_id INT UNSIGNED NOT NULL,
+    item_category VARCHAR(255) NOT NULL,
+    item_subcategory VARCHAR(255),
     item_name VARCHAR(255) NOT NULL,
     item_image TEXT NOT NULL,
     availability_in_store ENUM('Not Available', 'Out of Stock', 'Available') NOT NULL,
     price_in_store DECIMAL(5,2),
-    encyclopedia_resource TEXT,
-    PRIMARY KEY (item_id),
-    FOREIGN KEY (item_type_id) REFERENCES encyclopedia_item_types(item_type_id)
+    description TEXT,
+    PRIMARY KEY (item_id)
+);
+CREATE TABLE IF NOT EXISTS `notification_history` (
+    notification_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    notification_timestamp TIMESTAMP NOT NULL,
+    user_id INT UNSIGNED NOT NULL,
+    notification_type ENUM('Booking Confirmation', 'Booking Update', 'Booking Cancellation', 'Booking Reminder', 'Promotion', 'Announcement') NOT NULL,
+    notification_title VARCHAR(255) NOT NULL,
+    notification_link TEXT NOT NULL,
+    notification_status ENUM('Unread', 'Read') NOT NULL,
+    PRIMARY KEY (notification_id),
+    FOREIGN KEY (user_id) REFERENCES user_info(user_id)
+);
+CREATE TABLE IF NOT EXISTS `enquiries` (
+    enquiry_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    enquiry_timestamp TIMESTAMP NOT NULL,
+    contact_name VARCHAR(255) NOT NULL,
+    contact_info VARCHAR(254) NOT NULL,
+    enquiry_subject VARCHAR(255) NOT NULL,
+    enquiry_content TEXT NOT NULL,
+    enquiry_status ENUM('Answered', 'Unanswered') NOT NULL,
+    enquiry_reply TEXT,
+    PRIMARY KEY (enquiry_id)
+)
+CREATE TABLE IF NOT EXISTS `banner` (
+    banner_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    banner_image TEXT NOT NULL,
+    banner_description VARCHAR(255) NOT NULL,
+    banner_status ENUM('Active', 'Inactive') NOT NULL,
+    PRIMARY KEY (banner_id)
 );

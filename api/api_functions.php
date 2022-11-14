@@ -3,9 +3,10 @@
         http_response_code(403);
         exit;
     }
+    
+    require_once $_SERVER['DOCUMENT_ROOT']."/database_credentials.php";
 
-    require_once $_SERVER['DOCUMENT_ROOT'] . "/Managing-Software-Projects/database_credentials.php";
-
+    date_default_timezone_set("Asia/Kuala_Lumpur");
     function validate_date($date) {
         return date_create_from_format("Y-m-d", $date) !== false;
     }
@@ -53,10 +54,14 @@
 
     function is_admin() {
         if (is_loggedin()) {
-            return (isset($_SESSION["user_role"]) && $_SESSION["user_role"] == "Admin");
+            return (isset($_SESSION["user_role"]) && ($_SESSION["user_role"] == "Admin" || $_SESSION["user_role"] == "Super Admin"));
         }
         else {
             return false;
         }
+    }
+
+    function get_protocol() {
+        return isset($_SERVER['HTTP_X_FORWARDED_PROTO']) ? $_SERVER['HTTP_X_FORWARDED_PROTO']."://" : ((isset( $_SERVER["HTTPS"] ) && strtolower( $_SERVER["HTTPS"] ) == "on" ) ? 'https://' : 'http://');
     }
 ?>

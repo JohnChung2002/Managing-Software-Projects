@@ -15,6 +15,8 @@ echo '
                     <p>
                         We are a local company that specializes in selling only the best, high quality cacti and other planting products. Our goal is to deliver the best to the customer.
                     </p>
+                    <a class="text-white" href="enquiry.php">Enquiry</a><br/>
+                    <a class="text-white" href="faq.php">FAQ</a>
                 </div>
                 <div class="col-lg-5 col-md-0 mb-0 mb-md-0">
                     <h5 class="text-uppercase">Business Hours</h5>
@@ -38,9 +40,6 @@ echo '
         </div>
     </footer>
 </section>';
-if (!isset($_SESSION)) {
-    session_start();
-}
 if(isset($_SESSION['is_login']) && $_SESSION['is_login'] == true){
     if ($_SESSION['user_role'] == "User" || $_SESSION['user_role'] == "Admin" || $_SESSION['user_role'] == "Super Admin") {
         include 'notification/script.php';

@@ -10,7 +10,7 @@
     include dirname(__FILE__).'/authentication-module.php';
     
     // Set the session for message
-    if(!isset($_SESSION)) { 
+    if(session_status() === PHP_SESSION_NONE) { 
         session_start(); 
     } 
 

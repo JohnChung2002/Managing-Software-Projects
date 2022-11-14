@@ -7,7 +7,7 @@
     require_once 'database_credentials.php'; // File of the database credentials PATH MAYBE UPDATED
     
     // Set the session for message
-    if(!isset($_SESSION)) { 
+    if(session_status() === PHP_SESSION_NONE) { 
         session_start(); 
     } 
 

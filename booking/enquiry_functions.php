@@ -6,6 +6,7 @@ if ( basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"]) ) {
 }
 
 require_once $_SERVER['DOCUMENT_ROOT'].'/api/api_functions.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/api_credentials.php';
 
 date_default_timezone_set("Asia/Kuala_Lumpur");
 
@@ -184,9 +185,8 @@ function createEnquiryTicketEmail($id) {
     mysqli_free_result($result);
     mysqli_close($conn);
     $callurl = curl_init();
-    $api_link = "https://script.google.com/macros/s/AKfycbx6V8SSEY41OtIe-VV4Xk7_2Z-7wf2BPghVRszI12MM6KTApzYhe7pTRY-4eaj063U/exec";
-    $param = "?key=EB3914D9F167D9A414DF438C7D4CD&action=createenquiryticket&email={$email}&name={$name}&id={$id}&title={$subject}&enquiry={$content}";
-    $url = $api_link . $param;
+    $param = "?key={$GLOBALS['api_key']}&action=createenquiryticket&email={$email}&name={$name}&id={$id}&title={$subject}&enquiry={$content}";
+    $url = $GLOBALS['api_link'] . $param;
     curl_setopt_array($callurl,[CURLOPT_URL=>$url,CURLOPT_TIMEOUT_MS=>1000,CURLOPT_RETURNTRANSFER=>FALSE]);
     curl_exec($callurl);
     curl_close($callurl);
@@ -207,9 +207,8 @@ function answerEnquiryTicketEmail($id) {
     mysqli_free_result($result);
     mysqli_close($conn);
     $callurl = curl_init();
-    $api_link = "https://script.google.com/macros/s/AKfycbx6V8SSEY41OtIe-VV4Xk7_2Z-7wf2BPghVRszI12MM6KTApzYhe7pTRY-4eaj063U/exec";
-    $param = "?key=EB3914D9F167D9A414DF438C7D4CD&action=answerenquiry&email={$email}&name={$name}&id={$id}&title={$subject}&reply={$reply}";
-    $url = $api_link . $param;
+    $param = "?key={$GLOBALS['api_key']}&action=answerenquiry&email={$email}&name={$name}&id={$id}&title={$subject}&reply={$reply}";
+    $url = $GLOBALS['api_link'] . $param;
     curl_setopt_array($callurl,[CURLOPT_URL=>$url,CURLOPT_TIMEOUT_MS=>1000,CURLOPT_RETURNTRANSFER=>FALSE]);
     curl_exec($callurl);
     curl_close($callurl);

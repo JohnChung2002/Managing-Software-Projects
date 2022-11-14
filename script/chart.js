@@ -233,7 +233,7 @@ function initialiseTimeChart() {
                 lineTension: 0,
                 backgroundColor: "rgb(65,83,54)",
                 borderColor: "rgb(65,83,54)",
-                label: "Number of Bookings",
+                label: "Bookings",
                 data: chartData
               }]
             },

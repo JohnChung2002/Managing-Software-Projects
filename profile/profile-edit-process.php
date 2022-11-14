@@ -109,7 +109,6 @@
                 $data .= '"'.$n.'"]';
             }
         }
-        echo $data;
         $conn = mysqli_connect($GLOBALS['servername'], $GLOBALS['username'], $GLOBALS['password'], $GLOBALS['database']);
         $sql = "UPDATE user_info SET preference = ? WHERE user_id = ?";
         $stmt = $conn->prepare($sql);

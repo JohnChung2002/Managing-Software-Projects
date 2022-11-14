@@ -101,4 +101,81 @@
         }
         return array("phone"=>$phone, "errMsg"=>$phoneMsg, "is_valid"=>$bool);
     }
+
+    function RemarksValidation(){
+        $remarks = $remarksMsg = "";
+        $bool = false;
+        if(isset($_POST["remarks"])){
+            if(!empty($_POST["remarks"])){
+                $remarks = $_POST["remarks"];
+                if(preg_match("/^[a-zA-Z\s]+$/", $remarks)){
+                    $remarksMsg = "";
+                    $bool = true;
+                }else{
+                    $remarksMsg = "Only letters and white space allowed";
+                }
+            }else{
+                $remarksMsg = "Name is required";
+            }
+        }
+        return array("remarks"=>$remarks, "errMsg"=>$remarksMsg, "is_valid"=>$bool);
+    }
+
+    function TitleValidation(){
+        $content_title = $titleMsg = "";
+        $bool = false;
+        if(isset($_POST["content_title"])){
+            if(!empty($_POST["content_title"])){
+                $content_title = $_POST["content_title"];
+                if(preg_match("/^[a-zA-Z\s]+$/", $content_title)){
+                    $titlesMsg = "";
+                    $bool = true;
+                }else{
+                    $titleMsg = "Only letters and white space allowed";
+                }
+            }else{
+                $titleMsg = "Title is required";
+            }
+        }
+        return array("content_title"=>$content_title, "errMsg"=>$titleMsg, "is_valid"=>$bool);
+    }
+
+    function DescriptionValidation(){
+        $content_resource = $resourceMsg = "";
+        $bool = false;
+        if(isset($_POST["content_resource"])){
+            if(!empty($_POST["content_resource"])){
+                $content_resource = $_POST["content_resource"];
+                if(preg_match("/^[a-zA-Z\s]+$/", $content_resource)){
+                    $resourceMsg = "";
+                    $bool = true;
+                }else{
+                    $resourceMsg = "Only letters and white space allowed";
+                }
+            }else{
+                $resourceMsg = "Description is required";
+            }
+        }
+        return array("content_title"=>$content_resource, "errMsg"=>$resourceMsg, "is_valid"=>$bool);
+    }
+
+    function ImageValidation(){
+        $content_image = $imageMsg = "";
+        $bool = false;
+        if(isset($_POST["content_image"])){
+            if(!empty($_POST["content_image"])){
+                $content_image = $_POST["content_image"];
+                if(preg_match("/^[a-zA-Z\s]+$/", $content_image)){
+                    $imageMsg = "";
+                    $bool = true;
+                }else{
+                    $imageMsg = "Only letters and white space allowed";
+                }
+            }else{
+                $imageMsg = "Imgur URL is required";
+            }
+        }
+        return array("content_image"=>$content_image, "errMsg"=>$imageMsg, "is_valid"=>$bool);
+    }
+
 ?>

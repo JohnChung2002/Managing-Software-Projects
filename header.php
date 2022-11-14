@@ -70,7 +70,17 @@ if ($logged_in) {
       <a class="nav-link " href="report.php">
         <p class ="fs-5 mx-3 mt-3" style="color: white;">Statistics / Reports</p>
       </a>
-    </li>';
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="promotioninfo.php"><p class ="fs-5 mx-3 mt-3" style="color: white;">Edit Content</p></a>
+    </li>
+    <li class="nav-item dropdown me-5">
+    <a class="nav-link dropdown-toggle mt-2 me-3" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><p class ="fs-5 mx-3 mt-3" style="color: white;">Edit Content</p></a>
+    <ul class="dropdown-menu">
+      <li><a class="dropdown-item" href="">Announcement/Promotion</a></li>
+      <li><a class="dropdown-item" href="#">Homepage Info</a></li>
+    </ul>
+  </li>';
   }
   if ($user_role == 'Admin') {
     echo '
@@ -119,7 +129,8 @@ if (!$logged_in) {
   </li>
   <li class="nav-item">
     <a class="nav-link" href="login.php" ><p class ="fs-5 mx-3 mt-3" style="color: white;">Log In</p></a>
-  </li>';
+  </li>
+  ';
 } else {
   load_notification_header();
   echo '

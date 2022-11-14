@@ -25,8 +25,7 @@
         mysqli_free_result($result);
 
         mysqli_close($conn);
-
-        if($preference == '[]'){
+        if($preference[0]!=''){
             $preference = implode(",",$preference);
         } else {
             $preference = "No preference";

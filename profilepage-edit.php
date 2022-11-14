@@ -86,6 +86,18 @@
                     </div>
                 </div>
 
+                <div class="row mb-3">
+                    <label for="preference" class="col-sm-2 col-form-label">Preference</label>
+                    <div class="col-sm-10">
+                        <input type="text" name="preference" id="preference" pattern="^[a-zA-Z,][a-zA-Z, ]+$" class="form-control" aria-describedby="passwordHelpInline" value='<?php echo"$preference"; ?>' required>
+                        <span id="passwordHelpInline" class="form-text">
+                        Enter your preference. (Separated by commas)
+                        </span>
+                        <div class="valid-feedback">Looks good!</div>
+                        <div class="invalid-feedback">Only letters, white space and commas allowed.</div>
+                    </div>
+                </div>
+
                 <input type="text" name="hashValue" id="hashValue" hidden />
 
                 <button type="submit" class="btn btn-primary">Save Changes</button>

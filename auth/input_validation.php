@@ -101,4 +101,23 @@
         }
         return array("phone"=>$phone, "errMsg"=>$phoneMsg, "is_valid"=>$bool);
     }
+
+    function PreferenceValidation(){
+        $preference = $preferenceMsg = "";
+        $bool = false;
+        if(isset($_POST["preference"])){
+            if(!empty($_POST["preference"])){
+                $preference = $_POST["preference"];
+                if(preg_match("/^[a-zA-Z\s,]+$/", $preference)){
+                    $preferenceMsg = "";
+                    $bool = true;
+                }else{
+                    $preferenceMsg = "Only letters, white space and commas allowed";
+                }
+            }else{
+                $preferenceMsg = "Preference is required";
+            }
+        }
+        return array("preference"=>$preference, "errMsg"=>$preferenceMsg, "is_valid"=>$bool);
+    }
 ?>

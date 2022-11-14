@@ -91,7 +91,7 @@
                 <button type="submit" class="btn btn-primary">Save Changes</button>
                 <?php
                     if($_SESSION['user_role'] == "User"){
-                    echo '<button type="button" class="btn btn-outline-danger float-end" onclick="location.href="deleteaccount-user.php";">Delete Account</button>';}
+                    echo "<button type='button' class='btn btn-outline-danger float-end' onclick='location.href=\"deleteaccount-user.php\";'>Delete Account</button>";}
                 ?>
             </fieldset>
         </form>

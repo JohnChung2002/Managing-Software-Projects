@@ -89,7 +89,7 @@
         if(isset($_POST["phone"])){
             if(!empty($_POST["phone"])){
                 $phone = $_POST["phone"];
-                if(preg_match("/^[0-9]{10}$/", $_POST["phone"])){
+                if(preg_match("/^[0-9]{10,11}$/", $_POST["phone"])){
                     $phoneMsg = "";
                     $bool = true;
                 }else{

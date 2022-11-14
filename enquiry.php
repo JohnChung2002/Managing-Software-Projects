@@ -14,7 +14,7 @@
 
 <h1 class="text-center mt-5">ENQUIRY</h1>
 
-<h6 class="text-center mt-5"><em> Feel free to contact us if you need any assistance, any help or another question.</em><h6>
+<h6 class="text-center mt-5"><em> Feel free to contact us if you need any assistance, any help or another question.</em></h6>
 
 
 <div class="container p-5 my-5 border" >

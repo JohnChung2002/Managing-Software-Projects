@@ -12,7 +12,11 @@
   <script src="script/password-integrity.js"></script>
   <?php include 'auth/signup-process.php'; ?>
   <div class="container p-3 vh-100">
-    <span><?php if(isset($_SESSION['signupMsg'])){echo $_SESSION['signupMsg']; session_unset();} ?></span>
+    <?php 
+    if(isset($_SESSION['signupMsg'])) {
+      echo "<span>".$_SESSION['signupMsg']."</span>"; 
+      session_unset();} 
+    ?>
     <form class="needs-validation" method="post" id="signupreset-form" novalidate>
         <fieldset>
             <legend>Sign Up</legend>

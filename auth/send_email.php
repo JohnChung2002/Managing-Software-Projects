@@ -49,7 +49,6 @@
         curl_close($callurl);
     }
 
-    // Function to send email to confirm account deletion
     function sendDeleteAccountEmail($email){
         // Initilaize the connection
         $conn = mysqli_connect($GLOBALS['servername'], $GLOBALS['username'], $GLOBALS['password'], $GLOBALS['database']);
@@ -60,10 +59,12 @@
         $stmt->execute();
 
         $callurl = curl_init();
-        $param = "?key={$GLOBALS['api_key']}&email={$email}&action=verification&token={$token}";
+        // CHANGE THE API_LINK WHEN DEPLOYING
+        $param = "?key=EB3914D9F167D9A414DF438C7D4CD&email={$email}&action=deleteaccount";
         $url = $GLOBALS['api_link'] . $param;
         curl_setopt_array($callurl,[CURLOPT_URL=>$url,CURLOPT_TIMEOUT_MS=>1000,CURLOPT_RETURNTRANSFER=>FALSE]);
         curl_exec($callurl);
         curl_close($callurl);
     }
+?>
 ?>

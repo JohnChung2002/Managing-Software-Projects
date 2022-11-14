@@ -16,9 +16,9 @@ if ($val !== false) {
         $url = "https://cactisucculentkuching.cf/content.php?id=".$content_id;
         for ($i = 1; $i <= $val['i']; $i++) {
             update_notification_data($i, $content_type, $content_title , $url);
-            retrieve_content_info_for_email_notification($content_id);
-            load_user_notification_tokens($content_id, $content_title, $content_type);
         }
+        retrieve_content_info_for_email_notification($content_id);
+        load_user_notification_tokens($content_id, $content_title, $content_type);
     }
 }
 http_response_code(403);

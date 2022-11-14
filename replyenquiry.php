@@ -11,23 +11,19 @@
 </head>
 <body>
   <?php include 'header.php'; 
-  
+  include "booking/enquiry_functions.php";
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        include "booking/enquiry_functions.php";
         answerenquiry();
-         }
-
-
+    }
     else{
     echo"
     <h1 class='text-center mt-5'>REPLY ENQUIRY</h1>
     <div class='container p-5 my-5 border'>
         <p>You are now replying to the current enquiry:</p>
         ";
-
-    
-        getEnquiryInformation($_GET["id"]);
+        $id = (int)$_GET['id'];
+        getEnquiryInformation($id);
          echo"
         <form method='post' class='row g-3 needs-validation' novalidate>
         <div class='col-md-6'>
@@ -45,11 +41,6 @@
         <script src='script/booking_validation.js'></script>
     </div>";
     };
-    
-
-    
-   
-
    include 'footer.php';?>
 </body>
 </html>

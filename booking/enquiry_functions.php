@@ -5,7 +5,7 @@ if ( basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"]) ) {
     exit;
 }
 
-require_once $_SERVER['DOCUMENT_ROOT'].'/Managing-Software-Projects/api/api_functions.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/api/api_functions.php';
 
 date_default_timezone_set("Asia/Kuala_Lumpur");
 
@@ -118,7 +118,7 @@ function getEnquiryInformation($enquiry_id) {
     $conn = start_connection();
     $command = "SELECT contact_name, contact_info, enquiry_subject, enquiry_content FROM enquiries WHERE enquiry_id=? ;";
     $stmt = mysqli_prepare($conn, $command);
-    mysqli_stmt_bind_param($stmt, "s", $enquiry_id);
+    mysqli_stmt_bind_param($stmt, "i", $enquiry_id);
     mysqli_stmt_execute($stmt);
     $result = mysqli_stmt_get_result($stmt);
     $row = mysqli_fetch_assoc($result);

@@ -8,16 +8,32 @@ include "auth/is_loggedin.php";
     <title>Booking Dashboard</title>
 </head>
 <body>
-  <?php include 'header.php'; ?>
-  <div class="container p-5 my-5 p-3 bg-success">
-  <h1 class="text-center text-white">Booking Dashboard</h1>
-  <div class="row row-cols-1 row-cols-md-2 g-4">
+ <?php include 'header.php'; ?>
+	
+<div class="container border border-success rounded my-5">
+   <div class="row text-center">  
+        <div class=" w-70 mx-4">
+          <h1 class="text-uppercase mt-5">Booking Dashboard</h1>
+		 </div>
+	</div>	  
+<div class="row justify-content-center">
+    <div class="w-75 my-4">
+		  <p>
+		  Cacti-Succulent Kuching is a local homegrown business specialized in selling various 
+            type and size of succulent plants. Apart from selling succulent plants, we also sell different type 
+            of gardening tools, soils and fertilizers at an affordable cost. Cacti-Succulent Kuching is setup in 
+            2020  in  which  business  is  running  both  at  home  as  well  as  weekend  market.  Our  primary  
+            mission  is  to  establish  a  long-lasting  relationship  of  trust  and  commitment  with  each  visitor 
+            through providing the highest level of customer service.
+		   </p>
+     </div>     
+  <div class="row mx-5 mb-4">
     <?php 
     if($_SESSION["user_role"] == "Admin") {
       echo '
       <div class="col">
-        <div class="card p-5 my-5 border">
-          <img src="images/Cactus1.png" class="card-img-top w-60" alt="...">
+        <div class="card mx-5 border">
+          <img src="images/Cactus6.jpeg" class="card-img-top w-60" alt="...">
           <div class="card-body">
             <h5 class="card-title">UPDATE BOOKING AVAILABILITY</h5>
             <p class="card-text">Update the store\'s availability</p>
@@ -27,32 +43,28 @@ include "auth/is_loggedin.php";
       </div>';
     }?>
     <div class="col">
-      <div class="card p-5 my-5 border">
-        <img src="images/Cactus3.png" class="card-img-top w-60" alt="...">
+      <div class="card mx-5 border">
+        <img src="images/Cactus5.jpeg" class="card-img-top w-60" alt="...">
         <div class="card-body">
           <h5 class="card-title">APPOINTMENT REQUEST</h5>
-          <p class="card-text">Book a new appointment</p>
+          <p class="card-text">
+		  Simply choose a date and time that works for you. 
+		  You will receive a notification with your appointment details once you have scheduled one.
+		  </p>
           <a href="createbooking.php" class="btn btn-primary">Create Booking</a>
       </div>
       </div>
     </div>
     <div class="col">
-      <div class="card p-5 my-5 border">
-        <img src="images/Cactus4.png" class="card-img-top w-60" alt="...">
+      <div class="card mx-5 border">
+        <img src="images/Cactus6.jpeg" class="card-img-top w-60" alt="...">
         <div class="card-body">
-          <h5 class="card-title">CANCEL A BOOKING</h5>
-          <p class="card-text">Cancel a booking appointment</p>
-          <a href="cancelbooking.php" class="btn btn-primary">Cancel Booking</a>
-      </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card p-5 my-5 border">
-        <img src="images/Cactus2.png" class="card-img-top w-60" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">UPDATE A BOOKING</h5>
-          <p class="card-text">Update a booking appointment</p>
-          <a href="updatebooking.php" class="btn btn-primary">Update Booking</a>
+          <h5 class="card-title">MANAGE YOUR BOOKING</h5>
+          <p class="card-text">
+		  We understand that your plans can occasionally change. 
+		  With this feature, you can easily and instantly make changes to your appointment online.
+		  </p>
+          <a href="bookinghistory.php" class="btn btn-primary">Manage Booking</a>
       </div>
       </div>
     </div>
@@ -60,8 +72,8 @@ include "auth/is_loggedin.php";
     if($_SESSION["user_role"] == "Admin") {
       echo '
       <div class="col">
-      <div class="card p-5 my-5 border">
-        <img src="images/Cactus1.png" class="card-img-top w-60" alt="...">
+      <div class="card mx-5 border">
+        <img src="images/Cactus6.jpeg" class="card-img-top w-60" alt="...">
         <div class="card-body">
           <h5 class="card-title">SEARCH BOOKING</h5>
           <p class="card-text">Search booking by booking ID</p>
@@ -70,8 +82,8 @@ include "auth/is_loggedin.php";
       </div>
     </div>
     <div class="col">
-      <div class="card p-5 my-5 border">
-        <img src="images/Cactus1.png" class="card-img-top w-60" alt="...">
+      <div class="card mx-5 border">
+        <img src="images/Cactus6.jpeg" class="card-img-top w-60" alt="...">
         <div class="card-body">
           <h5 class="card-title">CALENDAR BOOKING VIEW</h5>
           <p class="card-text">View all booking appointment in calendar view</p>
@@ -79,21 +91,10 @@ include "auth/is_loggedin.php";
       </div>
       </div>
     </div>';
-    } else {
-        echo '
-        <div class="col">
-            <div class="card p-5 my-5 border">
-            <img src="images/Cactus1.png" class="card-img-top w-60" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">BOOKING HISTORY</h5>
-                <p class="card-text">View my booking appointment history</p>
-                <a href="bookinghistory.php" class="btn btn-primary">Booking History</a>
-            </div>
-            </div>
-        </div>';
     }
     ?>
   </div>
+    </div>
   </div>
   <?php include 'footer.php'; ?>
 </body>

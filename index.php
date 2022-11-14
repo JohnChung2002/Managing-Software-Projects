@@ -67,7 +67,7 @@
           <div class="row justify-content-center">
             <div class=" col-4 fs-4 w-75 my-5 ">
               <?php
-                $sql = "SELECT page_resource FROM Homepage_info ORDER BY version_id DESC LIMIT 1";
+                $sql = "SELECT page_resource FROM homepage_info ORDER BY version_id DESC LIMIT 1";
                 $result = $conn->query($sql);
 
                 if ($result->num_rows > 0) {

@@ -35,7 +35,31 @@ echo '
         <a class="text-white" href="https://cactisucculentkuching.cf/">cactisucculentkuching.cf/</a>
         </div>
     </footer>
-</section>
-';
+</section>';
+if (!isset($_SESSION)) {
+    session_start();
+}
+if(isset($_SESSION['is_login']) && $_SESSION['is_login'] == true){
+    if ($_SESSION['user_role'] == "User" || $_SESSION['user_role'] == "Admin" || $_SESSION['user_role'] == "Super Admin") {
+        include 'notification/script.php';
+        echo '<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Notification Alert</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Would you like enable notifications to receive push notification updates on bookings, promotions and announcements?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="rejectNotification(); $(\'#exampleModal\').modal(\'toggle\');">Close</button>
+                <button type="button" class="btn btn-primary" onclick="requestPermission(); $(\'#exampleModal\').modal(\'toggle\');">Allow</button>
+            </div>
+            </div>
+        </div>
+        </div>';
+    } 
+}
 
 ?>

@@ -54,7 +54,7 @@
 
     function is_admin() {
         if (is_loggedin()) {
-            return (isset($_SESSION["user_role"]) && $_SESSION["user_role"] == "Admin");
+            return (isset($_SESSION["user_role"]) && ($_SESSION["user_role"] == "Admin" || $_SESSION["user_role"] == "Super Admin"));
         }
         else {
             return false;

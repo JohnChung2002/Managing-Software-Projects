@@ -179,7 +179,7 @@
                         'body' => "Your booking for $number_of_attendees at $appointment_date $appointment_timeslot has been confirmed."
                     ],
                     'fcm_options' => [
-                        'link' => "{$current_url}/login.php",
+                        'link' => "{$current_url}/booking.php?id={$booking_id}",
                     ],
                 ]);
                 $message = CloudMessage::new()
@@ -207,7 +207,7 @@
                         'body' => "Your booking for $number_of_attendees has been updated to $appointment_date $appointment_timeslot."
                     ],
                     'fcm_options' => [
-                        'link' => "{$current_url}/login.php",
+                        'link' => "{$current_url}/booking.php?id={$booking_id}",
                     ],
                 ]);
                 $message = CloudMessage::new()
@@ -235,7 +235,7 @@
                         'body' => "Your booking for $number_of_attendees pax at $appointment_date $appointment_timeslot has been cancelled."
                     ],
                     'fcm_options' => [
-                        'link' => "{$current_url}/login.php",
+                        'link' => "{$current_url}/booking.php?id={$booking_id}",
                     ],
                 ]);
                 $message = CloudMessage::new()

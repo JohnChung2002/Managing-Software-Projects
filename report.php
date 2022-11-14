@@ -28,7 +28,7 @@
             <canvas id="DayChart"></canvas>
         </div>
         
-        <h2 class="text-center mt-5">Monthly Report</h2>
+        <h2 class="text-center mt-5">Daily Report</h2>
         <hr />
 
         <div class="text-center mt-5">

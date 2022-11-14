@@ -1,6 +1,6 @@
 <?php
-    # include 'auth/is_admin.php';
-?> 
+  include 'auth/is_admin.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -23,7 +23,7 @@
 
     <body>
         <?php include 'header.php'; ?>
-        <?php include 'database_credentials.php'; ?>
+        <?php include $_SERVER['DOCUMENT_ROOT'].'/database_credentials.php'; ?>
         <?php
         $conn = mysqli_connect($servername, $username, $password, $database);
 
@@ -31,38 +31,35 @@
             die("Connection failed: " . $conn->connect_error);
           }
         ?>
+        <div class="container">
+            <h1 class="text-center my-5">Edit Homepage</h1>
+            <form method="POST" id="edit_form" class="justfiy-content-center" action="editprocess.php" >
+                <div class = "mb-3">
+                    <textarea name="page_resource">
+                        <?php 
+                            $sql = "SELECT page_resource FROM Homepage_info ORDER BY version_id DESC LIMIT 1";
+                            $result = $conn->query($sql);
 
-        <form method="POST" id="edit_form" class = "justfiy-content-center"action="homepage-promotion/editprocess.php" >
-            <h1 class = "mb-3 ms-3 mt-3"> Welcome to homepage edit</h1>
-            <div class = "mb-3">
-                <textarea name="page_resource">
-                    <?php 
-                        $sql = "SELECT page_resource FROM Homepage_info ORDER BY version_id DESC LIMIT 1";
-                        $result = $conn->query($sql);
-
-                        if ($result->num_rows > 0) {
-                            while($row = $result->fetch_assoc()) {
-                            echo $row["page_resource"];
+                            if ($result->num_rows > 0) {
+                                while($row = $result->fetch_assoc()) {
+                                echo $row["page_resource"];
+                                }
+                            } else{
+                                echo "0 results";
                             }
-                        } else{
-                            echo "0 results";
-                        }
-                        
-                    ?>
-                </textarea>
-            </div>
-            <div class="input-group p-3">
-				<label class = "mx-3" for = "remarks">Remarks</label>
-                <input  class="form-control" type = "text" id="remarks" name ="remarks"/>
-			</div>
-            <div class = "btn btn-success mb-3 ms-3">
-			    <input class = "btn btn-success" type="submit" value="Submit"/>
-		    </div>
-        </form>
-        
-
-
-
+                            
+                        ?>
+                    </textarea>
+                </div>
+                <div class="input-group p-3">
+                    <label class = "mx-3" for = "remarks">Remarks</label>
+                    <input  class="form-control" type = "text" id="remarks" name ="remarks"/>
+                </div>
+                <div class = "btn btn-success mb-3 ms-3">
+                    <input class = "btn btn-success" type="submit" value="Submit"/>
+                </div>
+            </form>
+        </div>
         <?php 
         include 'footer.php'; 
         $conn->close();

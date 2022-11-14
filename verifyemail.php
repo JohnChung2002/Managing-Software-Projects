@@ -6,7 +6,7 @@
 </head>
 <body>
     <?php
-    require_once 'database_credentials.php'; // File of the database credentials PATH MAYBE UPDATED
+    require_once $_SERVER['DOCUMENT_ROOT'].'/database_credentials.php';
     include 'auth/send_email.php';
 
     if(isset($_GET['token']) && isset($_GET['email'])){

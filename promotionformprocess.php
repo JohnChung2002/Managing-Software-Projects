@@ -1,13 +1,16 @@
+<?php
+  include 'auth/is_admin.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <?php include '../page_head.php'; ?>
+    <?php include 'page_head.php'; ?>
     <title>Cacti Succulent Kuching</title>
 </head>
 <body>
     <?php 
-        include '../database_credentials.php';
-        include '../header.php'; 
+        include $_SERVER['DOCUMENT_ROOT'].'/database_credentials.php';
+        include 'header.php'; 
     ?>
     <?php
         $conn = mysqli_connect($servername, $username, $password, $database);
@@ -66,7 +69,8 @@
         </div>
         
         <?php
-           mysqli_close($conn);  
+           mysqli_close($conn); 
+           include 'footer.php';
         ?>                      
 </body>
 </html>

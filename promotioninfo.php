@@ -1,6 +1,6 @@
 <?php
-    # include 'auth/is_admin.php';
-?> 
+  include 'auth/is_admin.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -12,7 +12,7 @@
 
     <body>
         <?php include 'header.php'; ?>
-        <?php include 'database_credentials.php'; ?>
+        <?php include $_SERVER['DOCUMENT_ROOT'].'/database_credentials.php'; ?>
         <?php
             $conn = mysqli_connect($servername, $username, $password, $database);
             $result = mysqli_query($conn,"SELECT * FROM content_info");
@@ -23,6 +23,7 @@
         <?php  
 		    if (mysqli_num_rows($result) > 0) {
 	    ?>
+        <div class="container">
             <table class="table table-bordered mx-auto w-75 p-3">
                 <tr>
                     <td>Content Id</td>
@@ -43,8 +44,8 @@
                     <td><?php echo $row["content_title"]; ?></td>
                     <td><?php echo $row["content_resource"]; ?></td>
                     <td>
-                        <a href="homepage-promotion/deletepromotion.php?content_id=<?php echo $row["content_id"]; ?>"> <img src = "images/4021663.png" class="img-thumbnail" alt = "" width="50" height="50" /></a>
-                        <a href="homepage-promotion/editpromotion.php?content_id=<?php echo $row["content_id"]; ?>"><img src = "images/84380.png" class="img-thumbnail" alt = "" width="50" height="50" /></a>
+                        <a href="deletepromotion.php?content_id=<?php echo $row["content_id"]; ?>"> <img src = "images/4021663.png" class="img-thumbnail" alt = "" width="50" height="50" /></a>
+                        <a href="editpromotion.php?content_id=<?php echo $row["content_id"]; ?>"><img src = "images/84380.png" class="img-thumbnail" alt = "" width="50" height="50" /></a>
                     </td>
                 </tr>
                 <?php
@@ -68,6 +69,7 @@
                         </div>
                     </div>
                 </div>
+        </div>
         <?php 
         include 'footer.php'; 
         $conn->close();

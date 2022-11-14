@@ -31,7 +31,7 @@
 <div class="container p-5 my-5 border">
     <div class='row'>
 <?php
-    require_once 'database_credentials.php'; // File of the database credentials PATH MAYBE UPDATED
+    require_once $_SERVER['DOCUMENT_ROOT'].'/database_credentials.php';
 	$conn = new mysqli($servername, $username, $password, $database);
 	if ($conn->connect_error) {
 		die("Connection failed(because there is no data in the database yet): " . $conn->connect_error);

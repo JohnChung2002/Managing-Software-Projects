@@ -13,7 +13,7 @@
     <body>
         <?php 
             include 'header.php';
-            include 'homepage-promotion/upload2imgur.php'; 
+            include 'api/upload2imgur.php'; 
         ?>
 
         <form class ="p-4" method="post" action="" class="form" enctype="multipart/form-data">
@@ -27,7 +27,7 @@
             </div>
         </form>
 
-        <form class ="p-4 vh-100" method="post" id="promotion_form" action = "homepage-promotion/promotionformprocess.php" enctype="multipart/form-data" >
+        <form class ="p-4 vh-100" method="post" id="promotion_form" action = "promotionformprocess.php" enctype="multipart/form-data" >
 
             <div class="col-md-4">
                 <label for="content_type" class="form-label">Choose Type</label>

@@ -1,6 +1,6 @@
 <?php
-    include 'homepage-promotion/upload2imgur.php'; 
-    include_once 'database_credentials.php';
+    include 'api/upload2imgur.php'; 
+    include_once $_SERVER['DOCUMENT_ROOT'].'/database_credentials.php';
     $conn = mysqli_connect($servername, $username, $password, $database);
 
         if ($conn->connect_error) {

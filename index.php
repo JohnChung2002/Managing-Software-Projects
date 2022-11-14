@@ -9,7 +9,7 @@
 </head>
 <body>
     <?php include 'header.php'; ?>
-    <?php include 'database_credentials.php'; ?>
+    <?php include $_SERVER['DOCUMENT_ROOT'].'/database_credentials.php'; ?>
     <?php
         $conn = mysqli_connect($servername, $username, $password, $database);
 

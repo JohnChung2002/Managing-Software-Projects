@@ -67,18 +67,17 @@ if ($logged_in) {
   if ($user_role == 'Admin' || $user_role == 'Super Admin') {
     echo '
     <li class="nav-item">
-      <a class="nav-link " href="report.php">
+      <a class="nav-link" href="report.php">
         <p class ="fs-5 mx-3 mt-3" style="color: white;">Statistics / Reports</p>
       </a>
     </li>
-    <li class="nav-item">
-      <a class="nav-link" href="promotioninfo.php"><p class ="fs-5 mx-3 mt-3" style="color: white;">Edit Content</p></a>
-    </li>
-    <li class="nav-item dropdown me-5">
-    <a class="nav-link dropdown-toggle mt-2 me-3" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><p class ="fs-5 mx-3 mt-3" style="color: white;">Edit Content</p></a>
+    <li class="nav-item dropdown">
+    <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+      <p class ="fs-5 mx-3 mt-3 dropdown-toggle" style="color: white;">Edit Content</p>
+    </a>
     <ul class="dropdown-menu">
-      <li><a class="dropdown-item" href="">Announcement/Promotion</a></li>
-      <li><a class="dropdown-item" href="#">Homepage Info</a></li>
+      <li><a class="dropdown-item" href="promotioninfo.php">Announcement/Promotion</a></li>
+      <li><a class="dropdown-item" href="pageeditor.php">Homepage Info</a></li>
     </ul>
   </li>';
   }

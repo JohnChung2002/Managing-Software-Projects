@@ -1,6 +1,7 @@
 <?php
-    include 'upload2imgur.php'; 
-    include_once '../database_credentials.php';
+    include 'auth/is_admin.php';
+    include 'api/upload2imgur.php'; 
+    include_once $_SERVER['DOCUMENT_ROOT'].'/database_credentials.php';
     $conn = mysqli_connect($servername, $username, $password, $database);
 
     if ($conn->connect_error) {
@@ -10,45 +11,48 @@
     if(isset($_POST['update']))
     {
         
-          $content_id = $_POST['content_id'];
-          $content_type = $_POST['content_type'];
-          $content_title = $_POST['content_title'];
-          $content_resource = $_POST['content_resource'];
-          $content_image = $_POST['content_image'];
-                  
-          
-          $query = "UPDATE content_info SET content_type = '$content_type' , content_title = '$content_title' ,content_resource = '$content_resource' , content_image = '$content_image'  WHERE content_id = '$content_id'";
-          
-          $result = mysqli_query($conn, $query);
-          if($result)
-                {
-                    echo '
-                        <div class="alert alert-success" role="alert">
-                            Data Updated
-                        </div>
-                    ';
-                }else{
-                    echo '
-                        <div class="alert alert-success" role="alert">
-                            Data Not Updated
-                        </div>
-                    ';
-                }  
-            
-            
+        $content_id = $_POST['content_id'];
+        $content_type = $_POST['content_type'];
+        $content_title = $_POST['content_title'];
+        $content_resource = $_POST['content_resource'];
+        $content_image = $_POST['content_image'];
+                
+        
+        $query = "UPDATE content_info SET content_type=?, content_title=?, content_resource=?, content_image=? WHERE content_id=?;";
+        $stmt = $conn->prepare($query);
+        $stmt->bind_param("ssssi", $content_type, $content_title, $content_resource, $content_image, $content_id);
+        
+        if($stmt->execute())
+        {
+            echo '
+                <div class="alert alert-success" role="alert">
+                    Data Updated
+                </div>
+            ';
+        }else{
+            echo '
+                <div class="alert alert-success" role="alert">
+                    Data Not Updated
+                </div>
+            ';
+        }  
     }
-
-    $result2 = mysqli_query($conn,"SELECT * FROM content_info WHERE content_id='" . $_GET['content_id'] . "'");
-    $row= mysqli_fetch_array($result2);
+    $command = "SELECT * FROM content_info WHERE content_id=?";
+    $stmt = $conn->prepare($command);
+    $stmt->bind_param("i", $_GET['content_id']);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $row = $result->fetch_assoc();
         
 ?>
 <html>
 <head>
-    <?php include '../page_head.php'; ?>
+    <?php include 'page_head.php'; ?>
     <title>Update Content</title>
     
 </head>
     <body>
+        <?php include 'header.php';?>
         <form class ="p-4" method="post" action="" class="form" enctype="multipart/form-data">
             <div class="col-md-6">
                 <h3>Please Upload to Imgur before continuing</h3>
@@ -65,7 +69,7 @@
                 <?php if(isset($message)) { echo $message; } ?>
             </div>
             <div class="col-md-6">
-                <a href="../promotioninfo.php">Content List</a>
+                <a href="promotioninfo.php">Content List</a>
             </div>
             <div class="col-md-6">
                 <input type="hidden" name="content_id" id="content_id" class="txtField" value="<?php echo $row['content_id']; ?>">
@@ -104,6 +108,7 @@
 
         <?php
            mysqli_close($conn);  
+           include 'footer.php';
         ?>
     </body>
 </html>

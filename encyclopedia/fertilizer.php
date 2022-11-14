@@ -8,7 +8,7 @@
     <button class="btn btn-dark" type="submit">Search</button>
 </form>
 <?php 
-require_once 'database_credentials.php'; // File of the database credentials PATH MAYBE UPDATED
+require_once $_SERVER['DOCUMENT_ROOT'].'/database_credentials.php';
 $con = new mysqli($servername, $username, $password, $database);
 if(isset($_GET['item_id'])){
     $item_id = $_GET['item_id'];

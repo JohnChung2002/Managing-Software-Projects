@@ -5,8 +5,7 @@ if ( basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"]) ) {
     exit;
 }
 
-require_once $_SERVER['DOCUMENT_ROOT'].'/api/api_functions.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/notification/notification_functions.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/Managing-Software-Projects/api/api_functions.php';
 
 date_default_timezone_set("Asia/Kuala_Lumpur");
 
@@ -52,6 +51,13 @@ function getSlots($conn, $date) {
     return $taken_slots;
 }
 
+function checkAdvanceHour($date, $time) {
+    $now = date("Y-m-d H:i:s");
+    $input_date = date("Y-m-d H:i:s", strtotime($date . " " . $time));
+    $hourdiff = round((strtotime($input_date) - strtotime($now))/3600, 1);
+    return ($hourdiff > 2);
+}
+
 function populateSlots($date, $op_array, $taken_slots) {
     $available_slots = array();
     $op_array = json_decode($op_array);
@@ -61,7 +67,7 @@ function populateSlots($date, $op_array, $taken_slots) {
         $finish = (int)explode(":", $end, 2)[0];
         for ($i = $begin; $i < $finish; $i++) {
             $time = str_pad($i, 2, "0", STR_PAD_LEFT) . ":00:00";
-            if (checkAppointmentAdvanceHour($date, $time)) {
+            if (checkAdvanceHour($date, $time)) {
                 if (in_array($time, $taken_slots)) {
                     if (array_count_values($taken_slots)[$time] < 2) {
                         array_push($available_slots, $time);
@@ -138,7 +144,6 @@ function createUserBooking() {
                                 </div>
                             </div>";
                             mysqli_close($conn);
-                            trigger_booking_background("createbooking", "Booking Confirmation", $booking_id);
                             return true;
                         }
                     }
@@ -213,7 +218,6 @@ function adminCreateBooking() {
                                 </div>
                             </div>";
                             mysqli_close($conn);
-                            trigger_booking_background("createbooking", "Booking Confirmation", $booking_id);
                             return true;
                         }
                     }
@@ -240,21 +244,17 @@ function getBookingInformation($booking_id) {
     mysqli_stmt_bind_param($stmt, "ss", $user_id, $booking_id);
     mysqli_stmt_execute($stmt);
     $result = mysqli_stmt_get_result($stmt);
-    if (mysqli_num_rows($result) == 1) { 
-        $row = mysqli_fetch_assoc($result);
-        mysqli_free_result($result);
-        echo "
-        <p>Booking ID: " . $booking_id . 
-        "<br/>
-        Booking Date: " . $row["appointment_date"] .
-        "<br/>
-        Booking Time: " . $row["appointment_timeslot"] .
-        "<br/>
-        Number of Attendees: " . $row["number_of_attendees"] .
-        "</p>";
-    } else {
-        echo "Booking not found.";
-    }
+    $row = mysqli_fetch_assoc($result);
+    mysqli_free_result($result);
+    echo "
+    <p>Booking ID: " . $booking_id . 
+    "<br/>
+    Booking Date: " . $row["appointment_date"] .
+    "<br/>
+    Booking Time: " . $row["appointment_timeslot"] .
+    "<br/>
+    Number of Attendees: " . $row["number_of_attendees"] .
+    "</p>";
 }
 
 function updateUserBooking() {
@@ -274,7 +274,7 @@ function updateUserBooking() {
             if (mysqli_num_rows($result) == 1) {
                 mysqli_free_result($result);
                 if (checkClash($conn, $date, $time)) {
-                    $command = "UPDATE booking_info SET appointment_date=?, appointment_timeslot=?, number_of_attendees=?, edit_count=edit_count+1 WHERE booking_id=? AND user_id=?;";
+                    $command = "UPDATE booking_info SET appointment_date=?, appointment_timeslot=?, number_of_attendees=? WHERE booking_id=? AND user_id=?;";
                     $stmt = mysqli_prepare($conn, $command);
                     mysqli_stmt_bind_param($stmt, "ssiss", $date, $time, $number_of_attendees, $booking_id, $user_id);
                     if (mysqli_stmt_execute($stmt)) {
@@ -285,7 +285,6 @@ function updateUserBooking() {
                             </div>
                         </div>";
                         mysqli_close($conn);
-                        trigger_booking_background("updatebooking", "Booking Update", $booking_id);
                         return true;
                     }
                 }
@@ -320,7 +319,7 @@ function adminUpdateBooking() {
             if (mysqli_num_rows($result) == 1) {
                 mysqli_free_result($result);
                 if (checkClash($conn, $date, $time)) {
-                    $command = "UPDATE booking_info SET appointment_date=?, appointment_timeslot=?, number_of_attendees=?, edit_count=edit_count+1 WHERE booking_id=?;";
+                    $command = "UPDATE booking_info SET appointment_date=?, appointment_timeslot=?, number_of_attendees=? WHERE booking_id=?;";
                     $stmt = mysqli_prepare($conn, $command);
                     mysqli_stmt_bind_param($stmt, "ssis", $date, $time, $number_of_attendees, $booking_id);
                     if (mysqli_stmt_execute($stmt)) {
@@ -331,7 +330,6 @@ function adminUpdateBooking() {
                             </div>
                         </div>";
                         mysqli_close($conn);
-                        trigger_booking_background("updatebooking", "Booking Update", $booking_id);
                         return true;
                     }
                 }
@@ -361,8 +359,8 @@ function cancelUserBooking() {
         $result = mysqli_stmt_get_result($stmt);
         $row = mysqli_fetch_assoc($result);
         mysqli_free_result($result);
-        if (checkAppointmentAdvanceHour($row["appointment_date"], $row["appointment_timeslot"])) {
-            $command = "UPDATE booking_info SET booking_status='Cancelled', cancellation_remarks=?, edit_count=edit_count+1 WHERE booking_id=? AND user_id=?;";
+        if (checkAdvanceHour($row["appointment_date"], $row["appointment_timeslot"])) {
+            $command = "UPDATE booking_info SET booking_status='Cancelled', cancellation_remarks=? WHERE booking_id=? AND user_id=?;";
             $stmt = mysqli_prepare($conn, $command);
             mysqli_stmt_bind_param($stmt, "sss", $reason, $booking_id, $user_id);
             if (mysqli_stmt_execute($stmt)) {
@@ -373,7 +371,6 @@ function cancelUserBooking() {
                     </div>
                 </div>";
                 mysqli_close($conn);
-                trigger_booking_background("cancelbooking", "Booking Cancellation", $booking_id);
                 return true;
             }
         }
@@ -400,8 +397,8 @@ function adminCancelBooking() {
         $result = mysqli_stmt_get_result($stmt);
         $row = mysqli_fetch_assoc($result);
         mysqli_free_result($result);
-        if (checkAppointmentAdvanceHour($row["appointment_date"], $row["appointment_timeslot"])) {
-            $command = "UPDATE booking_info SET booking_status='Cancelled', cancellation_remarks=?, edit_count=edit_count+1 WHERE booking_id=?;";
+        if (checkAdvanceHour($row["appointment_date"], $row["appointment_timeslot"])) {
+            $command = "UPDATE booking_info SET booking_status='Cancelled', cancellation_remarks=? WHERE booking_id=?;";
             $stmt = mysqli_prepare($conn, $command);
             mysqli_stmt_bind_param($stmt, "ss", $reason, $booking_id);
             if (mysqli_stmt_execute($stmt)) {
@@ -412,7 +409,6 @@ function adminCancelBooking() {
                     </div>
                 </div>";
                 mysqli_close($conn);
-                trigger_booking_background("cancelbooking", "Booking Cancellation", $booking_id);
                 return true;
             }
         }
@@ -534,36 +530,6 @@ function updateAvailability() {
             Invalid request!
             </div>
         </div>";
-    }
-}
-
-function checkBooking($id) {
-    $conn = start_connection();
-    $command = "SELECT appointment_date, appointment_timeslot, number_of_attendees FROM booking_info WHERE booking_id=?;";
-    $stmt = mysqli_prepare($conn, $command);
-    mysqli_stmt_bind_param($stmt, "s", $id);
-    mysqli_stmt_execute($stmt);
-    $result = mysqli_stmt_get_result($stmt);
-    if (mysqli_num_rows($result) == 1) {
-        $row = mysqli_fetch_assoc($result);
-        mysqli_free_result($result);
-        mysqli_close($conn);
-        return $row;
-    }
-    mysqli_free_result($result);
-    mysqli_close($conn);
-    return false;
-}
-
-function trigger_booking_background($action, $title, $booking_id) {
-    $action = escapeshellarg($action);
-    $title = escapeshellarg($title);
-    $booking_id = escapeshellarg($booking_id);
-    $key = escapeshellarg($GLOBALS['api_key']);
-    if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
-        pclose(popen("START /MIN php \"notification\\booking_script.php\" -a$action -t$title -i$booking_id -k$key", "r"));
-    } else {
-        pclose(popen("php \"notification/booking_script.php\" -a$action -t$title -i$booking_id -k$key >/dev/null 2>/dev/null &", "r"));
     }
 }
 ?>

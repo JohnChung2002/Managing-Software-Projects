@@ -9,7 +9,7 @@ include "auth/is_loggedin.php";
 </head>
 <body>
   <?php include 'header.php'; ?>
-  <div class="container p-5 my-5 p-3 bg-success">
+  <div class="container p-5 my-5 bg-success p-3">
   <h1 class="text-center text-white">Booking Dashboard</h1>
   <div class="row row-cols-1 row-cols-md-2 g-4">
     <?php 
@@ -17,7 +17,7 @@ include "auth/is_loggedin.php";
       echo '
       <div class="col">
         <div class="card p-5 my-5 border">
-          <img src="images/Cactus1.png" class="card-img-top w-60" alt="...">
+          <img src="images/update.png" class="card-img-top w-50" alt="...">
           <div class="card-body">
             <h5 class="card-title">UPDATE BOOKING AVAILABILITY</h5>
             <p class="card-text">Update the store\'s availability</p>
@@ -28,7 +28,7 @@ include "auth/is_loggedin.php";
     }?>
     <div class="col">
       <div class="card p-5 my-5 border">
-        <img src="images/Cactus3.png" class="card-img-top w-60" alt="...">
+        <img src="images/booking.png" class="card-img-top w-50" alt="...">
         <div class="card-body">
           <h5 class="card-title">APPOINTMENT REQUEST</h5>
           <p class="card-text">Book a new appointment</p>
@@ -38,7 +38,7 @@ include "auth/is_loggedin.php";
     </div>
     <div class="col">
       <div class="card p-5 my-5 border">
-        <img src="images/Cactus4.png" class="card-img-top w-60" alt="...">
+        <img src="images/cancel.png" class="card-img-top w-50" alt="...">
         <div class="card-body">
           <h5 class="card-title">CANCEL A BOOKING</h5>
           <p class="card-text">Cancel a booking appointment</p>
@@ -48,7 +48,7 @@ include "auth/is_loggedin.php";
     </div>
     <div class="col">
       <div class="card p-5 my-5 border">
-        <img src="images/Cactus1.png" class="card-img-top w-60" alt="...">
+        <img src="images/update.png" class="card-img-top w-50" alt="...">
         <div class="card-body">
           <h5 class="card-title">UPDATE A BOOKING</h5>
           <p class="card-text">Update a booking appointment</p>
@@ -61,7 +61,7 @@ include "auth/is_loggedin.php";
       echo '
       <div class="col">
       <div class="card p-5 my-5 border">
-        <img src="images/Cactus1.png" class="card-img-top w-60" alt="...">
+        <img src="images/check.png" class="card-img-top w-50" alt="...">
         <div class="card-body">
           <h5 class="card-title">SEARCH BOOKING</h5>
           <p class="card-text">Search booking by booking ID</p>
@@ -71,7 +71,7 @@ include "auth/is_loggedin.php";
     </div>
     <div class="col">
       <div class="card p-5 my-5 border">
-        <img src="images/Cactus1.png" class="card-img-top w-60" alt="...">
+        <img src="images/check.png" class="card-img-top w-50" alt="...">
         <div class="card-body">
           <h5 class="card-title">CALENDAR BOOKING VIEW</h5>
           <p class="card-text">View all booking appointment in calendar view</p>
@@ -96,7 +96,7 @@ include "auth/is_loggedin.php";
         echo '
         <div class="col">
             <div class="card p-5 my-5 border">
-            <img src="images/Cactus1.png" class="card-img-top w-60" alt="...">
+            <img src="images/check.png" class="card-img-top w-50" alt="...">
             <div class="card-body">
                 <h5 class="card-title">BOOKING HISTORY</h5>
                 <p class="card-text">View my booking appointment history</p>

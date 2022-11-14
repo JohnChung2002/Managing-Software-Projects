@@ -7,7 +7,7 @@
     include dirname(__FILE__).'/input_validation.php';
     include dirname(__FILE__).'/authentication-module.php';
     include dirname(__FILE__).'/send_email.php';
-    require_once $_SERVER['DOCUMENT_ROOT'].'/database_credentials.php';
+    require_once 'database_credentials.php'; // File of the database credentials PATH MAYBE UPDATED
 
     $name = $userInputPassword = $email = $gender = $phone = "";
     $nameMsgBool = $emailMsgBool = $passwordMsgBool = $genderMsgBool = $phoneMsgBool = "";
@@ -16,7 +16,7 @@
     if(!isset($_SESSION)) { 
         session_start(); 
     } 
-
+    
     $nameMsgBool = NameValidation();
     $emailMsgBool = EmailValidation();
     $passwordMsgBool = PasswordValidation();
@@ -57,13 +57,7 @@
     // All input validation is successful.
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if($nameMsgBool['is_valid'] && $emailMsgBool['is_valid'] && $passwordMsgBool['is_valid'] && $genderMsgBool['is_valid'] && $hashBool['is_integrity'] && $phoneMsgBool['is_valid']){
-            // Check if SuperAdmin creating admin account
-            if(isset($_SESSION['user_role']) && $_SESSION['user_role'] == "Super Admin"){
-                $userRole = "Admin";
-            }else{
-                $userRole = "User";
-            }
-            sendDataToDatabase($servername, $username, $password, $database, $name, $email, $hashedPassword, $gender, $phone, $userRole);
+            sendDataToDatabase($servername, $username, $password, $database, $name, $email, $hashedPassword, $gender, $phone);
         } else {
             $_SESSION['signupMsg'] = "
                 <div class='alert alert-danger'>
@@ -74,7 +68,7 @@
     }
 
     // Function to send data over to database
-    function sendDataToDatabase($servername, $username, $password, $database, $name, $email, $hashedPassword, $gender, $phone, $userRole){
+    function sendDataToDatabase($servername, $username, $password, $database, $name, $email, $hashedPassword, $gender, $phone){
         // Initialise connection to database
         $conn = mysqli_connect($servername, $username, $password, $database);
 
@@ -103,12 +97,12 @@
             $result = $sql->get_result();
             $userID = mysqli_fetch_assoc($result)['user_id'];
             
-            $sql = $conn -> prepare("INSERT INTO user_credentials (email_address, password, user_id, user_role, account_status) VALUES (?, ?, ?, ?, 'Unactivated');");
-            $sql->bind_param('ssis', $email, $hashedPassword, $userID, $userRole);
+            $sql = $conn -> prepare("INSERT INTO user_credentials (email_address, password, user_id, user_role, account_status) VALUES (?, ?, ?, 'User', 'Unactivated');");
+            $sql->bind_param('ssi', $email, $hashedPassword, $userID);
             $sql->execute();
 
             // Send email to user with the token for verification
-            sendAccountVerificationEmail($email,$email);
+            sendAccountVerificationEmail($email);
             $_SESSION['signupMsg'] = "
             <div class='alert alert-success'>
                 Account created successfully. Please check your email for verification.

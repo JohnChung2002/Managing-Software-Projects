@@ -70,16 +70,26 @@ if ($logged_in) {
       <a class="nav-link " href="report.php">
         <p class ="fs-5 mx-3 mt-3" style="color: white;">Statistics / Reports</p>
       </a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link " href="signup.php">
-        <p class ="fs-5 mx-3 mt-3" style="color: white;">Create Admin Account</p>
-      </a>
-    </li>
+    </li>';
+  }
+  if ($user_role == 'Admin') {
+    echo '
     <li class="nav-item">
       <a class="nav-link " href="deleteaccount-admin.php">
         <p class ="fs-5 mx-3 mt-3" style="color: white;">Delete Account</p>
       </a>
+    </li>';
+  }
+  if ($user_role == 'Super Admin') {
+    echo '
+    <li class="nav-item dropdown me-5">
+      <a class="nav-link dropdown-toggle mt-2 me-3" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Account Management
+      </a>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="signup.php">Create Admin Account</a></li>
+        <li><a class="dropdown-item" href="deleteaccount-admin.php">Delete Account</a></li>
+      </ul>
     </li>';
   }
 }

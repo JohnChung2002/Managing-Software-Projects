@@ -14,7 +14,6 @@
     function checkPasswordIntegrity($password, $clientHashValue){
         $serverHashValue = hashPasswordIntegrity($password);
         return $clientHashValue == $serverHashValue;
-
     }
 
     // Hash the password to be stored in the database

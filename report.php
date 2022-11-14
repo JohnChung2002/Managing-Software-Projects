@@ -5,7 +5,6 @@
 <html lang="en">
 <head>
     <?php include 'page_head.php'; ?>   
-    <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <title>Cacti Succulent Kuching</title>
 </head>
@@ -14,27 +13,29 @@
     <div class="container">
         <h1 class="text-center mt-5">Visitor Pattern Report</h1>
         <p class="text-center mt-5"><?php echo "Report based on: " . date("d/m/Y") . "<br>";?></p> 
-        
-        <h2 class="text-center mt-5">Daily Report</h2>
         <hr />
         
-        <h3 class="text-center mt-5">Time Based Report</h3>
+        <h2 class="text-center mt-5">Monthly Summary Time Based Report </h2>
+        <hr />
+
         <div class="text-center mt-5">
             <canvas id="TimeChart"></canvas>
         </div>
         
-        <h3 class="text-center mt-5">Day Based Report</h3>
+        <h2 class="text-center mt-5">Monthly Summary Day Based Report</h3>
+        <hr />
+
         <div class="text-center mt-5">
             <canvas id="DayChart"></canvas>
         </div>
         
-        <h2 class="text-center mt-5">Monthly Report</h2>
+        <h2 class="text-center mt-5">Daily Traffic Report</h2>
         <hr />
 
         <div class="text-center mt-5">
             <canvas id="MonthChart"></canvas>
         </div>
-        <h2 class="text-center mt-5">Yearly Report</h3>
+        <h2 class="text-center mt-5">Monthly Traffic Report</h3>
         <hr />
         
         <div class="text-center mt-5">

@@ -5,6 +5,8 @@ if ( basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"]) ) {
 }
 echo '
 <section class="">
+<!-- this is for livechat js -->
+<script src="//code.tidio.co/65ll30ygjlj2lg3xud5tni1xyqgi7ffw.js" async></script>
     <footer class="text-white text-center" style="background-color: #1AA36D;" > 
         <div class="container p-4" >
             <div class="row">
@@ -13,6 +15,8 @@ echo '
                     <p>
                         We are a local company that specializes in selling only the best, high quality cacti and other planting products. Our goal is to deliver the best to the customer.
                     </p>
+                    <a class="text-white" href="enquiry.php">Enquiry</a><br/>
+                    <a class="text-white" href="faq.php">FAQ</a>
                 </div>
                 <div class="col-lg-5 col-md-0 mb-0 mb-md-0">
                     <h5 class="text-uppercase">Business Hours</h5>
@@ -35,7 +39,28 @@ echo '
         <a class="text-white" href="https://cactisucculentkuching.cf/">cactisucculentkuching.cf/</a>
         </div>
     </footer>
-</section>
-';
+</section>';
+if(isset($_SESSION['is_login']) && $_SESSION['is_login'] == true){
+    if ($_SESSION['user_role'] == "User" || $_SESSION['user_role'] == "Admin" || $_SESSION['user_role'] == "Super Admin") {
+        include 'notification/script.php';
+        echo '<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Notification Alert</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Would you like enable notifications to receive push notification updates on bookings, promotions and announcements?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="rejectNotification(); $(\'#exampleModal\').modal(\'toggle\');">Close</button>
+                <button type="button" class="btn btn-primary" onclick="requestPermission(); $(\'#exampleModal\').modal(\'toggle\');">Allow</button>
+            </div>
+            </div>
+        </div>
+        </div>';
+    } 
+}
 
 ?>

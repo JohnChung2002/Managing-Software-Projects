@@ -6,9 +6,7 @@
 <head>
     <title>Updating Booking Availability</title>
     <?php include "page_head.php"; ?>
-    <!--for ajax requests-->
-    <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
-  </head>
+</head>
 <body>
   <?php include 'header.php'; 
   if ($_SERVER["REQUEST_METHOD"] == "POST") {

@@ -14,15 +14,12 @@
         <div class="col-4 w-100">
           <h1 class="text-uppercase my-4">Add Item Successfully</h1>
           <?php
-            require_once 'database_credentials.php'; // File of the database credentials PATH MAYBE UPDATED
+            require_once 'database_credentials.php';
             
             if(isset($_POST['productname'])){
-              $conn = new mysqli($servername, $username, $password, $database);
+              $conn = mysqli_connect($GLOBALS["servername"], $GLOBALS["username"], $GLOBALS["password"], $GLOBALS["database"]);
               if (!$conn) {
                 die("Connection failed: " . mysqli_connect_error());
-              }else{
-                echo "Successfully connecting to the database\n";
-                echo "<br />";
               }
               
               // get the post records
@@ -34,17 +31,16 @@
               $iprice = $_POST['iprice'];
               $idesc = $_POST['idesc'];
               
-              $sql = "INSERT INTO encyclopedia_items (`item_category`, `item_subcategory`, `item_name`, `item_image`, `availability_in_store`,`price_in_store`,`description`) VALUES ('$icategory', '$isubcategory', '$productname', '$iimage', '$iavailability','$iprice','$idesc')";
-
-              //insert in database 
-              $rs = mysqli_query($conn, $sql);
-              if($rs){
+              $sql = "INSERT INTO encyclopedia_items (`item_category`, `item_subcategory`, `item_name`, `item_image`, `availability_in_store`,`price_in_store`,`description`) VALUES (?, ?, ?, ?, ?, ?, ?)";
+              //'$icategory', '$isubcategory', '$productname', '$iimage', '$iavailability','$iprice','$idesc'
+              $stmt = $conn->prepare($sql);
+              $stmt->bind_param("sssssss", $icategory, $isubcategory, $productname, $iimage, $iavailability, $iprice, $idesc);
+              if ($stmt->execute()) {
                 echo "Item added successfully.";
+              } else {
+                echo "Error: " . $sql . "<br />" . mysqli_error($conn);
               }
-            else{
-              echo "Error: " . $sql . "<br />" . mysqli_error($conn);
-          
-            }
+
             }
           ?>
           

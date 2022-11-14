@@ -106,7 +106,7 @@ if ($logged_in) {
   if ($user_role == 'Admin' || $user_role == 'Super Admin') {
     echo '
     <li class="nav-item">
-      <a class="nav-link" href="visitor_encyclopedia_interface.php"><p class ="fs-5 mx-3 mt-3" style="color: white;">Plant Encyclopedia</p></a>
+      <a class="nav-link" href="admin_encyclopedia_interface.php"><p class ="fs-5 mx-3 mt-3" style="color: white;">Plant Encyclopedia</p></a>
     </li>';
   } else {
     echo '

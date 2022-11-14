@@ -5,9 +5,10 @@ if ( basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"]) ) {
     exit;
 }
 
+require_once 'database_credentials.php';
+
 function getEncyclopediaDetails($item_id) {
-    require_once 'database_credentials.php'; // File of the database credentials PATH MAYBE UPDATED
-	$conn = new mysqli($servername, $username, $password, $database);
+	$conn = mysqli_connect($GLOBALS["servername"], $GLOBALS["username"], $GLOBALS["password"], $GLOBALS["database"]);
     $command = "SELECT item_id, item_category, item_subcategory, item_name, item_image, availability_in_store, price_in_store, description FROM encyclopedia_items WHERE item_id=?";
     $stmt = mysqli_prepare($conn, $command);
     mysqli_stmt_bind_param($stmt, "i", $item_id);
@@ -45,8 +46,7 @@ function getEncyclopediaDetails($item_id) {
 function deleteEncylopediaItem() {
     if (!empty($_GET["id"])) {
         $item_id = $_GET["id"];
-        require_once 'database_credentials.php'; // File of the database credentials PATH MAYBE UPDATED
-	    $conn = new mysqli($servername, $username, $password, $database);
+	    $conn = mysqli_connect($GLOBALS["servername"], $GLOBALS["username"], $GLOBALS["password"], $GLOBALS["database"]);
         $command = "SELECT item_id, item_category, item_subcategory, item_name, item_image, availability_in_store, price_in_store, description FROM encyclopedia_items WHERE item_id=?";
         $stmt = mysqli_prepare($conn, $command);
         mysqli_stmt_bind_param($stmt, "i", $item_id);
@@ -80,8 +80,7 @@ function deleteEncylopediaItem() {
 }
 
 function retrieveFormDetails($item_id){
-    require_once 'database_credentials.php'; // File of the database credentials PATH MAYBE UPDATED
-	$conn = new mysqli($servername, $username, $password, $database);
+	$conn = mysqli_connect($GLOBALS["servername"], $GLOBALS["username"], $GLOBALS["password"], $GLOBALS["database"]);
     $command = "SELECT item_id, item_category, item_subcategory, item_name, item_image, availability_in_store, price_in_store, description FROM encyclopedia_items WHERE item_id=?";
     $stmt = mysqli_prepare($conn, $command);
     mysqli_stmt_bind_param($stmt, "i", $item_id);
@@ -152,8 +151,7 @@ function retrieveFormDetails($item_id){
 function editEncylopediaItem() {
     if (!empty($_GET["id"])) {
         $item_id = $_GET["id"];
-        require_once 'database_credentials.php'; // File of the database credentials PATH MAYBE UPDATED
-	    $conn = new mysqli($servername, $username, $password, $database);
+	    $conn = mysqli_connect($GLOBALS["servername"], $GLOBALS["username"], $GLOBALS["password"], $GLOBALS["database"]);
         $command = "SELECT item_id, item_category, item_subcategory, item_name, item_image, availability_in_store, price_in_store, description FROM encyclopedia_items WHERE item_id=?";
         $stmt = mysqli_prepare($conn, $command);
         mysqli_stmt_bind_param($stmt, "i", $item_id);
@@ -170,9 +168,10 @@ function editEncylopediaItem() {
         $iprice = $_POST['iprice'];
         $idesc = $_POST['idesc'];
         
-        $command = "UPDATE encyclopedia_items SET item_category= '$icategory', item_subcategory= '$isubcategory', item_name= '$productname', item_image= '$iimage', availability_in_store= '$iavailability', price_in_store= '$iprice', description= '$idesc' WHERE item_id=?";
+        $command = "UPDATE encyclopedia_items SET item_category=?, item_subcategory=?, item_name=?, item_image=?, availability_in_store=?, price_in_store=?, description=? WHERE item_id=?";
+
         $stmt = mysqli_prepare($conn, $command);
-        mysqli_stmt_bind_param($stmt, "i", $item_id);
+        mysqli_stmt_bind_param($stmt, "sssssssi", $icategory, $isubcategory, $productname, $iimage, $iavailability, $iprice, $idesc, $item_id);
         if (mysqli_stmt_execute($stmt)) {
             echo "
             <div class='container min-vh-100'>

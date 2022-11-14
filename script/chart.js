@@ -4,10 +4,6 @@ const currentMonth = new Date().toLocaleString('default', {month: 'long'});
 
 currentyear = new Date().getFullYear();
 
-currentdate = new Date();
-
-currentday = date('l', strtotime(currentdate));
-
 function getDate(){
     date = new Date();
     year = date.getFullYear();
@@ -155,6 +151,7 @@ function getYearStatistic(year) {
 
 // displays amount of bookings per day in a week format
 function initialiseDayChart() {
+    //month_name="October"
     getDayStatistic().then(function(data) {
         var week_obj = getWeekObject(data);
         var chartData = [];
@@ -183,6 +180,7 @@ function initialiseDayChart() {
             }
         });
     }).catch(err => console.log(err));
+    
 };
 
 //displays number of bookings in dates in a specific month
@@ -215,14 +213,15 @@ function initialiseMonthChart() {
             }
           });
     }).catch(err => console.log(err));
+    
 }
 
 // number of bookings each time
 function initialiseTimeChart() {
-    getTimeStatistic().then(function(data){
+    getTimeStatistic().then(function(data) {
         var day_obj = getHoursInDay(data);
         var chartData = [];
-        for (const [key, value] of Object.entries(day_obj)){
+        for (const [key, value] of Object.entries(day_obj)) {
             chartData.push({x: key, y: value});
         }
         new Chart("TimeChart", {
@@ -233,7 +232,7 @@ function initialiseTimeChart() {
                 lineTension: 0,
                 backgroundColor: "rgb(65,83,54)",
                 borderColor: "rgb(65,83,54)",
-                label: "Bookings",
+                label: "Number of Bookings",
                 data: chartData
               }]
             },
@@ -284,4 +283,5 @@ function initialiseYearChart() {
             }
         });
     }).catch(err => console.log(err));
+    
 }

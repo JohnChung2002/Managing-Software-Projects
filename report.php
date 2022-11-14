@@ -18,12 +18,7 @@
         <h2 class="text-center mt-5">Daily Report</h2>
         <hr />
         
-        <h3 class="text-center mt-5">Day Based Report</h3>
-        <div class="text-center mt-5">
-            <canvas id="DayChart"></canvas>
-        </div>
-        
-        <h3 class="text-center mt-5">Daily Month Report</h3>
+        <h3 class="text-center mt-5">Month Report</h3>
         <div class="text-center mt-5">
             <canvas id="MonthChart"></canvas>
         </div>
@@ -38,7 +33,7 @@
     <br />
     <script src="script/chart.js"></script>
     <script>
-        initialiseDayChart();
+        
         initialiseMonthChart();
         initialiseYearChart();
     </script>

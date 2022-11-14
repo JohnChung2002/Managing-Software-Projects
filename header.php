@@ -78,10 +78,17 @@ if ($logged_in) {
     </li>';
   }
 }
-echo '
-<li class="nav-item">
-  <a class="nav-link" href="#"><p class ="fs-5 mx-3 mt-3" style="color: white;">Plant Encyclopedia</p></a>
-</li>';
+if ($user_role == 'Admin' || $user_role == 'Super Admin') {
+  echo '
+  <li class="nav-item">
+    <a class="nav-link" href="visitor_encyclopedia_interface.php"><p class ="fs-5 mx-3 mt-3" style="color: white;">Plant Encyclopedia</p></a>
+  </li>';
+} else {
+  echo '
+  <li class="nav-item">
+    <a class="nav-link" href="visitor_encyclopedia_interface.php"><p class ="fs-5 mx-3 mt-3" style="color: white;">Plant Encyclopedia</p></a>
+  </li>';
+}
 if (!$logged_in) {
   echo '
   <li class="nav-item">
@@ -104,7 +111,6 @@ if (!$logged_in) {
     </a>
     <ul class="dropdown-menu">
       <li><a class="dropdown-item" href="profilepage.php">My Profile</a></li>
-      <li><a class="dropdown-item" href="#">Another action</a></li>
       <li><hr class="dropdown-divider"></li>
       <li><a class="dropdown-item" href="logout.php">Log Out</a></li>
     </ul>

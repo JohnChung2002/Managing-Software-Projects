@@ -15,27 +15,17 @@
         <p class="text-center mt-5"><?php echo "Report based on: " . date("d/m/Y") . "<br>";?></p> 
         <hr />
         
-        <h2 class="text-center mt-5">Monthly Summary Time Based Report </h2>
-        <hr />
-
-        <div class="text-center mt-5">
-            <canvas id="TimeChart"></canvas>
-        </div>
-        
-        <h2 class="text-center mt-5">Monthly Summary Day Based Report</h3>
-        <hr />
-
+        <h3 class="text-center mt-5">Day Based Report</h3>
         <div class="text-center mt-5">
             <canvas id="DayChart"></canvas>
         </div>
         
-        <h2 class="text-center mt-5">Daily Traffic Report</h2>
-        <hr />
-
+        <h3 class="text-center mt-5">Daily Month Report</h3>
         <div class="text-center mt-5">
             <canvas id="MonthChart"></canvas>
         </div>
-        <h2 class="text-center mt-5">Monthly Traffic Report</h3>
+
+        <h2 class="text-center mt-5">Yearly Report</h3>
         <hr />
         
         <div class="text-center mt-5">
@@ -47,7 +37,6 @@
     <script>
         initialiseDayChart();
         initialiseMonthChart();
-        initialiseTimeChart();
         initialiseYearChart();
     </script>
     <?php include 'footer.php'; ?>

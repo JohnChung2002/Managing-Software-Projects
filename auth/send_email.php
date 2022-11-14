@@ -67,4 +67,3 @@
         curl_close($callurl);
     }
 ?>
-?>

@@ -6,9 +6,13 @@
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
           }
-
-    $result = mysqli_query($conn,"SELECT * FROM content_info WHERE content_id='" . $_GET['content_id'] . "'");
-    $row= mysqli_fetch_array($result);
+    
+    $command = "SELECT * FROM content_info WHERE content_id=?;";
+    $stmt = $conn->prepare($command);
+    $stmt->bind_param("i", (int)$_GET['content_id']);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $row= $result->fetch_assoc();
 ?>
 <html>
 <head>

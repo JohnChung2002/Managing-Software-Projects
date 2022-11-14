@@ -10,6 +10,8 @@
 <body>
     <?php 
         include $_SERVER['DOCUMENT_ROOT'].'/database_credentials.php';
+        include $_SERVER['DOCUMENT_ROOT'].'/api/api_functions.php';
+        include $_SERVER['DOCUMENT_ROOT'].'/notification/notification_functions.php';
         include 'header.php'; 
     ?>
     <?php
@@ -24,8 +26,9 @@
         $content_image = $_POST['content_image'];
         $content_resource = $_POST['content_resource'];
 
-        $sql = "INSERT INTO content_info (content_type, content_title, content_image, content_resource)
-            VALUES ('$content_type', '$content_title', '$content_image', '$content_resource')";
+        $sql = "INSERT INTO content_info (content_type, content_title, content_image, content_resource) VALUES (?, ?, ?, ?);";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("ssss", $content_type, $content_title, $content_image, $content_resource);
           
     ?>
 
@@ -34,7 +37,8 @@
                 <div class="col-4 w-100">
                 <h1 class="text-uppercase my-5">
                     <?php
-                        if (mysqli_query($conn, $sql)) {
+                        if ($stmt->execute()) {
+                            trigger_content_background($content_type, $content_title, $content_image, $content_resource);
                             echo "New Promotion/Announcement has been succesfully added\n";
                             } 
                         else {
@@ -61,7 +65,7 @@
             <div class="row text-center mb-2">
                     <div class="col-4 w-100">
                         <button type="button" class="btn btn-success">
-                             <a class="text-white" href="/Managing-Software-Projects/promotioninfo.php"> Go Back </a>
+                             <a class="text-white" href="promotioninfo.php"> Go Back </a>
                         </button>
                     </div>
             </div>

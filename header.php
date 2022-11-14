@@ -143,11 +143,8 @@ if (!$logged_in) {
           loading="lazy"/>
     </a>
     <ul class="dropdown-menu">
-      <li><a class="dropdown-item" href="profilepage.php">My Profile</a></li>';
-  if ($user_role == 'Admin' || $user_role == 'Super Admin') {
-    echo '<li><a class="dropdown-item" href="enquiryadmin.php">Enquiry Module</a></li>';
-  }
-    echo '<li><hr class="dropdown-divider"></li>
+      <li><a class="dropdown-item" href="profilepage.php">My Profile</a></li>
+      <li><hr class="dropdown-divider"></li>
       <li><a class="dropdown-item" href="logout.php">Log Out</a></li>
     </ul>
   </li>';

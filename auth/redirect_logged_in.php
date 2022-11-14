@@ -7,7 +7,7 @@
 
     session_start();
     if(isset($_SESSION['is_login']) && $_SESSION['is_login'] == true){
-        if ($_SESSION['user_role'] == "User" || $_SESSION['user_role'] == "Admin") {
+        if ($_SESSION['user_role'] == "User" || $_SESSION['user_role'] == "Admin" || $_SESSION['user_role'] == "Super Admin") {
                 header("Location: dashboard.php");
                 exit;
         } 

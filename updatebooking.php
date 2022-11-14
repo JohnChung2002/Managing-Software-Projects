@@ -11,7 +11,7 @@
 </head>
 <body>
 <?php include 'header.php'; 
-  if ($_SESSION["user_role"] == "Admin") {
+  if ($_SESSION["user_role"] == "Admin" || $_SESSION["user_role"] == "Super Admin") {
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         include "booking/booking_functions.php";
         adminUpdateBooking();

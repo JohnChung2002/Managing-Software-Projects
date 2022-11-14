@@ -13,7 +13,7 @@ include "auth/is_loggedin.php";
   <h1 class="text-center text-white">Booking Dashboard</h1>
   <div class="row row-cols-1 row-cols-md-2 g-4">
     <?php 
-    if($_SESSION["user_role"] == "Admin") {
+    if($_SESSION["user_role"] == "Admin" || $_SESSION["user_role"] == "Super Admin") {
       echo '
       <div class="col">
         <div class="card p-5 my-5 border">
@@ -57,7 +57,7 @@ include "auth/is_loggedin.php";
       </div>
     </div>
     <?php 
-    if($_SESSION["user_role"] == "Admin") {
+    if($_SESSION["user_role"] == "Admin" || $_SESSION["user_role"] == "Super Admin") {
       echo '
       <div class="col">
       <div class="card p-5 my-5 border">

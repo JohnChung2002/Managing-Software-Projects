@@ -5,7 +5,6 @@
 <html lang="en">
 <head>
     <?php include 'page_head.php'; ?>   
-    <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <title>Cacti Succulent Kuching</title>
 </head>
@@ -14,8 +13,6 @@
     <div class="container">
         <h1 class="text-center mt-5">Visitor Pattern Report</h1>
         <p class="text-center mt-5"><?php echo "Report based on: " . date("d/m/Y") . "<br>";?></p> 
-        
-        <h2 class="text-center mt-5">Daily Report</h2>
         <hr />
         
         <h3 class="text-center mt-5">Day Based Report</h3>

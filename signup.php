@@ -12,7 +12,11 @@
   <script src="script/password-integrity.js"></script>
   <?php include 'auth/signup-process.php'; ?>
   <div class="container p-3 vh-100">
-    <span><?php if(isset($_SESSION['signupMsg'])){echo $_SESSION['signupMsg']; session_unset();} ?></span>
+    <?php 
+    if(isset($_SESSION['signupMsg'])) {
+      echo "<span>".$_SESSION['signupMsg']."</span>"; 
+      session_unset();} 
+    ?>
     <form class="needs-validation" method="post" id="signupreset-form" novalidate>
         <fieldset>
             <legend>Sign Up</legend>
@@ -37,7 +41,7 @@
             <div class="row mb-3">
               <label for="phone" class="col-sm-2 col-form-label">Phone Number</label>
               <div class="col-sm-10">
-                <input type="text" pattern="^[0-9]{10}$" class="form-control" name="phone" id="phone" aria-describedby="helpId" required>
+                <input type="text" pattern="^[0-9]{10,11}$" class="form-control" name="phone" id="phone" aria-describedby="helpId" required>
                 <small id="helpId" class="form-text text-muted">0102348293</small>
                 <div class="valid-feedback">Looks good!</div>
                 <div class="invalid-feedback">Please enter a valid phone number.</div>

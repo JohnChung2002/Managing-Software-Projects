@@ -11,40 +11,50 @@
 </head>
 <body>
   <?php include 'header.php'; 
-  
 
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        include "booking/enquiry_functions.php";
-        answerenquiry();
-         }
+    if (!empty($_GET["id"]) ){
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            include "booking/enquiry_functions.php";
+            answerenquiry();
+            }
 
 
+        else{ include "booking/enquiry_functions.php";
+            
+        echo"
+        <h1 class='text-center mt-5'>REPLY ENQUIRY</h1>
+        <div class='container p-5 my-5 border'>
+            <p>You are now replying to the current enquiry:</p>
+            ";
+
+        
+            getEnquiryInformation($_GET["id"]);
+            echo"
+            <form method='post' class='row g-3 needs-validation' novalidate>
+            <div class='col-md-6'>
+            <br/>
+            <h6><label for='inputReason' class='form-label'>Response to the enquiry :</label></h6>
+            <input type='text' class='form-control' id='inputReason' name='inputReason' required>
+            <div class='valid-feedback'>Looks good!</div>
+            <div class='invalid-feedback'>Please enter a response.  </div>
+            </div>
+            <div class='col-12'>
+                <button type='submit' class='btn btn-primary'>Response Now</button>
+                <button type='reset' class='btn btn-primary'>Reset</button>
+            </div>
+            </form>
+            <script src='script/booking_validation.js'></script>
+        </div>";
+        };
+    }
     else{
-    echo"
-    <h1 class='text-center mt-5'>REPLY ENQUIRY</h1>
-    <div class='container p-5 my-5 border'>
-        <p>You are now replying to the current enquiry:</p>
-        ";
-
-    
-        getEnquiryInformation($_GET["id"]);
-         echo"
-        <form method='post' class='row g-3 needs-validation' novalidate>
-        <div class='col-md-6'>
-        <br/>
-        <h6><label for='inputReason' class='form-label'>Response to the enquiry :</label></h6>
-        <input type='text' class='form-control' id='inputReason' name='inputReason' required>
-        <div class='valid-feedback'>Looks good!</div>
-        <div class='invalid-feedback'>Please enter a response.  </div>
-        </div>
-        <div class='col-12'>
-            <button type='submit' class='btn btn-primary'>Response Now</button>
-            <button type='reset' class='btn btn-primary'>Reset</button>
-        </div>
-        </form>
-        <script src='script/booking_validation.js'></script>
-    </div>";
-    };
+        echo "
+        <div class='container min-vh-100'>
+            <div class='alert alert-info'>
+            Please choose an enquiry to response <a href ='enquiryadmin.php'>here.</a>
+            </div>
+        </div>";
+    }
     
 
     

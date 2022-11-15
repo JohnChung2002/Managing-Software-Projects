@@ -25,10 +25,6 @@
         $content_title = $_POST['content_title'];
         $content_image = $_POST['content_image'];
         $content_resource = $_POST['content_resource'];
-
-        $sql = "INSERT INTO content_info (content_type, content_title, content_image, content_resource) VALUES (?, ?, ?, ?);";
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("ssss", $content_type, $content_title, $content_image, $content_resource);
           
     ?>
 
@@ -37,13 +33,8 @@
                 <div class="col-4 w-100">
                 <h1 class="text-uppercase my-5">
                     <?php
-                        if ($stmt->execute()) {
-                            trigger_content_background($content_type, $content_title, $content_image, $content_resource);
-                            echo "New Promotion/Announcement has been succesfully added\n";
-                            } 
-                        else {
-                            echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-                            }
+                        trigger_content_background($content_type, $content_title, $content_image, $content_resource);
+                        echo "New Promotion/Announcement has been succesfully added\n";
                     ?>
                 </h1>
                 </div>

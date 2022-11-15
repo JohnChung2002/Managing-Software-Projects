@@ -138,13 +138,13 @@ function getEnquiryInformation($enquiry_id) {
 function answerenquiry() {
     if ( !empty($_POST["inputReason"])) {
 
-        $enquiry_id = $_GET["id"];
+        $enquiry_id = (int)$_GET["id"];
         $reason = $_POST["inputReason"];
         
         $conn = start_connection();
         $command = "UPDATE enquiries SET enquiry_status='Answered', enquiry_reply=? WHERE enquiry_id=?;";
         $stmt = mysqli_prepare($conn, $command);
-        mysqli_stmt_bind_param($stmt, "ss", $reason, $enquiry_id);
+        mysqli_stmt_bind_param($stmt, "si", $reason, $enquiry_id);
 
         mysqli_stmt_execute($stmt);
         echo "

@@ -7,9 +7,10 @@
             die("Connection failed: " . $conn->connect_error);
           }
     
-    $command = "SELECT * FROM content_info WHERE content_id=?;";
+    $command = "SELECT content_title, content_image, content_resource FROM content_info WHERE content_id=?;";
     $stmt = $conn->prepare($command);
-    $stmt->bind_param("i", (int)$_GET['content_id']);
+    $id = (int)$_GET['id'];
+    $stmt->bind_param("i", $id);
     $stmt->execute();
     $result = $stmt->get_result();
     $row= $result->fetch_assoc();

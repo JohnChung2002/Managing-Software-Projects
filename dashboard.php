@@ -39,19 +39,23 @@ include "auth/is_loggedin.php";
       </div>
       </div>
     </div>
-    <div class="col">
-      <div class="card mx-5 border">
-        <img src="images/Cactus6.jpeg" class="card-img-top w-60" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">MANAGE YOUR BOOKING</h5>
-          <p class="card-text">
-		  We understand that your plans can occasionally change. 
-		  With this feature, you can easily and instantly make changes to your appointment online.
-		  </p>
-          <a href="bookinghistory.php" class="btn btn-primary">Manage Booking</a>
-      </div>
-      </div>
-    </div>
+    <?php 
+      if ($_SESSION["user_role"] == "User") {
+        echo '<div class="col">
+        <div class="card mx-5 border">
+          <img src="images/Cactus6.jpeg" class="card-img-top w-60" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">MANAGE YOUR BOOKING</h5>
+            <p class="card-text">
+        We understand that your plans can occasionally change. 
+        With this feature, you can easily and instantly make changes to your appointment online.
+        </p>
+            <a href="bookinghistory.php" class="btn btn-primary">Manage Booking</a>
+        </div>
+        </div>
+      </div>';
+      }
+    ?>
     <?php 
     if($_SESSION["user_role"] == "Admin" || $_SESSION["user_role"] == "Super Admin") {
       echo '
@@ -62,6 +66,26 @@ include "auth/is_loggedin.php";
           <h5 class="card-title">SEARCH BOOKING</h5>
           <p class="card-text">Search booking by booking ID</p>
           <a href="searchbooking.php" class="btn btn-primary">Search Booking</a>
+      </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card mx-5 border">
+        <img src="images/Cactus1.png" class="card-img-top w-60" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">UPDATE BOOKING</h5>
+          <p class="card-text">Edit booking by booking ID</p>
+          <a href="updatebooking.php" class="btn btn-primary">Update Booking</a>
+      </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card mx-5 border">
+        <img src="images/Cactus1.png" class="card-img-top w-60" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">CANCEL BOOKING</h5>
+          <p class="card-text">Cancel booking by booking ID</p>
+          <a href="cancelbooking.php" class="btn btn-primary">Cancel Booking</a>
       </div>
       </div>
     </div>

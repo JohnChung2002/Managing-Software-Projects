@@ -64,7 +64,12 @@ function deleteEncylopediaItem() {
                 <div class='alert alert-success mt-4'>
                 Item removed successfully!
                 </div>
-            </div>";
+                div class='d-grid gap-2'>
+                <a href='admin_encyclopedia_interface.php'><button type='button' class='btn btn-primary'>Back To Encyclopedia</button></a>
+                <br>
+                </div>
+            </div>
+            ";
             mysqli_close($conn);
             return true;
         }

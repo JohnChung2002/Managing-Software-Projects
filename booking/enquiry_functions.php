@@ -178,7 +178,6 @@ function createEnquiryTicketEmail($id) {
     $row = mysqli_fetch_assoc($result);
 
     $name = $row["contact_name"];
-    
     $email = $row["contact_info"];
     $subject = $row["enquiry_subject"];
     $content = $row["enquiry_content"];

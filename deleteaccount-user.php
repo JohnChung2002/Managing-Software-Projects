@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Email Verification</title>
+    <title>Account Deletion Confirmation</title>
     <?php include 'page_head.php'; ?>
 </head>
 <body>

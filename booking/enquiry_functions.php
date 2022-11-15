@@ -25,23 +25,21 @@ function newenquiry(){
         $stmt->bind_param('ssss', $name, $email, $InputReason, $InputComment);
         $stmt->execute();                             
         $stmt->close();
-
         mysqli_close($conn);
 
 
         $conn = start_connection();
-        $stmt = $conn -> prepare("SELECT enquiry_id FROM enquiries WHERE contact_info =? ORDER BY enquiry_id DESC LIMIT 1;");
+        $stmt = $conn -> prepare("SELECT enquiry_id FROM enquiries WHERE contact_info=? ORDER BY enquiry_id DESC LIMIT 1;");
         $stmt->bind_param('s', $email);
         $stmt->execute();
 
 
         $result = $stmt->get_result();
-        $stmt->close();
-
         $row = mysqli_fetch_assoc($result);
-        $id = $row["enquiry_id"];
-        
 
+        $id = (int)$row["enquiry_id"];
+        $stmt->close();
+    
         mysqli_close($conn);
 
         createEnquiryTicketEmail($id);
@@ -135,10 +133,8 @@ function getEnquiryInformation($enquiry_id) {
     </p>";
 }
 
-function answerenquiry() {
+function answerenquiry($enquiry_id) {
     if ( !empty($_POST["inputReason"])) {
-
-        $enquiry_id = (int)$_GET["id"];
         $reason = $_POST["inputReason"];
         
         $conn = start_connection();
@@ -147,15 +143,14 @@ function answerenquiry() {
         mysqli_stmt_bind_param($stmt, "si", $reason, $enquiry_id);
 
         mysqli_stmt_execute($stmt);
+        mysqli_close($conn);
+        answerEnquiryTicketEmail($enquiry_id);
         echo "
         <div class='container min-vh-100'>
-        <div class='alert alert-success mt-4'>
+            <div class='alert alert-success mt-4'>
             Enquiry replied successfully! A mail will be sent to their email.
             </div>
         </div>";
-
-        mysqli_close($conn);
-        answerEnquiryTicketEmail($enquiry_id);
             
     }
     else {

@@ -12,7 +12,8 @@
   include "booking/enquiry_functions.php";
   if (!empty($_GET["id"]) ){
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        answerenquiry();
+        $id = (int)$_GET["id"];
+        answerenquiry($id);
     }
     else{
     echo"

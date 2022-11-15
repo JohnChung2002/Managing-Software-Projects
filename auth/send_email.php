@@ -60,7 +60,7 @@
 
         $callurl = curl_init();
         // CHANGE THE API_LINK WHEN DEPLOYING
-        $param = "?key=EB3914D9F167D9A414DF438C7D4CD&email={$email}&action=deleteaccount";
+        $param = "?key={$GLOBALS['api_key']}&email={$email}&action=deleteaccount";
         $url = $GLOBALS['api_link'] . $param;
         curl_setopt_array($callurl,[CURLOPT_URL=>$url,CURLOPT_TIMEOUT_MS=>1000,CURLOPT_RETURNTRANSFER=>FALSE]);
         curl_exec($callurl);

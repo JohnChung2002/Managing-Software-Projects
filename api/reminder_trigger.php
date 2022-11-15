@@ -2,6 +2,7 @@
     require_once $_SERVER['DOCUMENT_ROOT'].'/api_credentials.php';
     require_once dirname(__FILE__)."/api_functions.php";
     require_once $_SERVER['DOCUMENT_ROOT'].'/vendor/autoload.php';
+    require_once $_SERVER['DOCUMENT_ROOT'].'/notification/notification_functions.php';
 
     use Kreait\Firebase\Factory;
     use Kreait\Firebase\Messaging\CloudMessage;

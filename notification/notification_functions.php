@@ -345,8 +345,6 @@
         $title = escapeshellarg($title);
         $key = escapeshellarg($GLOBALS['api_key']);
         if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
-            $command = "START /MIN php \"notification\\content_script.php\" -i$user_id -s$title -t$type -c$content_id -k$key";
-            var_dump($command);
             pclose(popen("START /MIN php \"notification\\content_script.php\" -i$user_id -s$title -t$type -c$content_id -k$key", "r"));
         } else {
             pclose(popen("php \"notification/content_script.php\" -i$user_id -s$title -t$type -c$content_id -k$key >/dev/null 2>/dev/null &", "r"));

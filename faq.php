@@ -93,7 +93,9 @@
     </h2>
     <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
       <div class="accordion-body">
-        <li> You may contact the admin to help you create an appointment if you do not have an account.</li>
+        <ul>
+          <li> You may contact the admin to help you create an appointment if you do not have an account.</li>
+        </ul>
       </div>
     </div>
   </div>

@@ -29,7 +29,6 @@ function create_booking_ics($booking_id) {
 			$eventobj->addNode(new ZCiCalDataNode("Description:" . ZCiCal::formatContent("Terms and Conditions:\n1. You are only allowed to update/cancel your booking 30 minutes before the appointment. Cancellation/Updates within 30 minutes of booking is not allowed.\n2. Kindly present your booking email / booking number upon arrival.\n\nVisit https://cactisucculentkuching.cf for more information.")));
 		}
 		$eventobj->addNode(new ZCiCalDataNode("STATUS:". ZCiCal::formatContent(strtoupper($row['booking_status']))));
-		//file_put_contents($booking_id . ".ics", $icalobj->export());
 		echo $icalobj->export();
 	} else {
 		mysqli_free_result($result);
@@ -43,7 +42,6 @@ function create_booking_ics($booking_id) {
 if (!empty($_GET["booking_id"])) {
 	header('Content-type: text/calendar; charset=utf-8');
 	header('Content-Disposition: attachment; filename=-osk3rEY4Tc.ics');
-	//create_booking_ics("-osk3rEY4Tc", "2022-11-14 13:00:00", "2022-11-14 14:00:00", 2, 0);
 	create_booking_ics($_GET["booking_id"]);
 	exit;
 }

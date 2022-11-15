@@ -186,8 +186,6 @@ function createEnquiryTicketEmail($id) {
     $callurl = curl_init();
     $param = "?key={$GLOBALS['api_key']}&action=createenquiryticket&email={$email}&name={$name}&id={$id}&title={$subject}&enquiry={$content}";
     $url = $GLOBALS['api_link'] . $param;
-    var_dump($row);
-    var_dump($url);
     curl_setopt_array($callurl,[CURLOPT_URL=>$url,CURLOPT_TIMEOUT_MS=>1000,CURLOPT_RETURNTRANSFER=>FALSE]);
     curl_exec($callurl);
     curl_close($callurl);
@@ -210,8 +208,6 @@ function answerEnquiryTicketEmail($id) {
     $callurl = curl_init();
     $param = "?key={$GLOBALS['api_key']}&action=answerenquiry&email={$email}&name={$name}&id={$id}&title={$subject}&reply={$reply}";
     $url = $GLOBALS['api_link'] . $param;
-    var_dump($row);
-    var_dump($url);
     curl_setopt_array($callurl,[CURLOPT_URL=>$url,CURLOPT_TIMEOUT_MS=>1000,CURLOPT_RETURNTRANSFER=>FALSE]);
     curl_exec($callurl);
     curl_close($callurl);

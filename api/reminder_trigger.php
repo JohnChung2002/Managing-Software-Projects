@@ -21,6 +21,11 @@
 
     function trigger_email_api($email, $id, $date, $time, $pax) {
         $callurl = curl_init();
+        $email = urlencode($email);
+        $id = urlencode($id);
+        $date = urlencode($date);
+        $time = urlencode($time);
+        $pax = urlencode($pax);
         $param = "?key={$GLOBALS['api_key']}&email={$email}&action=reminder&id={$id}&date={$date}&time={$time}&pax={$pax}";
         $url = $GLOBALS['api_link'] . $param;
         curl_setopt_array($callurl,[CURLOPT_URL=>$url,CURLOPT_TIMEOUT_MS=>1000,CURLOPT_RETURNTRANSFER=>FALSE]);

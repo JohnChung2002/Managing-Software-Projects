@@ -67,6 +67,12 @@
 
     function trigger_booking_email($action, $email, $id, $date, $time, $pax) {
         $callurl = curl_init();
+        $action = urlencode($action);
+        $email = urlencode($email);
+        $id = urlencode($id);
+        $date = urlencode($date);
+        $time = urlencode($time);
+        $pax = urlencode($pax);
         $param = "?key={$GLOBALS['api_key']}&email={$email}&action={$action}&id={$id}&date={$date}&time={$time}&pax={$pax}";
         $url = $GLOBALS['api_link'] . $param;
         curl_setopt_array($callurl,[CURLOPT_URL=>$url,CURLOPT_TIMEOUT_MS=>1000,CURLOPT_RETURNTRANSFER=>FALSE]);
@@ -129,6 +135,10 @@
 
     function trigger_content_email($email, $id, $title, $type) {
         $callurl = curl_init();
+        $email = urlencode($email);
+        $id = urlencode($id);
+        $title = urlencode($title);
+        $type = urlencode($type);
         $param = "?key={$GLOBALS['api_key']}&email={$email}&action=content&id={$id}&title={$title}&type={$type}";
         $url = $GLOBALS['api_link'] . $param;
         curl_setopt_array($callurl,[CURLOPT_URL=>$url,CURLOPT_TIMEOUT_MS=>1000,CURLOPT_RETURNTRANSFER=>FALSE]);

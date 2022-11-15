@@ -179,6 +179,11 @@ function createEnquiryTicketEmail($id) {
     mysqli_free_result($result);
     mysqli_close($conn);
     $callurl = curl_init();
+    $email = urlencode($email);
+    $name = urlencode($name);
+    $id = urlencode($id);
+    $subject = urlencode($subject);
+    $content = urlencode($content);
     $param = "?key={$GLOBALS['api_key']}&action=createenquiryticket&email={$email}&name={$name}&id={$id}&title={$subject}&enquiry={$content}";
     $url = $GLOBALS['api_link'] . $param;
     curl_setopt_array($callurl,[CURLOPT_URL=>$url,CURLOPT_TIMEOUT_MS=>1000,CURLOPT_RETURNTRANSFER=>FALSE]);
@@ -201,6 +206,11 @@ function answerEnquiryTicketEmail($id) {
     mysqli_free_result($result);
     mysqli_close($conn);
     $callurl = curl_init();
+    $email = urlencode($email);
+    $name = urlencode($name);
+    $id = urlencode($id);
+    $subject = urlencode($subject);
+    $reply = urlencode($reply);
     $param = "?key={$GLOBALS['api_key']}&action=answerenquiry&email={$email}&name={$name}&id={$id}&title={$subject}&reply={$reply}";
     $url = $GLOBALS['api_link'] . $param;
     curl_setopt_array($callurl,[CURLOPT_URL=>$url,CURLOPT_TIMEOUT_MS=>1000,CURLOPT_RETURNTRANSFER=>FALSE]);

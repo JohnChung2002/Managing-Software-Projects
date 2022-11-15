@@ -21,6 +21,8 @@
         $stmt->execute();
 
         $callurl = curl_init();
+        $email = urlencode($email);
+        $token = urlencode($token);
         $param = "?key={$GLOBALS['api_key']}&email={$email}&action=verification&token={$token}";
         $url = $GLOBALS['api_link'] . $param;
         curl_setopt_array($callurl,[CURLOPT_URL=>$url,CURLOPT_TIMEOUT_MS=>1000,CURLOPT_RETURNTRANSFER=>FALSE]);
@@ -42,6 +44,8 @@
         $stmt->execute();
 
         $callurl = curl_init();
+        $email = urlencode($email);
+        $token = urlencode($token);
         $param = "?key={$GLOBALS['api_key']}&email={$email}&action=verification&token={$token}";
         $url = $GLOBALS['api_link'] . $param;
         curl_setopt_array($callurl,[CURLOPT_URL=>$url,CURLOPT_TIMEOUT_MS=>1000,CURLOPT_RETURNTRANSFER=>FALSE]);
@@ -60,6 +64,7 @@
 
         $callurl = curl_init();
         // CHANGE THE API_LINK WHEN DEPLOYING
+        $email = urlencode($email);
         $param = "?key={$GLOBALS['api_key']}&email={$email}&action=deleteaccount";
         $url = $GLOBALS['api_link'] . $param;
         curl_setopt_array($callurl,[CURLOPT_URL=>$url,CURLOPT_TIMEOUT_MS=>1000,CURLOPT_RETURNTRANSFER=>FALSE]);

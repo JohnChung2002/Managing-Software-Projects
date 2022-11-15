@@ -1,5 +1,5 @@
 <?php
-  include 'auth/redirect_logged_in.php';
+  session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">

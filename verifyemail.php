@@ -9,7 +9,7 @@
     require_once $_SERVER['DOCUMENT_ROOT'].'/database_credentials.php';
     include 'auth/send_email.php';
 
-    if(isset($_GET['token']) && isset($_GET['email'])){
+    if(isset($_GET['token']) && isset($_GET['email'])) {
         $token = $_GET['token'];
         $newEmail = $_GET['email'];
         $conn = mysqli_connect($servername, $username, $password, $database);
@@ -44,7 +44,7 @@
                 ";
                 sendAccountVerificationEmail($email, $newEmail);
             }
-        }else{
+        } else {
             $message = "
                 <div class='alert alert-danger'>
                     Invalid token.

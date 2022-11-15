@@ -1,4 +1,5 @@
 <?php
+    session_start();
     include 'api/upload2imgur.php'; 
     include_once $_SERVER['DOCUMENT_ROOT'].'/database_credentials.php';
     $conn = mysqli_connect($servername, $username, $password, $database);

@@ -13,7 +13,7 @@ if ($val !== false) {
         $content_type = $val["t"];
         $content_title = $val["s"];
         $content_id = (int)$val['c'];
-        $url = "https://cactisucculentkuching.cf/content.php?id=".$content_id;
+        $url = "https://cactisucculentkuching.cf/announcement.php?id=".$content_id;
         for ($i = 1; $i <= $val['i']; $i++) {
             update_notification_data($i, $content_type, $content_title , $url);
         }

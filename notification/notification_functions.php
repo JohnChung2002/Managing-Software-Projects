@@ -22,11 +22,14 @@
 
     function update_notification_data($id, $type, $title, $link) {
         $conn = start_connection();
-        $command = "INSERT INTO notification_history (user_id, notification_type, notification_title, notification_link) VALUES (?, ?, ?, ?);";
-        $stmt = mysqli_prepare($conn, $command);
-        mysqli_stmt_bind_param($stmt, "isss", $id, $type, $title, $link);
-        mysqli_stmt_execute($stmt);
-        mysqli_stmt_close($stmt);
+        try {
+            $command = "INSERT INTO notification_history (user_id, notification_type, notification_title, notification_link) VALUES (?, ?, ?, ?);";
+            $stmt = mysqli_prepare($conn, $command);
+            mysqli_stmt_bind_param($stmt, "isss", $id, $type, $title, $link);
+            mysqli_stmt_execute($stmt);
+            mysqli_stmt_close($stmt);
+        } catch (Exception $e) {
+        }
         mysqli_close($conn);
     }
 
@@ -105,7 +108,7 @@
         $conn = start_connection();
         $command = "SELECT content_title, content_type FROM content_info WHERE content_id=?;";
         $stmt = mysqli_prepare($conn, $command);
-        mysqli_stmt_bind_param($stmt, "s", $content_id);
+        mysqli_stmt_bind_param($stmt, "i", $content_id);
         mysqli_stmt_execute($stmt);
         $result = mysqli_stmt_get_result($stmt);
         if (mysqli_num_rows($result) != 0) { 
@@ -135,7 +138,7 @@
 
     function load_user_notification_tokens($id, $title, $type) {
         $conn = start_connection();
-        $command = "SELECT notification_token FROM user_credentials WHERE user_role='User' AND notification_token <> json_array();";
+        $command = "SELECT notification_token FROM user_credentials WHERE user_role='User' AND account_status <> 'Deleted' AND notification_token <> json_array();";
         $result = mysqli_query($conn, $command);
         while ($row = mysqli_fetch_assoc($result)) {
             $user_notification_token = json_decode($row["notification_token"]);
@@ -342,6 +345,8 @@
         $title = escapeshellarg($title);
         $key = escapeshellarg($GLOBALS['api_key']);
         if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
+            $command = "START /MIN php \"notification\\content_script.php\" -i$user_id -s$title -t$type -c$content_id -k$key";
+            var_dump($command);
             pclose(popen("START /MIN php \"notification\\content_script.php\" -i$user_id -s$title -t$type -c$content_id -k$key", "r"));
         } else {
             pclose(popen("php \"notification/content_script.php\" -i$user_id -s$title -t$type -c$content_id -k$key >/dev/null 2>/dev/null &", "r"));

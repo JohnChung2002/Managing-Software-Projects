@@ -56,11 +56,15 @@ function deleteEncylopediaItem() {
         mysqli_stmt_bind_param($stmt, "i", $item_id);
         if (mysqli_stmt_execute($stmt)) {
             echo "
-            <div class='container min-vh-100'>
-                <div class='alert alert-success mt-4'>
+            <div class='alert alert-success mt-4'>
                 Item removed successfully!
-                </div>
-            </div>";
+            </div>
+            
+            <div class='d-grid gap-2'>
+                <a href='admin_encyclopedia_interface.php'><button type='button' class='btn btn-primary'>Back To Encyclopedia</button></a>
+                <br>
+            </div>
+            ";
             mysqli_close($conn);
             return true;
         }
@@ -171,12 +175,10 @@ function editEncylopediaItem() {
         mysqli_stmt_bind_param($stmt, "i", $item_id);
         if (mysqli_stmt_execute($stmt)) {
             echo "
-            <div class='container min-vh-100'>
-                <div class='alert alert-success mt-4'>
+            <div class='alert alert-success mt-4'>
                 Item edited successfully!
-                </div>
             </div>
-            
+
             <div class='d-grid gap-2'>
                 <a href='admin_encyclopedia_interface.php'><button type='button' class='btn btn-primary'>Back To Encyclopedia</button></a>
                 <br>

@@ -63,8 +63,6 @@
 ?>
 
                 </select>
-                <div class="valid-feedback">Looks good!</div>
-                <div class="invalid-feedback">Please select your gender.</div>
                 </div>
             </div>
             <button type="submit" class="btn btn-danger">Delete</button>

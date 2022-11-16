@@ -37,7 +37,7 @@
                 <div class = "mb-3">
                     <textarea name="page_resource">
                         <?php 
-                            $sql = "SELECT page_resource FROM Homepage_info ORDER BY version_id DESC LIMIT 1";
+                            $sql = "SELECT page_resource FROM homepage_info ORDER BY version_id DESC LIMIT 1";
                             $result = $conn->query($sql);
 
                             if ($result->num_rows > 0) {

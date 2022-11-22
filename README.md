@@ -12,24 +12,23 @@ The notification module is dependent on the following modules:
 - Cron Job -> Google Script
 
 <br/>
+
 1. Email Module
-```
 The Cacti Succulent Email Script is located in [google_script](/google_script/Cacti Succulent Email Script.gs) and should be deployed and the api link for Cacti Succulent Email Script should be overwritten in [api_credentials.php](api_credentials.php)
-```
 ![Deployment Steps](https://media.discordapp.net/attachments/728159841494761483/1044454738592268338/image.png)
+
 2. Push Notification Module
-```
 All the modules used by Firebase are setup using the two links below:
 - [Firebase Client Side Setup](https://firebase.google.com/docs/cloud-messaging/js/client)
 - [Firebase Admin PHP SDK Setup](https://firebase-php.readthedocs.io/en/stable/)
-```
+
 3. Cron Job Module
-```
 The Cacti Succulent Cron Job Script is located in [google_script](/google_script/Cacti Succulent Cron Job Script.gs) and should be deployed then the createTrigger() function should be executed to start a recurring time-trigger equivalent to a cron job.
-```
 
 <br/>
+
 The following is the breakdown of functionality handled by each team member:
+
 - John
     - Database Module
     - Notification Module

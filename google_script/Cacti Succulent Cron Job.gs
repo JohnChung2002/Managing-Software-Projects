@@ -40,11 +40,13 @@ function testTime() {
 }
 
 function createTrigger() {
-  var test = new Date(2022, 10, 10, 1, 30)
-  Logger.log(test)
+  var now = new Date();
+  now.setMinutes(0, 0, 0);
+  now.setMinutes(now.getMinutes() + 90);
+  Logger.log(now)
   ScriptApp.newTrigger("cronJobTrigger")
     .timeBased()
-    .at(test)
+    .at(now)
     .create()
 }
 

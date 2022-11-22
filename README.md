@@ -6,12 +6,9 @@ This is the repository for the case study of SWE20001 Managing Software Projects
 A copy of the database export can be found in [/dataset/cacti_succulent_kuching.sql](/dataset/cacti_succulent_kuching.sql) which was exported from the live server.
 <br/><br/>
 The notification module is dependent on the following modules:
-
 - Email -> Google Script
 - Push Notification -> Google Firebase
 - Cron Job -> Google Script
-
-<br/>
 
 1. Email Module
 The Cacti Succulent Email Script is located in [google_script](/google_script/Cacti Succulent Email Script.gs) and should be deployed and the api link for Cacti Succulent Email Script should be overwritten in [api_credentials.php](api_credentials.php)
@@ -25,10 +22,7 @@ All the modules used by Firebase are setup using the two links below:
 3. Cron Job Module
 The Cacti Succulent Cron Job Script is located in [google_script](/google_script/Cacti Succulent Cron Job Script.gs) and should be deployed then the createTrigger() function should be executed to start a recurring time-trigger equivalent to a cron job.
 
-<br/>
-
 The following is the breakdown of functionality handled by each team member:
-
 - John
     - Database Module
     - Notification Module

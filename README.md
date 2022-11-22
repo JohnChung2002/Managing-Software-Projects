@@ -14,7 +14,7 @@ The notification module is dependent on the following modules:
 
 1. Email Module
 
-&nbsp; The Cacti Succulent Email Script is located in [google_script](/google_script/Cacti%2FSucculent%2FEmail%2FScript.gs) and should be deployed and the api link for Cacti Succulent Email Script should be overwritten in [api_credentials.php](api_credentials.php)
+&nbsp; The Cacti Succulent Email Script is located in [google_script](/google_script/Cacti%20Succulent%20Email%20Script.gs) and should be deployed and the api link for Cacti Succulent Email Script should be overwritten in [api_credentials.php](api_credentials.php)
 ![Deployment Steps](https://media.discordapp.net/attachments/728159841494761483/1044454738592268338/image.png)
 <br/>
 
@@ -27,7 +27,7 @@ The notification module is dependent on the following modules:
 
 3. Cron Job Module
 
-&nbsp; The Cacti Succulent Cron Job Script is located in [google_script](/google_script/Cacti%2FSucculent%2FCron%2FJob%2FScript.gs) and should be deployed then the createTrigger() function should be executed to start a recurring time-trigger equivalent to a cron job.
+&nbsp; The Cacti Succulent Cron Job Script is located in [google_script](/google_script/Cacti%20Succulent%20Cron%20Job%20Script.gs) and should be deployed then the createTrigger() function should be executed to start a recurring time-trigger equivalent to a cron job.
 <br/>
 
 The following is the breakdown of functionality handled by each team member:

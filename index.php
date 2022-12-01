@@ -159,7 +159,7 @@
                 <tr>
                     <td><img src =<?php echo $row["content_image"]; ?> class="img-thumbnail" alt = "" width="400" height="400"/></td>
                     <td><?php echo $row["content_title"]; ?></td>
-                    <td><a href="announcement.php?content_id=<?php echo $row["content_id"]; ?>">Read More</a></td>
+                    <td><a href="announcement.php?id=<?php echo $row["content_id"]; ?>">Read More</a></td>
                 </tr>
                 <?php
                 $i++;
